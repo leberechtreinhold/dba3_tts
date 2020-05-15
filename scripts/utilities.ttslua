@@ -1,0 +1,310 @@
+-- Given two tables with x,y,z numerical components, computes the dot product of them
+function vec_dot_product(vec1, vec2)
+    return { x = vec1['x'] * vec2['x'], y = vec1['y'] * vec2['y'], z = vec1['z'] * vec2['z'] }
+end
+
+-- Given two tables with x,y,z numerical components, computes the sum of both
+function vec_add(vec1, vec2)
+    return { x = vec1['x'] + vec2['x'], y = vec1['y'] + vec2['y'], z = vec1['z'] + vec2['z'] }
+end
+
+-- Given two tables with x,y,z numerical components, computes the vec1-vec2
+function vec_sub(vec1, vec2)
+    return { x = vec1['x'] - vec2['x'], y = vec1['y'] - vec2['y'], z = vec1['z'] - vec2['z'] }
+end
+
+-- Given a table with x,y,z numerical components, and a escalar number, returns a vector with each component multiplied
+function vec_mul_escalar(vec, num)
+    return { x = vec['x'] * num, y = vec['y'] * num, z = vec['z'] * num }
+end
+
+-- Given a table with x,y,z numerical components, and a escalar number, returns a vector with each component divided
+function vec_div_escalar(vec, num)
+    return { x = vec['x'] / num, y = vec['y'] / num, z = vec['z'] / num }
+end
+
+-- Given a table with x,y,z numerical components representing inches, return the same vector with each component being in mm
+function vec_in_to_mm(vec)
+    return { x = from_in_to_mm(vec['x']), y = from_in_to_mm(vec['y']), z = from_in_to_mm(vec['z']) }
+end
+
+-- Given a tables with x,y,z numerical components, returns a [x,y,z] string with two decimals of precision
+function vec_to_str(vec)
+    return '[' .. string.format('%.2f',vec['x']) .. ', ' .. string.format('%.2f',vec['y']) .. ', ' .. string.format('%.2f',vec['z']) .. ']'
+end
+
+
+-- Given two points represented by tables with x,z coords, determines the angle
+-- in radains, of point B relative to A, taking into account the orientation 
+-- of A (in the Y axis) in radians
+function relative_angle_from_point(pointA, pointB, rotationA)
+    local zdiff = pointB['z'] - pointA['z']
+    local xdiff = pointB['x'] - pointA['x']
+    
+    local relative_angle = math.atan2(zdiff, xdiff)
+    if relative_angle < 0 then
+        relative_angle = 2*math.pi + relative_angle
+    end
+
+    local angle_adjusted_coords = relative_angle + rotationA
+    if angle_adjusted_coords > 2*math.pi then
+        angle_adjusted_coords = angle_adjusted_coords - 2*math.pi
+    end
+    return angle_adjusted_coords
+end
+
+-- Given a tables with x,y,z each with a degree number [0-360], returns a table with x,y,z converted to radians (o, 2pi)
+function from_degrees_to_rad(vec)
+    return { x = math.rad(vec['x']),  y = math.rad(vec['y']), z = math.rad(vec['z']) }
+end
+
+function from_in_to_mm(inches)
+    return inches * 25.4
+end
+
+function from_mm_to_in(mm)
+    return mm / 25.4
+end
+
+-- Given two tables with x,y,z representing world coords, calculates the distance between them in x,z, SQUARED
+-- This is because we don't need the square root in most cases
+function distance_points_flat_sq(point1, point2)
+    return (point1['x'] - point2['x'])^2 + (point1['z'] - point2['z'])^2
+end
+
+-- Given two tables with x,y,z representing world coords, calculates the distance 
+-- between them in x,z
+function distance_points_flat(point1, point2)
+    return math.sqrt((point1['x'] - point2['x'])^2 + (point1['z'] - point2['z'])^2)
+end
+
+-- Given a number of radians (0, 2pi), returns a table with x,y,z components,
+-- where y 0 is always 0 and x,z is the rotation value corresponding to those
+-- radians, x being updown and z leftright
+function rad_to_vector(radians)
+    return { x = math.sin(radians), y = 0, z = math.cos(radians) }
+end
+
+-- Like the other rad_to_vector, with z up/down and x leftright
+function rad_to_vector_xz(radians)
+    return { x = math.cos(radians), y = 0, z = math.sin(radians) }
+end
+
+-- Angles in TTS can be pretty funny: the y axis defines the rotation from +x to
+-- -y to -x to +y, which is pretty unintuitive, but I guess they wanted the
+-- degrees to be clockwise instead of counterclockwise...
+-- This makes them counterclockwise, x goes to -y to -x
+function normalize_angle(angle)
+    return 2*math.pi - angle
+end
+
+-- Given an angle in radians, returns a new angle in radians which is the same,
+-- but between [0, 2*pi]. Only supports up to one rotation.
+function positive_angle(angle)
+    if angle < 0 then
+        return angle + math.pi*2
+    end
+    if angle >= math.pi*2 then
+        return angle - math.pi*2
+    end
+    return angle
+end
+
+-- Given a point with xyz coordinates, relative to the center, rotates along
+-- theta
+function rotate_point_relative(point, center_coordinates, theta)
+    return { 
+        x = point['x'] * math.cos(theta) - point['z'] * math.sin(theta) + center_coordinates['x'],
+        y = point['y'] + center_coordinates['y'],
+        z = point['x'] * math.sin(theta) + point['z'] * math.cos(theta) + center_coordinates['z']
+    }
+end
+
+-- Given a point with xyz coordinates, where xz form a plane, rotates using
+-- an angle theta, respective to a coordinate system with xyz coordinates,
+-- on that same plane
+function rotate_point(point, center_coordinates, theta)
+    local relative = vec_sub(point, center_coordinates)
+    return rotate_point_relative(relative, center_coordinates, theta)
+end
+
+-- Given a table with four corners top/bot left/right, each with a xyz
+-- vector representing coordinates in inches, returns the same table but
+-- each coords is in mm
+function corners_in_to_mm(corner)
+    return {
+        topright = vec_in_to_mm(corner['topright']),
+        botright = vec_in_to_mm(corner['botright']),
+        topleft  = vec_in_to_mm(corner['topleft']),
+        botleft  = vec_in_to_mm(corner['botleft'])
+    }
+end
+
+-- Given a table with four corners top/bot left/right, each with a xyz
+-- vector representing coordinates, returns a str version of it
+-- { corner = [coords], corner = [coords], ...}
+function corners_to_str(corner)
+    return '{' ..
+        'topright=' .. vec_to_str(corner['topright']) .. ', ' ..
+        'botright=' .. vec_to_str(corner['botright']) .. ', ' ..
+        'topleft='  .. vec_to_str(corner['topleft'])  .. ', ' ..
+        'botleft='  .. vec_to_str(corner['botleft']) .. '}'
+end
+
+
+-- Helper function for find_ui_element
+function find_ui_element_in_element(root_element, id)
+    for k, v in pairs(root_element) do
+        if k == 'attributes' then
+            for kattr, vattr in pairs(v) do
+                if kattr == 'id' and vattr == id then
+                    return root_element
+                end
+            end
+        end
+        if k == 'children' then
+            return find_ui_element_list(v, id)
+        end
+    end
+    return nil
+end
+
+-- Helper function for find_ui_element
+function find_ui_element_list(root_list, id)
+    for i,element in ipairs(root_list) do
+        local element = find_ui_element_in_element(element, id)
+        if element ~= nil then
+            return element
+        end
+    end
+    return nil
+end
+
+-- Normally you can get the UI elements by using UI functions, but there are
+-- things that are not retrieved in that data, like the options tags from the
+-- XML in a dropdown. For those, this functions allows to get that info,
+-- including all children.
+-- This searches the full XML table, so it's perf intensive.
+function find_ui_element(id)
+    return find_ui_element_list(UI.getXmlTable(), id)
+end
+
+-- Given a dropdown element as returned by find_ui_element, returns a list of
+-- the options. All options should have a value set.
+function get_options_dropdown(dropdown_element)
+    local list = {}
+    local children = dropdown_element['children']
+    if children == nil then
+        return list
+    end
+    for i,option in ipairs(children) do
+        list.insert(option['value'])
+    end
+end
+
+
+-- Given a dropdown element as returned by find_ui_element, returns the
+-- currently selected one
+function get_option_selected_dropdown(dropdown_element)
+    local children = dropdown_element['children']
+    if children == nil then
+        return nil
+    end
+    for i,option in ipairs(children) do
+        if option['attributes'] ~= nil then
+            if option['attributes']['selected'] == 'true' then
+                return option['value']
+            end
+        end
+    end
+end
+
+-- Given an id corresponding to an existing <Dropdown> element on the current
+-- XML UI, returns the currently selected element.
+-- This is because UI.getAttribute('dropdownid', 'text') doesn't work, despite
+-- what the official docs say... it returns nil
+-- NOTE It's perf intensive
+function get_option_selected_dropdown_by_id(id)
+    local element = find_ui_element(id)
+    return get_option_selected_dropdown(element)
+end
+
+-- Given a dropdown element as returned by find_ui_element, changes the element
+-- to contain the options desired.
+-- NOTE This does NOT update the UI and should be used with find_ui_element
+-- and setXmlTable()
+function set_options_dropdown(dropdown_element, options, idx_selected)
+    local children = dropdown_element['children']
+    if children ~= nil then
+        -- Delete all elements on the table but keep the reference
+        local n = #children
+        for i=0, n do children[i]=nil end
+    end
+
+    for i, option in ipairs(options) do
+        local new_options = {
+            tag = 'option',
+            value = option
+        }
+        if i == idx_selected then
+            new_options['attributes'] = {
+                selected = true
+            }
+        end
+        table.insert(children, i, new_options)
+    end
+end
+
+-- Given an id corresponding to an existing <Dropdown> element on the current
+-- XML UI, edits the options to those given.
+-- The list of options should be a plain array of strings
+-- The index (1 to n) represent which one is currently selected.
+-- This is perf intensive, beware. It's also not updated until the next frame.
+function set_options_dropdown_by_id(id,  options, idx_selected)
+    local xml = UI.getXmlTable()
+    local element = find_ui_element_list(xml, id)
+    set_options_dropdown(element, options, idx_selected)
+    UI.setXmlTable(xml)
+end
+
+function dataname_to_friendlyname(dataname)
+    local friendly_name,_ = dataname:gsub('_', ' ')
+    return friendly_name
+end
+
+function friendlyname_to_dataname(friendly_name)
+    local dataname,_ = friendly_name:gsub(' ', '_')
+    return dataname
+end
+
+-- Given a position for a center,  gets the coordinates of circle on the XZ plane 
+function get_coordinates_circle(center, radius, steps)
+    local point_array = {}
+    local degrees_per_step = 360 / steps
+    local radians_per_step = math.rad(degrees_per_step)
+    for i = 0, steps do
+        local p = {
+            x = center['x'] + math.cos(radians_per_step * i) * radius,
+            y = center['y'],
+            z = center['z'] + math.sin(radians_per_step * i) * radius
+        }
+        table.insert(point_array, p)
+    end
+    return point_array
+end
+
+function get_coordinates_arc(center, radius, steps, start_angle, finish_angle)
+    local point_array = {}
+    local degrees_per_step = (finish_angle - start_angle) / steps
+    local radians_per_step = math.rad(degrees_per_step)
+    local initial_radians = math.rad(start_angle)
+    for i = 0, steps do
+        local p = {
+            x = center['x'] + math.cos(radians_per_step * i + initial_radians) * radius,
+            y = center['y'],
+            z = center['z'] + math.sin(radians_per_step * i + initial_radians) * radius
+        }
+        table.insert(point_array, p)
+    end
+    return point_array
+end

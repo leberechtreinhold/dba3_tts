@@ -1,0 +1,478 @@
+-- Global number of paces moved
+g_paces_movement = 200
+
+-- Updates the global that manages the number of paces moved by the other functions, and updates the UI
+function slider_paces_changed(player, value, id)
+    g_paces_movement = round_to_power(value, 1)
+
+    -- It's undocumented, but changing the value of the button does not update
+    -- the button_move_forward
+    -- Instead we have to change the undocumented text attribute, but we still
+    -- change the value because it's the proper thing
+    UI.setAttribute('button_move_forward', 'text', 'Move ' .. g_paces_movement .. ' paces')
+    UI.setValue('button_move_forward', 'Move ' .. g_paces_movement .. ' paces')
+
+    -- Make it consistent for all players
+    Wait.frames(function()
+        UI.setAttribute('slider_paces', 'value', value)
+    end, 1)
+
+    -- Update any gizmo
+    draw_gizmo_future_movements(player.getSelectedObjects())
+end
+
+function move_bases(player, value, id)
+    local objs = filter_bases(player.getSelectedObjects())
+    if tlen(objs) < 1 then
+        print_error(player.steam_name ..' is trying to move 100 paces, but (s)he has no object selected, ignoring')
+    return
+    end
+
+    for k,obj in ipairs(objs) do
+        local moved_paces = move_base(obj, g_paces_movement)
+        print_info(player.steam_name .. ' is moving ' .. obj.getName() .. ' ' .. moved_paces .. ' paces forward')
+    end
+
+    -- Moving the bases shpuld imply update the gizmos
+    draw_gizmo_future_movements(player.getSelectedObjects())
+end
+
+function align_bases(player, value, id)
+    local objs = filter_bases(player.getSelectedObjects())
+    local n_objs = tlen(objs)
+    if n_objs < 2 then
+        print_error(player.steam_name ..' is trying to align ' .. n_objs .. ' bases, which is not supported')
+        return
+    end
+    table.sort(objs, function(l, r)
+        return l.getPosition()['x'] < r.getPosition()['x']
+    end)
+
+    -- Moving will mean that some attributes like the corner change, but they
+    -- won't update on the object until next frame. However we still have to
+    -- take into account here to aligning all the pieces together
+    local future_transform = {}
+    future_transform[objs[1].getName()] = calculate_transform(objs[1])
+
+    for i=2,n_objs do
+        local pos = objs[i].getPosition()
+        local corners = compute_corners_base(objs[i])
+        local transform = get_closest_transform(corners["topleft"], future_transform)
+
+        local distance_centers = distance_points_flat_sq(transform['position'], pos)
+        if (distance_centers > g_max_distance_alignment) then
+            print_error(player.steam_name .. ' is trying to align but the bases are too far apart, more than 3inch between centers!')
+            return
+        end
+
+        future_transform[objs[i].getName()] = align_two_bases(
+            objs[i],
+            transform['position'],
+            transform['corners'],
+            transform['rotation'])
+    end
+
+    -- Moving the bases shpuld imply update the gizmos
+    draw_gizmo_future_movements(player.getSelectedObjects())
+end
+
+function on_cancel_load_army(player, value, id)
+    UI.setAttribute('panel_dba_troop_selection', 'active', false)
+    UI.setAttribute('panel_dba_troop_selection_bg', 'active', false)
+    UI.setAttribute('panel_dba_troop_selection', 'visibility', '')
+    UI.setAttribute('panel_dba_troop_selection_bg', 'visibility', '')
+    UI.setAttribute('button_create_army', 'interactable', true)
+end
+
+function on_load_army(player, value, id)
+    spawn_army(g_army_selected, armies[g_book_selected][g_army_selected], g_color_spawn_army_selected == 'Red')
+    UI.setAttribute('panel_dba_troop_selection', 'active', false)
+    UI.setAttribute('panel_dba_troop_selection_bg', 'active', false)
+    UI.setAttribute('panel_dba_troop_selection', 'visibility', '')
+    UI.setAttribute('panel_dba_troop_selection_bg', 'visibility', '')
+    UI.setAttribute('button_create_army', 'interactable', true)
+end
+
+function create_army_options_menu(player, value, id)
+    local status = UI.getAttribute('panel_dba_troop_selection', 'active')
+    if status == 'True' then
+        -- Ignore, the user is clicking despite the menu already being there
+        return
+    end
+
+    g_book_selected = first_key_table(armies)
+    local book = armies[g_book_selected]
+    g_army_selected = first_key_table(book)
+    local army = armies[g_book_selected][g_army_selected]
+
+    update_book_menu(1)
+    on_next_frame(function()
+        UI.setAttribute('panel_dba_troop_selection_bg', 'active', true)
+        UI.setAttribute('panel_dba_troop_selection_bg', 'visibility', player.color)
+        UI.setAttribute('panel_dba_troop_selection', 'active', true)
+        UI.setAttribute('panel_dba_troop_selection', 'visibility', player.color)
+        UI.setAttribute('button_create_army', 'interactable', false)
+
+        on_next_frame(function()
+            update_armies_menu(book, 1)
+            on_next_frame(function()
+                update_authors_text(army)
+                on_next_frame(function()
+                    update_player_color_menu(g_color_spawn_army_selected == 'Red')
+                end)
+            end)
+        end)
+    end)
+end
+
+g_book_selected = ''
+function on_book_selected(player, value, id)
+    g_book_selected = value
+    local i = 1
+    local selected_book_index = 1
+    for book_name, book_armies in pairs(armies) do
+        if book_name == g_book_selected then
+            selected_book_index = i
+        end
+        i = i + 1
+    end
+
+    g_army_selected = first_key_table(armies[g_book_selected])
+    local army = armies[g_book_selected][g_army_selected]
+
+    on_next_frame(function()
+        update_book_menu(selected_book_index)
+        on_next_frame(function()
+            update_armies_menu(armies[g_book_selected], 1)
+            on_next_frame(function()
+                update_player_color_menu(g_color_spawn_army_selected == 'Red')
+                on_next_frame(function()
+                    update_authors_text(army)
+                end)
+            end)
+        end)
+    end)
+end
+
+g_army_selected = ''
+function on_army_selected(player, value, id)
+    g_army_selected = value
+    local army = armies[g_book_selected][g_army_selected]
+
+    update_authors_text(army)
+
+    if str_has_substr(g_army_selected, "(Plain)") then
+        UI.setValue('text_ag_terr', 
+            'Aggresiveness: ' .. army['data']['aggresiveness']
+            .. ', Terrain: ' .. army['data']['terrain']
+            .. ', Flat bases')
+    else
+        UI.setValue('text_ag_terr', 
+            'Aggresiveness: ' .. army['data']['aggresiveness']
+            .. ', Terrain: ' .. army['data']['terrain']
+            .. ', Bases with models')
+    end
+end
+
+g_color_spawn_army_selected = 'Red'
+function on_color_selected(player, value, id)
+    g_color_spawn_army_selected = value
+end
+
+function add_pip(player, value, id)
+    if value == 'red' then
+        local pips_red = tonumber(UI.getValue('text_pips_player_red'))
+        if pips_red < 6 then
+            pips_red = pips_red + 1
+        end
+        UI.setValue('text_pips_player_red', pips_red)
+    else
+        local pips_blue = tonumber(UI.getValue('text_pips_player_blue'))
+        if pips_blue < 6 then
+            pips_blue = pips_blue + 1
+        end
+        UI.setValue('text_pips_player_blue', pips_blue)
+    end
+end
+
+function remove_pip(player, value, id)
+    if value == 'red' then
+        local pips_red = tonumber(UI.getValue('text_pips_player_red'))
+        if pips_red > 0 then
+            pips_red = pips_red - 1
+        end
+        UI.setValue('text_pips_player_red', pips_red)
+    else
+        local pips_blue = tonumber(UI.getValue('text_pips_player_blue'))
+        if pips_blue > 0 then
+            pips_blue = pips_blue - 1
+        end
+        UI.setValue('text_pips_player_blue', pips_blue)
+    end
+end
+
+-- Global enabled or disabled ZOC
+g_zoc_enabled = false
+function on_toggle_zoc(player, value, id)
+    g_zoc_enabled = value == "True"
+
+    if g_zoc_enabled then
+        UI.setValue('toggle_zoc', 'Show ZOC')
+        UI.setAttribute('toggle_zoc', 'text', 'Show ZOC')
+    else
+        UI.setValue('toggle_zoc', 'Do not show ZOC')
+        UI.setAttribute('toggle_zoc', 'text', 'Do not show ZOC')
+    end
+
+    -- Make it consistent for all players
+    on_next_frame(function()
+        UI.setAttribute('toggle_zoc', 'isOn', g_zoc_enabled)
+    end)
+end
+
+-- Global enabled or disabled deployment lines
+g_deployment_lines_enabled = false
+function on_toggle_deployment_lines(player, value, id)
+    g_deployment_lines_enabled = value == "True"
+
+    if g_deployment_lines_enabled then
+        UI.setValue('toggle_deployment_lines', 'Show deployment rulers')
+        UI.setAttribute('toggle_deployment_lines', 'text', 'Show deployment rulers')
+
+        if g_current_table == nil then
+            print_error('There\'s no table so deployment lines will have no effect. Please reenable when you spawned the table.')
+        else
+            draw_deployment_lines()
+        end
+    else
+        UI.setValue('toggle_deployment_lines', 'Do not show rulers')
+        UI.setAttribute('toggle_deployment_lines', 'text', 'Do not show rulers')
+
+        if g_current_table ~= nil then
+            remove_deployment_lines()
+        end
+    end
+
+    -- Make it consistent for all players
+    on_next_frame(function()
+        UI.setAttribute('toggle_deployment_lines', 'isOn', g_deployment_lines_enabled)
+    end)
+end
+
+function on_create_table_menu(player, value, id)
+    UI.setAttribute('panel_dba_table_selection_bg', 'active', true)
+    UI.setAttribute('panel_dba_table_selection_bg', 'visibility', player.color)
+    UI.setAttribute('panel_dba_table_selection', 'active', true)
+    UI.setAttribute('panel_dba_table_selection', 'visibility', player.color)
+    UI.setAttribute('button_spawn_table', 'interactable', false)
+    UI.setAttribute('button_create_army', 'interactable', false)
+end
+
+g_current_table_type = 0
+function on_toggle_table_type(player, value, id)
+    g_current_table_type = tonumber(value)
+end
+
+function from_toggle_number_to_table_type(value)
+    -- Must follow the order of the toggles on main.xml
+    if value == 0 then
+        return 'grass'
+    elseif value == 1 then
+        return 'forest'
+    elseif value == 2 then
+        return 'tropical'
+    elseif value == 3 then
+        return 'mountain'
+    elseif value == 4 then
+        return 'desert'
+    elseif value == 5 then
+        return 'steppe'
+    else
+        return 'Error'
+    end
+end
+
+function on_load_table(player, value, id)
+    local type = from_toggle_number_to_table_type(g_current_table_type)
+
+    if tables[type] == nil then
+        type = 'grass'
+    end
+    local tex = tables[type]['table_tex']
+
+    if g_current_table == nil then
+        spawn_table_obj(tables['model'], tables['height_correction'], tex)
+    else
+        print_error('There\'s already a table spawned')
+    end
+
+    UI.setAttribute('panel_dba_table_selection_bg', 'active', false)
+    UI.setAttribute('panel_dba_table_selection_bg', 'visibility', '')
+    UI.setAttribute('panel_dba_table_selection', 'active', false)
+    UI.setAttribute('panel_dba_table_selection', 'visibility', '')
+    UI.setAttribute('button_spawn_table', 'interactable', true)
+    UI.setAttribute('button_create_army', 'interactable', true)
+end
+
+function on_cancel_load_table(player, value, id)
+    UI.setAttribute('panel_dba_table_selection_bg', 'active', false)
+    UI.setAttribute('panel_dba_table_selection_bg', 'visibility', '')
+    UI.setAttribute('panel_dba_table_selection', 'active', false)
+    UI.setAttribute('panel_dba_table_selection', 'visibility', '')
+    UI.setAttribute('button_spawn_table', 'interactable', true)
+    UI.setAttribute('button_create_army', 'interactable', true)
+end
+
+function on_push_back(player, value, id)
+    local objs = filter_bases(player.getSelectedObjects())
+    local len = tlen(objs)
+    if len < 1 then
+        print_error(player.steam_name .. ' is pushing back troops but doesn\'t have any base selected')
+        return
+    end
+
+    if len == 1 then
+        local obj = table.remove(objs, 1)
+        push_back(obj)
+        draw_gizmo_future_movements(player.getSelectedObjects())
+        return
+    end
+
+    push_back_column(objs)
+    draw_gizmo_future_movements(player.getSelectedObjects())
+end
+
+g_player_wheeling = nil
+function on_wheel(player, value, id)
+    local objs = filter_bases(player.getSelectedObjects())
+    local len = tlen(objs)
+    if len < 1 then
+        print_error(player.steam_name .. ' is wheeling troops but doesn\'t have any base selected')
+        return
+    end
+
+    on_rotation_wheel_ui(15)
+    on_change_orientation_wheel_ui('left')
+    local distance = preview_wheel(objs)
+    if distance < 0 then
+        print_error(player.steam_name .. ' is wheeling troops but doesn\'t have a valid group selected')
+        return
+    end
+    g_player_wheeling = player.color
+
+    UI.setAttribute('panel_wheel_bg', 'active', true)
+    UI.setAttribute('panel_wheel', 'active', true)
+    UI.setAttribute('button_move_forward', 'interactable', false)
+    UI.setAttribute('button_wheel', 'interactable', false)
+    UI.setAttribute('button_push_back', 'interactable', false)
+end
+
+function preview_wheel(objs_if_first_time)    
+    local distance = wheel_group(objs_if_first_time, 
+        math.rad(g_degrees_wheeling), g_current_orientation)
+
+    if distance < 0 then
+        return distance
+    end
+
+    UI.setValue('text_wheeling',
+        string.format('Wheeling %2.1f degrees will cost %d paces',
+            g_degrees_wheeling,
+            distance * 100))
+    return distance
+end
+
+function on_make_wheeling(player, value, id)
+    perform_wheels()
+    g_current_wheel_group = nil
+    g_current_wheel_transforms = nil
+    g_current_wheel_newtransforms = nil
+    g_player_wheeling = nil
+
+    UI.setAttribute('panel_wheel_bg', 'active', false)
+    UI.setAttribute('panel_wheel', 'active', false)
+    UI.setAttribute('button_move_forward', 'interactable', true)
+    UI.setAttribute('button_wheel', 'interactable', true)
+    UI.setAttribute('button_push_back', 'interactable', true)
+    
+    Global.setVectorLines({})
+end
+
+function on_cancel_wheeling(player, value, id)
+    g_current_wheel_group = nil
+    g_current_wheel_transforms = nil
+    g_current_wheel_newtransforms = nil
+    g_player_wheeling = nil
+
+    UI.setAttribute('panel_wheel_bg', 'active', false)
+    UI.setAttribute('panel_wheel', 'active', false)
+    UI.setAttribute('button_move_forward', 'interactable', true)
+    UI.setAttribute('button_wheel', 'interactable', true)
+    UI.setAttribute('button_push_back', 'interactable', true)
+
+    Global.setVectorLines({})
+end
+
+g_degrees_wheeling = 0
+function on_rotation_wheel(player, value, id)
+    on_rotation_wheel_ui(value)
+    preview_wheel(nil)
+end
+
+function on_rotation_wheel_ui(value)
+    g_degrees_wheeling = value
+    Wait.frames(function()
+        UI.setAttribute('slider_wheel_rotation', 'value', value)
+    end, 1)
+end
+
+g_current_orientation = 'left'
+function on_change_orientation_wheel(player, value, id, ignore_preview)
+    on_change_orientation_wheel_ui(from_toggle_number_to_orientation(tonumber(value)))
+    preview_wheel(nil)
+
+end
+
+function on_change_orientation_wheel_ui(value)
+    g_current_orientation = value
+    if value == 'left' then
+        Wait.frames(function()
+            UI.setAttribute('toggle_wheel_left', 'isOn', true)
+        end, 1)
+    else
+        Wait.frames(function()
+            UI.setAttribute('toggle_wheel_right', 'isOn', true)
+        end, 1)
+    end
+end
+
+
+function from_toggle_number_to_orientation(value)
+    -- Must follow the order of the toggles on main.xml
+    if value == 0 then
+        return 'left'
+    elseif value == 1 then
+        return 'right'
+    else
+        return 'Error'
+    end
+end
+
+-- Global enabled snapping
+g_snap_mode_enabled = true
+function on_toggle_snapping(player, value, id)
+    g_snap_mode_enabled = value == "True"
+
+    if g_snap_mode_enabled then
+        UI.setValue('toggle_snapping', 'Snap bases')
+        UI.setAttribute('toggle_snapping', 'text', 'Snap bases')
+    else
+        UI.setValue('toggle_snapping', 'Do not snap bases')
+        UI.setAttribute('toggle_snapping', 'text', 'Do not snap bases')
+    end
+
+    -- Make it consistent for all players
+    on_next_frame(function()
+        UI.setAttribute('toggle_snapping', 'isOn', g_snap_mode_enabled)
+    end)
+end

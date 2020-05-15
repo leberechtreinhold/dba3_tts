@@ -1,0 +1,1173 @@
+-- Given a base object, computes the 4 bounds points, returned in a table,
+-- each with a vector xyz of world pos coords
+--
+--   topleft         rotation      topright
+--      +-------------^--------------+
+--      |             |              |
+--      |             * center       |  z axis
+--      |                            |
+--      +----------------------------+
+--    botleft      x axis          botright
+function compute_corners_base(base_obj)
+    local rotation = normalize_angle(from_degrees_to_rad(base_obj.getRotation())['y'])
+    -- print_debug(base_obj.getName() .. ' rotation is ' .. rotation)
+    local size = get_size(base_obj.getName())
+    local pos = base_obj.getPosition()
+    -- print_debug(base_obj.getName() .. ' pos is ' .. vec_to_str(vec_in_to_mm(pos)))
+    return compute_corners_coords(size, rotation, pos)
+end
+
+-- Like compute_corners_base but instead of a base obj all coords are given
+function compute_corners_coords(sizeXZ, rotationY, pos)
+    local xhalf = sizeXZ['x'] / 2
+    local zhalf = sizeXZ['z'] / 2
+
+    return {
+        topright = rotate_point_relative({x = xhalf, y = 0, z = zhalf}, pos, rotationY),
+        botright = rotate_point_relative({x = xhalf, y = 0, z =-zhalf}, pos, rotationY),
+        topleft  = rotate_point_relative({x =-xhalf, y = 0, z = zhalf}, pos, rotationY),
+        botleft  = rotate_point_relative({x =-xhalf, y = 0, z =-zhalf}, pos, rotationY)
+    }
+end
+
+-- Aligns base2 to a base1, where base1 is an object that will be (but may not
+-- be there until next frame) with center position, corners and rotation.
+-- Base2 is to the right of Base1 in the x axis
+-- Returns a transform table with the new pos, corners and rot
+function align_two_bases(base2, position, corners, rotation)
+    base2.setRotation(rotation)
+    local corners2 = compute_corners_base(base2)
+
+    local angle = normalize_angle(math.rad(rotation['y']))
+    local relative_angle = relative_angle_from_point(position, base2.getPosition(), angle)
+
+    local translation = nil
+    -- Note that since we know that base1 is to the left of base2, the angle
+    -- is 0-90 or 270-360
+    if relative_angle > g_alignment_angle_side
+       and relative_angle < math.pi then
+        -- Angle the back of base2 with the front of base1
+        translation = vec_sub(corners['topright'], corners2['botright'])
+    elseif relative_angle <= g_alignment_angle_side
+           or relative_angle >= (2*math.pi - g_alignment_angle_side) then
+        -- Angle the left side of base2 with the right of base1
+        translation = vec_sub(corners['topright'], corners2['topleft'])
+    else
+        -- Angle the front of base2 with the back of base1
+        translation = vec_sub(corners['botleft'], corners2['topleft'])
+    end
+
+    local new_pos = vec_add(base2.getPosition(), translation)
+    base2.setPosition(new_pos)
+
+    return {
+        position = new_pos,
+        corners = compute_corners_coords(get_size(base2.getName()),angle, new_pos),
+        rotation = rotation
+    }
+end
+
+-- Given a list of objects in a table, returns another table with ONLY
+-- those who start with 'base', ignoring the keys
+function filter_bases(list)
+    local filtered = {}
+    for _,obj in ipairs(list) do
+        local name = obj.getName()
+        if g_bases[name] ~= nil or str_starts_with(obj.getName(), 'base') then
+            table.insert(filtered, obj)
+        end
+    end
+    return filtered
+end
+
+-- Moves one or more DBA bases g_paces_movements paces forward
+-- ASSUMES all bases are in a flat board!!!!
+-- Returns how much it moved (it cna move less in a collision)
+function move_base(obj, how_many_paces)
+    local current_world_pos = obj.getPosition()
+    local current_rotation = from_degrees_to_rad(obj.getRotation())
+    local displacement_vector = rad_to_vector(current_rotation['y'])
+    local magnitude = how_many_paces / 100
+    local destination = vec_add(current_world_pos, vec_mul_escalar(displacement_vector, magnitude))
+    -- print_debug(player.steam_name .. 'Moving ' .. obj.getName() ..
+    -- ' from ' .. vec_to_str(current_world_pos) ..
+    -- ' with rotation ' .. vec_to_str(current_rotation) ..
+    -- ' to ' .. vec_to_str(destination))
+    obj.setPosition(destination)
+    -- TODO: COLISION
+    return how_many_paces
+end
+
+-- Moves ONE single DBA base by it's depth
+function push_back(obj)
+    local current_world_pos = obj.getPosition()
+    local angle = from_degrees_to_rad(obj.getRotation())['y']
+    angle = angle + math.pi
+    if angle > 2*math.pi then
+        angle = angle - 2*math.pi
+    end
+    local displacement_vector = rad_to_vector(angle)
+
+    local magnitude = get_size(obj.getName())['z']
+    local destination = vec_add(current_world_pos, vec_mul_escalar(displacement_vector, magnitude))
+    obj.setPosition(destination)
+    -- TODO: COLISION
+end
+
+-- Like push back but in the other direction
+function push_forward(obj)
+    local current_world_pos = obj.getPosition()
+    local angle = from_degrees_to_rad(obj.getRotation())['y']
+    local displacement_vector = rad_to_vector(angle)
+
+    local magnitude = get_size(obj.getName())['z']
+    local destination = vec_add(current_world_pos, vec_mul_escalar(displacement_vector, magnitude))
+    obj.setPosition(destination)
+    -- TODO: COLISION
+end
+
+-- Given a bunch of objects returns them in a column, which is 
+-- {"front_of"=x, "behind_of" = x, "front_element"=x}, each a mapping 
+-- of where they are relative to each other.
+-- Returns nil if it's not a column.
+function calculate_column(objs, transforms)    
+    local front_of = {}
+    local behind_of = {}
+    local not_connected = {}
+    for _, objA in ipairs(objs) do
+        local in_front = nil
+        local in_back = nil
+
+        for _, objB in ipairs(objs) do
+            local skip = false
+            if not_connected[objA] ~= nil and not_connected[objA][objB] == true then
+                skip = true
+            end
+
+            if objA == objB  then
+                skip = true
+            end
+
+            if transforms[objA]['rotation'] ~= transforms[objB]['rotation'] then
+                skip = true
+            end
+
+            if not skip then
+                if front_of[objA] == objB
+                   or is_behind(transforms[objA], transforms[objB]) then
+                    in_front = objB
+                elseif behind_of[objA] == objB
+                       or is_behind(transforms[objB], transforms[objA]) then
+                    in_back = objB
+                else
+                    if not_connected[objA] == nil then
+                        not_connected[objA] = {}
+                    end
+                    not_connected[objA][objB] = true
+                end
+            end
+        end
+
+        if in_front == nil and in_back == nil then
+            return nil
+        end
+
+        if in_front ~= nil then
+            front_of[objA] = in_front
+            behind_of[in_front] = objA
+        end
+        if in_back ~= nil then
+            front_of[in_back] = objA
+            behind_of[objA] = in_back
+        end
+    end
+
+    local front_element = nil
+    for _, obj in ipairs(objs) do
+        if front_of[obj] == nil then
+            front_element = obj
+            break
+        end
+    end
+
+    if front_element == nil then
+        return nil
+    end
+
+    return {
+        front_of = front_of,
+        behind_of = behind_of,
+        front_element = front_element
+    }
+end
+
+-- Like calculate column, but for a group. Returns
+-- {"front_of" = {x=y, y=z...},
+--  "behind_of" = {x=y, y=z...},
+--  "front_elements"={x,y,z..},
+--  "leftmost" = x,
+--  "rightmost" = x
+--  "depth" = x}
+-- Each front_element correspond with the front of a column.
+-- All front elements are left_of or right of someone else
+function calculate_group(objs, transforms)
+    local front_of = {}
+    local behind_of = {}
+    local not_connected = {}
+    for _, objA in ipairs(objs) do
+        local in_front = nil
+        local in_back = nil
+
+        for _, objB in ipairs(objs) do
+            local skip = false
+            if not_connected[objA] ~= nil and not_connected[objA][objB] == true then
+                skip = true
+            end
+
+            if objA == objB  then
+                skip = true
+            end
+
+            if not skip then
+                if front_of[objA] == objB
+                   or is_behind(transforms[objA], transforms[objB]) then
+                    in_front = objB
+                elseif behind_of[objA] == objB
+                       or is_behind(transforms[objB], transforms[objA]) then
+                    in_back = objB
+                else
+                    if not_connected[objA] == nil then
+                        not_connected[objA] = {}
+                    end
+                    not_connected[objA][objB] = true
+                end
+            end
+        end
+
+        if in_front ~= nil then
+            front_of[objA] = in_front
+            behind_of[in_front] = objA
+        end
+        if in_back ~= nil then
+            front_of[in_back] = objA
+            behind_of[objA] = in_back
+        end
+    end
+
+    local col_index = 0
+    local cols = {}
+    for _, obj in ipairs(objs) do
+        if front_of[obj] ~= nil then
+            if cols[front_of[obj]] ~= nil then
+                -- This belongs to the same column
+                cols[obj] = cols[front_of[obj]]
+            else
+                -- Neither belong to a column yet, add it
+                cols[obj] = col_index
+                col_index = col_index + 1
+            end
+        elseif behind_of[obj] ~= nil then
+            if cols[behind_of[obj]] ~= nil then
+                -- This belongs to the same column
+                cols[obj] = cols[behind_of[obj]]
+            else
+                -- Neither belong to a column yet, add it
+                cols[obj] = col_index
+                col_index = col_index + 1
+            end
+        else
+            -- Column of one element
+            cols[obj] = col_index
+            col_index = col_index + 1
+        end
+    end
+
+    local front_elements = {}
+    local max_col_depth = 0
+    for i = 0, col_index-1 do
+        local col_depth = 0
+        for obj, col in pairs(cols) do
+            if col == i then
+                if front_of[obj] == nil then
+                    front_elements[col] = obj
+                end
+                col_depth = col_depth + get_size(obj.getName())['z'];
+            end
+        end
+        if col_depth > max_col_depth then
+            max_col_depth = col_depth
+        end
+    end
+
+    local not_connected = {}
+    local left_of = {}
+    local right_of = {}
+    for _, objA in pairs(front_elements) do
+        local in_left = nil
+        local in_right = nil
+
+        for _, objB in pairs(front_elements) do
+            local skip = false
+            if not_connected[objA] ~= nil and not_connected[objA][objB] == true then
+                skip = true
+            end
+
+            if objA == objB  then
+                skip = true
+            end
+
+            if not skip then
+                if right_of[objA] == objB
+                   or is_left_side(transforms[objA], transforms[objB]) then
+                    print(objA.getName() .. ' is to the left of ' .. objB.getName())
+                    in_right = objB
+                elseif left_of[objA] == objB
+                       or is_right_side(transforms[objA], transforms[objB]) then
+                    print(objA.getName() .. ' is to the right of ' .. objB.getName())
+                    in_left = objB
+                else
+                    print(objA.getName() .. ' is not connected to ' .. objB.getName())
+                    if not_connected[objA] == nil then
+                        not_connected[objA] = {}
+                    end
+                    not_connected[objA][objB] = true
+                end
+            end
+        end
+        
+        if in_left == nil and in_right == nil then
+            -- This shouild only happen if there's only one column
+            if col_index > 1 then
+                return nil
+            end
+        end
+
+        if in_left ~= nil then
+            left_of[objA] = in_left
+            right_of[in_left] = objA
+        end
+        if in_right ~= nil then
+            left_of[in_right] = objA
+            right_of[objA] = in_right
+        end
+    end
+
+    local leftmost = nil
+    local rightmost = nil
+    for _, obj in pairs(front_elements) do
+        if left_of[obj] == nil then
+            leftmost = obj
+        end
+        if right_of[obj] == nil then
+            rightmost = obj
+        end
+    end
+
+    return {
+        front_of = front_of,
+        behind_of = behind_of,
+        front_elements = front_elements,
+        leftmost = leftmost,
+        rightmost = rightmost,
+        depth = max_col_depth
+    }
+end
+
+-- Pushes back a whole column, that may not be exactly aligned
+function push_back_column(objs)
+    -- We use many comparisons for the column so we precalculate all the
+    -- transforms
+    local transforms = {}
+    for _, obj in ipairs(objs) do
+        transforms[obj] = calculate_transform(obj)
+    end
+
+    local column = calculate_column(objs, transforms)
+    if column == nil then
+        print_error('Trying to push back but it\'s not a proper column')
+        return
+    end
+
+    local behind_of = column['behind_of']
+    local front_element = column['front_element']
+
+    local base_depth = get_size(front_element.getName())['z']
+    local distance = base_depth
+    if distance > g_base_width_inches then
+        distance = g_base_width_inches
+    end
+
+    local angle = from_degrees_to_rad(front_element.getRotation())['y']
+    angle = angle + math.pi
+    if angle > 2*math.pi then
+        angle = angle - 2*math.pi
+    end
+
+    -- Move the front_element fist, then align the others to its back
+    local displacement_vector = rad_to_vector(angle)
+    local destination = vec_add(front_element.getPosition(), vec_mul_escalar(displacement_vector, distance))
+    front_element.setPosition(destination)
+
+    local magnitude = base_depth / 2
+    local next_element = behind_of[front_element]
+    while next_element ~= nil do
+        next_element.setRotation(front_element.getRotation())
+
+        base_depth = get_size(next_element.getName())['z']
+        magnitude = magnitude + base_depth / 2
+        local next_destination = vec_add(destination, vec_mul_escalar(displacement_vector, magnitude))
+        next_element.setPosition(next_destination)
+
+        front_element = next_element
+        next_element = behind_of[next_element]
+
+        magnitude = magnitude + base_depth / 2
+    end
+end
+
+-- Calculates the future position of the given group of objs, assuming a wheel
+-- from the position with the given angle and from the relative position
+-- (a string which is left or right).
+-- The future position will be drawn!
+-- Returns the movement cost if possible (>=0), -1 if its impossible (invalid group)
+g_current_wheel_group = nil
+g_current_wheel_transforms = nil
+g_current_wheel_newtransforms = nil
+function wheel_group(objs, angle, direction)
+    -- HC SVNT DRACONES 
+    if g_current_wheel_group == nil then 
+        -- We use many comparisons for the column so we precalculate all the
+        -- transforms
+        local transforms = {}
+        for _, obj in ipairs(objs) do
+            transforms[obj] = calculate_transform(obj)
+        end
+
+        g_current_wheel_group = calculate_group(objs, transforms)
+        if g_current_wheel_group == nil then
+            print_error('Trying to wheel but it\'s not a proper group')
+            return -1
+        end
+        
+        g_current_wheel_transforms = transforms
+    end
+
+    local transform_pivot = g_current_wheel_transforms[g_current_wheel_group['leftmost']]
+    local pivot_point = transform_pivot['corners']['topleft']
+    if direction == 'right' then
+        transform_pivot = g_current_wheel_transforms[g_current_wheel_group['rightmost']]
+        pivot_point = transform_pivot['corners']['topright']
+    end
+
+    local furthest_element = nil
+    local furthest_element_distance = 0
+    for obj, transform in pairs(g_current_wheel_transforms) do
+        local distance = distance_points_flat_sq(pivot_point, transform['position'])
+        if distance > furthest_element_distance then
+            furthest_element_distance = distance
+            furthest_element = obj
+        end
+    end
+
+    local front_elements = g_current_wheel_group['front_elements']
+    local behind_of = g_current_wheel_group['behind_of']
+    local depth = g_current_wheel_group['depth']
+
+    local new_transforms = {}
+    for col, front_element in pairs(front_elements) do
+        new_transforms[front_element] = calculate_future_position_wheel(
+            front_element,
+            g_current_wheel_transforms[front_element], 
+            pivot_point, 
+            angle, 
+            direction == 'left',
+            depth)
+        local current_element = front_element
+        while behind_of[current_element] ~= nil do
+            current_element = behind_of[current_element]
+            
+            new_transforms[current_element] = calculate_future_position_wheel(
+                current_element,
+                g_current_wheel_transforms[current_element], 
+                pivot_point, 
+                angle, 
+                direction == 'left',
+                depth)
+        end
+    end
+    draw_gizmo_wheeling(new_transforms)
+
+    local max_movement_distance = 0
+    if direction == 'right' then
+        max_movement_distance = distance_points_flat(
+            g_current_wheel_transforms[furthest_element]['corners']['botleft'],
+            new_transforms[furthest_element]['corners']['botleft'])
+    else
+        max_movement_distance = distance_points_flat(
+            g_current_wheel_transforms[furthest_element]['corners']['botright'],
+            new_transforms[furthest_element]['corners']['botright'])
+    end 
+    g_current_wheel_newtransforms = new_transforms
+    return max_movement_distance
+end
+
+function apply_transform_obj(base_obj, new_transform)
+    base_obj.setPosition(new_transform['position'])
+    base_obj.setRotation(transform_to_rotation_vector(new_transform))
+end
+
+function perform_wheels()
+    local new_transforms = g_current_wheel_newtransforms
+    local front_elements = g_current_wheel_group['front_elements']
+    local behind_of = g_current_wheel_group['behind_of']
+
+    for col, front_element in pairs(front_elements) do
+        local current_element = front_element
+        apply_transform_obj(current_element, new_transforms[current_element])
+        while behind_of[current_element] ~= nil do
+            current_element = behind_of[current_element]
+            apply_transform_obj(current_element, new_transforms[current_element])
+        end
+    end
+end
+
+function calculate_future_position_wheel(obj, transform, pivot_point, angle, is_left, depth)
+    local effective_angle = positive_angle(angle + math.pi / 2)
+    local new_angle = positive_angle(transform['rotation'] + angle)
+    if not is_left then
+        effective_angle = positive_angle(math.pi/2 - angle)
+        new_angle = positive_angle(transform['rotation'] - angle)
+    end
+    
+    local vec = vec_sub(transform['position'], pivot_point)
+    local relative_pos = rotate_point_relative(vec, {x=0,y=0,z=0}, -transform['rotation'])
+    local border_pos = {x=relative_pos['x'], y=0, z=0}
+    if is_left then
+        border_pos = rotate_point_relative(border_pos, {x=0,y=0,z=0}, angle)
+    else
+        border_pos = rotate_point_relative(border_pos, {x=0,y=0,z=0}, -angle)
+    end
+
+    local displacement_vec = rad_to_vector_xz(effective_angle)
+    local displacement = vec_mul_escalar(displacement_vec, depth+relative_pos['z'])
+    local final_relative_pos = vec_add(border_pos, displacement)
+    local new_pos = vec_add(final_relative_pos, pivot_point)
+    new_pos = rotate_point(new_pos, pivot_point, transform['rotation'])
+    local size = get_size(obj.getName())
+    local new_corners = compute_corners_coords(size, new_angle, new_pos)
+    
+    return get_transform(new_pos, new_corners, new_angle)
+end
+
+-- Checks if the object A defined by its transform is inmediately behind
+-- object B, which is also represented by its transform
+function is_behind(transformA, transformB)
+    local angleA = transformA['rotation']
+    local angleB = transformB['rotation']
+    local diff_angle = math.abs(angleB - angleA)
+
+    if diff_angle > g_max_angle_pushback_rad
+       and diff_angle < (2*math.pi - g_max_angle_pushback_rad) then
+       -- Angle is too different, skip
+       return false
+    end
+
+    local cornersA = transformA['corners']
+    local cornersB = transformB['corners']
+
+    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['botright'])
+    if distance < g_max_corner_distance_snap then
+        distance = distance_points_flat_sq(cornersA['topleft'], cornersB['botleft'])
+        if distance < g_max_corner_distance_snap then
+            return true
+        end
+    end
+    return false
+end
+
+-- Determines if A is to the left of B
+function is_left_side(transformA, transformB)
+    local angleA = transformA['rotation']
+    local angleB = transformB['rotation']
+    local diff_angle = math.abs(angleB - angleA)
+
+    if diff_angle > g_max_angle_pushback_rad
+       and diff_angle < (2*math.pi - g_max_angle_pushback_rad) then
+       -- Angle is too different, skip
+       return false
+    end
+
+    local cornersA = transformA['corners']
+    local cornersB = transformB['corners']
+
+    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['topleft'])
+    if distance < g_max_corner_distance_snap then
+        -- Note: We do not check the bottom because bases may be of different
+        -- sizes and we already check the angle
+        return true
+    end
+    return false
+end
+
+-- Determines if A is to the right of B
+function is_right_side(transformA, transformB)
+    return is_left_side(transformB, transformA)
+end
+
+-- Determines if A is in front of B
+function is_infront(transformA, transformB)
+    return is_behind(transformB, transformA)
+end
+
+-- Determines if A is in front B, looking at B, while B looks at A
+function is_opposite_front(transformA, transformB)
+    local angleA = transformA['rotation']
+    local angleB = transformB['rotation']
+    local diff_angle = math.abs(angleB - angleA)
+    local angle_180 = math.abs(math.pi - diff_angle)
+
+    if angle_180 >= g_max_angle_pushback_rad then
+       -- Angle is too different, skip
+       return false
+    end
+
+    local cornersA = transformA['corners']
+    local cornersB = transformB['corners']
+
+    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['topleft'])
+    if distance < g_max_corner_distance_snap then
+        distance = distance_points_flat_sq(cornersA['topleft'], cornersB['topright'])
+        if distance < g_max_corner_distance_snap then
+            return true
+        end
+    end
+    return false
+end
+
+-- Determines if A is in the of side of B, "closing its door", which in DBA
+-- terms means that the left corner of A is touching the left corner B, and A
+-- is looking at B, while B does NOT look at A.
+function is_closing_door_to_left(transformA, transformB)
+    local angleA = transformA['rotation']
+    local angleB = transformB['rotation']
+    local diff_angle = angleB - angleA
+    if diff_angle < 0 then
+        diff_angle = diff_angle + 2*math.pi
+    end
+    local angle_90 = math.abs(math.pi/2 - diff_angle)
+    if angle_90 >= g_max_angle_pushback_rad then
+       -- Angle is too different, skip
+       return false
+    end
+
+    local cornersA = transformA['corners']
+    local cornersB = transformB['corners']
+
+    local distance = distance_points_flat_sq(cornersA['topleft'], cornersB['topleft'])
+    if distance < g_max_corner_distance_snap then
+        return true
+    end
+    return false
+end
+
+function is_closing_door_to_right(transformA, transformB)
+    local angleA = transformA['rotation']
+    local angleB = transformB['rotation']
+    local diff_angle = angleB - angleA
+    if diff_angle < 0 then
+        diff_angle = diff_angle + 2*math.pi
+    end
+    local angle_270 = math.abs(3*math.pi/2 - diff_angle)
+    if angle_270 >= g_max_angle_pushback_rad then
+       -- Angle is too different, skip
+       return false
+    end
+
+    local cornersA = transformA['corners']
+    local cornersB = transformB['corners']
+
+    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['topright'])
+    if distance < g_max_corner_distance_snap then
+        return true
+    end
+    return false
+end
+
+function get_depth_base(tile_name)
+    local base_data = _G[tile_name]
+    return from_mm_to_in(base_data['depth'])
+end
+
+function get_size(base_name)
+    return {
+        x = g_base_width_inches,
+        y = g_base_height_inches,
+        z = get_depth_base(g_bases[base_name]['tile'])
+    }
+end
+
+function is_base_red_player(base_name)
+    return g_bases[base_name]['is_red_player']
+end
+
+function is_base_blue_player(base_name)
+    return not is_base_red_player(base_name)
+end
+
+function max_distance_between_bases(base1_corners, base2_corners)
+    return compute_max_array({
+        distance_points_flat(base1_corners['topright'], base2_corners['topright']),
+        distance_points_flat(base1_corners['topleft'], base2_corners['topleft']),
+        distance_points_flat(base1_corners['botright'], base2_corners['botright']),
+        distance_points_flat(base1_corners['botleft'], base2_corners['botleft'])
+    })
+end
+
+g_picked_base_obj = nil
+g_picked_base_initial_transform = nil
+function onObjectPickUp(player_color,  picked_up_object)
+    if g_bases[picked_up_object.getName()] == nil then
+        return
+    end
+
+    local objs = filter_bases(Player[player_color].getSelectedObjects())
+    local n_objs = tlen(objs)
+    if n_objs > 1 then
+        -- Ignoring this, we don't want to print the circle for more than one unit
+        return
+    end
+
+    if g_picked_base_obj ~= nil then
+        print_error("There's already a player picking up an objectc. Please, wait until he finishes moving.")
+    end
+
+    g_picked_base_obj = picked_up_object
+    g_picked_base_initial_transform = calculate_transform(picked_up_object)
+
+    draw_pickup_strokes(picked_up_object)
+end
+
+function snap_to_base(obj, transformObj, base, transformBase, direction)
+    print_info(obj.getName() .. ' is snapping to ' .. base.getName() .. ', ' .. direction)
+    local new_rotation = base.getRotation()
+    if direction == 'opposite' or direction == 'door_left' or direction == 'door_right' then
+        local new_y = 0
+        if direction == 'opposite' then
+            new_y = new_rotation['y'] + 180
+        elseif direction == 'door_left' then
+            new_y = new_rotation['y'] + 90
+        elseif direction == 'door_right' then
+            new_y = new_rotation['y'] - 90
+        end
+        if new_y >= 360 then
+            new_y = new_y - 360
+        elseif new_y < 0 then
+            new_y = new_y + 360
+        end
+        new_rotation['y'] = new_y
+    end
+    obj.setRotation(new_rotation)
+
+    local sizeObj = get_size(obj.getName())
+    local sizeBase = get_size(base.getName())
+
+    local relative_pos = {x = 0, y = 0, z = 0 }
+
+    if direction == 'infront' or direction == 'opposite' then
+        relative_pos['z'] = sizeObj['z'] / 2 + sizeBase['z'] / 2
+    elseif direction == 'behind' then
+        relative_pos['z'] = -1*(sizeObj['z'] / 2 + sizeBase['z'] / 2)
+    elseif direction == 'right' then
+        -- Since bases maybe of different sizes, we need to align the front
+        relative_pos['x'] = sizeObj['x'] / 2 + sizeBase['x'] / 2
+        relative_pos['z'] = -1*(sizeObj['z'] - sizeBase['z']) / 2
+    elseif direction == 'left' then
+        relative_pos['x'] = -1*(sizeObj['x'] / 2 + sizeBase['x'] / 2)
+        relative_pos['z'] = -1*(sizeObj['z'] - sizeBase['z']) / 2
+    elseif direction == 'door_left' then
+        relative_pos['x'] = -1*(sizeObj['z'] / 2 + sizeBase['x'] / 2)
+        relative_pos['z'] = -1*(sizeObj['x'] / 2) + (sizeBase['z'] / 2)
+    elseif direction == 'door_right' then
+        relative_pos['x'] = sizeObj['z'] / 2 + sizeBase['x'] / 2
+        relative_pos['z'] = -1*(sizeObj['x'] / 2) + (sizeBase['z'] / 2)
+    else
+        print_error('Tried to snap ' .. obj.getName() .. ' in unknown direction ' .. direction)
+        return
+    end
+
+    local new_pos = rotate_point_relative(
+        relative_pos, transformBase['position'], transformBase['rotation'])
+    new_pos['y'] = transformBase['position']['y']
+
+    obj.setPosition(new_pos)
+end
+
+function snap_picked_base(obj)
+    local initial_corners = g_picked_base_initial_transform['corners']
+
+    local pos = obj.getPosition()
+    local bases = get_all_bases()
+    for _, base in ipairs(bases) do
+        local pos_base = base.getPosition()
+
+        -- Discard fast bases that are too far
+        local distance = distance_points_flat_sq(pos, pos_base)
+        if distance < g_max_distance_alignment and distance ~= 0 then
+            local transformObj = calculate_transform(obj)
+            local transformBase = calculate_transform(base)
+
+            -- Calculate relative position
+            if is_infront(transformObj, transformBase) then
+                snap_to_base(obj, transformObj, base, transformBase, 'infront')
+                local new_corners = compute_corners_base(obj)
+                return max_distance_between_bases(new_corners, initial_corners)
+
+            elseif is_behind(transformObj, transformBase) then
+                snap_to_base(obj, transformObj, base, transformBase, 'behind')
+                local new_corners = compute_corners_base(obj)
+                return max_distance_between_bases(new_corners, initial_corners)
+
+            elseif is_left_side(transformObj, transformBase) then
+                snap_to_base(obj, transformObj, base, transformBase, 'left')
+                local new_corners = compute_corners_base(obj)
+                return max_distance_between_bases(new_corners, initial_corners)
+
+            elseif is_right_side(transformObj, transformBase) then
+                snap_to_base(obj, transformObj, base, transformBase, 'right')
+                local new_corners = compute_corners_base(obj)
+                return max_distance_between_bases(new_corners, initial_corners)
+
+            elseif is_opposite_front(transformObj, transformBase) then
+                snap_to_base(obj, transformObj, base, transformBase, 'opposite')
+                local new_corners = compute_corners_base(obj)
+                return max_distance_between_bases(new_corners, initial_corners)
+
+            elseif is_closing_door_to_left(transformObj, transformBase) then
+                snap_to_base(obj, transformObj, base, transformBase, 'door_left')
+                local new_corners = compute_corners_base(obj)
+                return max_distance_between_bases(new_corners, initial_corners)
+
+            elseif is_closing_door_to_right(transformObj, transformBase) then
+                snap_to_base(obj, transformObj, base, transformBase, 'door_right')
+                local new_corners = compute_corners_base(obj)
+                return max_distance_between_bases(new_corners, initial_corners)
+            end
+        end
+    end
+
+    -- If there's nothing else to snap, maybe I can snap to my initial
+    -- position if I moved too little
+    local new_corners = compute_corners_base(obj)
+    local distance = max_distance_between_bases(new_corners, initial_corners)
+    if distance < g_max_inches_snap_reset then
+        -- Snap back!
+        obj.setPosition(g_picked_base_initial_transform['position'])
+        obj.setRotation(transform_to_rotation_vector(g_picked_base_initial_transform))
+        return 0
+    else
+        -- No snapping, return the distance between positions
+        return distance
+    end
+end
+
+function get_all_bases()
+    return filter_bases(getAllObjects())
+end
+
+function onObjectDrop(player_color,  picked_up_object)
+    if g_bases[picked_up_object.getName()] == nil then
+        return
+    end
+
+    local objs = filter_bases(Player[player_color].getSelectedObjects())
+    local n_objs = tlen(objs)
+    if n_objs > 1 then
+        draw_gizmo_future_movements(objs)
+        return
+    end
+
+    if picked_up_object.getName() ~= g_picked_base_obj.getName() then
+        -- Ignore, this is not the one we were counting distances
+        return
+    end
+
+    local distance = 0
+
+    if g_snap_mode_enabled then
+        distance = snap_picked_base(picked_up_object)
+    else
+        local new_corners = compute_corners_base(picked_up_object)
+        distance = max_distance_between_bases(new_corners, g_picked_base_initial_transform['corners'])
+    end
+
+    print_info(string.format('Movement for %q is %.1f paces',
+        picked_up_object.getName(), distance * 100))
+
+    g_picked_base_obj = nil
+    g_picked_base_initial_transform = nil
+    Global.setVectorLines({})
+
+    -- If its dropped it may have moved, therefore update the gizmo, in case
+    -- its selected
+    draw_gizmo_future_movements(objs)
+end
+
+function calculate_future_position(base_obj, movement)
+    local rotation = from_degrees_to_rad(base_obj.getRotation())['y']
+    local displacement_vector = rad_to_vector(rotation)
+    local destination = vec_add(base_obj.getPosition(), vec_mul_escalar(displacement_vector, movement))
+    local size = get_size(base_obj.getName())
+    local normalized_rotation = normalize_angle(rotation)
+    local corners = compute_corners_coords(size, normalized_rotation, destination)
+
+    return get_transform(
+        destination,
+        corners,
+        normalized_rotation
+    )
+end
+
+function calculate_transform(base_obj)
+    return {
+        position = base_obj.getPosition(),
+        corners = compute_corners_base(base_obj),
+        rotation = normalize_angle(math.rad(base_obj.getRotation()['y']))
+    }
+end
+
+function transform_to_str(transform)
+    return 'Postion: ' .. vec_to_str(transform['position'])
+        .. ' Rotation: ' .. math.deg(transform['rotation'])
+end
+
+function get_transform(position, corners, rotation)
+    return {
+        position = position,
+        corners = corners,
+        rotation = rotation
+    }
+end
+
+function transform_to_rotation_vector(transform)
+    -- The normalization of a normalized is the original
+    return {
+        x = 0,
+        y = math.deg(normalize_angle(transform['rotation'])),
+        z = 0
+    }
+end
+
+function get_closest_transform(pos, transforms)
+    local min_distance = nil
+    local min_transform = nil
+
+    for base_name, transform in pairs(transforms) do
+        local distance = distance_points_flat_sq(transform['corners']['topleft'], pos)
+        if min_distance == nil or min_distance > distance then
+            min_distance = distance
+            min_transform = transform
+        end
+    end
+    return min_transform
+end
+
+function on_selection_changed(player_color, new_selected_items)
+    if player_color == g_player_wheeling then
+        -- If someone is wheeling then changes its selected, deselect and move on
+        print_info(Player[player_color].steam_name .. ' has canceled the wheeling by deselecting.')
+        on_cancel_wheeling(nil, nil, nil)
+        return
+    end
+    if g_current_wheel_group ~= nil then
+        -- Do not draw anything while someone is wheeling
+        return
+    end
+    draw_gizmo_future_movements(new_selected_items)
+end
+
+function on_zoc_changed()
+    if g_current_wheel_group ~= nil then
+        -- While someone is wheeling we are not going to update the UI
+        return
+    end
+    for playercolor, selectedobjs in pairs(g_selected_objects) do
+        draw_gizmo_future_movements(selectedobjs)
+    end
+end
+
+function has_changed_selection_for_player(player_color, selected_objs)
+    return not array_equals(
+                selected_objs,
+                g_selected_objects[player_color],
+                function(obj1, obj2)
+                    return obj1.guid == obj2.guid
+                end)
+end
+
+g_selected_objects = {}
+g_last_zoc_value = nil
+
+function check_picked_base()
+    if g_picked_base_obj then
+        local new_corners = compute_corners_base(g_picked_base_obj)
+        local distance = max_distance_between_bases(new_corners, g_picked_base_initial_transform['corners']) * 100
+
+        UI.setAttribute('panel_current_movement', 'active', true)
+        UI.setValue('text_current_movement_paces',
+            'Current movement: ' .. string.format('%.1f', distance) .. ' paces' )
+    else
+        UI.setAttribute('panel_current_movement', 'active', false)
+    end
+end
+
+function check_selection_change()
+    local players = Player.getPlayers()
+    for _, player in ipairs(players) do
+        local selected_objs = player.getSelectedObjects()
+        if has_changed_selection_for_player(player.color, selected_objs) then
+            on_selection_changed(player.color, selected_objs)
+            g_selected_objects[player.color] = selected_objs
+        end
+    end
+end
+
+function check_change_zoc()
+    if g_last_zoc_value ~= g_zoc_enabled then
+        -- This affect all players!
+        on_zoc_changed()
+        g_last_zoc_value = g_zoc_enabled
+    end
+end
+
+-- Each second execute this
+function main_loop()
+    check_selection_change()
+    check_change_zoc()
+end
+
+
+-- This function ensures that the internal state of the global vars is
+-- consistent with the table.
+-- Sadly all bases get assigned red_player because we don't have that info.
+-- The tile is also given as an aproximation given the current size.
+function reset_state()
+    g_selected_objects = {}
+    g_picked_base_obj = nil
+    g_picked_base_initial_transform = nil
+    g_last_zoc_value = nil
+    g_current_wheel_group = nil
+    g_current_wheel_transforms = nil
+    g_current_wheel_newtransforms = nil
+
+    local all_objs = getAllObjects()
+
+    g_bases = {}
+    local bases = filter_bases(all_objs)
+    for _,base in ipairs(bases) do
+        local new_tile = get_closest_tile(base)
+        if new_tile == nil then
+            print_info('There\'s no appropiate base for ' .. base.getName())
+        else
+            print_info('Setting ' .. base.getName() .. ' as base')
+            g_bases[base.getName()] = {
+                tile = new_tile,
+                is_red_player = true
+            }
+        end
+    end
+
+    g_current_table = nil
+    for _,obj in ipairs(all_objs) do
+        if is_table(obj) then
+            g_current_table = obj.getGUID()
+            print_info('Setting as current table = ' .. g_current_table)
+        end
+    end
+end
+
+function get_closest_tile(base_obj)
+    local bounds = base_obj.getBoundsNormalized()
+    if bounds == nil or bounds['size'] == nil then
+        -- If it has no size its not a proper base and we ignore it
+        return false
+    end
+
+    local size = bounds['size']
+    if math.abs(size['x'] - g_base_width_inches) > 0.01 then
+        -- Too wide or too small, ignore
+        return true
+    end
+    
+    if math.abs(size['z'] - from_mm_to_in(15)) < 0.01 then
+        return 'tile_grass_40x15'
+    end
+    
+    if math.abs(size['z'] - from_mm_to_in(20)) < 0.01 then
+        return 'tile_grass_40x20'
+    end
+    
+    if math.abs(size['z'] - from_mm_to_in(30)) < 0.01 then
+        return 'tile_grass_40x30'
+    end
+    
+    if math.abs(size['z'] - from_mm_to_in(40)) < 0.01 then
+        return 'tile_grass_40x40'
+    end
+
+    if math.abs(size['z'] - from_mm_to_in(60)) < 0.01 then
+        return 'tile_grass_40x60'
+    end
+    
+    if math.abs(size['z'] - from_mm_to_in(80)) < 0.01 then
+        return 'tile_grass_40x80'
+    end
+
+    return nil
+end
+
+function is_table(obj)
+    -- There's nothing identifying the table itself, so we use heuristics
+    local pos = obj.getPosition()
+    if math.abs(pos['x']) > 5 or math.abs(pos['z']) > 5 then
+        -- Too far to be a table unless they messed up royally
+        return false
+    end
+    local bounds = obj.getBoundsNormalized()
+    if bounds == nil or bounds['size'] == nil then
+        -- If it has no size its not a table for sure
+        return false
+    end
+
+    local size = bounds['size']
+    if math.abs(size['x'] - g_width_table_in) < 1 or math.abs(size['z'] - g_depth_table_in) < 1 then
+        -- If it's essnetially the same size, it is the table unless they have summoned something weird
+        return true
+    end
+
+    return false
+end
+
+function print_state()
+    if g_current_table == nil then
+        print_info('There\'s no current table.')
+    else
+        local obj = getObjectFromGUID(g_current_table)
+        if obj == nil then
+            print_error('There\'s a table stored with GUID ' .. g_current_table 
+                .. ' but there\'s no object. Please do a !dba_reset.')
+        else
+            print_info('Current table GUID: ' .. g_current_table)
+        end
+    end
+
+    if g_bases == nil then
+        print_error('There are no bases registered. Please do a !dba_reset.')
+    else
+        local str = 'The current registered bases are: '
+        for base_name,_ in pairs(g_bases) do 
+            str = str .. base_name .. ', '
+        end
+        print_info(str)
+    end
+
+end
