@@ -5,8 +5,8 @@
 </Panel>
 <Panel id="panel_dba_orders" width="230" height="400" color="#00000000" rectAlignment="MiddleRight" padding="30 0 30 30" raycastTarget="true">
     <VerticalLayout>
-        <Slider id="slider_paces" minValue="0" maxValue="500" wholeNumbers="true" value="200" colors="#00000000|#00000000|#00000000|#00000000" backgroundcolor="#FFFFFFF" onValueChanged="slider_paces_changed"></Slider>
-        <Button id="button_move_forward" onClick="move_bases">Move 200 paces</Button>
+        <Slider id="slider_BWs" minValue="0" maxValue="4" value="2" colors="#00000000|#00000000|#00000000|#00000000" backgroundcolor="#FFFFFFF" onValueChanged="slider_BWs_changed"></Slider>
+        <Button id="button_move_forward" onClick="move_bases">Move 2 BW</Button>
         <Button id="button_wheel" onClick="on_wheel">Wheel Group</Button>
         <Button id="button_push_back" onClick="on_push_back">Push back Column</Button>
         <Button id="button_spawn_table" onClick="on_create_table_menu">Spawn table</Button>
@@ -19,7 +19,7 @@
 
 <!-- TODO Prettify -->
 <Panel id="panel_current_movement" color="#dddddd" width="400" height="70" rectAlignment="LowerCenter" offsetXY="0 200" active="false" raycastTarget="true">
-    <Text id="text_current_movement_paces" fontSize="24">Current movement: 0 paces</Text>
+    <Text id="text_current_movement_BWs" fontSize="24">Current movement: 0 BWs</Text>
 </Panel>
 
 <Panel id="panel_dba_pip" width="400" height="150" color="#00000000" outline="#00000000" outlineSize="2" rectAlignment="LowerCenter" raycastTarget="true">
@@ -217,7 +217,7 @@
         </Row>
         <Row>
             <Cell columnSpan="6" dontUseTableCellBackground="true">
-                <Text id="text_wheeling" fontSize="16">This will cost 0 paces</Text>
+                <Text id="text_wheeling" fontSize="16">This will cost 0 BWs</Text>
             </Cell>
         </Row>
         <Row>

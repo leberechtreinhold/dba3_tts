@@ -1,20 +1,20 @@
--- Global number of paces moved
-g_paces_movement = 200
+-- Global number of base-widths to move
+g_bw_movement = 2
 
--- Updates the global that manages the number of paces moved by the other functions, and updates the UI
-function slider_paces_changed(player, value, id)
-    g_paces_movement = round_to_power(value, 1)
+-- Updates the global that manages the number of BWs moved by the other functions, and updates the UI
+function slider_BWs_changed(player, value, id)
+    g_bw_movement = value
 
     -- It's undocumented, but changing the value of the button does not update
     -- the button_move_forward
     -- Instead we have to change the undocumented text attribute, but we still
     -- change the value because it's the proper thing
-    UI.setAttribute('button_move_forward', 'text', 'Move ' .. g_paces_movement .. ' paces')
-    UI.setValue('button_move_forward', 'Move ' .. g_paces_movement .. ' paces')
+    UI.setAttribute('button_move_forward', 'text', 'Move ' .. g_bw_movement .. ' BW')
+    UI.setValue('button_move_forward', 'Move ' .. g_bw_movement .. ' BW')
 
     -- Make it consistent for all players
     Wait.frames(function()
-        UI.setAttribute('slider_paces', 'value', value)
+        UI.setAttribute('slider_BWs', 'value', value)
     end, 1)
 
     -- Update any gizmo
@@ -24,13 +24,13 @@ end
 function move_bases(player, value, id)
     local objs = filter_bases(player.getSelectedObjects())
     if tlen(objs) < 1 then
-        print_error(player.steam_name ..' is trying to move 100 paces, but (s)he has no object selected, ignoring')
+        print_error(player.steam_name ..' is trying to move, but (s)he has no object selected, ignoring')
     return
     end
 
     for k,obj in ipairs(objs) do
-        local moved_paces = move_base(obj, g_paces_movement)
-        print_info(player.steam_name .. ' is moving ' .. obj.getName() .. ' ' .. moved_paces .. ' paces forward')
+        local moved = move_base(obj, g_bw_movement)
+        print_info(player.steam_name .. ' is moving ' .. obj.getName() .. ' ' .. moved .. ' BW forward')
     end
 
     -- Moving the bases shpuld imply update the gizmos
@@ -376,9 +376,9 @@ function preview_wheel(objs_if_first_time)
     end
 
     UI.setValue('text_wheeling',
-        string.format('Wheeling %2.1f degrees will cost %d paces',
+        string.format('Wheeling %2.1f degrees will cost %.3f BWs',
             g_degrees_wheeling,
-            distance * 100))
+            from_in_to_bw(distance)))
     return distance
 end
 

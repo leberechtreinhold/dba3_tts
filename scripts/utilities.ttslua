@@ -66,6 +66,14 @@ function from_mm_to_in(mm)
     return mm / 25.4
 end
 
+function from_bw_to_in(bw)
+    return bw * g_base_width_inches
+end
+
+function from_in_to_bw(inches)
+    return inches / g_base_width_inches
+end
+
 -- Given two tables with x,y,z representing world coords, calculates the distance between them in x,z, SQUARED
 -- This is because we don't need the square root in most cases
 function distance_points_flat_sq(point1, point2)

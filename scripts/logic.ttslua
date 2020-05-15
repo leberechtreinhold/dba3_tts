@@ -80,14 +80,14 @@ function filter_bases(list)
     return filtered
 end
 
--- Moves one or more DBA bases g_paces_movements paces forward
+-- Moves one or more DBA bases g_bw_movement forward
 -- ASSUMES all bases are in a flat board!!!!
 -- Returns how much it moved (it cna move less in a collision)
-function move_base(obj, how_many_paces)
+function move_base(obj, how_much_movement)
     local current_world_pos = obj.getPosition()
     local current_rotation = from_degrees_to_rad(obj.getRotation())
     local displacement_vector = rad_to_vector(current_rotation['y'])
-    local magnitude = how_many_paces / 100
+    local magnitude = how_much_movement
     local destination = vec_add(current_world_pos, vec_mul_escalar(displacement_vector, magnitude))
     -- print_debug(player.steam_name .. 'Moving ' .. obj.getName() ..
     -- ' from ' .. vec_to_str(current_world_pos) ..
@@ -95,7 +95,7 @@ function move_base(obj, how_many_paces)
     -- ' to ' .. vec_to_str(destination))
     obj.setPosition(destination)
     -- TODO: COLISION
-    return how_many_paces
+    return how_much_movement
 end
 
 -- Moves ONE single DBA base by it's depth
@@ -900,8 +900,8 @@ function onObjectDrop(player_color,  picked_up_object)
         distance = max_distance_between_bases(new_corners, g_picked_base_initial_transform['corners'])
     end
 
-    print_info(string.format('Movement for %q is %.1f paces',
-        picked_up_object.getName(), distance * 100))
+    print_info(string.format('Movement for %q is %.3f BW',
+        picked_up_object.getName(), from_in_to_bw(distance)))
 
     g_picked_base_obj = nil
     g_picked_base_initial_transform = nil
@@ -1010,11 +1010,12 @@ g_last_zoc_value = nil
 function check_picked_base()
     if g_picked_base_obj then
         local new_corners = compute_corners_base(g_picked_base_obj)
-        local distance = max_distance_between_bases(new_corners, g_picked_base_initial_transform['corners']) * 100
+        local distance = max_distance_between_bases(new_corners, g_picked_base_initial_transform['corners'])
+        distance = from_in_to_bw(distance)
 
         UI.setAttribute('panel_current_movement', 'active', true)
-        UI.setValue('text_current_movement_paces',
-            'Current movement: ' .. string.format('%.1f', distance) .. ' paces' )
+        UI.setValue('text_current_movement_BWs',
+            'Current movement: ' .. string.format('%.3f', distance) .. ' BWs' )
     else
         UI.setAttribute('panel_current_movement', 'active', false)
     end
