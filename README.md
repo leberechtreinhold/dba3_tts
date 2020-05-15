@@ -1,4 +1,4 @@
-De Bellis Antiquitatis 2.2 for Tabletop Simulator
+De Bellis Antiquitatis 3.0 for Tabletop Simulator
 =================================================
 
 Features: Setup
@@ -43,32 +43,28 @@ The project is structured in the following way:
 - ui/main.xml: The XML for the UI, which, AFAIK, cannot be #included into TTS through ATOM and needs to be copy/pasted. Can be used directly using include src tag.
 - ui/ui_elements.txt: Since the UI is referenced by the Scripting window and must be imported in each game, this is a list to the elements with the corresponding url.
 
-It's not required, but it's encouraged to put this repo with the name "dba22_tts" with main.ttslua inside and everything following the structure of the repo. That's only if you want to match the one uploaded in the repo. Otherwise, the only thing required is:
+It's not required, but it's encouraged to put this repo with the name "dba3_tts" with main.ttslua inside and everything following the structure of the repo. That's only if you want to match the one uploaded in the repo. Otherwise, the only thing required is:
 
 * In Global.-1.ttslua, put:
 
-    #include dba22_tts/main
+    #include dba3_tts/main
 
 * In Global.-1.ttslua, put:
 
-    <Include src="dba22_tts\ui\main.xml"/>
+    <Include src="dba3_tts\ui\main.xml"/>
 
 * Create two dice object, red and blue, and put this in each:
 
-    #include dba22_tts/scripts/dice/pip_blue
-    #include dba22_tts/scripts/dice/pip_red
+    #include dba3_tts/scripts/dice/pip_blue
+    #include dba3_tts/scripts/dice/pip_red
 
 TODO
 ----
 
 This TODO only refers to the scripting, not the data content or UI graphics which are continuosly being worked on.
 
-- Better WWg snapping, since it's so big that not all angles snap.
-- The UI for creating an army should be bigger, since so many list have a long name, and also to add the aggresiveness and terrain.
-- Wheeling, very complex but would be nice, especially if it autocalculates angle or breaking points.
-- Mega aligment button: Select many troops, click align, then select one troop and they all relative to that one. Not that useful because with snapping, this is already fast, but could be nice for deployment.
-- Collision detection for movements. This can be confusing for the user and it's hard to without it being perf intesive, but still, it would be very nice.
-- Fork for DBA3.
+- Add all armies
+- Better snapping for WWg
 
 License
 -------
