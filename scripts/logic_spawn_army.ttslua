@@ -206,12 +206,16 @@ function update_armies_menu(book, army_selected)
 end
 
 g_current_table = nil
-function spawn_table_obj(model_url, height_correction, texture_array_urls)
+function spawn_table_obj(model_url, texture_array_urls, is_large)
+    local tablescale = { x = 1, y = 1, z = 1}
+    if is_large then
+        tablescale = { x = 1.333, y = 1, z = 1.333}
+    end
     local obj = spawnObject({
         type = 'Custom_Model',
         position = { x = 0, y = g_base_height_tabletop, z = 0},
         rotation = { x = 0, y = 0, z = 0},
-        scale = { x = 1, y = 1, z = 1},
+        scale = tablescale,
         sound = false,
         snap_to_grid = false,
         callback_function = function(obj)
@@ -229,7 +233,11 @@ function spawn_table_obj(model_url, height_correction, texture_array_urls)
         specular_intensity = 0,
         freshnel_strength = 0
     })
-    print_important('Table spawned, you can now put terrain on top, then use Right Click > Fix terrain.')
+    if is_large then
+        print_important('Large table spawned, you can now put terrain on top, then use Right Click > Fix terrain.')
+    else
+        print_important('Table spawned, you can now put terrain on top, then use Right Click > Fix terrain.')
+    end
 
     obj.addContextMenuItem('Rotate 90º', function()
         rotate_table()

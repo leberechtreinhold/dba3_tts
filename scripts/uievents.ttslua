@@ -300,8 +300,11 @@ function on_load_table(player, value, id)
     end
     local tex = tables[type]['table_tex']
 
+    print(UI.getAttribute('toggle_largesize', 'isOn'))
+    local is_large = UI.getAttribute('toggle_largesize', 'isOn') == "true"
+
     if g_current_table == nil then
-        spawn_table_obj(tables['model'], tables['height_correction'], tex)
+        spawn_table_obj(tables['model'], tex, is_large)
     else
         print_error('There\'s already a table spawned')
     end
