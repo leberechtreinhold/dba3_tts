@@ -50,8 +50,8 @@ g_max_angle_pushback_rad = math.rad(15)
 g_max_corner_distance_snap = 0.2*0.2
 
 -- Command distances from the general
-g_command_distance_short = 600/100
-g_command_distance_long = 1200/100
+g_command_distance_short = 4 * g_base_width_inches
+g_command_distance_long = 8 * g_base_width_inches
 
 -- When drawing a circle (moving troops, or bow arcs, we use a certain
 -- number of points (they are straight lines), this marks how many points
