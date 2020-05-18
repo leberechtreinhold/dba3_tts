@@ -84,9 +84,9 @@
                 <Text fontSize="20">Table size:</Text>
             </Cell>
             <Cell columnSpan="4" dontUseTableCellBackground="true">
-                <ToggleGroup id="togglegroup_table_type" onValueChanged="on_toggle_table_type">
+                <ToggleGroup id="togglegroup_table_size" onValueChanged="on_toggle_table_size">
                     <HorizontalLayout>
-                        <Toggle id="toggle_normalsize" isOn="false"  fontSize="16">Small, 60x60</Toggle>
+                        <Toggle id="toggle_normalsize" isOn="false" fontSize="16">Small, 60x60</Toggle>
                         <Toggle id="toggle_largesize" isOn="true" fontSize="16">Large, 80x80</Toggle>
                     </HorizontalLayout>
                 </ToggleGroup>

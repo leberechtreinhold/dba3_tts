@@ -20,7 +20,7 @@ g_spawn_from_center_in = 4
 
 -- Distance from the center on the x axis, a general offset to deploy on the
 -- side of the table
-g_offset_deployment_x = 26
+g_offset_deployment_x = 30
 
 -- How many bases needed to create another row of bases
 -- on deployment
@@ -29,6 +29,8 @@ g_max_bases_row = 12
 -- Width and Depth (width in the Z azis) of the playing DBA table, in inches
 g_width_table_in = 23.62204724409448818898
 g_depth_table_in = 23.62204724409448818898
+g_width_large_table_in = g_width_table_in * 1.333
+g_depth_large_table_in = g_depth_table_in * 1.333
 
 -- How many inches to deploy from the sides
 g_deploy_side_in = 3

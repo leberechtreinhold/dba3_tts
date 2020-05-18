@@ -268,6 +268,15 @@ function on_create_table_menu(player, value, id)
     UI.setAttribute('button_create_army', 'interactable', false)
 end
 
+g_current_table_size = 'large'
+function on_toggle_table_size(player, value, id)
+    if value == "0" then
+        g_current_table_size = 'small'
+    else
+        g_current_table_size = 'large'
+    end
+end
+
 g_current_table_type = 0
 function on_toggle_table_type(player, value, id)
     g_current_table_type = tonumber(value)
@@ -300,8 +309,7 @@ function on_load_table(player, value, id)
     end
     local tex = tables[type]['table_tex']
 
-    print(UI.getAttribute('toggle_largesize', 'isOn'))
-    local is_large = UI.getAttribute('toggle_largesize', 'isOn') == "true"
+    local is_large = g_current_table_size == 'large'
 
     if g_current_table == nil then
         spawn_table_obj(tables['model'], tex, is_large)

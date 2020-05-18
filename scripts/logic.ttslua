@@ -1145,6 +1145,10 @@ function is_table(obj)
         return true
     end
 
+    if math.abs(size['x'] - g_width_large_table_in) < 1 or math.abs(size['z'] - g_depth_large_table_in) < 1 then
+        -- It's a large table
+        return true
+    end
     return false
 end
 
