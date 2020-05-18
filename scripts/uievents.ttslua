@@ -3,7 +3,7 @@ g_bw_movement = 2
 
 -- Updates the global that manages the number of BWs moved by the other functions, and updates the UI
 function slider_BWs_changed(player, value, id)
-    g_bw_movement = value
+    g_bw_movement = round_to_decimals(value, 2)
 
     -- It's undocumented, but changing the value of the button does not update
     -- the button_move_forward

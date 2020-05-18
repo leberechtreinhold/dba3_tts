@@ -89,6 +89,10 @@ function round_to_power(number, power)
     return math.floor(number/(10^power) + 0.5) * 10^power
 end
 
+function round_to_decimals(number, decimals)
+    return math.floor(number*(10^decimals) + 0.5) / 10^decimals
+end
+
 
 -- Checks if the given str starts with substr
 function str_starts_with(str, substr)
