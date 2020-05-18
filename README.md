@@ -61,10 +61,9 @@ It's not required, but it's encouraged to put this repo with the name "dba3_tts"
 TODO
 ----
 
-This TODO only refers to the scripting, not the data content or UI graphics which are continuosly being worked on.
+The project is managed by a trello board:
 
-- Add all armies
-- Better snapping for WWg
+https://trello.com/b/4XQ8tFlB/dba-tts
 
 License
 -------
