@@ -69,7 +69,7 @@ end
 function get_strokes_fire_arc(base_obj, transform, shooting_range, max_width)
     local stroke_points = {}
     local p = transform['corners']['topright']
-    
+
     table.insert(stroke_points, p)
     table.insert(stroke_points, {
         x = p['x'] + max_width,
@@ -128,7 +128,7 @@ function get_strokes_fire_around(base_obj, transform, shooting_range, max_width)
     local stroke_points = {}
     local p = transform['corners']['topright']
     local p2 = transform['corners']['botright']
-    
+
     table.insert(stroke_points, {
         x = p['x'] + max_width,
         y = p['y'],
@@ -195,8 +195,8 @@ function get_strokes_fire_around(base_obj, transform, shooting_range, max_width)
         x = p['x'] + max_width,
         y = p['y'],
         z = p['z'] + shooting_range
-    })    
-    
+    })
+
     local rotation = transform['rotation']
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
@@ -390,101 +390,184 @@ function draw_gizmo_wheeling(transforms)
 end
 
 function get_strokes_deployment(pos, color, angle)
-    local half_width = g_width_table_in / 2
-    local half_depth = g_depth_table_in / 2
-
-    local xpos = 1
     local zpos = 1
 
-    if pos == 'topright' then
-        xpos = 1
-        zpos = 1
-    elseif pos == 'topleft' then
-        xpos = -1
-        zpos = 1
-    elseif pos == 'botright' then
-        xpos = 1
-        zpos = -1
-    elseif pos == 'botleft' then
-        xpos = -1
+    if pos == 'bot' then
         zpos = -1
     end
 
+    local half_width = g_width_table_in / 2
+    local half_depth = g_depth_table_in / 2
+
+    local stroke_points = {}
     local center = { x=0, y=0, z=0 }
-    local pos1 = rotate_point_relative({
-        x = xpos * half_width,
-        y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * half_depth - zpos * g_deploy_home_in
-    }, center, -angle)
-    local pos2 = rotate_point_relative({
-        x = xpos * half_width - xpos * g_deploy_side_in,
-        y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * half_depth - zpos * g_deploy_home_in
-    }, center, -angle)
-    local pos3 = rotate_point_relative({
-        x = xpos * half_width - xpos * g_deploy_side_in,
+    table.insert(stroke_points, rotate_point_relative({
+        x = - half_width + from_bw_to_in(2),
         y = g_table_thickness + g_base_height_inches / 2,
         z = zpos * half_depth
-    }, center, -angle)
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = - half_width + from_bw_to_in(2),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * from_bw_to_in(3)
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = - half_width + from_bw_to_in(4),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * from_bw_to_in(3)
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = - half_width + from_bw_to_in(4),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * half_depth
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = - half_width + from_bw_to_in(4),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * from_bw_to_in(3)
+    }, center, -angle))
+
+    table.insert(stroke_points, rotate_point_relative({
+        x = half_width -from_bw_to_in(4),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * from_bw_to_in(3)
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = half_width - from_bw_to_in(4),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * half_depth
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = half_width - from_bw_to_in(4),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * from_bw_to_in(3)
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = half_width - from_bw_to_in(2),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * from_bw_to_in(3)
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = half_width - from_bw_to_in(2),
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = zpos * half_depth
+    }, center, -angle))
 
     return {
-        points    = {pos1, pos2, pos3},
+        points    = stroke_points,
         color     = color,
         thickness = g_line_thickness,
         rotation  = {0,0,0}
     }
 end
 
-function get_strokes_deployment_between(pos, color, angle)
+function get_strokes_quadrant_horizontal(angle)
+    local stroke_points = {}
+    local center = { x=0, y=0, z=0 }
     local half_width = g_width_table_in / 2
     local half_depth = g_depth_table_in / 2
-
-    local zpos = 1
-    if pos == 'top' then
-        zpos = 1
-    elseif pos == 'bot' then
-        zpos = -1
-    end
-
-    local center = { x=0, y=0, z=0 }
-    local pos1 = rotate_point_relative({
+    table.insert(stroke_points, rotate_point_relative({
         x = -half_width,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * half_depth - zpos * g_deploy_home_in
-    }, center, -angle)
-    local pos2 = rotate_point_relative({
+        z = 0
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
         x = half_width,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * half_depth - zpos * g_deploy_home_in
-    }, center, -angle)
+        z = 0
+    }, center, -angle))
+
     return {
-        points    = {pos1, pos2},
-        color     = color,
+        points    = stroke_points,
+        color     = g_gizmo_color_command,
         thickness = g_line_thickness,
         rotation  = {0,0,0}
     }
+end
+
+function get_strokes_quadrant_vertical(angle)
+    local stroke_points = {}
+    local center = { x=0, y=0, z=0 }
+    local half_width = g_width_table_in / 2
+    local half_depth = g_depth_table_in / 2
+    table.insert(stroke_points, rotate_point_relative({
+        x = 0,
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = half_depth
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = 0,
+        y = g_table_thickness + g_base_height_inches / 2,
+        z = -half_depth
+    }, center, -angle))
+
+    return {
+        points    = stroke_points,
+        color     = g_gizmo_color_command,
+        thickness = g_line_thickness,
+        rotation  = {0,0,0}
+    }
+end
+
+g_current_numbers = {}
+function draw_numbers_quadrant(size)    
+    local params = {
+        type = '3DText',
+        position = { size['x'] / 4, 2, size['z'] / 4},
+        rotation = { 90, 0, 0 }
+    }
+    local obj1 = spawnObject(params)
+    obj1.setValue('1')
+    table.insert(g_current_numbers, obj1)
+
+    params = {
+        type = '3DText',
+        position = { -size['x'] / 4, 2, size['z'] / 4},
+        rotation = { 90, 0, 0 }
+    }
+    local obj2 = spawnObject(params)
+    obj2.setValue('2')
+    table.insert(g_current_numbers, obj2)
+
+    params = {
+        type = '3DText',
+        position = { -size['x'] / 4, 2, -size['z'] / 4},
+        rotation = { 90, 0, 0 }
+    }
+    local obj3 = spawnObject(params)
+    obj3.setValue('3')
+    table.insert(g_current_numbers, obj3)
+    
+    params = {
+        type = '3DText',
+        position = { size['x'] / 4, 2, -size['z'] / 4},
+        rotation = { 90, 0, 0 }
+    }
+    local obj4 = spawnObject(params)
+    obj4.setValue('4')
+    table.insert(g_current_numbers, obj4)
 end
 
 function draw_deployment_lines()
-    local strokes = {}
-    
     local gametable = getObjectFromGUID(g_current_table)
+    if gametable == nil then
+        print_error('There is no current table, stored GUID is: ' .. g_current_table)
+        return
+    end
+
+    local size = gametable.getBoundsNormalized()['size']
     local angle = normalize_angle(math.rad(gametable.getRotation()['y']))
 
-    table.insert(strokes, 
-        get_strokes_deployment('topright', g_gizmo_color_player_blue, angle))
-    table.insert(strokes, 
-        get_strokes_deployment('topleft', g_gizmo_color_player_blue, angle))
-    table.insert(strokes, 
-        get_strokes_deployment_between('top', g_gizmo_color_player_blue, angle))
-    table.insert(strokes, 
-        get_strokes_deployment('botright', g_gizmo_color_player_red, angle))
-    table.insert(strokes, 
-        get_strokes_deployment('botleft', g_gizmo_color_player_red, angle))
-    table.insert(strokes, 
-        get_strokes_deployment_between('bot', g_gizmo_color_player_red, angle))
+    local strokes = {}
+    table.insert(strokes,
+        get_strokes_deployment('top', g_gizmo_color_player_blue, angle))
+    table.insert(strokes,
+        get_strokes_deployment('bot', g_gizmo_color_player_red, angle))
+    table.insert(strokes, get_strokes_quadrant_vertical(angle))
+    table.insert(strokes, get_strokes_quadrant_horizontal(angle))
 
     gametable.setVectorLines(strokes)
+    draw_numbers_quadrant(size)
 end
 
 function remove_deployment_lines()
@@ -492,6 +575,10 @@ function remove_deployment_lines()
     if gametable ~= nil then
         gametable.setVectorLines({})
     end
+    for _, obj in ipairs(g_current_numbers) do
+        obj.destroy()
+    end
+    g_current_numbers = {}
 end
 
 function get_strokes_arrow_position(base_obj, transform)
@@ -567,5 +654,5 @@ function draw_pickup_strokes(picked_up_object)
 end
 
 function draw_transforms()
-    
+
 end
