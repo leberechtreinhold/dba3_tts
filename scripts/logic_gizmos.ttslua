@@ -389,7 +389,7 @@ function draw_gizmo_wheeling(transforms)
     Global.setVectorLines(strokes)
 end
 
-function get_strokes_deployment(pos, color, angle)
+function get_strokes_deployment(pos, color, angle, proportion)
     local zpos = 1
 
     if pos == 'bot' then
@@ -402,53 +402,53 @@ function get_strokes_deployment(pos, color, angle)
     local stroke_points = {}
     local center = { x=0, y=0, z=0 }
     table.insert(stroke_points, rotate_point_relative({
-        x = - half_width + from_bw_to_in(2),
+        x = - half_width + from_bw_to_in(2) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = - half_width + from_bw_to_in(2),
+        x = - half_width + from_bw_to_in(2) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * from_bw_to_in(3)
+        z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = - half_width + from_bw_to_in(4),
+        x = - half_width + from_bw_to_in(4) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * from_bw_to_in(3)
+        z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = - half_width + from_bw_to_in(4),
+        x = - half_width + from_bw_to_in(4) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = - half_width + from_bw_to_in(4),
+        x = - half_width + from_bw_to_in(4) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * from_bw_to_in(3)
+        z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
 
     table.insert(stroke_points, rotate_point_relative({
-        x = half_width -from_bw_to_in(4),
+        x = half_width -from_bw_to_in(4) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * from_bw_to_in(3)
+        z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = half_width - from_bw_to_in(4),
+        x = half_width - from_bw_to_in(4) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = half_width - from_bw_to_in(4),
+        x = half_width - from_bw_to_in(4) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * from_bw_to_in(3)
+        z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = half_width - from_bw_to_in(2),
+        x = half_width - from_bw_to_in(2) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
-        z = zpos * from_bw_to_in(3)
+        z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
-        x = half_width - from_bw_to_in(2),
+        x = half_width - from_bw_to_in(2) / proportion,
         y = g_table_thickness + g_base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
@@ -509,43 +509,35 @@ function get_strokes_quadrant_vertical(angle)
     }
 end
 
-g_current_numbers = {}
-function draw_numbers_quadrant(size)    
+function spawn_text(text, pos)
     local params = {
         type = '3DText',
-        position = { size['x'] / 4, 2, size['z'] / 4},
+        position = pos,
         rotation = { 90, 0, 0 }
     }
-    local obj1 = spawnObject(params)
-    obj1.setValue('1')
-    table.insert(g_current_numbers, obj1)
+    local obj = spawnObject(params)
+    obj.setValue(text)
+    obj.TextTool.setFontSize(180)
 
-    params = {
-        type = '3DText',
-        position = { -size['x'] / 4, 2, size['z'] / 4},
-        rotation = { 90, 0, 0 }
-    }
-    local obj2 = spawnObject(params)
-    obj2.setValue('2')
-    table.insert(g_current_numbers, obj2)
+    return obj
+end
 
-    params = {
-        type = '3DText',
-        position = { -size['x'] / 4, 2, -size['z'] / 4},
-        rotation = { 90, 0, 0 }
-    }
-    local obj3 = spawnObject(params)
-    obj3.setValue('3')
-    table.insert(g_current_numbers, obj3)
-    
-    params = {
-        type = '3DText',
-        position = { size['x'] / 4, 2, -size['z'] / 4},
-        rotation = { 90, 0, 0 }
-    }
-    local obj4 = spawnObject(params)
-    obj4.setValue('4')
-    table.insert(g_current_numbers, obj4)
+g_current_numbers = {}
+function draw_numbers_quadrant(size)
+    local height_text = g_table_thickness * 2 + g_base_height_tabletop + g_base_height_inches / 2
+
+
+    table.insert(g_current_numbers,
+        spawn_text('1', { -size['x'] / 4, height_text, -size['z'] / 4}))
+
+    table.insert(g_current_numbers,
+            spawn_text('2', { -size['x'] / 4, height_text, size['z'] / 4}))
+
+    table.insert(g_current_numbers,
+        spawn_text('3', { size['x'] / 4, height_text, size['z'] / 4}))
+
+    table.insert(g_current_numbers, 
+        spawn_text('4', { size['x'] / 4, height_text, -size['z'] / 4}))
 end
 
 function draw_deployment_lines()
@@ -556,13 +548,14 @@ function draw_deployment_lines()
     end
 
     local size = gametable.getBoundsNormalized()['size']
+    local proportion = size['x'] / g_width_table_in
     local angle = normalize_angle(math.rad(gametable.getRotation()['y']))
 
     local strokes = {}
     table.insert(strokes,
-        get_strokes_deployment('top', g_gizmo_color_player_blue, angle))
+        get_strokes_deployment('top', g_gizmo_color_player_blue, angle, proportion))
     table.insert(strokes,
-        get_strokes_deployment('bot', g_gizmo_color_player_red, angle))
+        get_strokes_deployment('bot', g_gizmo_color_player_red, angle, proportion))
     table.insert(strokes, get_strokes_quadrant_vertical(angle))
     table.insert(strokes, get_strokes_quadrant_horizontal(angle))
 

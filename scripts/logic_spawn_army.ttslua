@@ -344,6 +344,7 @@ function onObjectDestroy(dying_object)
     local name = dying_object.getName()
     if is_table(dying_object) then
         print_info('Table removed from play')
+        remove_deployment_lines()
         g_current_table = nil
     elseif g_bases[name] ~= nil then
         print_info('Base ' .. name .. ' removed from play')
