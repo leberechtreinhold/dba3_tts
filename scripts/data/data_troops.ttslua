@@ -830,6 +830,38 @@ troop_halberdier_late_medieval = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691401814458523/75C0C25445C1D8DE41B6FE5790B519C382B2ADAF/'
 }
 
+troop_horde_late_medieval = {
+    height_correction = 0.36,
+    scale = 0.37,
+    rotation = 180,
+    description = 'Late Medieval Spearman Without Shield',
+    author = 'Late Medieval Spearman, using Empire Spearman by Vess (edited by Arkein).',
+    mesh = {
+        'http://cloud-3.steamusercontent.com/ugc/1012691108385888219/0DED34571B666B38CA1AEC08DE82F31FC6C8D762/',
+        'http://cloud-3.steamusercontent.com/ugc/1012691108385890162/568768D8B80F77B47F59AD461123AAB565F9ACBA/',
+        'http://cloud-3.steamusercontent.com/ugc/1012691108385890468/492080EB672E45CD49ADDD7221FFBFDECCE387FE/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564987005242163/FDE18A737EA15414FD6EE6F0A5DD99871EF6471F/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564987005242463/8B3391ED2E9F22EE8AA36E15151E3383C84D8489/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564883556586580/E57975CC5F4E49567E5705ECF633E367EE1A8CD2/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564883556587148/E64859A80635D21AE10A5A204E6D5B029A47DC29/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603307792/15D5B66CF1275445CBA3810AE85DBF9C556984FA/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603308146/29A5165EE25145148F83BF8E8AAA2B42BF243CFF/',
+        'http://cloud-3.steamusercontent.com/ugc/1012691054073740027/8AA04116664D79207CBECA436834B4E13CE74D98/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603372169/48E82971B69B6FA0329AA4C9B96A94D9FD2A434C/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603372935/5BB8FEB8D566D5A6EBC5EBB3F97A7CC1D4BEDEAB/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603373340/9590F076B2419429D3F9F01C4539C0E8D8940FB5/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564883555624932/035642E0FAE5DF4B5CEBC6434BAB41FC18EEF8E0/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564883555625264/2F543EB07AA1B046FA49FCA7C9EF67194D266DD2/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564883555797051/4AE2697986B0CFE0EC207FA349156951B8E04729/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564883555797369/4857D8B7C7A38339F2A619835B2C22069B6684CE/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564883555797646/A5EAF85D5E5D91A5B142E3F9AE63B70BDC9B6C41/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564198059104940/A83C6771034717A199C71F0053106CCED4081D48/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564198059105255/0742BCCB70B4384839675E41E2046A9A8B57BA2E/',
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691401814459030/CC29D45DDBE1A471538B7E78ACA097D527B8F8CC/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691401814458523/75C0C25445C1D8DE41B6FE5790B519C382B2ADAF/'
+}
+
 troop_bowman_late_medieval = {
     height_correction = 0.36,
     scale = 0.37,
@@ -1673,6 +1705,35 @@ troop_pikeman_burgundian_ordonnances_straight = {
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509328286193/499DAEB6A3B4B22765F6A8DD27504209E7ABD158/',
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509333663668/204186CBDC8E780D6807537F3C8003DCB1071175/'
 }
+
+troop_pikeman_burgundian_ordonnances_bannerman = {
+    height_correction = 0.36,
+    scale = 0.37,
+    rotation = 180,
+    description = 'Burgundian Ordonnances Bannerman',
+    author = 'Burgundian Ordonnances Bannerman, using Empire Spearmen by Vess, Burgundian banners from Wikipedia by Heralder (Burgundian Dukes banner) and Buho07 (Burgundian cross), both under CC BY-SA 3.0, and linen texture from Public Domain (all of this edited by Arkein).',
+    mesh = {
+        'http://cloud-3.steamusercontent.com/ugc/1018321187642009000/4C87FD4C49268909AA279504DFA196438FB620CF/',
+        'http://cloud-3.steamusercontent.com/ugc/1018321187642009300/F9954FD94CB8171CAF2D23E9482DA00A8978357C/',
+        'http://cloud-3.steamusercontent.com/ugc/1018321187642009565/2F05C3ED80744E8C6128DFA4E5CEBADC6F03DF0B/'
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509328286193/499DAEB6A3B4B22765F6A8DD27504209E7ABD158/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509333663668/204186CBDC8E780D6807537F3C8003DCB1071175/'
+}
+
+troop_pikeman_burgundian_ordonnances_captain = {
+    height_correction = 0.36,
+    scale = 0.37,
+    rotation = 180,
+    description = 'Burgundian Ordonnances Captain',
+    author = 'Burgundian Ordonnances Captain, using Empire Knights by Vess and Burgundian Cross by Buho07 under CC BY-SA 3.0 (all edited by Arkein).',
+    mesh = {
+        'http://cloud-3.steamusercontent.com/ugc/1011563720479888273/0FE163F87747C3B6E5BED19C5F99EF3C6733A8DE/'
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509328286193/499DAEB6A3B4B22765F6A8DD27504209E7ABD158/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509333663668/204186CBDC8E780D6807537F3C8003DCB1071175/'
+}
+
 troop_handgunner_burgundian_ordonnances = {
     height_correction = 0.36,
     scale = 0.37,
@@ -1850,6 +1911,30 @@ troop_artillery_crew_burgundian_ordonnances = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509328294575/30D845C06BEE80059D82B0A6F87039D0E3DEA7DF/'
 }
 
+troop_horse_rider_burgundian_ordonnances = {
+    height_correction = 0.71,
+    scale = 0.37,
+    rotation = 180,
+    description = 'Burgundian Ordonnances Horse Rider',
+    author = 'Burgundian Ordonnances Horse Rider, using Empire Horse Rider by Vess (edited by Arkein).',
+    mesh = {
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603297484/5F3F8D746BBA1B12757CAC6727E685009F81CEDA/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603297951/111DF0499B2CA870614F527CDAFB772EE56DA363/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603298430/B14DB2A8D7456F25926DA5441993B7A7750364E7/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603298786/1F82CB4B7B0A9BB16AE6280F016B05E31A00D97F/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603299172/0350D20493428E5392C72375CCA27E659C3F7BBA/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603300149/55BD13266159E134E933360B78422B661851A879/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603300569/9879FFC89B7FAEFE7E8D120C8AC40A41DB65FFBC/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603301104/E4021577529CE79C231816B102B9D8BE2D3220C0/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603301597/E0888F6D23AEDB861D988E65EE255BA8E8D4A897/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603302000/78EAA660981FCB35E2C710F9F11C260FD20325D2/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603302385/DF9AA138A32409343E12624A1356AF414CE07553/',
+        'http://cloud-3.steamusercontent.com/ugc/1011564617603303443/D02EFC330CC3BEB32F2F60FBAA2B3B221B845F29/'
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509327531288/D514C7A7153B3F056EB475CB4A12280D8BD5B143/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509327557335/16AB88FA9D3947C8A294E38793C91D416872B1C6/'
+}
+
 troop_knight_burgundian_ordonnances = {
     height_correction = 0.71,
     scale = 0.37,
@@ -1867,6 +1952,7 @@ troop_knight_burgundian_ordonnances = {
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509327531288/D514C7A7153B3F056EB475CB4A12280D8BD5B143/',
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691509327557335/16AB88FA9D3947C8A294E38793C91D416872B1C6/'
 }
+
 troop_knight_burgundian_ordonnances_captain = {
     height_correction = 0.71,
     scale = 0.37,
@@ -1922,7 +2008,7 @@ troop_carthaginian_soldier = {
       author = 'Carthaginian Soldier by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
           'http://cloud-3.steamusercontent.com/ugc/1029581270242167547/5E21B28F3914FE35E92ADAB26C172B6CC66BAD8E/',
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242168241/14DFC084AB1322ED49026A6312268AFBBEFE24D7/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242168241/14DFC084AB1322ED49026A6312268AFBBEFE24D7/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242169443/A17104C8CBBBD73469132B595A78577207EBA67C/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242169443/A17104C8CBBBD73469132B595A78577207EBA67C/'
@@ -1935,7 +2021,7 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Cavalry',
       author = 'Carthaginian Cavalry by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242172331/49BB06E1B3099E05D3FFE3E0156B64B741E983F5/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242172331/49BB06E1B3099E05D3FFE3E0156B64B741E983F5/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242170545/CF0C5339D7F4C7A9EAC27F240AA0A00107AB8E41/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242170545/CF0C5339D7F4C7A9EAC27F240AA0A00107AB8E41/'
@@ -1948,7 +2034,7 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Cavalry General',
       author = 'Carthaginian Cavalry General by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242172979/0FEEB3F33C2442C72C4957B48EB29C3E5F722F8D/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242172979/0FEEB3F33C2442C72C4957B48EB29C3E5F722F8D/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242213204/0E898B9AE0D2BA99778F3B378E73C01529D541E1/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242213204/0E898B9AE0D2BA99778F3B378E73C01529D541E1/'
@@ -1961,7 +2047,7 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Chariot',
       author = 'Carthaginian Chariot by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242207076/1C6CB5F8A19199AC12D306A3A689C2AEDF93FDFA/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242207076/1C6CB5F8A19199AC12D306A3A689C2AEDF93FDFA/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242206350/AFA0FA7B04F4609D9F4606016E51A60F4379BA45/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242206350/AFA0FA7B04F4609D9F4606016E51A60F4379BA45/'
@@ -1974,7 +2060,7 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Chariot General',
       author = 'Carthaginian Chariot General by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242385722/29C910BD9D2C011EC83F865CC12261471DCDE81E/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242385722/29C910BD9D2C011EC83F865CC12261471DCDE81E/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242263906/0B23676E04BBBEC956CC1BFEBD483C4A46CEF8A6/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242263906/0B23676E04BBBEC956CC1BFEBD483C4A46CEF8A6/'
@@ -1987,7 +2073,7 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Light Cavalry',
       author = 'Carthaginian Light Cavalry by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242212517/4F65D3A6DCF9148CABB63F7250BE1566E7DE092A/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242212517/4F65D3A6DCF9148CABB63F7250BE1566E7DE092A/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242207808/E5C75E23F602682D4BF72BC726DDC94A10D1DB61/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242207808/E5C75E23F602682D4BF72BC726DDC94A10D1DB61/'
@@ -2000,7 +2086,7 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Psiloi',
       author = 'Carthaginian Psiloi by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242209240/46C3539AA895A0326FA6A66D4B3DB3CF89945755/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242209240/46C3539AA895A0326FA6A66D4B3DB3CF89945755/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242208574/8DBF81C6AEEA21AA5F6FC52C56DE77FA41D174C5/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242208574/8DBF81C6AEEA21AA5F6FC52C56DE77FA41D174C5/'
@@ -2013,12 +2099,12 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Warband',
       author = 'Carthaginian Warband by Vokuhila, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270242211427/C7BE23775BC42E46C21BE88FE3C6E7A5715F80F5/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270242211427/C7BE23775BC42E46C21BE88FE3C6E7A5715F80F5/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242210092/EAA72A4A9EB089E3828EE86D6E831ABDF556B85A/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270242210092/EAA72A4A9EB089E3828EE86D6E831ABDF556B85A/'
   }
-  
+
   troop_carthaginian_camp = {
     height_correction = 0,
     scale = 1.55,
@@ -2026,7 +2112,7 @@ troop_carthaginian_soldier = {
       description = 'Carthaginian Camp',
       author = 'Carthaginian Camp by 0AD, edited by LeberechtReinhold.',
       mesh = {
-          'http://cloud-3.steamusercontent.com/ugc/1029581270244177959/913D444AD166E2ABACD8E255F648615BEA481190/'  
+          'http://cloud-3.steamusercontent.com/ugc/1029581270244177959/913D444AD166E2ABACD8E255F648615BEA481190/'
       },
       player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270244178515/5A238BD04C4CA8491246C8EBF712D8B452A6EF35/',
       player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581270244178515/5A238BD04C4CA8491246C8EBF712D8B452A6EF35/'
