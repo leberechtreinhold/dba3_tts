@@ -11,7 +11,7 @@
         <Button id="button_push_back" onClick="on_push_back">Push back Column</Button>
         <Button id="button_spawn_table" onClick="on_create_table_menu">Spawn table</Button>
         <Button id="button_create_army" onClick="create_army_options_menu">Deploy an army</Button>
-        <Toggle id="toggle_zoc" isOn="false" onValueChanged="on_toggle_zoc">Do not show ZOC</Toggle>
+        <Toggle id="toggle_zoc" isOn="false" onValueChanged="on_toggle_zoc">Do not show TZ</Toggle>
         <Toggle id="toggle_deployment_lines" isOn="false" onValueChanged="on_toggle_deployment_lines">Do not show rulers</Toggle>
         <Toggle id="toggle_snapping" isOn="true" onValueChanged="on_toggle_snapping">Snap bases</Toggle>
     </VerticalLayout>
@@ -212,7 +212,7 @@
                 <Text fontSize="16">Degrees:</Text>
             </Cell>
             <Cell columnSpan="4" dontUseTableCellBackground="true">
-                <Slider id="slider_wheel_rotation" minValue="0" maxValue="45" wholeNumbers="true" value="0" colors="#00000000|#00000000|#00000000|#00000000" backgroundcolor="#FFFFFFF" onValueChanged="on_rotation_wheel"></Slider>
+                <Slider id="slider_wheel_rotation" minValue="0" maxValue="90" wholeNumbers="true" value="0" colors="#00000000|#00000000|#00000000|#00000000" backgroundcolor="#FFFFFFF" onValueChanged="on_rotation_wheel"></Slider>
             </Cell>
         </Row>
         <Row>

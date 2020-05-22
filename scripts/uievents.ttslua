@@ -217,11 +217,11 @@ function on_toggle_zoc(player, value, id)
     g_zoc_enabled = value == "True"
 
     if g_zoc_enabled then
-        UI.setValue('toggle_zoc', 'Show ZOC')
-        UI.setAttribute('toggle_zoc', 'text', 'Show ZOC')
+        UI.setValue('toggle_zoc', 'Show TZ')
+        UI.setAttribute('toggle_zoc', 'text', 'Show TZ')
     else
-        UI.setValue('toggle_zoc', 'Do not show ZOC')
-        UI.setAttribute('toggle_zoc', 'text', 'Do not show ZOC')
+        UI.setValue('toggle_zoc', 'Do not show TZ')
+        UI.setAttribute('toggle_zoc', 'text', 'Do not show TZ')
     end
 
     -- Make it consistent for all players
@@ -389,7 +389,7 @@ function preview_wheel(objs_if_first_time)
     UI.setValue('text_wheeling',
         string.format('Wheeling %2.1f degrees will cost %.3f BWs',
             g_degrees_wheeling,
-            from_in_to_bw(distance)))
+            distance))
     return distance
 end
 
