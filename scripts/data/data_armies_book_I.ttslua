@@ -1,6 +1,6 @@
 armies["Book I"] = {}
 
-armies["Book I"]["I/61b Early Carthaginian 340-275BC"] = {
+armies["Book I"]["I/61a Early Carthaginian 550-341BC"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Litoral',
