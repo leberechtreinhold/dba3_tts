@@ -2002,7 +2002,7 @@ troop_camp_burgundian_ordonnances = {
 
 troop_carthaginian_soldier = {
     height_correction = 0,
-    scale = 0.6,
+    scale = 0.52,
       rotation = 0,
       description = 'Carthaginian Soldier',
       author = 'Carthaginian Soldier by Vokuhila, edited by LeberechtReinhold.',
@@ -2016,7 +2016,7 @@ troop_carthaginian_soldier = {
 
   troop_carthaginian_cavalry = {
     height_correction = 0,
-    scale = 0.5,
+    scale = 0.46,
       rotation = 0,
       description = 'Carthaginian Cavalry',
       author = 'Carthaginian Cavalry by Vokuhila, edited by LeberechtReinhold.',
@@ -2029,7 +2029,7 @@ troop_carthaginian_soldier = {
 
   troop_carthaginian_cavalry_gen = {
     height_correction = 0,
-    scale = 0.6,
+    scale = 0.52,
       rotation = 0,
       description = 'Carthaginian Cavalry General',
       author = 'Carthaginian Cavalry General by Vokuhila, edited by LeberechtReinhold.',
@@ -2042,7 +2042,7 @@ troop_carthaginian_soldier = {
 
   troop_carthaginian_chariot = {
     height_correction = 0,
-    scale = 0.6,
+    scale = 0.52,
       rotation = 0,
       description = 'Carthaginian Chariot',
       author = 'Carthaginian Chariot by Vokuhila, edited by LeberechtReinhold.',
@@ -2055,7 +2055,7 @@ troop_carthaginian_soldier = {
 
   troop_carthaginian_chariot_gen = {
     height_correction = 0,
-    scale = 0.33,
+    scale = 0.30,
       rotation = 0,
       description = 'Carthaginian Chariot General',
       author = 'Carthaginian Chariot General by Vokuhila, edited by LeberechtReinhold.',
@@ -2068,7 +2068,7 @@ troop_carthaginian_soldier = {
 
   troop_carthaginian_lightcav = {
     height_correction = 0,
-    scale = 0.6,
+    scale = 0.52,
       rotation = 0,
       description = 'Carthaginian Light Cavalry',
       author = 'Carthaginian Light Cavalry by Vokuhila, edited by LeberechtReinhold.',
@@ -2081,7 +2081,7 @@ troop_carthaginian_soldier = {
 
   troop_carthaginian_psiloi = {
     height_correction = 0,
-    scale = 0.6,
+    scale = 0.52,
       rotation = 0,
       description = 'Carthaginian Psiloi',
       author = 'Carthaginian Psiloi by Vokuhila, edited by LeberechtReinhold.',
@@ -2094,7 +2094,7 @@ troop_carthaginian_soldier = {
 
   troop_carthaginian_warband = {
     height_correction = 0,
-    scale = 0.6,
+    scale = 0.52,
       rotation = 0,
       description = 'Carthaginian Warband',
       author = 'Carthaginian Warband by Vokuhila, edited by LeberechtReinhold.',
