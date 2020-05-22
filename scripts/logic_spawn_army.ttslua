@@ -72,7 +72,7 @@ function spawn_base(base, pos, y_rotation, is_red_player)
         if str_has_substr(base_name, 'Camp') then
             random_rotation = 0
         end
-        
+
         local random_x = 0
         local random_z = 0
         if base['loose'] == true then
@@ -143,7 +143,7 @@ function spawn_army(army_name, army, is_red_player)
 
     print_important('Army deployed: ' .. army_name .. ', see chat for options')
     print_info('List: ' .. army['data']['list'])
-    print_info('Agressiveness: ' .. army['data']['aggresiveness'] 
+    print_info('Agressiveness: ' .. army['data']['aggresiveness']
         .. ' Terrain: ' .. army['data']['terrain'])
 
 end
@@ -251,7 +251,7 @@ function spawn_table_obj(model_url, texture_array_urls, is_large)
     end)
 end
 
-function rotate_table()    
+function rotate_table()
     local gametable = getObjectFromGUID(g_current_table)
     local newrotation = gametable.getRotation()
     newrotation['y'] = newrotation['y'] + 90
@@ -267,7 +267,7 @@ function fix_terrain_and_lock()
             table.insert(terrains, obj)
         end
     end
-    
+
     local gametable = getObjectFromGUID(g_current_table)
     local max_distance_from_table_sq = (g_width_table_in/2)^2 + (g_depth_table_in / 2)^2
     local pos_table = gametable.getPosition()
@@ -379,7 +379,7 @@ function spawn_proxy_bases()
         n_models = 0
     }, {x=-42, y=2, z=-15.5}, 0, true)
 
-    
+
     spawn_base({
         name = 'Proxy 40x15',
         base = 'tile_grass_40x15',

@@ -1,6 +1,6 @@
 armies["Book IV"] = {}
 
-armies["Book IV"]["IV/13c.1 Medieval German 1440-1493AD"] = {
+armies["Book IV"]["IV/13c.1 Medieval German with City Militia 1440-1493AD"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
@@ -121,7 +121,7 @@ armies["Book IV"]["IV/13c.1 Medieval German 1440-1493AD"] = {
     }
 }
 
-armies["Book IV"]["IV/13c.2 Medieval German 1440-1493AD"] = {
+armies["Book IV"]["IV/13c Medieval German 1440-1493AD"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
@@ -256,7 +256,7 @@ armies["Book IV"]["IV/13d Medieval German 1494-1518AD"] = {
         fixed_models = {
             [1] = 'troop_knight_late_german_d_bannerman',
             [2] = 'troop_knight_late_medieval_captain',
-            [3] = 'troop_knight_burgundian'
+            [3] = 'troop_knight_burgundian_ordonnances'
         }
     },
     base2 = {
@@ -862,7 +862,7 @@ armies["Book IV"]["IV/66 Later Polish 1335-1510AD"] = {
     }
 }
 
-armies["Book IV"]["IV/68b Medieval Portuguese 1340-1485AD"] = {
+armies["Book IV"]["IV/68b Medieval Portuguese 1495-1515AD"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
@@ -880,7 +880,7 @@ armies["Book IV"]["IV/68b Medieval Portuguese 1340-1485AD"] = {
         }
     },
     base2 = {
-        name = '4Bd',
+        name = '4Bd_Gen',
         base = 'tile_grass_40x15',
         n_models = 4,
         fixed_models = {
@@ -1675,7 +1675,7 @@ armies["Book IV"]["IV/83a Wars of the Roses English 1455-1485AD or Tudor Army 14
         name = '3Pk',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_pikeman_late_medieval'
+        model_data = 'troop_pikeman_late_medieval_straight'
     },
     base16 = {
         name = '3Ax',
