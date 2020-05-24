@@ -33,7 +33,7 @@ g_width_large_table_in = g_width_table_in * 1.333
 g_depth_large_table_in = g_depth_table_in * 1.333
 
 -- Maximum distance between the center of bases for autoalignment, squared
-g_max_distance_alignment = 2*2
+g_max_distance_alignment = 2^2
 
 -- Angle for alignment front-to-back instead of side-to-side, in radians
 g_alignment_angle_side = math.rad(30)
