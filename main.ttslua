@@ -23,8 +23,7 @@
 function onload()
     print_info('----------------------------------------------')
     print_info('                       DBA 3.0 v1.1.0 ')
-    print_info('----------------------------------------------')
-    
+    print_info('----------------------------------------------\n\nCheck the Notebook for instructions.')
     Wait.time(main_loop, g_seconds_main_loop, -1)
     reset_state()
     spawn_proxy_bases()
@@ -60,6 +59,20 @@ function onChat(message, player)
     if message == '!dba_print_state' then
         print_info(player.get_steam_name() .. ': ' .. message)
         print_state()
+        return false
+    end
+
+    if message == '!dba_debug' then
+        print_info(player.get_steam_name() .. ': ' .. message)
+        if g_debug_mode then
+            print_info('Disabling debug mode')
+            g_debug_mode = false
+        else
+            print_info('Enabling debug mode, will take effect in three seconds. Note, this will cause decreased performance.')
+            Wait.time(function() 
+                g_debug_mode = true
+            end, 3)
+        end
         return false
     end
 
