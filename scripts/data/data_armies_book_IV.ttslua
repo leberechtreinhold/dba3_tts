@@ -2050,10 +2050,10 @@ armies["Book IV"]["IV/85b Burgundian Ordonnance 1478-1506AD"] = {
         base = 'tile_grass_40x15',
         n_models = 4,
         fixed_models = {
-            [1] = 'troop_pikeman_two_handed_burgundian_ordonnances',
+            [1] = 'troop_swordman_two_handed_burgundian_ordonnances',
             [2] = 'troop_pikeman_burgundian_ordonnances_captain',
             [3] = 'troop_pikeman_burgundian_ordonnances_bannerman',
-            [4] = 'troop_pikeman_two_handed_burgundian_ordonnances'
+            [4] = 'troop_swordman_two_handed_burgundian_ordonnances'
         }
     },
     base3 = {
