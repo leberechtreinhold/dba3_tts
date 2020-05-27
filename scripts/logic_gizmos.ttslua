@@ -126,82 +126,84 @@ end
 -- WWg fire with like a bow on all edges which is weird as fuck
 function get_strokes_fire_around(base_obj, transform, shooting_range, max_width)
     local stroke_points = {}
-    local p = transform['corners']['topright']
-    local p2 = transform['corners']['botright']
+    local size = get_size(base_obj.getName())
+    local tr = { x = size['x'] / 2, y = 0, z = size['z'] / 2 }
+    local br = { x = size['x'] / 2, y = 0, z = -size['z'] / 2 }
 
     table.insert(stroke_points, {
-        x = p['x'] + max_width,
-        y = p['y'],
-        z = p['z'] + shooting_range
+        x = tr['x'] + max_width,
+        y = tr['y'],
+        z = tr['z'] + shooting_range
     })
     table.insert(stroke_points, {
-        x = p['x'] - max_width - g_base_width_inches,
-        y = p['y'],
-        z = p['z'] + shooting_range
+        x = tr['x'] - max_width - g_base_width_inches,
+        y = tr['y'],
+        z = tr['z'] + shooting_range
     })
     table.insert(stroke_points, {
-        x = p['x'] - max_width - g_base_width_inches,
-        y = p['y'],
-        z = p['z'] + max_width
+        x = tr['x'] - max_width - g_base_width_inches,
+        y = tr['y'],
+        z = tr['z'] + max_width
     })
     table.insert(stroke_points, {
-        x = p['x'] - shooting_range - g_base_width_inches,
-        y = p['y'],
-        z = p['z'] + max_width
-    })
-
-    table.insert(stroke_points, {
-        x = p2['x'] - shooting_range - g_base_width_inches,
-        y = p2['y'],
-        z = p2['z'] - max_width
-    })
-    table.insert(stroke_points, {
-        x = p2['x'] - max_width - g_base_width_inches,
-        y = p2['y'],
-        z = p2['z'] - max_width
-    })
-    table.insert(stroke_points, {
-        x = p2['x'] - max_width - g_base_width_inches,
-        y = p2['y'],
-        z = p2['z'] - shooting_range
-    })
-    table.insert(stroke_points, {
-        x = p2['x'] + max_width,
-        y = p2['y'],
-        z = p2['z'] - shooting_range
-    })
-    table.insert(stroke_points, {
-        x = p2['x'] + max_width,
-        y = p2['y'],
-        z = p2['z'] - max_width
-    })
-    table.insert(stroke_points, {
-        x = p2['x'] + shooting_range,
-        y = p2['y'],
-        z = p2['z'] - max_width
+        x = tr['x'] - shooting_range - g_base_width_inches,
+        y = tr['y'],
+        z = tr['z'] + max_width
     })
 
     table.insert(stroke_points, {
-        x = p['x'] + shooting_range,
-        y = p['y'],
-        z = p['z'] + max_width
+        x = br['x'] - shooting_range - g_base_width_inches,
+        y = br['y'],
+        z = br['z'] - max_width
     })
     table.insert(stroke_points, {
-        x = p['x'] + max_width,
-        y = p['y'],
-        z = p['z'] + max_width
+        x = br['x'] - max_width - g_base_width_inches,
+        y = br['y'],
+        z = br['z'] - max_width
     })
     table.insert(stroke_points, {
-        x = p['x'] + max_width,
-        y = p['y'],
-        z = p['z'] + shooting_range
+        x = br['x'] - max_width - g_base_width_inches,
+        y = br['y'],
+        z = br['z'] - shooting_range
+    })
+    table.insert(stroke_points, {
+        x = br['x'] + max_width,
+        y = br['y'],
+        z = br['z'] - shooting_range
+    })
+    table.insert(stroke_points, {
+        x = br['x'] + max_width,
+        y = br['y'],
+        z = br['z'] - max_width
+    })
+    table.insert(stroke_points, {
+        x = br['x'] + shooting_range,
+        y = br['y'],
+        z = br['z'] - max_width
+    })
+
+    table.insert(stroke_points, {
+        x = tr['x'] + shooting_range,
+        y = tr['y'],
+        z = tr['z'] + max_width
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] + max_width,
+        y = tr['y'],
+        z = tr['z'] + max_width
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] + max_width,
+        y = tr['y'],
+        z = tr['z'] + shooting_range
     })
 
     local rotation = transform['rotation']
+    local pos = transform['position']
     for _, paux in ipairs(stroke_points) do
-        local paux_rotated = rotate_point(paux, p, rotation)
+        local paux_rotated = rotate_point_relative(paux, pos, rotation)
         paux['x'] = paux_rotated['x']
-        -- We can ignore the y because we assume XZ plane
+        paux['y'] = pos['y']
         paux['z'] = paux_rotated['z']
     end
 
