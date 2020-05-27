@@ -831,35 +831,19 @@ troop_halberdier_late_medieval = {
 }
 
 troop_horde_late_medieval = {
-    height_correction = 0.36,
-    scale = 0.37,
-    rotation = 180,
-    description = 'Late Medieval Spearman Without Shield',
-    author = 'Late Medieval Spearman, using Empire Spearman by Vess (edited by Arkein).',
+    height_correction = 0,
+    scale = 0.36,
+    rotation = 270,
+    description = 'Late Medieval Horde Troops',
+    author = 'Late Medieval Horde Troops, using Empire Models by Vess (edited by Arkein).',
     mesh = {
-        'http://cloud-3.steamusercontent.com/ugc/1012691108385888219/0DED34571B666B38CA1AEC08DE82F31FC6C8D762/',
-        'http://cloud-3.steamusercontent.com/ugc/1012691108385890162/568768D8B80F77B47F59AD461123AAB565F9ACBA/',
-        'http://cloud-3.steamusercontent.com/ugc/1012691108385890468/492080EB672E45CD49ADDD7221FFBFDECCE387FE/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564987005242163/FDE18A737EA15414FD6EE6F0A5DD99871EF6471F/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564987005242463/8B3391ED2E9F22EE8AA36E15151E3383C84D8489/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564883556586580/E57975CC5F4E49567E5705ECF633E367EE1A8CD2/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564883556587148/E64859A80635D21AE10A5A204E6D5B029A47DC29/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564617603307792/15D5B66CF1275445CBA3810AE85DBF9C556984FA/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564617603308146/29A5165EE25145148F83BF8E8AAA2B42BF243CFF/',
-        'http://cloud-3.steamusercontent.com/ugc/1012691054073740027/8AA04116664D79207CBECA436834B4E13CE74D98/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564617603372169/48E82971B69B6FA0329AA4C9B96A94D9FD2A434C/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564617603372935/5BB8FEB8D566D5A6EBC5EBB3F97A7CC1D4BEDEAB/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564617603373340/9590F076B2419429D3F9F01C4539C0E8D8940FB5/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564883555624932/035642E0FAE5DF4B5CEBC6434BAB41FC18EEF8E0/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564883555625264/2F543EB07AA1B046FA49FCA7C9EF67194D266DD2/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564883555797051/4AE2697986B0CFE0EC207FA349156951B8E04729/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564883555797369/4857D8B7C7A38339F2A619835B2C22069B6684CE/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564883555797646/A5EAF85D5E5D91A5B142E3F9AE63B70BDC9B6C41/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564198059104940/A83C6771034717A199C71F0053106CCED4081D48/',
-        'http://cloud-3.steamusercontent.com/ugc/1011564198059105255/0742BCCB70B4384839675E41E2046A9A8B57BA2E/',
+        'http://cloud-3.steamusercontent.com/ugc/1045344685647609090/AACB3B6D16AEB2F0EA0BBEF813F3AE148B82375C/',
+        'http://cloud-3.steamusercontent.com/ugc/1045344685647609523/3CEA9427E8ACF7982246AC21B31495B0F4C78764/',
+        'http://cloud-3.steamusercontent.com/ugc/1045344685647609838/683F4D175B13D8E39E64E9DB8733CFC17A288215/',
+        'http://cloud-3.steamusercontent.com/ugc/1045344685647610262/02BA50FCEA2BDAB85098CBBDF6EEACFCF9178F56/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691401814459030/CC29D45DDBE1A471538B7E78ACA097D527B8F8CC/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1012691401814458523/75C0C25445C1D8DE41B6FE5790B519C382B2ADAF/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045344685647610778/DFE3F066C1A8311DD8283BFE03103A0D45F13477/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045344685647610778/DFE3F066C1A8311DD8283BFE03103A0D45F13477/'
 }
 
 troop_bowman_late_medieval = {
@@ -2132,5 +2116,5 @@ troop_carthaginian_elephant = {
         'http://cloud-3.steamusercontent.com/ugc/1029581967099795314/900A3C519A06303574B99F873BA9C454F297FFB7/'
     },
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581967099795726/2A25AD1E3719CC81E90193F06D3588BCC4FD9135/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581967099795726/2A25AD1E3719CC81E90193F06D3588BCC4FD9135/'    
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1029581967099795726/2A25AD1E3719CC81E90193F06D3588BCC4FD9135/'
 }
