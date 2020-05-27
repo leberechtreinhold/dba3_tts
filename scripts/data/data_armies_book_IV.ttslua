@@ -1,6 +1,6 @@
 armies["Book IV"] = {}
 
-armies["Book IV"]["IV/13c.1 Medieval German with City Militia 1440-1493AD"] = {
+armies["Book IV"]["IV/13c Medieval German with City Militia 1440-1493AD"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
@@ -703,6 +703,7 @@ armies["Book IV"]["IV/61 Italian Condotta 1320-1515AD"] = {
         name = '7Hd',
         base = 'tile_grass_40x30',
         n_models = 7,
+        loose = true,
         model_data = 'troop_horde_late_medieval'
     },
     base20 = {
@@ -1610,6 +1611,7 @@ armies["Book IV"]["IV/83a Wars of the Roses English 1455-1485AD or Tudor Army 14
         name = '7Hd',
         base = 'tile_grass_40x30',
         n_models = 7,
+        loose = true,
         model_data = 'troop_horde_late_medieval'
     },
     base6 = {
