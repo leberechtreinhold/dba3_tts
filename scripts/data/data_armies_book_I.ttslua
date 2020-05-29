@@ -811,7 +811,7 @@ armies["Book I"]["I/4a Zagros and Anatolian Highland Army 3000-950BC (Plain)"] =
 armies["Book I"]["I/4b Guti “Great Revolt” Army 2250-2112BC (Plain)"] = {
     data = {
         aggresiveness = 3,
-        terrain = 'Hilly',s
+        terrain = 'Hilly',
         list = '1xLCh or 3Bd (Gen), 4x3Ax or 3Wb, 2x3Bd or 3Ax or 3/4Pk, 2x3Bw or 4Bw or 3Pk, 3x2Ps'
     },
 
@@ -1927,7 +1927,7 @@ armies["Book I"]["I/6b Midianite or Amalekite Army 1500-312BC or early Arab Army
     },
 
     base1 = {
-        name = '3Cm_Gen',
+        name = 'Cm_Gen',
         base = 'tile_plain_3Cm_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -2533,7 +2533,7 @@ armies["Book I"]["I/7d Early Libyan Army 475BC-70AD"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '2LH_Gen',
+        name = 'LH_Gen',
         base = 'tile_plain_2LH_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -2758,7 +2758,7 @@ armies["Book I"]["I/8b Makkan Army 1300-312BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -2872,7 +2872,7 @@ armies["Book I"]["I/8c Dilmun, Saba, Ma’in or Qataban Army 1300-312BC (Plain)"
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -3111,7 +3111,7 @@ armies["Book I"]["I/10 Melukhkhan or Pre-Vedic Indian Army 2700-1500BC (Plain)"]
         ignore_terrain = true
     },
     base2 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -4393,14 +4393,14 @@ armies["Book I"]["I/14e Jung or Ch’iang Army 400-315BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base2 = {
-        name = '2LH_Gen',
+        name = 'LH_Gen',
         base = 'tile_plain_2LH_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -7173,7 +7173,7 @@ armies["Book I"]["I/29b Later Philistine Army 1099-600BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -7363,7 +7363,7 @@ armies["Book I"]["I/30b Dark-Age and Geometric Greek Army 900-725BC (Plain)"] = 
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -7451,7 +7451,7 @@ armies["Book I"]["I/30c Dark-Age and Geometric Greek Army 724-650BC (Plain)"] = 
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -8173,7 +8173,7 @@ armies["Book I"]["I/33a Early Villanovan Italian Army 1000-801BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -8268,7 +8268,7 @@ armies["Book I"]["I/33b Later Villanovan Italian Army 800-650BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -8822,7 +8822,7 @@ armies["Book I"]["I/35c Cypriot & Phoenician Army 679-490BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -8910,14 +8910,14 @@ armies["Book I"]["I/35d Cypriot or Phoenician Army 489-332BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base2 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -9067,7 +9067,7 @@ armies["Book I"]["I/36a Samnite, Umbrian, Hernician or Ligurian Armies 1000-124B
         ignore_terrain = true
     },
     base3 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -9289,14 +9289,14 @@ armies["Book I"]["I/36c Sicel Army 480-380BC (Plain)"] = {
         ignore_terrain = true
     },
     base3 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base4 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -9428,7 +9428,7 @@ armies["Book I"]["I/36d Armies of other Italian Hill Tribes 1000-124BC (Plain)"]
         ignore_terrain = true
     },
     base3 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -9789,7 +9789,7 @@ armies["Book I"]["I/38 Libyan Egyptian Army 946-712BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -10226,7 +10226,7 @@ armies["Book I"]["I/41a Medes, Zikirtu, Andia or Parsua Army 835-621BC (Plain)"]
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -10321,7 +10321,7 @@ armies["Book I"]["I/41b Median Army 620-550BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -10528,14 +10528,14 @@ armies["Book I"]["I/43a Kimmerian or Skythian Army 750-301BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base2 = {
-        name = '2LH_Gen',
+        name = 'LH_Gen',
         base = 'tile_plain_2LH_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -11613,7 +11613,7 @@ armies["Book I"]["I/47 Illyrian Army 700BC-10AD (Plain)"] = {
     },
 
     base1 = {
-        name = '2LH_Gen',
+        name = 'LH_Gen',
         base = 'tile_plain_2LH_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -11762,7 +11762,7 @@ armies["Book I"]["I/48 Thracian Army 700BC-46AD (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -12190,7 +12190,7 @@ armies["Book I"]["I/49c Early Vietnamese Army 110BC-247AD (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -12333,7 +12333,7 @@ armies["Book I"]["I/49d Early Vietnamese Army 248-938AD (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -12701,7 +12701,7 @@ armies["Book I"]["I/52a Argive Hoplite Army 669-449BC (Plain)"] = {
     },
 
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -12789,7 +12789,7 @@ armies["Book I"]["I/52b Spartan Hoplite Army 668-449BC (Plain)"] = {
     },
 
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -12883,14 +12883,14 @@ armies["Book I"]["I/52c Thessalian Hoplite Army 668-449BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base2 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -12978,7 +12978,7 @@ armies["Book I"]["I/52d Theban Hoplite Army 668-449BC (Plain)"] = {
     },
 
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13066,7 +13066,7 @@ armies["Book I"]["I/52e Early Athenian Hoplite Army 668-541BC (Plain)"] = {
     },
 
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13154,7 +13154,7 @@ armies["Book I"]["I/52f Later Athenian Hoplite Army 540-449BC (Plain)"] = {
     },
 
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13266,7 +13266,7 @@ armies["Book I"]["I/52g Asiatic Greek Hoplite Army 668-449BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13354,7 +13354,7 @@ armies["Book I"]["I/52h Early Hoplite Greek Phocian & Aitolian 668-449BC (Plain)
     },
 
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13442,7 +13442,7 @@ armies["Book I"]["I/52i Italiot or Siciliot Hoplite Army 668-449BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13648,7 +13648,7 @@ armies["Book I"]["I/53 Saitic Egyptian Army 664-335BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13861,7 +13861,7 @@ armies["Book I"]["I/55a Etruscan Army 650-600BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -13962,7 +13962,7 @@ armies["Book I"]["I/55b Roman Army 650-578BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14063,7 +14063,7 @@ armies["Book I"]["I/55c Latin Army 650-400BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14157,7 +14157,7 @@ armies["Book I"]["I/55d Latin Army 399-338BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14252,7 +14252,7 @@ armies["Book I"]["I/55e Umbrian Army 650-290BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14347,21 +14347,21 @@ armies["Book I"]["I/56a Early Kyrenean Greek Army 630-314BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base3 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base4 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14474,14 +14474,14 @@ armies["Book I"]["I/56b Later Kyrenean Greek Army 313-74BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base3 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14600,7 +14600,7 @@ armies["Book I"]["I/57a Etruscan League Army 600-400BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14700,7 +14700,7 @@ armies["Book I"]["I/57b Etruscan League Army 399-280BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14818,7 +14818,7 @@ armies["Book I"]["I/58 Meroitic Kushite Army 592BC-350AD (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -14933,14 +14933,14 @@ armies["Book I"]["I/59 Tullian Roman Army 578-400BC (Plain)"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base2 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -15035,7 +15035,7 @@ armies["Book I"]["I/60a Achaemenid Army 550-547BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -15135,7 +15135,7 @@ armies["Book I"]["I/60b Cyrus’ Army according to the Cyropaedia 546-540BC (Pla
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -15230,7 +15230,7 @@ armies["Book I"]["I/60c Achaemenid Army 539-420BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -15384,14 +15384,14 @@ armies["Book I"]["I/61a Early Carthaginian Army 550-341BC (Plain)"] = {
     },
 
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_plain_4Sp_40x15',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -15503,7 +15503,7 @@ armies["Book I"]["I/61a Early Carthaginian Army 550-341BC"] = {
         list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 4xSp, 2xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.'
     },
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_grass_40x15',
         n_models = 4,
         fixed_models = {
@@ -15514,7 +15514,7 @@ armies["Book I"]["I/61a Early Carthaginian Army 550-341BC"] = {
         }
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
@@ -15641,7 +15641,7 @@ armies["Book I"]["I/61b Early Carthaginian Army 340-275BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -15734,7 +15734,7 @@ armies["Book I"]["I/61b Early Carthaginian Army 340-275BC"] = {
         list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 1xLH or 4Ax, 4xSp, 1xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.'
     },
     base1 = {
-        name = '4Sp_Gen',
+        name = 'Sp_Gen',
         base = 'tile_grass_40x15',
         n_models = 4,
         fixed_models = {
@@ -15745,7 +15745,7 @@ armies["Book I"]["I/61b Early Carthaginian Army 340-275BC"] = {
         }
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
@@ -15873,7 +15873,7 @@ armies["Book I"]["I/62 Lykian Army 546-300BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_plain_3Cv_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -16033,7 +16033,7 @@ armies["Book I"]["I/63 Paionian Army 512-284BC (Plain)"] = {
     },
 
     base1 = {
-        name = '2LH_Gen',
+        name = 'LH_Gen',
         base = 'tile_plain_2LH_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
