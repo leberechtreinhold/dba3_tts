@@ -1,1 +1,233 @@
--- armies["Book II"] = {}
+armies["Book II"] = {}
+
+armies["Book II"]["II/32a Later Carthaginian Army 275-202BC"] = {
+    data = {
+        aggresiveness = 4,
+        terrain = 'Litoral',
+        list = '1xCv (Gen), 1xCv or El, 1xEl or LH, 1xLH, 3xSp, 1x4Ax, 2x4Wb or 4Ax, 2xPs'
+    },
+    base1 = {
+        name = 'Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_carthaginian_cavalry',
+            [2] = 'troop_carthaginian_cavalry_gen',
+            [3] = 'troop_carthaginian_cavalry'
+        }
+    },
+    base2 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_carthaginian_cavalry'
+    },
+    base3 = {
+        name = 'El',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_elephant'
+    },
+    base4 = {
+        name = 'El',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_elephant'
+    },
+    base5 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_carthaginian_lightcav',
+        loose = true
+    },
+    base6 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_carthaginian_lightcav',
+        loose = true
+    },
+    base7 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base8 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base9 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base10 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base11 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base12 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_warband'
+    },
+    base13 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base14 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_warband'
+    },
+    base15 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base16 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base17 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_camp'
+    }
+}
+
+armies["Book II"]["II/32b Later Carthaginian Army 201-146BC"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Litoral',
+        list = '1xCv o Sp (Gen), 1xCv, 1xLH or Sp, 6xSp, 3xPs.'
+    },
+    base1 = {
+        name = 'Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_carthaginian_cavalry',
+            [2] = 'troop_carthaginian_cavalry_gen',
+            [3] = 'troop_carthaginian_cavalry'
+        }
+    },
+    base2 = {
+        name = 'Sp_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        fixed_models = {
+            [1] = 'troop_carthaginian_soldier',
+            [2] = 'troop_carthaginian_soldier',
+            [3] = 'troop_carthaginian_cavalry_gen',
+            [4] = 'troop_carthaginian_soldier',
+        }
+    },
+    base3 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_carthaginian_cavalry'
+    },
+    base4 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_carthaginian_lightcav',
+        loose = true
+    },
+    base5 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base6 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base7 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base8 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base9 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base10 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base11 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_carthaginian_soldier'
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base14 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_carthaginian_psiloi',
+        loose = true
+    },
+    base15 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_camp'
+    }
+}
