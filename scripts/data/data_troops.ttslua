@@ -563,7 +563,7 @@ tile_plain_Art_40x40 = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045344786916688037/A1C58B6530CA66187DC2C62597B32A4AD319A71C/'
 }
 
-tile_plain_Cp_Lit_40x40 = {
+tile_plain_Lit_40x40 = {
     height_correction = 0,
     scale = 1,
     rotation = 0,
@@ -667,7 +667,7 @@ tile_plain_6Kn_40x60 = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045344786916688037/A1C58B6530CA66187DC2C62597B32A4AD319A71C/'
 }
 
-tile_plain_Cp_Lit_40x80 = {
+tile_plain_Lit_40x80 = {
     height_correction = 0,
     scale = 1,
     rotation = 0,
@@ -711,8 +711,8 @@ tile_plain_Camp_40x40 = {
 -------------------------------------------------------------------------------
 
 troop_general_plain = {
-    height_correction = 0.2,
-    scale = 1,
+    height_correction = 0,
+    scale = 1.2,
     rotation = 0,
     description = 'General Token',
     author = 'General Token, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
