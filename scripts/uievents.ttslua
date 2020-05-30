@@ -29,7 +29,7 @@ function move_bases(player, value, id)
     end
 
     for k,obj in ipairs(objs) do
-        local moved = move_base(obj, g_bw_movement)
+        local moved = move_base(obj, from_bw_to_in(g_bw_movement))
         print_info(player.steam_name .. ' is moving ' .. obj.getName() .. ' ' .. moved .. ' BW forward')
     end
 
