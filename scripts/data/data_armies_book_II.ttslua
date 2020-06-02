@@ -12,105 +12,105 @@ armies["Book II"]["II/10 Camillan Roman Army 400-275BC"] = {
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
-            [1] = 'troop_camilan_roman_bodyguard',
-            [2] = 'troop_camilan_roman_general',
-            [3] = 'troop_camilan_roman_bodyguard'
+            [1] = 'troop_camillan_roman_bodyguard',
+            [2] = 'troop_camillan_roman_general',
+            [3] = 'troop_camillan_roman_bodyguard'
         }
     },
     base2 = {
         name = 'Cv',
         base = 'tile_grass_40x30',
         n_models = 3,
-        model_data = 'troop_camilan_roman_cavalry'
+        model_data = 'troop_camillan_roman_cavalry'
     },
     base3 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
         loose = true,
-        model_data = 'troop_camilan_roman_psiloi'
+        model_data = 'troop_camillan_roman_psiloi'
     },
     base4 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
         loose = true,
-        model_data = 'troop_camilan_roman_psiloi'
+        model_data = 'troop_camillan_roman_psiloi'
     },
     base5 = {
         name = '4Bd',
         base = 'tile_grass_40x15',
         n_models = 4,
-        model_data = 'troop_camilan_roman_blade'
+        model_data = 'troop_camillan_roman_blade'
     },
     base6 = {
         name = '4Bd',
         base = 'tile_grass_40x15',
         n_models = 4,
-        model_data = 'troop_camilan_roman_blade'
+        model_data = 'troop_camillan_roman_blade'
     },
     base7 = {
         name = 'Sp',
         base = 'tile_grass_40x15',
         n_models = 4,
-        model_data = 'troop_camilan_roman_spear'
+        model_data = 'troop_camillan_roman_spear'
     },
     base8 = {
         name = 'Sp',
         base = 'tile_grass_40x15',
         n_models = 4,
-        model_data = 'troop_camilan_roman_spear'
+        model_data = 'troop_camillan_roman_spear'
     },
     base9 = {
         name = 'Sp',
         base = 'tile_grass_40x15',
         n_models = 4,
-        model_data = 'troop_camilan_roman_spear'
+        model_data = 'troop_camillan_roman_spear'
     },
     base10 = {
         name = 'Sp',
         base = 'tile_grass_40x15',
         n_models = 4,
-        model_data = 'troop_camilan_roman_spear'
+        model_data = 'troop_camillan_roman_spear'
     },
     base11 = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
         loose = true,
-        model_data = 'troop_camilan_roman_spear'
+        model_data = 'troop_camillan_roman_spear'
     },
     base12 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'troop_camilan_roman_psiloi'
+        model_data = 'troop_camillan_roman_psiloi'
     },
     base13 = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
         loose = true,
-        model_data = 'troop_camilan_roman_spear'
+        model_data = 'troop_camillan_roman_spear'
     },
     base14 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'troop_camilan_roman_psiloi'
+        model_data = 'troop_camillan_roman_psiloi'
     },
     base15 = {
         name = 'Camp',
         base = 'tile_grass_40x40',
         n_models = 1,
-        model_data = 'troop_camilan_roman_camp'
+        model_data = 'troop_camillan_roman_camp'
     }
 }
 
 armies["Book II"]["II/32a Later Carthaginian Army 275-202BC"] = {
     data = {
         aggresiveness = 4,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xCv (Gen), 1xCv or El, 1xEl or LH, 1xLH, 3xSp, 1x4Ax, 2x4Wb or 4Ax, 2xPs'
     },
     base1 = {
@@ -231,7 +231,7 @@ armies["Book II"]["II/32a Later Carthaginian Army 275-202BC"] = {
 armies["Book II"]["II/32b Later Carthaginian Army 201-146BC"] = {
     data = {
         aggresiveness = 1,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xCv o Sp (Gen), 1xCv, 1xLH or Sp, 6xSp, 3xPs.'
     },
     base1 = {
