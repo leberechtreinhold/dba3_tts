@@ -4,7 +4,7 @@ armies["Book I"]["I/1a Early Sumerian 3000-2800BC (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Bd (Gen), 8x4Bw, 3x2Ps'
+        list = '1x3Bd (Gen), 8x4Bw, 3x2Ps.'
     },
     base1 = {
         name = '3Bd_Gen',
@@ -91,7 +91,7 @@ armies["Book I"]["I/1b Early Sumerian 2799-2334BC (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x4Pk or 3Bd or HCh or LCh or 4Bw (Gen), 6x4Pk, 1x4Pk or 4Bw, 2xPs, 1x3Ax or Ps.'
+        list = '1x4Pk or 3Bd or HCh or LCh or 4Bw (Gen), 6x4Pk, 1x4Pk or 4Bw, 2xPs, 1x3Ax or Ps'
     },
 
     base1 = {
@@ -337,7 +337,7 @@ armies["Book I"]["I/1c Great Sumerian Revolt Army 2250BC (Plain)"] = {
 armies["Book I"]["I/2a Early Egyptian Army 3000-1690BC (Plain)"] = {
     data = {
         aggresiveness = 1,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1x4Bd or Lit (Gen), 4x4Bw, 2x3Bd, 1xPs, 1x3Bw or Ps, 2x7Hd, 1xPs.'
     },
 
@@ -438,7 +438,7 @@ armies["Book I"]["I/2a Early Egyptian Army 3000-1690BC (Plain)"] = {
 armies["Book I"]["I/2b Early Egyptian Army 1689-1541BC (Plain)"] = {
     data = {
         aggresiveness = 1,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xLCh (Gen), 4x4Bw, 2x3Bd, 1xPs, 1x3Bw or Ps, 2x7Hd, 2xPs.'
     },
 
@@ -2652,7 +2652,7 @@ armies["Book I"]["I/7d Early Libyan Army 475BC-70AD"] = {
 armies["Book I"]["I/8a Makkan, Dilmun, Saba, Ma’in or Qataban Army 2800-1301BC (Plain)"] = {
     data = {
         aggresiveness = 1,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1x3Bd (Gen), 1x3Bd or 3Ax, 6x3Ax, 4xPs.'
     },
 
@@ -8634,7 +8634,7 @@ armies["Book I"]["I/34c Later Hebrew Army 799-586BC (Plain)"] = {
 armies["Book I"]["I/35a Cypriot & Phoenician Army 1000-901BC (Plain)"] = {
     data = {
         aggresiveness = 0,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xLCh (Gen), 1xLCh, 6x4Ax, 4xPs.'
     },
 
@@ -8722,7 +8722,7 @@ armies["Book I"]["I/35a Cypriot & Phoenician Army 1000-901BC (Plain)"] = {
 armies["Book I"]["I/35b Cypriot & Phoenician Army 900-680BC (Plain)"] = {
     data = {
         aggresiveness = 0,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xHCh (Gen), 1xHCh, 1xCv, 6x4Ax, 3xPs.'
     },
 
@@ -8810,7 +8810,7 @@ armies["Book I"]["I/35b Cypriot & Phoenician Army 900-680BC (Plain)"] = {
 armies["Book I"]["I/35c Cypriot & Phoenician Army 679-490BC (Plain)"] = {
     data = {
         aggresiveness = 0,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xHCh or Sp (Gen), 1xHCh, 1xCv, 6xSp, 3xPs.'
     },
 
@@ -15499,7 +15499,7 @@ armies["Book I"]["I/61a Early Carthaginian Army 550-341BC (Plain)"] = {
 armies["Book I"]["I/61a Early Carthaginian Army 550-341BC"] = {
     data = {
         aggresiveness = 3,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 4xSp, 2xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.'
     },
     base1 = {
@@ -15730,7 +15730,7 @@ armies["Book I"]["I/61b Early Carthaginian Army 340-275BC (Plain)"] = {
 armies["Book I"]["I/61b Early Carthaginian Army 340-275BC"] = {
     data = {
         aggresiveness = 3,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 1xLH or 4Ax, 4xSp, 1xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.'
     },
     base1 = {
