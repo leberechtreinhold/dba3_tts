@@ -363,7 +363,7 @@ armies["Book IV"]["IV/13d Medieval German 1494-1518AD"] = {
 armies["Book IV"]["IV/56b Order of Saint John 1291-1522AD"] = {
     data = {
         aggresiveness = 1,
-        terrain = 'Litoral',
+        terrain = 'littoral',
         list = '1x3Kn or 4Bd (Gen), 1x3Kn or 4Bd, 2x4Sp, 2x3/4Cb, 6x2Ps.'
     },
     base1 = {
@@ -583,7 +583,7 @@ armies["Book IV"]["IV/57c Low Countries 1411-1478AD"] = {
 armies["Book IV"]["IV/61 Italian Condotta 1320-1515AD"] = {
     data = {
         aggresiveness = 1,
-        terrain = 'Litoral (if Venice or Genoa), otherwise Arable',
+        terrain = 'littoral (if Venice or Genoa), otherwise Arable',
         list = '1x3Kn (Gen), 4x3Kn, 1x2LH, 2x4/8Cb or 2Ps, 2x4Sp or 4Pk, 1x4Ax or 3Bd or 7Hd, 1x3Kn or 4Lb or Art.'
     },
 
