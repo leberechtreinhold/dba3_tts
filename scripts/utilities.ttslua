@@ -18,10 +18,23 @@ function vec_mul_escalar(vec, num)
     return { x = vec['x'] * num, y = vec['y'] * num, z = vec['z'] * num }
 end
 
+-- Given two tables with x,y,z numerical components, returns a vector
+-- with each coomponent the multiplication of the two of the same value
+function vec_mul_vec(vec, vec2)
+    return { x = vec['x'] * vec2['x'], y = vec['y'] * vec2['y'], z = vec['z'] * vec2['z'] }
+end
+
 -- Given a table with x,y,z numerical components, and a escalar number, returns a vector with each component divided
 function vec_div_escalar(vec, num)
     return { x = vec['x'] / num, y = vec['y'] / num, z = vec['z'] / num }
 end
+
+-- Given two tables with x,y,z numerical components, returns a vector
+-- with each coomponent the divsion of the two of the same value
+function vec_div_vec(vec, vec2)
+    return { x = vec['x'] / vec2['x'], y = vec['y'] / vec2['y'], z = vec['z'] / vec2['z'] }
+end
+
 
 -- Given a table with x,y,z numerical components representing inches, return the same vector with each component being in mm
 function vec_in_to_mm(vec)
