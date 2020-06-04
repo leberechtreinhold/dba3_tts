@@ -19,6 +19,18 @@ function add_context_menu_base(base_obj)
     end)
 end
 
+function add_context_menu_table(table_obj)
+    table_obj.addContextMenuItem('Rotate 90º', function()
+        rotate_table()
+    end)
+    table_obj.addContextMenuItem('Fix terrain and lock', function()
+        fix_terrain_and_lock()
+    end)
+    table_obj.addContextMenuItem('Toggle BUA fire', function()
+        show_gizmo_bua()
+    end)
+end
+
 function on_clone(source_obj, new_obj)
     local name = source_obj.getName()
     print_info(name .. " has been duplicated.")
@@ -287,12 +299,7 @@ function spawn_table_obj(model_url, texture_array_urls, is_large)
         print_important('Table spawned, you can now put terrain on top, then use Right Click > Fix terrain.')
     end
 
-    obj.addContextMenuItem('Rotate 90º', function()
-        rotate_table()
-    end)
-    obj.addContextMenuItem('Fix terrain and lock', function()
-        fix_terrain_and_lock()
-    end)
+    add_context_menu_table(obj)
 end
 
 function rotate_table()
