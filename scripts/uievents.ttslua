@@ -5,6 +5,14 @@ g_bw_movement = 2
 function slider_BWs_changed(player, value, id)
     g_bw_movement = round_to_decimals(value, 2)
 
+    if math.abs(g_bw_movement - 1) < g_ui_snap_slider_movement then
+        g_bw_movement = 1
+    elseif math.abs(g_bw_movement - 2) < g_ui_snap_slider_movement then
+        g_bw_movement = 2
+    elseif math.abs(g_bw_movement - 3) < g_ui_snap_slider_movement then
+        g_bw_movement = 3
+    end
+    
     -- It's undocumented, but changing the value of the button does not update
     -- the button_move_forward
     -- Instead we have to change the undocumented text attribute, but we still
