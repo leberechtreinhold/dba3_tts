@@ -1427,7 +1427,7 @@ armies["Book II"]["II/5c Later Hoplite Theban Army 448-278BC (Plain)"] = {
     },
     base3 = {
         name = '8Sp',
-        base = 'tile_plain_8Sp_80x30',
+        base = 'tile_plain_8Sp_40x30',
         n_models = 0,
         ignore_terrain = true
     },
