@@ -4,7 +4,7 @@ armies["Book II"]["II/1 Republican Indian Army 500-321BC (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Tropical',
-        list = '1xHCh or 3Cv (Gen), 1xHCh or 3Cv or 3/4Bw or 3Bd, 2xCv, 2x4Ax, 6x3/4Lb.'
+        list = '1xHCh orCv(Gen), 1xHCh orCvor 3/4Bw or 3Bd, 2xCv, 2x4Ax, 6x3/4Lb.'
     },
 
     base1 = {
@@ -354,7 +354,7 @@ armies["Book II"]["II/3b Classical Indian Army 179-545AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Tropical',
-        list = '1xEl (Gen), 2xEl, 2xHCh or 3Cv, 2xCv, 3x3Lb, 1x4Ax or Sp or LH, 1x7Hd or Ps.'
+        list = '1xEl (Gen), 2xEl, 2xHCh or Cv, 2xCv, 3x3Lb, 1x4Ax or Sp or LH, 1x7Hd or Ps.'
     },
 
     base1 = {
@@ -696,7 +696,7 @@ armies["Book II"]["II/4c Chao Chinese Army 307-202 BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xHCh or 3Cv (Gen), 1xHCh or LH, 2xLH, 3x4Cb, 4x4Bd or 4Ax, 1xPs.'
+        list = '1xHCh orCv(Gen), 1xHCh or LH, 2xLH, 3x4Cb, 4x4Bd or 4Ax, 1xPs.'
     },
 
     base1 = {
@@ -933,7 +933,7 @@ armies["Book II"]["II/4e Other Chinese Armies 355-202BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xHCh or 3Cv (Gen), 1xHCh or Ps, 1xCv or LH or Ps, 2x4Cb, 2x4Ax or 4Bd, 1x3Bd or Ps, 4x3/4Cb or 4Ax or 4Bd or 7Hd or 5Hd. '
+        list = '1xHCh orCv(Gen), 1xHCh or Ps, 1xCv or LH or Ps, 2x4Cb, 2x4Ax or 4Bd, 1x3Bd or Ps, 4x3/4Cb or 4Ax or 4Bd or 7Hd or 5Hd. '
     },
 
     base1 = {
@@ -1184,7 +1184,7 @@ armies["Book II"]["II/5a Later Hoplite Spartan Army in Greece 448-276BC (Plain)"
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xSp (Gen), 9xSp, 1xSp or 4Ax or Ps, 1xSp or 3Cv.'
+        list = '1xSp (Gen), 9xSp, 1xSp or 4Ax or Ps, 1xSp or Cv.'
     },
 
     base1 = {
@@ -1827,7 +1827,7 @@ armies["Book II"]["II/5g Later Hoplite Italiot Army 448-280BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Littoral',
-        list = '1xSp or 3Cv (Gen), 1xCv or LH, 2xLH, 7xSp, 1xPs.'
+        list = '1xSp orCv(Gen), 1xCv or LH, 2xLH, 7xSp, 1xPs.'
     },
 
     base1 = {
@@ -1928,7 +1928,7 @@ armies["Book II"]["II/5h Later Hoplite Siciliot Army 448-280BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Littoral',
-        list = '1xSp or 3Cv (Gen), 1xCv, 7xSp, 3xPs.'
+        list = '1xSp orCv(Gen), 1xCv, 7xSp, 3xPs.'
     },
 
     base1 = {
@@ -2259,7 +2259,7 @@ armies["Book II"]["II/5j Lather Hoplite Overseas Mercenary Expeditions 448-225BC
     data = {
         aggresiveness = 4,
         terrain = 'Littoral',
-        list = '1xSp (Gen), 8xSp, 2xSp or Ps, 1xSp or 3Cv.'
+        list = '1xSp (Gen), 8xSp, 2xSp or Ps, 1xSp or Cv.'
     },
 
     base1 = {
@@ -2720,7 +2720,7 @@ armies["Book II"]["II/6 Bithynian Army 435-74BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1x3Kn or 3Cv or LH (Gen), 1xLH or 3Cv, 4x3Ax, 4x3/4Ax, 2xPs.'
+        list = '1x3Kn orCvor LH (Gen), 1xLH or Cv, 4x3Ax, 4x3/4Ax, 2xPs.'
     },
 
     base1 = {
@@ -2852,7 +2852,7 @@ armies["Book II"]["II/7 Later Achaemenid Persian Army 420-329BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xLCh or 3Cv or 3Kn (Gen), 2xCv, 2xLH, 2x3Kn or Sp or 4Ax, 1xSCh or Sp, 1xPs, 3x4/3Ax or Sp or (in 329BC) LH, 1x7Hd or Ps.'
+        list = '1xLCh orCvor 3Kn (Gen), 2xCv, 2xLH, 2x3Kn or Sp or 4Ax, 1xSCh or Sp, 1xPs, 3x4/3Ax or Sp or (in 329BC) LH, 1x7Hd or Ps.'
     },
 
     base1 = {
@@ -3380,7 +3380,7 @@ armies["Book II"]["II/9a Syracusan Armies in Sicily 410-210BC (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Littoral',
-        list = '1xCv or Sp (Gen), 6xSp, 1xSp or 4Wb, 1x4Ax or 3Cv, 1xArt or 3Ax, 1xLH, 1xPs.'
+        list = '1xCv or Sp (Gen), 6xSp, 1xSp or 4Wb, 1x4Ax or Cv, 1xArt or 3Ax, 1xLH, 1xPs.'
     },
 
     base1 = {
@@ -3493,7 +3493,7 @@ armies["Book II"]["II/9b Syracusan Armies in Africa 310-307BC (Plain)"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Littoral',
-        list = '1xCv or Sp(Gen), 6xSp, 1xSp or 4Wb, 1x4Ax or 3Cv, 1xArt or 3Ax or 7Hd, 1xLH, 1xPs.'
+        list = '1xCv or Sp(Gen), 6xSp, 1xSp or 4Wb, 1x4Ax or Cv, 1xArt or 3Ax or 7Hd, 1xLH, 1xPs.'
     },
 
     base1 = {
@@ -3819,7 +3819,7 @@ armies["Book II"]["II/11 Gallic Army 400-225BC (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xLCh or 3Cv or 3/4Wb (Gen), 2xLCh or 3Cv, 2xCv or 3/4Wb, 6x3/4Wb, 1xPs.'
+        list = '1xLCh orCvor 3/4Wb (Gen), 2xLCh or Cv, 2xCv or 3/4Wb, 6x3/4Wb, 1xPs.'
     },
 
     base1 = {
@@ -4000,7 +4000,7 @@ armies["Book II"]["II/11 Gallic Army 224-50BC (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Arable',
-        list = '1xLCh or 3Cv or 3/4Wb (Gen), 2xLCh or 3Cv, 2xCv or 3/4Wb, 6x3/4Wb, 1xPs.'
+        list = '1xLCh orCvor 3/4Wb (Gen), 2xLCh or Cv, 2xCv or 3/4Wb, 6x3/4Wb, 1xPs.'
     },
 
     base1 = {
@@ -4393,7 +4393,7 @@ armies["Book II"]["II/14 Ariarathid Kappadokian Army 330-322BC & 300-280BC (Plai
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x3Kn (Gen), 1x3Kn, 1x3Kn or 3Cv, 2xLH, 4x3Ax, 1xSp or Ps, 2xPs.'
+        list = '1x3Kn (Gen), 1x3Kn, 1x3Kn or Cv, 2xLH, 4x3Ax, 1xSp or Ps, 2xPs.'
     },
 
     base1 = {
@@ -4493,7 +4493,7 @@ armies["Book II"]["II/14 Ariarathid Kappadokian Army 279BC-17AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x3Kn (Gen), 1x3Kn, 1x3Kn or 3Cv, 2xLH, 4x3Ax, 1x4Wb or 4Ax or Ps, 2xPs.'
+        list = '1x3Kn (Gen), 1x3Kn, 1x3Kn or Cv, 2xLH, 4x3Ax, 1x4Wb or 4Ax or Ps, 2xPs.'
     },
 
     base1 = {
@@ -5949,7 +5949,7 @@ armies["Book II"]["II/18e Antigonos Gonatas' Army 277-260BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1x3Kn or 3Cv (Gen), 1xCv, 4x4Pk, 2x4Ax, 2x4Wb or 4Ax, 1xEl, 1xPs.'
+        list = '1x3Kn orCv(Gen), 1xCv, 4x4Pk, 2x4Ax, 2x4Wb or 4Ax, 1xEl, 1xPs.'
     },
 
     base1 = {
@@ -6458,7 +6458,7 @@ armies["Book II"]["II/19d Seleucid Army 166-64BC (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Kn or 4Kn (Gen), 1x4Kn, 1xLH or 3Cv, 4x4Pk, 1x4Bd, 1x4Ax or El, 1x4Ax, 2xPs.'
+        list = '1x3Kn or 4Kn (Gen), 1x4Kn, 1xLH or Cv, 4x4Pk, 1x4Bd, 1x4Ax or El, 1x4Ax, 2xPs.'
     },
 
     base1 = {
@@ -6760,7 +6760,7 @@ armies["Book II"]["II/20c Ptolemaic Army 166-54BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Littoral',
-        list = '1x3Kn (Gen), 1x3Kn or 3Cv, 1xLH, 4x4Pk, 2x4Ax, 1x4Bd or 4Ax, 1xEl, 1xPs.'
+        list = '1x3Kn (Gen), 1x3Kn or Cv, 1xLH, 4x4Pk, 2x4Ax, 1x4Bd or 4Ax, 1xEl, 1xPs.'
     },
 
     base1 = {
@@ -6860,7 +6860,7 @@ armies["Book II"]["II/20d Ptolemaic Army 53-30BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Littoral',
-        list = '1x3Kn or 3Cv (Gen), 1xLH, 2x4Pk, 2x3Ax or 4Ax, 2x4Bd, 1xCv or 4Wb, 2x4Bd or 5Hd, 1xPs.'
+        list = '1x3Kn orCv(Gen), 1xLH, 2x4Pk, 2x3Ax or 4Ax, 2x4Bd, 1xCv or 4Wb, 2x4Bd or 5Hd, 1xPs.'
     },
 
     base1 = {
@@ -6985,7 +6985,7 @@ armies["Book II"]["II/21a Ch’iang and Ti Chinese Army 315BC-302AD (Plain)"] = 
     data = {
         aggresiveness = 3,
         terrain = 'Hilly',
-        list = '1xCv or LH or 4Ax (Gen), 1xLH or 3Cv, 2x4Ax, 5x3Ax, 3x3Bw or Ps.'
+        list = '1xCv or LH or 4Ax (Gen), 1xLH or Cv, 2x4Ax, 5x3Ax, 3x3Bw or Ps.'
     },
 
     base1 = {
@@ -7336,7 +7336,7 @@ armies["Book II"]["II/22a Army of Nabataea 250BC-106AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x3Kn or 3Cv (Gen), 1xLH, 2x4Bd or 4Bw, 2x3Ax or Ps, 6x3Bw or Ps, 1x3Bw or Cm or LCm.'
+        list = '1x3Kn orCv(Gen), 1xLH, 2x4Bd or 4Bw, 2x3Ax or Ps, 6x3Bw or Ps, 1x3Bw or Cm or LCm.'
     },
 
     base1 = {
@@ -8090,7 +8090,7 @@ armies["Book II"]["II/23a Nomad Arab Army 312BC-633AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Dry',
-        list = '1xLH or 3Cv (Gen), 1xLH,1xLCm, 4xCm or 4Bd, 2x4Bd, 1x4Bd or 3Bw, 1x3Bw or Ps, 1xPs.'
+        list = '1xLH orCv(Gen), 1xLH,1xLCm, 4xCm or 4Bd, 2x4Bd, 1x4Bd or 3Bw, 1x3Bw or Ps, 1xPs.'
     },
 
     base1 = {
@@ -8421,7 +8421,7 @@ armies["Book II"]["II/24 Early Rhoxolani Sarmatian Army 310BC-100AD (Plain)"] = 
     data = {
         aggresiveness = 3,
         terrain = 'Steppe',
-        list = '1x3Kn (Gen), 7xCv, 3x3Kn or 3Cv or Ps, 1xCv or LH.'
+        list = '1x3Kn (Gen), 7xCv, 3x3Kn orCvor Ps, 1xCv or LH.'
     },
 
     base1 = {
@@ -9085,7 +9085,7 @@ armies["Book II"]["II/27b Pyrrhic Army 280-276BC (Plain)"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
-        list = '1x3Kn or 3Cv (Gen), 1xCv, 1xLH, 1xEl, 4x4Pk, 2xSp or 4Pk, 1x3Ax or 4Ax, 1xPs.'
+        list = '1x3Kn orCv(Gen), 1xCv, 1xLH, 1xEl, 4x4Pk, 2xSp or 4Pk, 1x3Ax or 4Ax, 1xPs.'
     },
 
     base1 = {
@@ -9198,7 +9198,7 @@ armies["Book II"]["II/27b Pyrrhic Army 275-272BC (Plain)"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
-        list = '1x3Kn or 3Cv (Gen), 1xCv, 1xLH, 1xEl, 4x4Pk, 2xSp or 4Pk, 1x3Ax or 4Ax or 4Wb, 1xPs.'
+        list = '1x3Kn orCv(Gen), 1xCv, 1xLH, 1xEl, 4x4Pk, 2xSp or 4Pk, 1x3Ax or 4Ax or 4Wb, 1xPs.'
     },
 
     base1 = {
@@ -11727,7 +11727,7 @@ armies["Book II"]["II/34 Attalid Pergamene Army 263-129BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hilly',
-        list = '1x3Kn or 3Cv (Gen), 1x3Kn or 3Cv, 1xLH, 7xPs, 2xPs or 3Ax.'
+        list = '1x3Kn orCv(Gen), 1x3Kn or Cv, 1xLH, 7xPs, 2xPs or 3Ax.'
     },
 
     base1 = {
@@ -13139,7 +13139,7 @@ armies["Book II"]["II/41a Western Han Army 202BC-24AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xHCh or 3Cv (Gen), 2xCv, 4xLH, 4x8Cb or 4Cb or 5Hd or LH, 1x4Ax or Ps or 7Hd or Art or 3Cv.'
+        list = '1xHCh orCv(Gen), 2xCv, 4xLH, 4x8Cb or 4Cb or 5Hd or LH, 1x4Ax or Ps or 7Hd or Art or Cv.'
     },
 
     base1 = {
@@ -15431,7 +15431,7 @@ armies["Book II"]["II/49 Marian Roman Army 105-25BC (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xCv or 4Bd (Gen), 1xCv or LH, 5x4Bd, 2x4Bd or 4Ax or LH, 1xPs or 3Ax, 1xPs, 1xEl or 4Wb or 3Cv or Art.'
+        list = '1xCv or 4Bd (Gen), 1xCv or LH, 5x4Bd, 2x4Bd or 4Ax or LH, 1xPs or 3Ax, 1xPs, 1xEl or 4Wb orCvor Art.'
     },
 
     base1 = {
@@ -15841,7 +15841,7 @@ armies["Book II"]["II/52 Dacian 60BC-106AD or Carpi Army 106-380AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hilly',
-        list = '1x4Wb or 3Cv (Gen), 1xLH or 3Cv, 6x3Wb, 1x3Bd, 2xPs, 1x3Bd or 3Kn or Ps.'
+        list = '1x4Wb orCv(Gen), 1xLH or Cv, 6x3Wb, 1x3Bd, 2xPs, 1x3Bd or 3Kn or Ps.'
     },
 
     base1 = {
@@ -16612,7 +16612,7 @@ armies["Book II"]["II/55c Beja Army 832-1500AD (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Dry',
-        list = '1xCv or LH (Gen), 5x3Bw or Ps, 3x3Ax or LH, 2xCm or 4Bd, 1xLH or 3Cv or 3Bw or Ps.'
+        list = '1xCv or LH (Gen), 5x3Bw or Ps, 3x3Ax or LH, 2xCm or 4Bd, 1xLH orCvor 3Bw or Ps.'
     },
 
     base1 = {
@@ -19488,7 +19488,7 @@ armies["Book II"]["II/69a Sassanid Persian Army 220-224AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1x3Kn (Gen), 2x3Kn or 3Cv or LH, 6xCv or LH, 1xLH or Ps, 2x7Hd or LH.'
+        list = '1x3Kn (Gen), 2x3Kn orCvor LH, 6xCv or LH, 1xLH or Ps, 2x7Hd or LH.'
     },
 
     base1 = {
@@ -19654,7 +19654,7 @@ armies["Book II"]["II/69b Sassanid Persian Army 225-493AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xCv (Gen), 1x4Kn, 4xCv, 1xEl or 3Cv, 1xCv or LH, 1xCv or Ps, 1xLH or 3Ax or 4Ax, 2x7Hd.'
+        list = '1xCv (Gen), 1x4Kn, 4xCv, 1xEl or Cv, 1xCv or LH, 1xCv or Ps, 1xLH or 3Ax or 4Ax, 2x7Hd.'
     },
 
     base1 = {
@@ -19772,7 +19772,7 @@ armies["Book II"]["II/69c Sassanid Persian Army 494-651AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xLit or 3Cv or 4Kn (Gen), 5xCv, 1xLH, 1xEl or 3Cv, 1xPs or LH, 1x4Ax or 3Bd or 3Cv, 2x7Hd or LH.'
+        list = '1xLit orCvor 4Kn (Gen), 5xCv, 1xLH, 1xEl or Cv, 1xPs or LH, 1x4Ax or 3Bd or Cv, 2x7Hd or LH.'
     },
 
     base1 = {
@@ -21257,7 +21257,7 @@ armies["Book II"]["II/74a Palmyran Odenathus' Army 260-271AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Dry',
-        list = '1x4Kn (Gen), 2x4Kn, 1xLH, 2x4Bw, 2x3Bw or Ps, 1x4Bd or 4Bw or Ps or 3Cv or LH, 2x4Bd, 1x4Ax.'
+        list = '1x4Kn (Gen), 2x4Kn, 1xLH, 2x4Bw, 2x3Bw or Ps, 1x4Bd or 4Bw or Ps orCvor LH, 2x4Bd, 1x4Ax.'
     },
 
     base1 = {
@@ -21381,7 +21381,7 @@ armies["Book II"]["II/74b Palmyran Zenobia's Army 260-271AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Dry',
-        list = '1x4Kn or 3Cv or LCm (Gen), 2x4Kn, 1x4Kn or 4Bd or 3Bw, 2xLH, 4x4Bw, 2x3Bw or Ps.'
+        list = '1x4Kn orCvor LCm (Gen), 2x4Kn, 1x4Kn or 4Bd or 3Bw, 2xLH, 4x4Bw, 2x3Bw or Ps.'
     },
 
     base1 = {
@@ -21507,7 +21507,7 @@ armies["Book II"]["II/75 Paekche or Kaya Korean Army 300-663AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x4Kn or 3Cv (Gen), 2x4Kn or 3Cv, 1xCv, 4x3Pk, 4x3Bw, 1xPs.'
+        list = '1x4Kn orCv(Gen), 2x4Kn or Cv, 1xCv, 4x3Pk, 4x3Bw, 1xPs.'
     },
 
     base1 = {
@@ -21750,7 +21750,7 @@ armies["Book II"]["II/77a Shilla Korean Army 300-670AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x4Kn or 3Cv (Gen), 1x3Kn or LH, 1xCv, 4x3Pk, 1x4Cb, 3x3Bw, 1xPs.'
+        list = '1x4Kn orCv(Gen), 1x3Kn or LH, 1xCv, 4x3Pk, 1x4Cb, 3x3Bw, 1xPs.'
     },
 
     base1 = {
@@ -21851,7 +21851,7 @@ armies["Book II"]["II/77b Shilla Korean Army 671-935AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x4Kn or 3Cv (Gen), 1x3Kn or LH, 1xCv, 2x3Pk, 1x4Cb, 3x3Bw, 2x4Pk or 3Pk, 1xPs.'
+        list = '1x4Kn orCv(Gen), 1x3Kn or LH, 1xCv, 2x3Pk, 1x4Cb, 3x3Bw, 2x4Pk or 3Pk, 1xPs.'
     },
 
     base1 = {
@@ -22188,7 +22188,7 @@ armies["Book II"]["II/79a Chinese Northern Dynasty Army 317-589AD (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Kn or 4Kn (Gen), 2x3Kn or 4Kn, 1xLH, [1x3Bd or 4Bd or 3Cv, 1x3Bw or 3Ax, 3xSp or 7Hd, 2x3Bw, 1x3Cb or Ps] or [2x3Kn or 4Kn, 2xCv, 4xLH].'
+        list = '1x3Kn or 4Kn (Gen), 2x3Kn or 4Kn, 1xLH, [1x3Bd or 4Bd or Cv, 1x3Bw or 3Ax, 3xSp or 7Hd, 2x3Bw, 1x3Cb or Ps] or [2x3Kn or 4Kn, 2xCv, 4xLH].'
     },
 
     base1 = {
@@ -22397,7 +22397,7 @@ armies["Book II"]["II/79a Chinese Southern Dynasty Army 317-589AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1x3Kn or 4Kn (Gen), 2x3Kn or 4Kn or 3Cv, 2x3Bd or 4Bd, 2x3Ax, 4x3Cb or Ps, [2x3Wb or WWg] or [1xLH, 1xCv or Ps].'
+        list = '1x3Kn or 4Kn (Gen), 2x3Kn or 4Kn or Cv, 2x3Bd or 4Bd, 2x3Ax, 4x3Cb or Ps, [2x3Wb or WWg] or [1xLH, 1xCv or Ps].'
     },
 
     base1 = {
@@ -23021,7 +23021,7 @@ armies["Book II"]["II/81a Armies of the Dux Brit, the Com Lit Sax, Britannia Pri
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xCv or 3Kn (Gen), 1xCv, 1xLH or 3Cv, 1x4Kn or 3Cv, 2x4Bd or Sp, 5x4Ax or Sp, 1xPs.'
+        list = '1xCv or 3Kn (Gen), 1xCv, 1xLH or Cv, 1x4Kn or Cv, 2x4Bd or Sp, 5x4Ax or Sp, 1xPs.'
     },
 
     base1 = {
@@ -23693,7 +23693,7 @@ armies["Book II"]["II/82b Eastern Patrician Roman Army 408-493AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1x3Kn (Gen), 1x3Kn or 3Cv, 2xLH, 1x3Kn or 4Kn, 2x4Bd, 2x4Ax, 2x4Bd or 4Wb or Ps, 1xPs or 4Wb.'
+        list = '1x3Kn (Gen), 1x3Kn or Cv, 2xLH, 1x3Kn or 4Kn, 2x4Bd, 2x4Ax, 2x4Bd or 4Wb or Ps, 1xPs or 4Wb.'
     },
 
     base1 = {
