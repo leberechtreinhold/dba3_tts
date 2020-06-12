@@ -143,8 +143,8 @@ tile_plain_4Bd_40x15 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651152418/C654ED61B4185ACB45DD093ADD2D3C2FCC05DE4B/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Pk_40x15 = {
@@ -156,8 +156,8 @@ tile_plain_4Pk_40x15 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651153754/38E30FF2A979352E2556F95A2E7EF41039AF62EA/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Wb_40x15 = {
@@ -169,8 +169,8 @@ tile_plain_4Wb_40x15 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651154356/250DD8FA59B832F1B39287443E114CD0B076AF7D/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Sp_40x15 = {
@@ -182,8 +182,8 @@ tile_plain_4Sp_40x15 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651154073/5F605D629A7E8F22C039F6D5D90223EB0705CED2/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_2Ps_40x20 = {
@@ -195,8 +195,8 @@ tile_plain_2Ps_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651154636/5FC5D0827332C022F87D7E48B80CAE90E6B814D8/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Ax_40x20 = {
@@ -208,8 +208,8 @@ tile_plain_3Ax_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651155001/3B6602D6FA5DB51CBB045744E72BFD63F693DC0B/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Bd_40x20 = {
@@ -221,8 +221,8 @@ tile_plain_3Bd_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651155370/B6514E9B54C2085D9174EFD4A6BCD0A48CF4A990/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Bw_40x20 = {
@@ -234,8 +234,8 @@ tile_plain_3Bw_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651155806/3544DFAB97ABA3E53958069C6897AEFACB323DA4/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Cb_40x20 = {
@@ -247,8 +247,8 @@ tile_plain_3Cb_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651156891/1A06E7DFDCF4D7C1874B259179E0B366E2FEEEF1/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Lb_40x20 = {
@@ -260,8 +260,8 @@ tile_plain_3Lb_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651157417/D8F7BF283BBD2C3893C13D84058009945021E775/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Wb_40x20 = {
@@ -273,8 +273,8 @@ tile_plain_3Wb_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651158117/C071CFC6A0D230CAEE85FE9F764028A46BB679E7/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Pk_40x20 = {
@@ -286,8 +286,8 @@ tile_plain_3Pk_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344786916685168/9BC29069F2AE09E01E453B19ECCCA91F7DF67812/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Ax_40x20 = {
@@ -299,8 +299,8 @@ tile_plain_4Ax_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651158499/D35ACCB86BB5505B808728632ECA96F0DF40086B/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Bw_40x20 = {
@@ -312,8 +312,8 @@ tile_plain_4Bw_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651158921/0B43FC4506F4BE3BA6E76B568647C4CAB177509C/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Cb_40x20 = {
@@ -325,8 +325,8 @@ tile_plain_4Cb_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651159345/B39F493734A0750A3CA35F3D8FE4354369A045E8/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Lb_40x20 = {
@@ -338,8 +338,8 @@ tile_plain_4Lb_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651159726/797A9F1E9C19EBA61A7730C5717305E845D38856/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_Camp_Followers_40x20 = {
@@ -351,8 +351,8 @@ tile_plain_Camp_Followers_40x20 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651160119/6D2544FBEBA05BF84158353DBAA7838D3CCCF52E/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_Mtd_40x30 = {
@@ -364,8 +364,8 @@ tile_plain_Mtd_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651181050/A01049738D8F625964D31A2683564F45E569E059/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_2Cm_40x30 = {
@@ -377,8 +377,8 @@ tile_plain_2Cm_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651160657/15D547DE3CE37487BCE7613B87B6B0161CF89ADD/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_2LH_40x30 = {
@@ -390,8 +390,8 @@ tile_plain_2LH_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651161107/EA2AF8212504ABB9B4C03C11EC61C76A72968D9A/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Cm_40x30 = {
@@ -403,8 +403,8 @@ tile_plain_3Cm_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651161557/C39786F62D6A07469C3F08229425CECBD9C12BC9/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Cv_40x30 = {
@@ -416,8 +416,8 @@ tile_plain_3Cv_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651161983/727CA27CF1AF59EBC1F18002050098A62CF16FE9/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_3Kn_40x30 = {
@@ -429,8 +429,8 @@ tile_plain_3Kn_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651163132/12C082E5F37ACAE196DE69044C604B180BF811C1/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_4Kn_40x30 = {
@@ -442,8 +442,8 @@ tile_plain_4Kn_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651163850/E8465EAC55DE39FF24FB6C7DC369A74E863F2756/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_5Wb_40x30 = {
@@ -455,8 +455,8 @@ tile_plain_5Wb_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651164306/E1C0D125A03D29845BF1D02EAA23F682507AD2EB/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_5Hd_40x30 = {
@@ -468,8 +468,8 @@ tile_plain_5Hd_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651179214/AF41C5EE1AAE5312880E3897DEFB5CE2CD6CE327/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_8Sp_40x30 = {
@@ -481,8 +481,8 @@ tile_plain_8Sp_40x30 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651180019/44EA0BA567F73C598A21038F9EF2E0FB19A1F00D/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_6Bd_40x40 = {
@@ -494,8 +494,8 @@ tile_plain_6Bd_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651181050/A01049738D8F625964D31A2683564F45E569E059/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_7Hd_40x40 = {
@@ -507,8 +507,8 @@ tile_plain_7Hd_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045345744408741229/89DC63B81CBFFB68BF0FF27875B975947EA1D35F/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_8Bw_40x40 = {
@@ -520,8 +520,8 @@ tile_plain_8Bw_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651181557/AFCD224EE8A2A1F29CB0A744F7E57B39C5828C25/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_8Cb_40x40 = {
@@ -533,8 +533,8 @@ tile_plain_8Cb_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651188266/FDEEF1FD066F7829C3E1B63825D2C2092B320208/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_8Lb_40x40 = {
@@ -546,8 +546,8 @@ tile_plain_8Lb_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651188648/301A1A1C6F4D04C8B843F476D7AE70FA55026A10/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_Art_40x40 = {
@@ -559,8 +559,8 @@ tile_plain_Art_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651189050/D87C678F798CB2F714A691A553590A89171281F6/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_Lit_40x40 = {
@@ -572,8 +572,8 @@ tile_plain_Lit_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651190360/69D299F1822EC48ADC728C6D57533BD31433C381/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_El_40x40 = {
@@ -585,8 +585,8 @@ tile_plain_El_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651190862/B06A3477446FCF267BBD621DB51EB116301D42DB/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_HCh_40x40 = {
@@ -598,8 +598,8 @@ tile_plain_HCh_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651192426/55FC6A8D3CCD295845513454421AFBF569A78674/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_LCh_40x40 = {
@@ -611,8 +611,8 @@ tile_plain_LCh_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651193201/B05A012B687B62963AEA593859571F21DC03587C/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_SCh_40x40 = {
@@ -624,8 +624,8 @@ tile_plain_SCh_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651193663/DA2B629B96A2F17B40B321ECA588DA785860A29D/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_WWg_40x40 = {
@@ -637,8 +637,8 @@ tile_plain_WWg_40x40 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro .',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651194153/26E3F30C0ACB635A55FBE4937BB9C5AF7CC1FC70/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_6Cv_40x60 = {
@@ -650,8 +650,8 @@ tile_plain_6Cv_40x60 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651194672/E981500BA66726022AC94BBDAB74EE8E73B48F6E/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_6Kn_40x60 = {
@@ -663,8 +663,8 @@ tile_plain_6Kn_40x60 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651195119/985683A835452971BA3F4011A8D3EA37991E10A1/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_Lit_40x80 = {
@@ -676,8 +676,8 @@ tile_plain_Lit_40x80 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651195616/0340E5B8CA64D336A42312DAF0750003D229F3FC/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_WWg_40x80 = {
@@ -689,8 +689,8 @@ tile_plain_WWg_40x80 = {
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro .',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651196469/7EB0E76C9BE73CA1480911AD7A6AE0D603196CE7/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 tile_plain_Camp_40x40 = {
@@ -702,8 +702,8 @@ tile_plain_Camp_40x40 = {
     author = 'Plain tile, original work by Arkein using clipart.email camp drawing.',
     mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651196469/7EB0E76C9BE73CA1480911AD7A6AE0D603196CE7/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 -------------------------------------------------------------------------------
@@ -719,8 +719,8 @@ troop_general_plain = {
     mesh = {
         'http://cloud-3.steamusercontent.com/ugc/1045344685651253433/CC6E2CD4A9C320E01BA4942CA15A6693AE27CC67/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759042/17F4C1CC5B770152BEEBE52CC5730616F8797DB9/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1045345744408759514/6D34A71ABF1C98C773E4A7466A9A7E06B850A7DC/'
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
 }
 
 -------------------------------------------------------------------------------
