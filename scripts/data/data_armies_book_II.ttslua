@@ -357,7 +357,7 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC (Plain)"] = {
     },
     base6 = {
         name = '3Pk',
-        base = 'tile_plain_3Pkp_40x20',
+        base = 'tile_plain_3Pk_40x20',
         n_models = 0,
         ignore_terrain = true
     },
