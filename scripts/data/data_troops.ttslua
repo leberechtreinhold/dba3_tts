@@ -360,9 +360,9 @@ tile_plain_Mtd_40x30 = {
     scale = 1,
     rotation = 0,
     depth = 30,
-    description = '40x40 Mounted Infantry Tile',
+    description = '40x30 Mounted Infantry Tile',
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro.',
-    mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651181050/A01049738D8F625964D31A2683564F45E569E059/'
+    mesh = { 'http://cloud-3.steamusercontent.com/ugc/1045344685651180450/25B9AA6D292AF0F84BAF83D1CB2CC93FB685749C/'
     },
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
