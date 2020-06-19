@@ -320,7 +320,7 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hill',
-        list = '1xLH or El (Gen), 1xLH, 4x3Pk, 5xPs.'
+        list = '1xLH or El (Gen), 2xLH, 4x3Pk, 2xPs, 3xPs or 4Ax.'
     },
 
     base1 = {
@@ -344,8 +344,8 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC (Plain)"] = {
         ignore_terrain = true
     },
     base4 = {
-        name = '3Pk',
-        base = 'tile_plain_3Pk_40x20',
+        name = 'LH',
+        base = 'tile_plain_2LH_40x30',
         n_models = 0,
         ignore_terrain = true
     },
@@ -368,8 +368,8 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC (Plain)"] = {
         ignore_terrain = true
     },
     base8 = {
-        name = 'Ps',
-        base = 'tile_plain_2Ps_40x20',
+        name = '3Pk',
+        base = 'tile_plain_3Pk_40x20',
         n_models = 0,
         ignore_terrain = true
     },
@@ -398,6 +398,30 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC (Plain)"] = {
         ignore_terrain = true
     },
     base13 = {
+        name = 'Ps',
+        base = 'tile_plain_2Ps_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base14 = {
+        name = '4Ax',
+        base = 'tile_plain_4Ax_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base15 = {
+        name = '4Ax',
+        base = 'tile_plain_4Ax_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base16 = {
+        name = '4Ax',
+        base = 'tile_plain_4Ax_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base17 = {
         name = 'Camp',
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
@@ -409,7 +433,7 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hill',
-        list = '1xLH or El (Gen), 1xLH, 4x3Pk, 5xPs.'
+        list = '1xLH or El (Gen), 2xLH, 4x3Pk, 2xPs, 3xPs or 4Ax.'
     },
 
     base1 = {
@@ -434,10 +458,10 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC"] = {
         model_data = 'troop_indian_light_cavalry'
     },
     base4 = {
-        name = '3Pk',
-        base = 'tile_grass_40x20',
-        n_models = 3,
-        model_data = 'troop_indian_pk'
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_indian_light_cavalry'
     },
     base5 = {
         name = '3Pk',
@@ -458,11 +482,10 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC"] = {
         model_data = 'troop_indian_pk'
     },
     base8 = {
-        name = 'Ps',
+        name = '3Pk',
         base = 'tile_grass_40x20',
-        n_models = 2,
-        model_data = 'troop_indian_ps',
-        loose = true
+        n_models = 3,
+        model_data = 'troop_indian_pk'
     },
     base9 = {
         name = 'Ps',
@@ -493,6 +516,31 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC"] = {
         loose = true
     },
     base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_indian_ps',
+        loose = true
+    },
+    base14 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_indian_auxilia',
+    },
+    base15 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_indian_auxilia',
+    },
+    base16 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_indian_auxilia',
+    },
+    base17 = {
         name = 'Camp',
         base = 'tile_grass_40x40',
         n_models = 1,
