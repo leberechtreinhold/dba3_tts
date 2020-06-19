@@ -15581,10 +15581,7 @@ armies["Book IV"]["IV/69 Albanian Army 1345-1430AD & 1443-1479AD (Plain)"] = {
     },
     base15 = {
         name = '5Hd',
-        base = 'tile_plain_5
-
-
-        Hd_40x30',
+        base = 'tile_plain_5Hd_40x30',
         n_models = 0,
         ignore_terrain = true
     },
