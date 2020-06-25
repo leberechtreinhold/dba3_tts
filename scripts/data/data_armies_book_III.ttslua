@@ -519,7 +519,7 @@ armies["Book III"]["III/3 Italian Ostrogothic Army 493-561AD (Plain)"] = {
     },
     base14 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -531,7 +531,7 @@ armies["Book III"]["III/3 Italian Ostrogothic Army 493-561AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -1334,7 +1334,7 @@ armies["Book III"]["III/7a Kofun Army 500-645AD (Plain)"] = {
     },
     base19 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -1346,7 +1346,7 @@ armies["Book III"]["III/7a Kofun Army 500-645AD (Plain)"] = {
     },
     base21 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -1471,7 +1471,7 @@ armies["Book III"]["III/7b Ritsuryo or Early Heian Army 646-900AD (Plain)"] = {
     },
     base18 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -1832,7 +1832,7 @@ armies["Book III"]["III/10a Kanauj Army 606-647AD (Plain)"] = {
     },
     base15 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -1945,7 +1945,7 @@ armies["Book III"]["III/10b Rajput Army 747-1303AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -2033,7 +2033,7 @@ armies["Book III"]["III/10c Other Hindu Indian Armies 545-1510AD (Plain)"] = {
     },
     base12 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -2127,7 +2127,7 @@ armies["Book III"]["III/10c Vijayanagar after 1336AD (Plain)"] = {
     },
     base12 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -2357,7 +2357,7 @@ armies["Book III"]["III/11b Other Turkish Armies 550-1330AD (Plain)"] = {
     },
     base14 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -2369,7 +2369,7 @@ armies["Book III"]["III/11b Other Turkish Armies 550-1330AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -2506,7 +2506,7 @@ armies["Book III"]["III/12 Christian Nubian Army 550-1500AD (Plain)"] = {
     },
     base19 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3602,13 +3602,13 @@ armies["Book III"]["III/16 Khazar Army 568-1083AD (Plain)"] = {
     },
     base15 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3923,7 +3923,7 @@ armies["Book III"]["III/18 Breton Army 580-1072AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3935,19 +3935,19 @@ armies["Book III"]["III/18 Breton Army 580-1072AD (Plain)"] = {
     },
     base18 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base19 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base20 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -4500,37 +4500,37 @@ armies["Book III"]["III/20b Sui Army 612-623AD (Plain)"] = {
     },
     base7 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base8 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base9 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base10 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base11 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base12 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -4896,7 +4896,7 @@ armies["Book III"]["III/21b Lombard Army 775-1076AD (Plain)"] = {
     },
     base13 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -4908,7 +4908,7 @@ armies["Book III"]["III/21b Lombard Army 775-1076AD (Plain)"] = {
     },
     base15 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -5598,7 +5598,7 @@ armies["Book III"]["III/24a Anglo-Saxon Army 617-700AD (Plain)"] = {
     },
     base10 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -5610,7 +5610,7 @@ armies["Book III"]["III/24a Anglo-Saxon Army 617-700AD (Plain)"] = {
     },
     base12 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -5710,7 +5710,7 @@ armies["Book III"]["III/24b Anglo-Saxon Army 701-1016AD (Plain)"] = {
     },
     base11 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -5722,7 +5722,7 @@ armies["Book III"]["III/24b Anglo-Saxon Army 701-1016AD (Plain)"] = {
     },
     base13 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -6141,7 +6141,7 @@ armies["Book III"]["III/26a Serbian Army 627-1180AD (Plain)"] = {
     },
     base13 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -6153,7 +6153,7 @@ armies["Book III"]["III/26a Serbian Army 627-1180AD (Plain)"] = {
     },
     base15 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -6532,7 +6532,7 @@ armies["Book III"]["III/28 Carolingian Army 639-814AD (Plain)"] = {
     },
     base23 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -6662,7 +6662,7 @@ armies["Book III"]["III/28 Carolingian Army 815-888AD (Plain)"] = {
     },
     base19 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -7162,13 +7162,13 @@ armies["Book III"]["III/32 Volga Bulgar Army 675-1237AD (Plain)"] = {
     },
     base10 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base11 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8115,7 +8115,7 @@ armies["Book III"]["III/37a Abbasid Arab Army 747-835AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8475,7 +8475,7 @@ armies["Book III"]["III/39 Late T’ang or Five Dynasties Army 755-979AD (Plain)
     },
     base17 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8499,7 +8499,7 @@ armies["Book III"]["III/39 Late T’ang or Five Dynasties Army 755-979AD (Plain)
     },
     base21 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8883,7 +8883,7 @@ armies["Book III"]["III/40c Leidang Army 790-1070AD (Plain)"] = {
     },
     base22 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -9001,7 +9001,7 @@ armies["Book III"]["III/40d Leidang Army 1071-1280AD (Plain)"] = {
     },
     base17 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -9349,7 +9349,7 @@ armies["Book III"]["III/42b Sha-t’o Turkish Army 881-951AD (Plain)"] = {
     },
     base14 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -9361,7 +9361,7 @@ armies["Book III"]["III/42b Sha-t’o Turkish Army 881-951AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -9479,7 +9479,7 @@ armies["Book III"]["III/43a Tahirid Army 821-873AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -9591,7 +9591,7 @@ armies["Book III"]["III/43b Saffarid Army 861-1073AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -9709,7 +9709,7 @@ armies["Book III"]["III/43c Samanid Army 900-999AD (Plain)"] = {
     },
     base17 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -10337,7 +10337,7 @@ armies["Book III"]["III/47 Pecheneg Army 850-1122AD (Plain)"] = {
     },
     base13 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -10355,7 +10355,7 @@ armies["Book III"]["III/47 Pecheneg Army 850-1122AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -10605,7 +10605,7 @@ armies["Book III"]["III/49 Tulunid or Iqshidid Egyptian Army 868-905AD & 935-969
     },
     base18 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -11015,7 +11015,7 @@ armies["Book III"]["III/52 West Frankish or Norman Army 888-1072AD (Plain)"] = {
     },
     base24 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -11127,7 +11127,7 @@ armies["Book III"]["III/53 East Frankish Army 888-1106AD (Plain)"] = {
     },
     base15 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -11139,7 +11139,7 @@ armies["Book III"]["III/53 East Frankish Army 888-1106AD (Plain)"] = {
     },
     base17 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -11263,7 +11263,7 @@ armies["Book III"]["III/54a Dynastic Bedouin Armies 890-1150AD (Plain)"] = {
     },
     base18 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -11709,7 +11709,7 @@ armies["Book III"]["III/56 Khitan-Liao Army 900-1300AD (Plain)"] = {
     },
     base21 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12527,7 +12527,7 @@ armies["Book III"]["III/61 Dynastic Kurdish Army 950-1085AD (Plain)"] = {
     },
     base22 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12539,7 +12539,7 @@ armies["Book III"]["III/61 Dynastic Kurdish Army 950-1085AD (Plain)"] = {
     },
     base24 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12663,13 +12663,13 @@ armies["Book III"]["III/62a Northern Sung Army 960-1126AD (Plain)"] = {
     },
     base17 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base18 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12787,13 +12787,13 @@ armies["Book III"]["III/62b Southern Sung Army 1127-1279AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base17 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -13502,7 +13502,7 @@ armies["Book III"]["III/66 Fatimid Egyptian Army 969-1171AD (Plain)"] = {
     },
     base19 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -13614,7 +13614,7 @@ armies["Book III"]["III/67 Hsi-Hsia Army 982-1227AD (Plain)"] = {
     },
     base14 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14572,7 +14572,7 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
     },
     base9 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14584,7 +14584,7 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
     },
     base11 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14596,7 +14596,7 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
     },
     base13 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14608,7 +14608,7 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
     },
     base15 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14697,7 +14697,7 @@ armies["Book III"]["III/73a Communal Italian Army 1029-1150AD (Plain)"] = {
     },
     base10 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14709,7 +14709,7 @@ armies["Book III"]["III/73a Communal Italian Army 1029-1150AD (Plain)"] = {
     },
     base12 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14721,7 +14721,7 @@ armies["Book III"]["III/73a Communal Italian Army 1029-1150AD (Plain)"] = {
     },
     base14 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14733,7 +14733,7 @@ armies["Book III"]["III/73a Communal Italian Army 1029-1150AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -14858,13 +14858,13 @@ armies["Book III"]["III/73b Communal Italian Army 1151-1320AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base17 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -15154,7 +15154,7 @@ armies["Book III"]["III/74b Other Seljuq Turkish Army 1037-1276AD (Plain)"] = {
     },
     base20 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -15536,13 +15536,13 @@ armies["Book III"]["III/77 Papal Italian Army 1049-1320AD (Plain)"] = {
     },
     base14 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
     base15 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -15778,7 +15778,7 @@ armies["Book III"]["III/79 Early Russian Army 1054-1246AD (Plain)"] = {
     },
     base16 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -15909,7 +15909,7 @@ armies["Book III"]["III/80 Cuman or Kipchak Army 1054-1394AD (Plain)"] = {
     },
     base18 = {
         name = '7Hd',
-        base = 'tile_plain_7Hd_40x30',
+        base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
