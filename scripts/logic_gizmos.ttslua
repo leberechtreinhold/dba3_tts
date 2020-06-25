@@ -65,10 +65,16 @@ function get_strokes_zoc(base_obj, transform)
 end
 
 
--- Fire arcs on all but WWG is a range X from the corners
+-- See the DBA2 repo for this, is a bit hellish... Combined with way too many
+-- FB discussions that these rules are overly complex
 function get_strokes_fire_arc(base_obj, transform, shooting_range, max_width)
     local stroke_points = {}
     local p = transform['corners']['topright']
+
+    local p = transform['corners']['topright']
+
+    local max_angle_arc = math.acos(g_base_width_inches / shooting_range)
+    local side_height = math.sin(max_angle_arc) * shooting_range
 
     table.insert(stroke_points, p)
     table.insert(stroke_points, {
@@ -79,15 +85,69 @@ function get_strokes_fire_arc(base_obj, transform, shooting_range, max_width)
     table.insert(stroke_points, {
         x = p['x'] + max_width,
         y = p['y'],
-        z = p['z'] + shooting_range
+        z = p['z'] + side_height
     })
     table.insert(stroke_points, {
-        x = p['x'] - max_width - g_base_width_inches,
+        x = p['x'] + max_width,
+        y = p['y'],
+        z = p['z'] + side_height + max_width
+    })
+    table.insert(stroke_points, {
+        x = p['x'] + max_width,
+        y = p['y'],
+        z = p['z'] + side_height
+    })
+    local radius_right = {
+        x = p['x'],
+        y = p['y'],
+        z = p['z']
+    }
+    local right_arc = get_coordinates_arc(
+        radius_right,
+        shooting_range,
+        g_precision_circle / 4,
+        math.deg(max_angle_arc),
+        90)
+    array_concat(stroke_points, right_arc)
+    table.insert(stroke_points, {
+        x = p['x'],
         y = p['y'],
         z = p['z'] + shooting_range
     })
     table.insert(stroke_points, {
-        x = p['x'] - max_width - g_base_width_inches,
+        x = p['x'] - max_width,
+        y = p['y'],
+        z = p['z'] + shooting_range
+    })
+    local radius_left = {
+        x = p['x'] - max_width,
+        y = p['y'],
+        z = p['z']
+    }
+    local left_arc = get_coordinates_arc(
+        radius_left,
+        shooting_range,
+        g_precision_circle / 4,
+        90,
+        90 + (90 - math.deg(max_angle_arc)))
+    array_concat(stroke_points, left_arc)
+    table.insert(stroke_points, {
+        x = p['x'] - max_width * 2,
+        y = p['y'],
+        z = p['z'] + side_height
+    })
+    table.insert(stroke_points, {
+        x = p['x'] - max_width * 2,
+        y = p['y'],
+        z = p['z'] + side_height + max_width
+    })
+    table.insert(stroke_points, {
+        x = p['x'] - max_width * 2,
+        y = p['y'],
+        z = p['z'] + side_height
+    })
+    table.insert(stroke_points, {
+        x = p['x'] - max_width * 2,
         y = p['y'],
         z = p['z']
     })
