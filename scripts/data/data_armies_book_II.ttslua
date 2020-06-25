@@ -12208,7 +12208,7 @@ armies["Book II"]["II/33 Polybian Roman Army 275-105BC"] = {
         base = 'tile_grass_40x20',
         n_models = 3,
         loose = true,
-        model_data = 'troop_camillan_roman_spear'
+        model_data = 'troop_camillan_roman_psiloi'
     },
     base9 = {
         name = '4Ax',
@@ -12227,7 +12227,7 @@ armies["Book II"]["II/33 Polybian Roman Army 275-105BC"] = {
         base = 'tile_grass_40x20',
         n_models = 3,
         loose = true,
-        model_data = 'troop_camillan_roman_spear'
+        model_data = 'troop_camillan_roman_psiloi'
     },
     base12 = {
         name = '4Ax',
