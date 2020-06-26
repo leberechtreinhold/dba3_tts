@@ -687,7 +687,7 @@ tile_plain_WWg_40x80 = {
     depth = 80,
     description = '40x80 WWg Tile  ',
     author = 'Plain tile, original work by Arkein (model) and Eric Delemer (texture), using troop icon from Lorenzo Moro .',
-    mesh = { 'http://cloud-3.steamusercontent.com/ugc/1018321288887137362/EE2562A2132A766097885663E7BB7535148EDF13/'
+    mesh = { 'http://cloud-3.steamusercontent.com/ugc/1305430299561605132/5C4AD703E2E772CAE8497670A2CEB9213C378632/'
     },
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061039/78F6637C907D2D209444FA9965AFB56BF0BE008E/',
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1180454178333061804/D3E9C5A567B74554A0E0F1C690EB7B500F4FA572/'
