@@ -71,8 +71,6 @@ function get_strokes_fire_arc(base_obj, transform, shooting_range, max_width)
     local stroke_points = {}
     local p = transform['corners']['topright']
 
-    local p = transform['corners']['topright']
-
     local max_angle_arc = math.acos(g_base_width_inches / shooting_range)
     local side_height = math.sin(max_angle_arc) * shooting_range
 
@@ -187,74 +185,256 @@ end
 function get_strokes_fire_around(size, transform, shooting_range, max_width, color)
     local stroke_points = {}
     local tr = { x = size['x'] / 2, y = 0, z = size['z'] / 2 }
+    local tl = { x = -size['x'] / 2, y = 0, z = size['z'] / 2 }
     local br = { x = size['x'] / 2, y = 0, z = -size['z'] / 2 }
+    local bl = { x = -size['x'] / 2, y = 0, z = -size['z'] / 2 }
 
+    local max_angle_arc = math.acos(g_base_width_inches / shooting_range)
+    local side_height = math.sin(max_angle_arc) * shooting_range
+
+    -- TOP
+    
     table.insert(stroke_points, {
         x = tr['x'] + max_width,
         y = tr['y'],
-        z = tr['z'] + shooting_range
+        z = tr['z'] + max_width
     })
     table.insert(stroke_points, {
-        x = tr['x'] - max_width - size['x'],
+        x = tr['x'] + max_width,
+        y = tr['y'],
+        z = tr['z'] + side_height
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] + max_width,
+        y = tr['y'],
+        z = tr['z'] + side_height + max_width
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] + max_width,
+        y = tr['y'],
+        z = tr['z'] + side_height
+    })
+    local top_right_arc = get_coordinates_arc(
+        tr,
+        shooting_range,
+        g_precision_circle / 4,
+        math.deg(max_angle_arc),
+        90)
+    array_concat(stroke_points, top_right_arc)
+    table.insert(stroke_points, {
+        x = tr['x'] - size['x'],
         y = tr['y'],
         z = tr['z'] + shooting_range
     })
+    local top_left_arc = get_coordinates_arc(
+        tl,
+        shooting_range,
+        g_precision_circle / 4,
+        90,
+        90 + (90 - math.deg(max_angle_arc)))
+    array_concat(stroke_points, top_left_arc)
     table.insert(stroke_points, {
-        x = tr['x'] - max_width - size['x'],
+        x = tr['x'] - size['x'] - max_width,
+        y = tr['y'],
+        z = tr['z'] + side_height
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] - size['x'] - max_width,
+        y = tr['y'],
+        z = tr['z'] + side_height + max_width
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] - size['x'] - max_width,
+        y = tr['y'],
+        z = tr['z'] + side_height
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] - size['x'] - max_width,
         y = tr['y'],
         z = tr['z'] + max_width
     })
     table.insert(stroke_points, {
-        x = tr['x'] - shooting_range - size['x'],
+        x = tr['x'] - size['x'] - side_height,
         y = tr['y'],
         z = tr['z'] + max_width
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] - size['x'] - side_height - max_width,
+        y = tr['y'],
+        z = tr['z'] + max_width
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] - size['x'] - side_height,
+        y = tr['y'],
+        z = tr['z'] + max_width
+    })
+    local middleleft_top_arc = get_coordinates_arc(
+        tl,
+        shooting_range,
+        g_precision_circle / 4,
+        180 - (90 - math.deg(max_angle_arc)),
+        180)
+    array_concat(stroke_points, middleleft_top_arc)
+    table.insert(stroke_points, {
+        x = tr['x'] - size['x'] - shooting_range,
+        y = tr['y'],
+        z = tr['z']
     })
 
+    -- Bottom
+
     table.insert(stroke_points, {
-        x = br['x'] - shooting_range - size['x'],
+        x = br['x'] - size['x'] - shooting_range,
+        y = br['y'],
+        z = br['z']
+    })
+    local middleleft_bot_arc = get_coordinates_arc(
+        bl,
+        shooting_range,
+        g_precision_circle / 4,
+        180,
+        180 + (90 - math.deg(max_angle_arc)))
+    array_concat(stroke_points, middleleft_bot_arc)
+    table.insert(stroke_points, {
+        x = br['x'] - size['x'] - side_height,
         y = br['y'],
         z = br['z'] - max_width
     })
     table.insert(stroke_points, {
-        x = br['x'] - max_width - size['x'],
+        x = br['x'] - size['x'] - side_height - max_width,
         y = br['y'],
         z = br['z'] - max_width
     })
     table.insert(stroke_points, {
-        x = br['x'] - max_width - size['x'],
+        x = br['x'] - size['x'] - side_height,
+        y = br['y'],
+        z = br['z'] - max_width
+    })
+    table.insert(stroke_points, {
+        x = br['x'] - size['x'] - max_width,
+        y = br['y'],
+        z = br['z'] - max_width
+    })
+    table.insert(stroke_points, {
+        x = br['x'] - size['x'] - max_width,
+        y = br['y'],
+        z = br['z'] - side_height
+    })
+    table.insert(stroke_points, {
+        x = br['x'] - size['x'] - max_width,
+        y = br['y'],
+        z = br['z'] - side_height - max_width
+    })
+    table.insert(stroke_points, {
+        x = br['x'] - size['x'] - max_width,
+        y = br['y'],
+        z = br['z'] - side_height
+    })
+    local left_bot_arc = get_coordinates_arc(
+        bl,
+        shooting_range,
+        g_precision_circle / 4,
+        270 - (90 - math.deg(max_angle_arc)),
+        270)
+    array_concat(stroke_points, left_bot_arc)
+    table.insert(stroke_points, {
+        x = br['x'] - size['x'],
         y = br['y'],
         z = br['z'] - shooting_range
     })
     table.insert(stroke_points, {
-        x = br['x'] + max_width,
+        x = br['x'],
         y = br['y'],
         z = br['z'] - shooting_range
+    })
+    local right_bot_arc = get_coordinates_arc(
+        br,
+        shooting_range,
+        g_precision_circle / 4,
+        270,
+        270 + (90 - math.deg(max_angle_arc)))
+    array_concat(stroke_points, right_bot_arc)
+    table.insert(stroke_points, {
+        x = br['x'] + max_width,
+        y = br['y'],
+        z = br['z'] - side_height
+    })
+    table.insert(stroke_points, {
+        x = br['x'] + max_width,
+        y = br['y'],
+        z = br['z'] - side_height - max_width
+    })
+    table.insert(stroke_points, {
+        x = br['x'] + max_width,
+        y = br['y'],
+        z = br['z'] - side_height
     })
     table.insert(stroke_points, {
         x = br['x'] + max_width,
         y = br['y'],
         z = br['z'] - max_width
     })
+    table.insert(stroke_points, {
+        x = br['x'] + side_height,
+        y = br['y'],
+        z = br['z'] - max_width
+    })
+    table.insert(stroke_points, {
+        x = br['x'] + side_height + max_width,
+        y = br['y'],
+        z = br['z'] - max_width
+    })
+    table.insert(stroke_points, {
+        x = br['x'] + side_height,
+        y = br['y'],
+        z = br['z'] - max_width
+    })
+    local middleright_bot_arc = get_coordinates_arc(
+        br,
+        shooting_range,
+        g_precision_circle / 4,
+        360 - (90 - math.deg(max_angle_arc)),
+        360)
+    array_concat(stroke_points, middleright_bot_arc)
     table.insert(stroke_points, {
         x = br['x'] + shooting_range,
         y = br['y'],
-        z = br['z'] - max_width
+        z = br['z']
     })
+
+    -- TOP
 
     table.insert(stroke_points, {
         x = tr['x'] + shooting_range,
         y = tr['y'],
+        z = tr['z']
+    })
+    local middleright_top_arc = get_coordinates_arc(
+        tr,
+        shooting_range,
+        g_precision_circle / 4,
+        0, 
+        90 - math.deg(max_angle_arc))
+    array_concat(stroke_points, middleright_top_arc)
+    table.insert(stroke_points, {
+        x = tr['x'] + side_height,
+        y = tr['y'],
         z = tr['z'] + max_width
     })
     table.insert(stroke_points, {
-        x = tr['x'] + max_width,
+        x = tr['x'] + side_height + max_width,
+        y = tr['y'],
+        z = tr['z'] + max_width
+    })
+    table.insert(stroke_points, {
+        x = tr['x'] + side_height,
         y = tr['y'],
         z = tr['z'] + max_width
     })
     table.insert(stroke_points, {
         x = tr['x'] + max_width,
         y = tr['y'],
-        z = tr['z'] + shooting_range
+        z = tr['z'] + max_width
     })
 
     local rotation = transform['rotation']
