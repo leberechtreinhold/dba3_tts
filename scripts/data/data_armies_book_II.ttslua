@@ -13342,6 +13342,144 @@ armies["Book II"]["II/39a Iberian Army 240-20BC (Plain)"] = {
     }
 }
 
+armies["Book II"]["II/39a Iberian Army 240-20BC"] = {
+    data = {
+        aggresiveness = 0,
+        terrain = 'Arable',
+        list = '1xCv (Gen), 1xLH, 6x3Ax or 4Ax, 4xPs.'
+    },
+
+    base1 = {
+        name = '3Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_ancient_spanish_bearer',
+            [2] = 'troop_ancient_spanish_general',
+            [3] = 'troop_ancient_spanish_cavalry'
+        }
+    },
+    base2 = {
+        name = '2LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_lh',
+        loose = true
+    },
+    base3 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base4 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_ancient_spanish_caetrati'
+    },
+    base5 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base6 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_ancient_spanish_caetrati'
+    },
+    base7 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base8 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_ancient_spanish_caetrati'
+    },
+    base9 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base10 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_ancient_spanish_caetrati'
+    },
+    base11 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base12 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_ancient_spanish_caetrati'
+    },
+    base13 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base14 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_ancient_spanish_caetrati'
+    },
+    base15 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base16 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base17 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base18 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base19 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_ancient_spanish_camp'
+    }
+}
+
 armies["Book II"]["II/39b Celtiberian Army 240-20BC (Plain)"] = {
     data = {
         aggresiveness = 0,
@@ -13430,6 +13568,102 @@ armies["Book II"]["II/39b Celtiberian Army 240-20BC (Plain)"] = {
     }
 }
 
+armies["Book II"]["II/39b Celtiberian Army 240-20BC"] = {
+    data = {
+        aggresiveness = 0,
+        terrain = 'Hilly',
+        list = '1xCv (Gen), 1xLH, 6x3Bd, 4xPs.'
+    },
+
+    base1 = {
+        name = '3Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_ancient_spanish_bearer',
+            [2] = 'troop_ancient_spanish_general',
+            [3] = 'troop_ancient_spanish_cavalry'
+        }
+    },
+    base2 = {
+        name = '2LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_lh',
+        loose = true
+    },
+    base3 = {
+        name = '3Bd',
+        base = 'tile_plain_3Bd_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base4 = {
+        name = '3Bd',
+        base = 'tile_plain_3Bd_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base5 = {
+        name = '3Bd',
+        base = 'tile_plain_3Bd_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base6 = {
+        name = '3Bd',
+        base = 'tile_plain_3Bd_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base7 = {
+        name = '3Bd',
+        base = 'tile_plain_3Bd_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base8 = {
+        name = '3Bd',
+        base = 'tile_plain_3Bd_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base9 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base10 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base11 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base13 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_ancient_spanish_camp'
+    }
+}
+
 armies["Book II"]["II/39c Lusitanian Army 240-20BC (Plain)"] = {
     data = {
         aggresiveness = 0,
@@ -13449,6 +13683,7 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC (Plain)"] = {
         base = 'tile_plain_2LH_40x30',
         n_models = 0,
         ignore_terrain = true
+
     },
     base3 = {
         name = '3Ax',
@@ -13491,18 +13726,21 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC (Plain)"] = {
         base = 'tile_plain_2Ps_40x20',
         n_models = 0,
         ignore_terrain = true
+
     },
     base10 = {
         name = 'Ps',
         base = 'tile_plain_2Ps_40x20',
         n_models = 0,
         ignore_terrain = true
+
     },
     base11 = {
         name = 'Ps',
         base = 'tile_plain_2Ps_40x20',
         n_models = 0,
         ignore_terrain = true
+
     },
     base12 = {
         name = 'Ps',
@@ -13515,6 +13753,7 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC (Plain)"] = {
         base = 'tile_plain_2Ps_40x20',
         n_models = 0,
         ignore_terrain = true
+
     },
     base14 = {
         name = 'Ps',
@@ -13539,6 +13778,134 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book II"]["II/39c Lusitanian Army 240-20BC"] = {
+    data = {
+        aggresiveness = 0,
+        terrain = 'Hilly',
+        list = '1xCv (Gen), 1xLH, 3x3Ax or Ps, 6xPs, 1x4Bd or 3Bd.'
+    },
+
+    base1 = {
+        name = '3Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_ancient_spanish_bearer',
+            [2] = 'troop_ancient_spanish_general',
+            [3] = 'troop_ancient_spanish_cavalry'
+        }
+    },
+    base2 = {
+        name = '2LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_lh',
+        loose = true
+    },
+    base3 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base4 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base5 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base6 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base7 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base8 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base9 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base10 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base11 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base14 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_ancient_spanish_caetrati',
+        loose = true
+    },
+    base15 = {
+        name = '4Bd',
+        base = 'tile_plain_4Bd_40x15',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base16 = {
+        name = '3Bd',
+        base = 'tile_plain_3Bd_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base17 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_ancient_spanish_camp'
     }
 }
 
