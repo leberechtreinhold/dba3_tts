@@ -18600,7 +18600,7 @@ armies["Book II"]["II/61b Mu-jung Hsien-pi Army 300-431AD (Plain)"] = {
     },
     base7 = {
         name = '6Cv',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -18618,7 +18618,7 @@ armies["Book II"]["II/61b Mu-jung Hsien-pi Army 300-431AD (Plain)"] = {
     },
     base10 = {
         name = '6Cv',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -18636,7 +18636,7 @@ armies["Book II"]["II/61b Mu-jung Hsien-pi Army 300-431AD (Plain)"] = {
     },
     base13 = {
         name = '6Cv',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -18654,7 +18654,7 @@ armies["Book II"]["II/61b Mu-jung Hsien-pi Army 300-431AD (Plain)"] = {
     },
     base16 = {
         name = '6Cv',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
