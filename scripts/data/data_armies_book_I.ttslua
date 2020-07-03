@@ -2115,7 +2115,7 @@ armies["Book I"]["I/6c Early Aramaean Army 2000-1101BC (Plain)"] = {
     }
 }
 
-armies["Book I"]["I/7a Early Libyan Army 3000-1251BC"] = {
+armies["Book I"]["I/7a Early Libyan Army 3000-1251BC (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Dry',
@@ -2258,7 +2258,7 @@ armies["Book I"]["I/7a Early Libyan Army 3000-1251BC"] = {
     }
 }
 
-armies["Book I"]["I/7b Early Libyan Army 1250-666BC"] = {
+armies["Book I"]["I/7b Early Libyan Army 1250-666BC (Plain)"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Dry',
@@ -2370,7 +2370,7 @@ armies["Book I"]["I/7b Early Libyan Army 1250-666BC"] = {
     }
 }
 
-armies["Book I"]["I/7c Early Libyan Army 665-476BC"] = {
+armies["Book I"]["I/7c Early Libyan Army 665-476BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Dry',
@@ -2518,7 +2518,7 @@ armies["Book I"]["I/7c Early Libyan Army 665-476BC"] = {
     }
 }
 
-armies["Book I"]["I/7d Early Libyan Army 475BC-70AD"] = {
+armies["Book I"]["I/7d Early Libyan Army 475BC-70AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Dry',
