@@ -12275,7 +12275,7 @@ armies["Book IV"]["IV/59a Samurai Army 1300-1464AD (Plain)"] = {
 
     base1 = {
         name = '6Cv_Gen',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
@@ -12296,7 +12296,7 @@ armies["Book IV"]["IV/59a Samurai Army 1300-1464AD (Plain)"] = {
     },
     base4 = {
         name = '6Cv',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12407,7 +12407,7 @@ armies["Book IV"]["IV/59b Samurai Army 1465-1542AD (Plain)"] = {
 
     base1 = {
         name = '6Cv_Gen',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
@@ -12428,7 +12428,7 @@ armies["Book IV"]["IV/59b Samurai Army 1465-1542AD (Plain)"] = {
     },
     base4 = {
         name = '6Cv',
-        base = 'tile_plain_3Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
