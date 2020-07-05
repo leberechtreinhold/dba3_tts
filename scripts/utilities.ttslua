@@ -35,7 +35,6 @@ function vec_div_vec(vec, vec2)
     return { x = vec['x'] / vec2['x'], y = vec['y'] / vec2['y'], z = vec['z'] / vec2['z'] }
 end
 
-
 -- Given a table with x,y,z numerical components representing inches, return the same vector with each component being in mm
 function vec_in_to_mm(vec)
     return { x = from_in_to_mm(vec['x']), y = from_in_to_mm(vec['y']), z = from_in_to_mm(vec['z']) }
@@ -328,4 +327,43 @@ function get_coordinates_arc(center, radius, steps, start_angle, finish_angle)
         table.insert(point_array, p)
     end
     return point_array
+end
+
+
+-- Gives a random angle between -pi/2-pi/2 for a ellipse
+function random_polar_angle_ellipse(w,h)
+    local u = math.random() / 4.0
+    local theta = math.atan(h/w * math.tan(2*math.pi*u))
+
+    local v = math.random()
+    if v < 0.25 then
+        return theta
+    end
+    if v < 0.5 then
+        return math.pi - theta
+    end
+    if v < 0.75 then
+        return math.pi + theta
+    end
+    return -theta
+end
+
+function get_radius_ellipse(w,h,theta)
+    return w * h / math.sqrt((h*math.cos(theta))^2 + (w*math.sin(theta))^2)
+end
+
+-- https://stackoverflow.com/questions/5529148/algorithm-calculate-pseudo-random-point-inside-an-ellipse
+function random_point_ellipse(w, h, added_from_center)
+    local random_theta = random_polar_angle_ellipse(w, h)
+    local max_radius = get_radius_ellipse(w, h, random_theta)
+    local random_radius = max_radius * math.sqrt(math.random())
+    if added_from_center ~= nil then
+        random_radius = random_radius + added_from_center
+    end
+
+    return {
+        x = random_radius * math.cos(random_theta),
+        y = 0,
+        z = random_radius * math.sin(random_theta)
+    }
 end
