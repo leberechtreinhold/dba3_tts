@@ -25,6 +25,14 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
+        plough = {
+            objects = {
+                'terrain_wheat'
+            },
+            texture = {
+                'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        }
     },
     grass = {
         forest = {
@@ -51,6 +59,14 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
+        plough = {
+            objects = {
+                'terrain_wheat'
+            },
+            texture = {
+                'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        }
     },
     forest = {
         forest = {
@@ -77,6 +93,14 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },    
+        plough = {
+            objects = {
+                'terrain_wheat'
+            },
+            texture = {
+                'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        }
     },
     mountain = {
         forest = {
@@ -103,6 +127,14 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
+        plough = {
+            objects = {
+                'terrain_wheat'
+            },
+            texture = {
+                'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        }
     },
     steppe = {
         forest = {
@@ -129,6 +161,14 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
+        plough = {
+            objects = {
+                'terrain_wheat'
+            },
+            texture = {
+                'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        }
     },
     tropical = {
         forest = {
@@ -155,6 +195,14 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
+        plough = {
+            objects = {
+                'terrain_wheat'
+            },
+            texture = {
+                'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        }
     },
 }
 
@@ -240,3 +288,14 @@ terrain_fir = {
     texture = 'http://cloud-3.steamusercontent.com/ugc/1056603883717140905/53E5838C3E98E32E8ADF3FFE3C4FFCC248A264CD/'
 
 }
+
+terrain_wheat = {
+    height_correction = 0,
+    scale = 1,
+    rotation = 0,
+    description = 'Wheat field',
+    author = 'Wheat field by LeberechtReinhold, cc0 image for texture.',
+    customasset = 'http://cloud-3.steamusercontent.com/ugc/1305431194674277107/B8CE7E6AE82E75F7BA9F7AB5882F436D668785E8/'
+}
+
+
