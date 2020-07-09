@@ -26,8 +26,27 @@ function onload()
     print_info('                       DBA 3.0 v1.6.0 ')
     print_info('----------------------------------------------\n\nCheck the Notebook for instructions.')
     Wait.time(main_loop, g_seconds_main_loop, -1)
+    make_scenery_non_interactable()
     reset_state()
     spawn_proxy_bases()
+end
+
+function make_scenery_non_interactable()
+    -- Main table
+    getObjectFromGUID('558717').interactable = false
+
+    -- Chairs
+    getObjectFromGUID('e149a5').interactable = false
+    getObjectFromGUID('daff99').interactable = false
+
+    -- Floor
+    getObjectFromGUID('83a7b8').interactable = false
+
+    -- Walls
+    getObjectFromGUID('77e020').interactable = false
+    getObjectFromGUID('6880f1').interactable = false
+    getObjectFromGUID('a2475b').interactable = false
+    getObjectFromGUID('0d0857').interactable = false    
 end
 
 function update()
