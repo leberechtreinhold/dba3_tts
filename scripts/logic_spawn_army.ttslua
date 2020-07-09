@@ -195,16 +195,20 @@ function spawn_army(army_name, army, is_red_player)
 
     local width_army = n_bases * g_base_width_inches
 
-    local z_pos = g_spawn_from_center_in
+    local z_pos_0 = g_spawn_from_center_in
     local y_rotation = 180
     if is_red_player then
-        z_pos = g_spawn_from_center_in * -1
+        z_pos_0 = g_spawn_from_center_in * -1
         y_rotation = 0
     end
 
     local i = 0
     for base_id, base_data in pairs(army) do
         if base_id ~= 'data' then
+            local z_pos = 5
+            if is_red_player then
+                z_pos = z_pos * -1
+            end
             local z_pos_modifier = -1 * get_depth_base(base_data['base']) / 2
             if is_red_player then
                 z_pos_modifier = -1 * z_pos_modifier
@@ -213,7 +217,7 @@ function spawn_army(army_name, army, is_red_player)
             local column = i % g_max_bases_row
             local row = math.floor(i / g_max_bases_row)
 
-            local row_z_pos = z_pos * (1 + row)
+            local row_z_pos = z_pos * (1 + row) + z_pos_0
 
             local location = {
                 x = g_offset_deployment_x + column * g_base_width_inches - width_army / 2,
@@ -492,25 +496,25 @@ function spawn_proxy_bases()
         base = 'tile_plain_4Bd_40x15',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=-11}, 0, true)
+    }, {x=-42, y=2, z=-20}, 0, true)
     spawn_base({
         name = 'Proxy 40x20',
         base = 'tile_plain_3Ax_40x20',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=-12}, 0, true)
+    }, {x=-42, y=2, z=-21}, 0, true)
     spawn_base({
         name = 'Proxy 40x30',
         base = 'tile_plain_3Cv_40x30',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=-13.5}, 0, true)
+    }, {x=-42, y=2, z=-22.5}, 0, true)
     spawn_base({
         name = 'Proxy 40x40',
         base = 'tile_plain_El_40x40',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=-15.5}, 0, true)
+    }, {x=-42, y=2, z=-24}, 0, true)
 
 
     spawn_base({
@@ -518,25 +522,25 @@ function spawn_proxy_bases()
         base = 'tile_plain_4Bd_40x15',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=11}, 180, false)
+    }, {x=-42, y=2, z=20}, 180, false)
     spawn_base({
         name = 'Proxy 40x20',
         base = 'tile_plain_3Ax_40x20',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=12}, 180, false)
+    }, {x=-42, y=2, z=21}, 180, false)
     spawn_base({
         name = 'Proxy 40x30',
         base = 'tile_plain_3Cv_40x30',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=13.5}, 180, false)
+    }, {x=-42, y=2, z=22.5}, 180, false)
     spawn_base({
         name = 'Proxy 40x40',
         base = 'tile_plain_El_40x40',
         ignore_terrain = 'true',
         n_models = 0
-    }, {x=-42, y=2, z=15.5}, 180, false)
+    }, {x=-42, y=2, z=24}, 180, false)
 end
 
 function change_texture_terrain(terrain_obj, new_tex_url)

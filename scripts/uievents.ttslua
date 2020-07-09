@@ -332,6 +332,15 @@ function on_toggle_table_size(player, value, id)
     end
 end
 
+g_is_double_dba = false
+function on_toggle_table_double(player, value, id)
+    if value == "True" then
+        g_is_double_dba = true
+    else
+        g_is_double_dba = false
+    end
+end
+
 g_current_table_type = 0
 function on_toggle_table_type(player, value, id)
     g_current_table_type = tonumber(value)
@@ -367,7 +376,11 @@ function on_load_table(player, value, id)
     local is_large = g_current_table_size == 'large'
 
     if g_current_table == nil then
-        spawn_table_obj(tables['model'], tex, is_large)
+        if g_is_double_dba then
+            spawn_table_obj(tables['model_double'], tex, is_large)
+        else
+            spawn_table_obj(tables['model'], tex, is_large)
+        end
     else
         print_error('There\'s already a table spawned')
     end

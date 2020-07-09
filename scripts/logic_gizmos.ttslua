@@ -632,15 +632,15 @@ function draw_gizmo_wheeling(transforms)
     Global.setVectorLines(strokes)
 end
 
-function get_strokes_deployment(pos, color, angle, proportion)
+function get_strokes_deployment(pos, color, angle, proportion, width, depth)
     local zpos = 1
 
     if pos == 'bot' then
         zpos = -1
     end
 
-    local half_width = g_width_table_in / 2
-    local half_depth = g_depth_table_in / 2
+    local half_width = width / 2
+    local half_depth = depth / 2
 
     local stroke_points = {}
     local center = { x=0, y=0, z=0 }
@@ -704,11 +704,11 @@ function get_strokes_deployment(pos, color, angle, proportion)
     }
 end
 
-function get_strokes_quadrant_horizontal(angle)
+function get_strokes_quadrant_horizontal(angle, width, depth)
     local stroke_points = {}
     local center = { x=0, y=0, z=0 }
-    local half_width = g_width_table_in / 2
-    local half_depth = g_depth_table_in / 2
+    local half_width = width / 2
+    local half_depth = depth / 2
     table.insert(stroke_points, rotate_point_relative({
         x = -half_width,
         y = g_table_thickness + g_base_height_inches / 2,
@@ -728,11 +728,11 @@ function get_strokes_quadrant_horizontal(angle)
     }
 end
 
-function get_strokes_quadrant_vertical(angle)
+function get_strokes_quadrant_vertical(angle, width, depth)
     local stroke_points = {}
     local center = { x=0, y=0, z=0 }
-    local half_width = g_width_table_in / 2
-    local half_depth = g_depth_table_in / 2
+    local half_width = width / 2
+    local half_depth = depth / 2
     table.insert(stroke_points, rotate_point_relative({
         x = 0,
         y = g_table_thickness + g_base_height_inches / 2,
@@ -791,16 +791,22 @@ function draw_deployment_lines()
     end
 
     local size = gametable.getBoundsNormalized()['size']
-    local proportion = size['x'] / g_width_table_in
+    local scale = gametable.getScale()
+    local proportion = scale['x']
     local angle = normalize_angle(math.rad(gametable.getRotation()['y']))
+    local actual_size = gametable.getBounds()['size']
+    local w = size['x']  / scale['x']
+    local h = size['z'] / scale['z']
 
     local strokes = {}
     table.insert(strokes,
-        get_strokes_deployment('top', g_gizmo_color_player_blue, angle, proportion))
+        get_strokes_deployment('top', 
+            g_gizmo_color_player_blue, angle, proportion, w, h))
     table.insert(strokes,
-        get_strokes_deployment('bot', g_gizmo_color_player_red, angle, proportion))
-    table.insert(strokes, get_strokes_quadrant_vertical(angle))
-    table.insert(strokes, get_strokes_quadrant_horizontal(angle))
+        get_strokes_deployment('bot', 
+            g_gizmo_color_player_red, angle, proportion, w, h))
+    table.insert(strokes, get_strokes_quadrant_vertical(angle, w, h))
+    table.insert(strokes, get_strokes_quadrant_horizontal(angle, w, h))
 
     gametable.setVectorLines(strokes)
     draw_numbers_quadrant(size)
