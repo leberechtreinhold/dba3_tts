@@ -46,7 +46,20 @@ function make_scenery_non_interactable()
     getObjectFromGUID('77e020').interactable = false
     getObjectFromGUID('6880f1').interactable = false
     getObjectFromGUID('a2475b').interactable = false
-    getObjectFromGUID('0d0857').interactable = false    
+    getObjectFromGUID('0d0857').interactable = false
+    
+    -- Main point light
+    getObjectFromGUID('c0f8eb').interactable = false
+
+    -- Key light
+    getObjectFromGUID('4a9adf').interactable = false
+
+    -- Back lights
+    getObjectFromGUID('3b5c97').interactable = false
+    getObjectFromGUID('018fac').interactable = false
+    
+    -- Top light for shadows
+    getObjectFromGUID('bc09bc').interactable = false
 end
 
 function update()
