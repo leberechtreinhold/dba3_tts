@@ -794,7 +794,6 @@ function draw_deployment_lines()
     local scale = gametable.getScale()
     local proportion = scale['x']
     local angle = normalize_angle(math.rad(gametable.getRotation()['y']))
-    local actual_size = gametable.getBounds()['size']
     local w = size['x']  / scale['x']
     local h = size['z'] / scale['z']
 
