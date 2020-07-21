@@ -112,7 +112,7 @@
     <Image image="select_army_bg_v2"></Image>
 </Panel>
 <Panel id="panel_dba_troop_selection" width="800" height="650" rectAlignment="MiddleCenter" color="#00000000" active="false" raycastTarget="true">
-    <TableLayout padding="70 70 110 70 " cellSpacing="20">
+    <TableLayout padding="50 50 80 50 " cellSpacing="20">
         <Row preferredHeight="40">
             <Cell columnSpan="20" dontUseTableCellBackground="true">
                 <Toggle id="toggle_filter_modes" onValueChanged="on_filter_models" alignment="MiddleLeft" fontSize="16">Filter armies with models</Toggle>
@@ -149,9 +149,23 @@
                 <Text fontSize="20" alignment="MiddleLeft">Player:</Text>
             </Cell>
             <Cell columnSpan="17" dontUseTableCellBackground="true">
-                <Dropdown id="dropdown_color" onValueChanged="on_color_selected" fontSize="20">
+                <Dropdown id="dropdown_playercolor" onValueChanged="on_color_selected" fontSize="20">
                     <Option selected="true">Red</Option>
                     <Option>Blue</Option>
+                </Dropdown>
+            </Cell>
+        </Row>
+        <Row preferredHeight="40">
+            <Cell columnSpan="3" dontUseTableCellBackground="true">
+                <Text fontSize="20" alignment="MiddleLeft">Color:</Text>
+            </Cell>
+            <Cell columnSpan="17" dontUseTableCellBackground="true">
+                <Dropdown id="dropdown_command" onValueChanged="on_command_selected" fontSize="20">
+                    <Option selected="true">None</Option>
+                    <Option>Orange</Option>
+                    <Option>Yellow</Option>
+                    <Option>Green</Option>
+                    <Option>Purple</Option>
                 </Dropdown>
             </Cell>
         </Row>
