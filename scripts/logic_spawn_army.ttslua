@@ -202,13 +202,13 @@ function spawn_army(army_name, army, is_red_player)
         y_rotation = 0
     end
 
+    local z_pos = 5
+    if is_red_player then
+        z_pos = z_pos * -1
+    end
     local i = 0
     for base_id, base_data in pairs(army) do
         if base_id ~= 'data' then
-            local z_pos = 5
-            if is_red_player then
-                z_pos = z_pos * -1
-            end
             local z_pos_modifier = -1 * get_depth_base(base_data['base']) / 2
             if is_red_player then
                 z_pos_modifier = -1 * z_pos_modifier
@@ -228,6 +228,19 @@ function spawn_army(army_name, army, is_red_player)
             i = i + 1
         end
     end
+
+    local note_row = math.floor(i / g_max_bases_row) + 1
+    local note_pos = {
+        x = g_offset_deployment_x,
+        y = g_base_height_tabletop + g_table_thickness + 1,
+        z = z_pos * (1 + note_row) + z_pos_0
+    }
+    
+    spawn_note(army_name,
+        'Agressiveness: ' .. army['data']['aggresiveness'] .. '\n'
+        .. 'Terrain: ' .. army['data']['terrain'] .. '\n'
+        .. army['data']['list'],
+        note_pos)
 
     print_important('Army deployed: ' .. army_name .. ', see chat for options')
     print_info('List: ' .. army['data']['list'])
@@ -649,4 +662,17 @@ function process_vegetation(terrain_obj, type)
     if str_starts_with(terrain_obj.getName(), 'terrain Plough') then
         set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
     end
+end
+
+function spawn_note(title, desc, pos)
+    local obj = spawnObject({
+        type = "Notecard",
+        position          = pos,
+        rotation          = {x=0, y=0, z=0},
+        scale             = {x=1, y=1, z=1},
+        sound             = false,
+        snap_to_grid      = false,
+    })
+    obj.setName(title)
+    obj.setDescription(desc)
 end
