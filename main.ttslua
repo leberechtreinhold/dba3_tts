@@ -23,7 +23,7 @@
 
 function onload()
     print_info('----------------------------------------------')
-    print_info('                       DBA 3.0 v1.7.1 ')
+    print_info('                       DBA 3.0 v1.8.0 ')
     print_info('----------------------------------------------\n\nCheck the Notebook for instructions.')
     Wait.time(main_loop, g_seconds_main_loop, -1)
     make_scenery_non_interactable()
