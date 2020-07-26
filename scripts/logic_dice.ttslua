@@ -1,0 +1,92 @@
+
+data_dice = {
+    mesh = 'http://cloud-3.steamusercontent.com/ugc/1483325217454079653/599EFF401B1215D3FD34CA5D7A3B2EEDA47123E4/',
+    textures = {
+        red = 'http://cloud-3.steamusercontent.com/ugc/1483325217454080321/1091CE221C705C9930D54530B0BF14AE5980F4D0/',
+        yellow = 'http://cloud-3.steamusercontent.com/ugc/1483325217454080528/C5C59BBDD3B02B0236DB77F660D32ECBB80D14F6/',
+        orange = 'http://cloud-3.steamusercontent.com/ugc/1483325217454079924/1CED8E96744535DFF879CA4240AEFB0EAB7C4DF8/',
+        blue = 'http://cloud-3.steamusercontent.com/ugc/1483325217454079449/62B7A0A4880F1600AF53BF8FC7EF7D9083867A4F/',
+        green = 'http://cloud-3.steamusercontent.com/ugc/1483325217454079759/FB29A093D56B39927864DF96F87670C0E9AF0B58/',
+        purple = 'http://cloud-3.steamusercontent.com/ugc/1483325217454080111/2FC45718974D2A1D749FBAD4431409F584E581D0/',
+    }
+}
+
+g_current_dice = {}
+
+function spawn_dice(color, pos)
+    local obj = spawnObject({
+        type = 'Custom_Model',
+        position = pos,
+        rotation = { x = 0, y = 0, z = 0},
+        scale = { x = 0.75, y = 0.75, z = 0.75},
+        sound = false,
+        snap_to_grid = false,
+        callback_function = function(obj)
+            g_current_dice[color] = obj.getGUID()
+            
+            print_debug('Spawned ' .. color .. ' with guid ' .. g_current_dice[color])
+        end
+    })
+    obj.setCustomObject({
+        mesh = data_dice['mesh'],
+        type = 2,
+        diffuse = data_dice['textures'][color],
+        material = 1,
+        cast_shadows = true,
+        specular_sharpness = 0,
+        specular_intensity = 0,
+        freshnel_strength = 0
+    })
+    obj.setRotationValues({
+        {value=1, rotation={x=0, y=0, z=0}},
+        {value=2, rotation={x=0, y=0, z=270}},
+        {value=3, rotation={x=270, y=0, z=0}},
+        {value=4, rotation={x=90, y=0, z=0}},
+        {value=5, rotation={x=0, y=0, z=90}},
+        {value=6, rotation={x=0, y=0, z=180}}
+    })
+    obj.mass = 1.5
+    obj.setName('PIP ' .. color)
+    local code = [[
+        function onRandomize()
+            startLuaCoroutine(self, 'check_if_at_rest')
+        end
+        
+        function onObjectDrop()
+            startLuaCoroutine(self, 'check_if_at_rest')
+        end
+        
+        function check_if_at_rest()
+            while not self.resting do
+                coroutine.yield(0)
+            end
+            on_dice_stopped(self)
+            return 1
+        end
+
+        function on_dice_stopped(dice_obj)
+            UI.setValue("text_pips_player_|color|", dice_obj.getRotationValue())
+        end
+    ]]
+    code = code:gsub('|color|', color)
+    obj.setLuaScript(code)
+end
+
+function roll_dice(color)
+    local obj = getObjectFromGUID(g_current_dice[color])
+    
+    local val = math.random(1,6)
+    UI.setValue('text_pips_player_' .. color, val)
+    obj.setValue(val)
+    return val
+end
+
+function spawn_all_dice()
+    spawn_dice('red', {x=-7, y=2, z=-27})
+    spawn_dice('yellow', {x=-5, y=2, z=-27})
+    spawn_dice('orange', {x=-3, y=2, z=-27})
+    
+    spawn_dice('blue', {x=-7, y=2, z=27})
+    spawn_dice('green', {x=-5, y=2, z=27})
+    spawn_dice('purple', {x=-3, y=2, z=27})
+end
