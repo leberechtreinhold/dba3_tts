@@ -11946,6 +11946,214 @@ armies["Book I"]["I/48 Thracian Army 700BC-46AD (Plain)"] = {
     }
 }
 
+armies["Book I"]["I/48 Thracian Army 700BC-46AD"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Hilly',
+        list = '1xCv or 3Kn or 4Ax (Gen), 3xLH or 3Ax, 6x2Ps or 3/4Ax, 2xPs.'
+    },
+
+    base1 = {
+        name = 'Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_thracian_cv',
+            [2] = 'troop_thracian_cv_gen',
+            [3] = 'troop_thracian_cv'
+        }
+    },
+    base2 = {
+        name = '3Kn_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_thracian_cv_gen',
+            [2] = 'troop_thracian_cv_gen',
+            [3] = 'troop_thracian_cv_gen'
+        }
+    },
+    base3 = {
+        name = '4Ax_Gen',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'trop_thracian_axgen'
+    },
+    base4 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_thracian_lh'
+    },
+    base5 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base6 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_thracian_lh'
+    },
+    base7 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base8 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_thracian_lh'
+    },
+    base9 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base10 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base11 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base12 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'trop_thracian_ax2'
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base14 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base15 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'trop_thracian_ax2'
+    },
+    base16 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base17 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base18 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'trop_thracian_ax2'
+    },
+    base19 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base20 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base21 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'trop_thracian_ax2'
+    },
+    base22 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base23 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base24 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'trop_thracian_ax2'
+    },
+    base25 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base26 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'trop_thracian_ax1'
+    },
+    base27 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'trop_thracian_ax2'
+    },
+    base28 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base29 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'trop_thracian_ps'
+    },
+    base30 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_ancient_spanish_camp'
+    }
+}
+
 armies["Book I"]["I/49a Van-lang or Au Lac Vietnamese Army 700-207BC (Plain)"] = {
     data = {
         aggresiveness = 1,
