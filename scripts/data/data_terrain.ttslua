@@ -398,7 +398,7 @@ terrain_wheat = {
     rotation = 0,
     description = 'Wheat field',
     author = 'Wheat field by LeberechtReinhold, cc0 image for texture.',
-    customasset = 'http://cloud-3.steamusercontent.com/ugc/1305431194674277107/B8CE7E6AE82E75F7BA9F7AB5882F436D668785E8/'
+    customasset = 'http://cloud-3.steamusercontent.com/ugc/1483325801507180531/2A0F19A4BBF42036B30DC45E0E2C6F5EA821C30E/'
 }
 
 terrain_fence = {
