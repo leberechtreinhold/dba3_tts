@@ -281,7 +281,7 @@ g_terrain = {
         },
         plough = {
             objects = {
-                'terrain_wheat'
+                'terrain_rice'
             },
             texture = {
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
@@ -289,7 +289,7 @@ g_terrain = {
         },
         enclosure = {
             objects = {
-                'terrain_wheat'
+                'terrain_rice'
             },
             outline_objects = {
                 'terrain_fence'
@@ -411,4 +411,13 @@ terrain_fence = {
         'http://cloud-3.steamusercontent.com/ugc/1483325035904629471/B7F2BF4FFB011FCF5282D814A7048DC2C13F0A62/'
     },
     texture = 'http://cloud-3.steamusercontent.com/ugc/1483325035904519686/B5FB4C7E8AE04E2BA29ADFBE328154D9220C320D/'
+}
+
+terrain_rice = {
+    height_correction = 0,
+    scale = 1,
+    rotation = 0,
+    description = 'Rice field',
+    author = 'Rice field by LeberechtReinhold, Texture by Eric Delemer, edited by LeberechtReinhold.',
+    customasset = 'http://cloud-3.steamusercontent.com/ugc/1500215314040216348/7D93BA2DA1A9DA3605ECAD330EF0120405567D30/'
 }
