@@ -195,7 +195,7 @@ function spawn_base(base, pos, y_rotation, is_red_player, command_color)
             meshes[i] = random_element(_G[this_model_name]['mesh'])
         end
 
-        local soldier_obj = spawn_model(model_name, relative_pos, random_rotation, minimal_collider, is_red_player, nil, meshes[i])
+        local soldier_obj = spawn_model(this_model_name, relative_pos, random_rotation, minimal_collider, is_red_player, nil, meshes[i])
         base_obj.addAttachment(soldier_obj)
     end
 
