@@ -83,24 +83,27 @@ end
 -- Moves one or more DBA bases g_bw_movement forward
 -- ASSUMES all bases are in a flat board!!!!
 -- Returns how much it moved (it cna move less in a collision)
-function move_base(obj, how_much_movement)
-    local current_world_pos = obj.getPosition()
+function move_base(obj, how_much_movement, ignore_history)
+    local initial_transform = calculate_transform(obj)
     local current_rotation = from_degrees_to_rad(obj.getRotation())
     local displacement_vector = rad_to_vector(current_rotation['y'])
     local magnitude = how_much_movement
-    local destination = vec_add(current_world_pos, vec_mul_escalar(displacement_vector, magnitude))
-    -- print_debug(player.steam_name .. 'Moving ' .. obj.getName() ..
-    -- ' from ' .. vec_to_str(current_world_pos) ..
-    -- ' with rotation ' .. vec_to_str(current_rotation) ..
-    -- ' to ' .. vec_to_str(destination))
+    local destination = vec_add(initial_transform['position'], vec_mul_escalar(displacement_vector, magnitude))
+    
     obj.setPosition(destination)
-    -- TODO: COLISION
+    
+    if not ignore_history then
+        local new_transform = calculate_transform(obj)
+        local move = {}
+        add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
+        push_to_history_stack(move)
+    end
     return how_much_movement
 end
 
 -- Moves ONE single DBA base by it's depth
 function push_back(obj)
-    local current_world_pos = obj.getPosition()
+    local initial_transform = calculate_transform(obj)
     local angle = from_degrees_to_rad(obj.getRotation())['y']
     angle = angle + math.pi
     if angle > 2*math.pi then
@@ -109,21 +112,30 @@ function push_back(obj)
     local displacement_vector = rad_to_vector(angle)
 
     local magnitude = get_size(obj.getName())['z']
-    local destination = vec_add(current_world_pos, vec_mul_escalar(displacement_vector, magnitude))
+    local destination = vec_add(initial_transform['position'], vec_mul_escalar(displacement_vector, magnitude))
     obj.setPosition(destination)
-    -- TODO: COLISION
+    
+    local new_transform = calculate_transform(obj)
+    local move = {}
+    add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
+    push_to_history_stack(move)
 end
 
 -- Like push back but in the other direction
 function push_forward(obj)
-    local current_world_pos = obj.getPosition()
+    local initial_transform = calculate_transform(obj)
     local angle = from_degrees_to_rad(obj.getRotation())['y']
     local displacement_vector = rad_to_vector(angle)
 
     local magnitude = get_size(obj.getName())['z']
-    local destination = vec_add(current_world_pos, vec_mul_escalar(displacement_vector, magnitude))
+    local destination = vec_add(initial_transform['position'], vec_mul_escalar(displacement_vector, magnitude))
     obj.setPosition(destination)
-    -- TODO: COLISION
+    
+    local new_transform = calculate_transform(obj)
+
+    local move = {}
+    add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
+    push_to_history_stack(move)
 end
 
 -- Given a bunch of objects returns them in a column, which is 
@@ -415,10 +427,13 @@ function push_back_column(objs)
         angle = angle - 2*math.pi
     end
 
+    local move = {}
+
     -- Move the front_element fist, then align the others to its back
     local displacement_vector = rad_to_vector(angle)
     local destination = vec_add(front_element.getPosition(), vec_mul_escalar(displacement_vector, distance))
     front_element.setPosition(destination)
+    add_transform_to_move(move, front_element.getName(), transforms[front_element], calculate_transform(front_element))
 
     local magnitude = base_depth / 2
     local next_element = behind_of[front_element]
@@ -429,12 +444,14 @@ function push_back_column(objs)
         magnitude = magnitude + base_depth / 2
         local next_destination = vec_add(destination, vec_mul_escalar(displacement_vector, magnitude))
         next_element.setPosition(next_destination)
+        add_transform_to_move(move, front_element.getName(), transforms[front_element], calculate_transform(front_element))
 
         front_element = next_element
         next_element = behind_of[next_element]
 
         magnitude = magnitude + base_depth / 2
     end
+    push_to_history_stack(move)
 end
 
 -- Calculates the future position of the given group of objs, assuming a wheel
@@ -538,18 +555,22 @@ function perform_wheels()
     local front_elements = g_current_wheel_group['front_elements']
     local behind_of = g_current_wheel_group['behind_of']
 
+    local move = {}
     for col, front_element in pairs(front_elements) do
         local current_element = front_element
         apply_transform_obj(current_element, 
             old_transforms[current_element],  
             new_transforms[current_element])
+        add_transform_to_move(move, current_element.getName(), old_transforms[current_element], new_transforms[current_element])
         while behind_of[current_element] ~= nil do
             current_element = behind_of[current_element]
             apply_transform_obj(current_element, 
                 old_transforms[current_element],  
                 new_transforms[current_element])
+            add_transform_to_move(move, current_element.getName(), old_transforms[current_element], new_transforms[current_element])
         end
     end
+    push_to_history_stack(move)
 end
 
 function calculate_future_position_wheel(obj, transform, pivot_point, angle, is_left, depth)
@@ -964,7 +985,7 @@ function snap_picked_base(obj)
 
         local edge_camp_pos = (size_table / 2) - (g_base_width_inches / 2)
         local distance = math.abs(math.abs(pos['z']) - edge_camp_pos)
-        
+
         print_debug('Camp has pos ' .. pos['z'] .. ' which has distance ' .. distance ..' to the edge ' .. edge_camp_pos)
         
         if  distance < g_max_camp_edge_snap then
@@ -975,16 +996,14 @@ function snap_picked_base(obj)
                 pos['z'] = -edge_camp_pos
                 obj.setRotation({x=0, y=0, z=0})
             end
+            pos['y'] = g_bases_position
             obj.setPosition(pos)
             print_info('Camp snapped to battle edge')
-
-            local new_corners = compute_corners_base(obj)
-            return max_distance_between_bases(new_corners, initial_corners)
+        else
+            print_debug('Moving a camp, which should not snap to anything')
         end
 
-        print_debug('Moving a camp, which should not snap to anything')
-        local new_corners = compute_corners_base(obj)
-        return max_distance_between_bases(new_corners, initial_corners)
+        return calculate_transform(obj)
     end
 
     local bases = get_all_bases()
@@ -1017,61 +1036,50 @@ function snap_picked_base(obj)
             -- Calculate relative position
             if is_infront(transformObj, transformBase) then
                 snap_to_base(obj, transformObj, base, transformBase, 'infront')
-                local new_corners = compute_corners_base(obj)
-                return max_distance_between_bases(new_corners, initial_corners)
+                return calculate_transform(obj)
 
             elseif is_behind(transformObj, transformBase) then
                 snap_to_base(obj, transformObj, base, transformBase, 'behind')
-                local new_corners = compute_corners_base(obj)
-                return max_distance_between_bases(new_corners, initial_corners)
+                return calculate_transform(obj)
 
             elseif is_left_side(transformObj, transformBase) then
                 snap_to_base(obj, transformObj, base, transformBase, 'left')
-                local new_corners = compute_corners_base(obj)
-                return max_distance_between_bases(new_corners, initial_corners)
+                return calculate_transform(obj)
 
             elseif is_right_side(transformObj, transformBase) then
                 snap_to_base(obj, transformObj, base, transformBase, 'right')
-                local new_corners = compute_corners_base(obj)
-                return max_distance_between_bases(new_corners, initial_corners)
+                return calculate_transform(obj)
 
             elseif is_opposite_front(transformObj, transformBase) then
                 snap_to_base(obj, transformObj, base, transformBase, 'opposite')
-                local new_corners = compute_corners_base(obj)
-                return max_distance_between_bases(new_corners, initial_corners)
+                return calculate_transform(obj)
 
             elseif is_closing_door_to_left(transformObj, transformBase) then
                 snap_to_base(obj, transformObj, base, transformBase, 'door_left')
-                local new_corners = compute_corners_base(obj)
-                return max_distance_between_bases(new_corners, initial_corners)
+                return calculate_transform(obj)
 
             elseif is_closing_door_to_right(transformObj, transformBase) then
                 snap_to_base(obj, transformObj, base, transformBase, 'door_right')
-                local new_corners = compute_corners_base(obj)
-                return max_distance_between_bases(new_corners, initial_corners)
+                return calculate_transform(obj)
             end
 
             if is_wwg then
                 print_debug('The base is a WWg, checking special snapping')
                 if is_wwg_aligned_left_back(transformObj, transformBase) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_left_back')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
 
                 elseif is_wwg_aligned_left_front(transformObj, transformBase) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_left_front')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
     
                 elseif is_wwg_aligned_right_back(transformObj, transformBase) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_right_back')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
 
                 elseif is_wwg_aligned_right_front(transformObj, transformBase) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_right_front')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
                 end
             end
             
@@ -1079,23 +1087,19 @@ function snap_picked_base(obj)
                 print_debug('Trying to snap against a WWg, checking special positions')
                 if is_wwg_aligned_left_back(transformBase, transformObj) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_to_left_back')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
 
                 elseif is_wwg_aligned_left_front(transformBase, transformObj) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_to_left_front')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
     
                 elseif is_wwg_aligned_right_back(transformBase, transformObj) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_to_right_back')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
 
                 elseif is_wwg_aligned_right_front(transformBase, transformObj) then
                     snap_to_base(obj, transformObj, base, transformBase, 'wwg_to_right_front')
-                    local new_corners = compute_corners_base(obj)
-                    return max_distance_between_bases(new_corners, initial_corners)
+                    return calculate_transform(obj)
                 end
             end
         end
@@ -1103,16 +1107,19 @@ function snap_picked_base(obj)
 
     -- If there's nothing else to snap, maybe I can snap to my initial
     -- position if I moved too little
-    local new_corners = compute_corners_base(obj)
+    local new_transform = calculate_transform(obj)
+    local new_corners = new_transform['corners']
     local distance = max_distance_between_bases(new_corners, initial_corners)
     if distance < g_max_inches_snap_reset then
         -- Snap back!
         obj.setPosition(g_picked_base_initial_transform['position'])
         obj.setRotation(transform_to_rotation_vector(g_picked_base_initial_transform))
-        return 0
+        return g_picked_base_initial_transform['position']
     else
         -- No snapping, return the distance between positions
-        return distance
+        pos['y'] = g_base_height_tabletop + g_table_thickness + g_base_height_inches
+        obj.setPosition(pos)
+        return calculate_transform(obj)
     end
 end
 
@@ -1132,25 +1139,35 @@ function onObjectDrop(player_color,  picked_up_object)
         return
     end
 
-    picked_up_object.setVelocity({x=0, y=0, z=0})
-    picked_up_object.setAngularVelocity({x=0, y=0, z=0})
     if picked_up_object.getName() ~= g_picked_base_obj.getName() then
         -- Ignore, this is not the one we were counting distances
         return
     end
 
-    local distance = 0
+    picked_up_object.setVelocity({x=0, y=0, z=0})
+    picked_up_object.setAngularVelocity({x=0, y=0, z=0})
 
     if g_snap_mode_enabled then
-        distance = snap_picked_base(picked_up_object)
+        new_transform = snap_picked_base(picked_up_object)
     else
-        local new_corners = compute_corners_base(picked_up_object)
-        distance = max_distance_between_bases(new_corners, g_picked_base_initial_transform['corners'])
+        new_transform = calculate_transform(picked_up_object)
     end
 
-    print_info(string.format('Movement for %q is %.3f BW',
-        picked_up_object.getName(), from_in_to_bw(distance)))
+    local distance = max_distance_between_bases(
+        new_transform['corners'], 
+        g_picked_base_initial_transform['corners'])
 
+    if distance > 0 then
+        print_info(string.format('Movement for %q is %.3f BW',
+            picked_up_object.getName(), from_in_to_bw(distance)))
+        local move = {}
+        add_transform_to_move(move, picked_up_object.getName(),  g_picked_base_initial_transform, new_transform)
+        push_to_history_stack(move)
+    else
+        print_info(string.format('Movement for %q has been resetted',
+            picked_up_object.getName()))
+    end
+    
     g_picked_base_obj = nil
     g_picked_base_initial_transform = nil
     Global.setVectorLines({})
