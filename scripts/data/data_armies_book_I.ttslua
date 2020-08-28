@@ -11950,7 +11950,8 @@ armies["Book I"]["I/48 Thracian Army 700BC-46AD"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hilly',
-        list = '1xCv or 3Kn or 4Ax (Gen), 3xLH or 3Ax, 6x2Ps or 3/4Ax, 2xPs.'
+        list = '1xCv or 3Kn or 4Ax (Gen), 3xLH or 3Ax, 6x2Ps or 3/4Ax, 2xPs.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
 
     base1 = {
@@ -15708,7 +15709,8 @@ armies["Book I"]["I/61a Early Carthaginian Army 550-341BC"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Littoral',
-        list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 4xSp, 2xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.'
+        list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 4xSp, 2xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.',
+        manufacturer = 'Essex miniatures'
     },
     base1 = {
         name = 'Sp_Gen',
@@ -15939,7 +15941,8 @@ armies["Book I"]["I/61b Early Carthaginian Army 340-275BC"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Littoral',
-        list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 1xLH or 4Ax, 4xSp, 1xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.'
+        list = '1xSp or Cv or HCh (Gen), 1xHCh, 1xCv, 1xLH or 4Ax, 4xSp, 1xSp or 4Ax, 1x4Wb or 3Ax, 2xPs.',
+        manufacturer = 'Essex miniatures'
     },
     base1 = {
         name = 'Sp_Gen',

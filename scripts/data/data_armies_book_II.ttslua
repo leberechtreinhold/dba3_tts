@@ -159,7 +159,8 @@ armies["Book II"]["II/1 Republican Indian Army 500-321BC"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Tropical',
-        list = '1xHCh or Cv (Gen), 1xHCh or Cv or 3/4Lb or 3Bd, 2xCv, 2x4Ax, 6x3/4Lb.'
+        list = '1xHCh or Cv (Gen), 1xHCh or Cv or 3/4Lb or 3Bd, 2xCv, 2x4Ax, 6x3/4Lb.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
 
     base1 = {
@@ -433,7 +434,8 @@ armies["Book II"]["II/2 Mountain Indian Army 500-170BC"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hill',
-        list = '1xLH or El (Gen), 2xLH, 4x3Pk, 2xPs, 3xPs or 4Ax.'
+        list = '1xLH or El (Gen), 2xLH, 4x3Pk, 2xPs, 3xPs or 4Ax.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
 
     base1 = {
@@ -658,7 +660,8 @@ armies["Book II"]["II/3a Classical Indian Army 500BC-178AD"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Tropical',
-        list = '1xEl (Gen), 2xEl, 2xLCh or HCh, 2xCv, 3x4Lb, 1x4Ax, 1x7Hd or Ps.'
+        list = '1xEl (Gen), 2xEl, 2xLCh or HCh, 2xCv, 3x4Lb, 1x4Ax, 1x7Hd or Ps.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
 
     base1 = {
@@ -890,7 +893,8 @@ armies["Book II"]["II/3b Classical Indian Army 179-545AD"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Tropical',
-        list = '1xEl (Gen), 2xEl, 2xHCh or Cv, 2xCv, 3x3Lb, 1x4Ax or Sp or LH, 1x7Hd or Ps.'
+        list = '1xEl (Gen), 2xEl, 2xHCh or Cv, 2xCv, 3x3Lb, 1x4Ax or Sp or LH, 1x7Hd or Ps.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
 
     base1 = {
@@ -4256,7 +4260,8 @@ armies["Book II"]["II/10 Camillan Roman Army 400-275BC"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xCv (Gen), 1xCv, 2xPs, 2x4Bd, 2xSp, 2xSp, 2x3/4Ax.'
+        list = '1xCv (Gen), 1xCv, 2xPs, 2x4Bd, 2xSp, 2xSp, 2x3/4Ax.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
 
     base1 = {
@@ -11709,7 +11714,8 @@ armies["Book II"]["II/32a Later Carthaginian Army 275-202BC"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Littoral',
-        list = '1xCv (Gen), 1xCv or El, 1xEl or LH, 1xLH, 3xSp, 1x4Ax, 2x4Wb or 4Ax, 2xPs'
+        list = '1xCv (Gen), 1xCv or El, 1xEl or LH, 1xLH, 3xSp, 1x4Ax, 2x4Wb or 4Ax, 2xPs',
+        manufacturer = 'Xyston and Essex miniatures'
     },
     base1 = {
         name = 'Cv_Gen',
@@ -11931,7 +11937,8 @@ armies["Book II"]["II/32b Later Carthaginian Army 201-146BC"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Littoral',
-        list = '1xCv or Sp (Gen), 1xCv, 1xLH or Sp, 6xSp, 3xPs.'
+        list = '1xCv or Sp (Gen), 1xCv, 1xLH or Sp, 6xSp, 3xPs.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
     base1 = {
         name = 'Cv_Gen',
@@ -12154,7 +12161,8 @@ armies["Book II"]["II/33 Polybian Roman Army 275-105BC"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1xCv (Gen), 1xCv, 4x4Bd, 2x4Bd or 3Ax or 4Ax, 2xSp, 2xPs.'
+        list = '1xCv (Gen), 1xCv, 4x4Bd, 2x4Bd or 3Ax or 4Ax, 2xSp, 2xPs.',
+        manufacturer = 'Xyston and Essex miniatures'
     },
 
     base1 = {
@@ -13346,7 +13354,8 @@ armies["Book II"]["II/39a Iberian Army 240-20BC"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Arable',
-        list = '1xCv (Gen), 1xLH, 6x3Ax or 4Ax, 4xPs.'
+        list = '1xCv (Gen), 1xLH, 6x3Ax or 4Ax, 4xPs.',
+        manufacturer = 'Corvus Belli miniatures'
     },
 
     base1 = {
@@ -13572,7 +13581,8 @@ armies["Book II"]["II/39b Celtiberian Army 240-20BC"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1xCv (Gen), 1xLH, 6x3Bd, 4xPs.'
+        list = '1xCv (Gen), 1xLH, 6x3Bd, 4xPs.',
+        manufacturer = 'Corvus Belli miniatures'
     },
 
     base1 = {
@@ -13785,7 +13795,8 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1xCv (Gen), 1xLH, 3x3Ax or Ps, 6xPs, 1x4Bd or 3Bd.'
+        list = '1xCv (Gen), 1xLH, 3x3Ax or Ps, 6xPs, 1x4Bd or 3Bd.',
+        manufacturer = 'Corvus Belli miniatures'
     },
 
     base1 = {
