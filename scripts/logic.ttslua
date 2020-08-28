@@ -1132,6 +1132,8 @@ function onObjectDrop(player_color,  picked_up_object)
         return
     end
 
+    picked_up_object.setVelocity({x=0, y=0, z=0})
+    picked_up_object.setAngularVelocity({x=0, y=0, z=0})
     if picked_up_object.getName() ~= g_picked_base_obj.getName() then
         -- Ignore, this is not the one we were counting distances
         return
