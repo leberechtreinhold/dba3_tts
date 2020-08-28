@@ -872,7 +872,8 @@ function onObjectPickUp(player_color,  picked_up_object)
     end
 
     if g_picked_base_obj ~= nil then
-        print_error("There's already a player picking up an objectc. Please, wait until he finishes moving.")
+        print_error("There's already a player picking up an object. Please, wait until he finishes moving.")
+        return
     end
 
     g_picked_base_obj = picked_up_object
@@ -1139,7 +1140,7 @@ function onObjectDrop(player_color,  picked_up_object)
         return
     end
 
-    if picked_up_object.getName() ~= g_picked_base_obj.getName() then
+    if g_picked_base_obj == nil or picked_up_object.getName() ~= g_picked_base_obj.getName() then
         -- Ignore, this is not the one we were counting distances
         return
     end
