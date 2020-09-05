@@ -15451,7 +15451,7 @@ armies["Book III"]["III/77 Papal Italian Army 1049-1320AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1x3Kn or Lit (Gen), 2x3Kn, 3xPs, 2xSp, 2x4Cb, 1x3Kn or 4Bd, 1x7Hd or 7Hd.'
+        list = '1x3Kn or Lit (Gen), 2x3Kn, 3xPs, 2xSp, 2x4Cb, 1x3Kn or 4Bd, 1x5Hd or 7Hd.'
     },
 
     base1 = {
