@@ -16159,7 +16159,7 @@ armies["Book IV"]["IV/74 Free Company or Armagnac Armies 1357-1410AD & 1444AD (P
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
-        list = '1x3Kn or 4Bd (Gen), 3x3Kn or 4Bd, 2x3Kn, 3x4Lb, 2x3Bd or 4Lb, 1x4Cb or LH or Ps.'
+        list = '1x3Kn/4Bd (Gen), 3x3Kn/4Bd, 2x3Kn, 3x4Lb, 2x3Bd or Mtd-4Lb, 1x4Cb or LH or Ps.'
     },
 
     base1 = {
@@ -16261,8 +16261,6 @@ armies["Book IV"]["IV/74 Free Company or Armagnac Armies 1357-1410AD & 1444AD (P
         ignore_terrain = true
     },
     base17 = {
-
-
         name = '4Lb_Mtd',
         base = 'tile_plain_Mtd_40x30',
         n_models = 0,
