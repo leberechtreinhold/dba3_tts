@@ -12390,7 +12390,7 @@ armies["Book IV"]["IV/59b Samurai Army 1465-1542AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x6Cv or Cv or CP (Gen), 1x6Cv or Cv, 3x4Bd, 1x4Bw, 2x3Pk, 4x3Pk or 5Hd or 7Hd or 3Bd.'
+        list = '1x6Cv or Cv or CP (Gen), 1x6Cv or Cv, 3x4Bd, 1x4Bw, 2x3Pk, 4x3Pk or 4x5Hd or 4x7Hd or 4x3Bd.'
     },
 
     base1 = {
