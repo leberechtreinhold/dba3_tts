@@ -9896,8 +9896,8 @@ armies["Book IV"]["IV/48 Yuan Chinese Army 1260-1368AD (Plain)"] = {
 armies["Book IV"]["IV/49 Anatolian Turkoman Army 1260-1515AD (Plain)"] = {
     data = {
         aggresiveness = 2,
-        terrain = 'Arable',
-        list = '1xCv (Gen), 2xCv or LH, 4xLH, 1x3Ax, 1x3Ax or Art, 2xPs or 3Bw, 1x7Hd or Cv.'
+        terrain = 'Arable or Littoral',
+        list = '1xCv (Gen), 2xCv or LH, 4xLH, 1x3Ax, 1x3Ax or Art (or 4Bw if Littoral), 2xPs or 3Bw, 1x7Hd or Cv.'
     },
 
     base1 = {
@@ -9970,6 +9970,12 @@ armies["Book IV"]["IV/49 Anatolian Turkoman Army 1260-1515AD (Plain)"] = {
     base12 = {
         name = 'Art',
         base = 'tile_plain_Art_40x40',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base20 = {
+        name = '4Bw',
+        base = 'tile_plain_4Bw_40x20',
         n_models = 0,
         ignore_terrain = true
     },
