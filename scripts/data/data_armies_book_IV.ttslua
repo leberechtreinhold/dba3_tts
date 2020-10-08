@@ -8675,7 +8675,7 @@ armies["Book IV"]["IV/42 Islamic Persian Army 1245-1393AD & 1499-1520AD (Plain)"
     data = {
         aggresiveness = 0,
         terrain = 'Dry',
-        list = '1xCv (Gen), 1xCv, 2xCv, 4xCv, 1xLH, 2x3Bw or Ps, 1x7Hd or 3Pk or Cv.'
+        list = '1xCv (Gen), 7xCv, 1xLH, 2x3Bw or Ps, 1x7Hd or 3Pk or Cv.'
     },
 
     base1 = {
