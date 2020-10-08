@@ -11252,7 +11252,7 @@ armies["Book IV"]["IV/55a Ottoman Army 1281-1361AD (Plain)"] = {
     }
 }
 
-armies["Book IV"]["IV/55a Ottoman Army 1281-1361AD (Plain)"] = {
+armies["Book IV"]["IV/55b Ottoman Army 1362-1520AD (Plain)"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
