@@ -7773,7 +7773,7 @@ armies["Book IV"]["IV/37c Javanese Army 1222-1511AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Littoral',
-        list = '1xWWg or El (Gen), 1xLH, 7x4Wb, 2x3Lb, 1xPs.'
+        list = '1xCWg or El (Gen), 1xLH, 7x4Wb, 2x3Lb, 1xPs.'
     },
 
     base1 = {
