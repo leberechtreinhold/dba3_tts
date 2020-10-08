@@ -13819,7 +13819,7 @@ armies["Book IV"]["IV/64c Medieval French Army 1401-1445AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1x3Kn or 4Bd (Gen), 1x3Kn, 4x3Kn or 4Bd, 2x3Bw or Sp, 1x4Cb, 1x4Bd or 3Kn, 1xCv or Art or 4Bw, 1xPs or 7Hd.'
+        list = '1x3Kn/4Bd (Gen), 1x3Kn, 4x3Kn/4Bd, 2x3Bw or Sp, 1x4Cb, 1x4Bd or 3Kn/4Bd, 1xCv or Art or 4Bw, 1xPs or 7Hd.'
     },
 
     base1 = {
