@@ -9761,7 +9761,7 @@ armies["Book IV"]["IV/48 Yuan Chinese Army 1260-1368AD (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1xCv (Gen), 2xCv, 3xCv or LH, 1x3Bd or Ps, 1x4Bd, 2x4Cb, 1x3Bw or 4Bw or 8Bw or Ps.'
+        list = '1xCv (Gen), 2xCv, 3xCv or LH, 1x3Bd or Ps, 1x4Bd, 2x4Cb, 1x3/4Bw or 8Bw or Ps, 1xArt o LH.'
     },
 
     base1 = {
@@ -9870,6 +9870,18 @@ armies["Book IV"]["IV/48 Yuan Chinese Army 1260-1368AD (Plain)"] = {
     base18 = {
         name = 'Ps',
         base = 'tile_plain_2Ps_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base20 = {
+        name = 'LH',
+        base = 'tile_plain_2LH_40x30',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base21 = {
+        name = 'Art',
+        base = 'tile_plain_Art_40x40',
         n_models = 0,
         ignore_terrain = true
     },
