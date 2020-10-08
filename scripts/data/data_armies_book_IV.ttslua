@@ -1838,7 +1838,7 @@ armies["Book IV"]["IV/10 Mound Builder American Army 1100-1701AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xLit or 4Bw (Gen), 1x4Bd, 5x3Bw, 2xPs, 3x7Hd.'
+        list = '1xLit or 4Bw (Gen), 1x4Bd, 5x3Bw, 2xPs, 3x5Hd.'
     },
 
     base1 = {
@@ -1904,14 +1904,14 @@ armies["Book IV"]["IV/10 Mound Builder American Army 1100-1701AD (Plain)"] = {
         ignore_terrain = true
     },
     base11 = {
-        name = '7Hd',
-        base = 'tile_plain_7Hd_40x40',
+        name = '5Hd',
+        base = 'tile_plain_5Hd_40x30',
         n_models = 0,
         ignore_terrain = true
     },
     base12 = {
-        name = '7Hd',
-        base = 'tile_plain_7Hd_40x40',
+        name = '5Hd',
+        base = 'tile_plain_5Hd_40x30',
         n_models = 0,
         ignore_terrain = true
     },
