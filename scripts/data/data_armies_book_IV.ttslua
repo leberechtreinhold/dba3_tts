@@ -8247,7 +8247,7 @@ armies["Book IV"]["IV/39c Navarrese Company in Greece 1378-1430AD (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Hilly',
-        list = '1x3Kn (Gen), 2x3Kn, 4x4Ax, 2x4Cb, 1xCv or LH, 2xPs.'
+        list = '1x3Kn (Gen), 2x3Kn, 4x4Ax, 2x4Cb, 1x3Cb or LH, 2xPs.'
     },
 
     base1 = {
@@ -8306,8 +8306,8 @@ armies["Book IV"]["IV/39c Navarrese Company in Greece 1378-1430AD (Plain)"] = {
         ignore_terrain = true
     },
     base10 = {
-        name = 'Cv',
-        base = 'tile_plain_3Cv_40x30',
+        name = '3Cb',
+        base = 'tile_plain_3Cb_40x20',
         n_models = 0,
         ignore_terrain = true
     },
