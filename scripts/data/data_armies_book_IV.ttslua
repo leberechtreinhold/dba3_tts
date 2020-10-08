@@ -4190,7 +4190,7 @@ armies["Book IV"]["IV/16 Scots Common Army 1124-1456AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1x3Kn or 4Pk (Gen), 1x3Kn or 4Pk, 1x3Bw or Mtd-3Bw or 3Kn or Cv or 4Bd or 4Pk, 5x4Pk, 2x3Wb or 4Pk, 1x3Bw, 1x7Hd or 5Hd.'
+        list = '1x3Kn/4Pk (Gen), 1x3Kn/4Pk, 1x3Bw or Mtd-3Bw or 3Kn or Cv or 4Bd or 4Pk, 5x4Pk, 2x3Wb or 4Pk, 1x3Bw, 1x7Hd or 5Hd.'
     },
 
     base1 = {
@@ -4337,9 +4337,9 @@ armies["Book IV"]["IV/16 Scots Common Army 1124-1456AD (Plain)"] = {
 
 armies["Book IV"]["IV/16 Scots Common Army 1456-1513AD (Plain)"] = {
     data = {
-        aggresiveness = 2,
+        aggresiveness = 3,
         terrain = 'Forest',
-        list = '1x3Kn or 4Pk (Gen), 1x3Kn or 4Pk or Art, 1x3Bw or Mtd-3Bw or 3Kn or Cv or 4Bd or 4Pk, 5x4Pk, 2x3Wb or 4Pk, 1x3Bw, 1x7Hd or 5Hd.'
+        list = '1x3Kn/4Pk (Gen), 1x3Kn/4Pk or Art, 1x3Bw or Mtd-3Bw or 3Kn or Cv or 4Bd or 4Pk, 5x4Pk, 2x3Wb or 4Pk, 1x3Bw, 1x7Hd or 5Hd.'
     },
 
     base1 = {
