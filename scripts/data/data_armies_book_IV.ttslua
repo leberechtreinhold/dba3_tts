@@ -5976,7 +5976,7 @@ armies["Book IV"]["IV/24a Khwarizmian state Army 1186-1231AD (Plain)"] = {
 
 armies["Book IV"]["IV/24b Khwarizmian refugee Army 1232-1246AD (Plain)"] = {
     data = {
-        aggresiveness = 1,
+        aggresiveness = 3,
         terrain = 'Arable',
         list = '1xCv (Gen), 3xCv, 1xMtd-3Bw or 3Kn, 1xCv, 6xLH.'
     },
