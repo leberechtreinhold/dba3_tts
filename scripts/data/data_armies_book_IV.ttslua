@@ -14438,7 +14438,7 @@ armies["Book IV"]["IV/68a Portuguese Army 1340-1494AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Arable',
-        list = '1x3Kn or 4Bd (Gen), 3x3Kn or 4Bd, 1xLH, 1xSp or 7Hd, 1x4Cb or Ps, 4x3Ax or Ps, 1xPs.'
+        list = '1x3Kn/4Bd (Gen), 3x3Kn/4Bd, 1xLH, 1xSp or 5Hd, 1x4Cb or Ps, 4x3Ax/Ps, 1xPs.'
     },
 
     base1 = {
@@ -14504,8 +14504,8 @@ armies["Book IV"]["IV/68a Portuguese Army 1340-1494AD (Plain)"] = {
         ignore_terrain = true
     },
     base11 = {
-        name = '7Hd',
-        base = 'tile_plain_7Hd_40x40',
+        name = '5Hd',
+        base = 'tile_plain_5Hd_40x30',
         n_models = 0,
         ignore_terrain = true
     },
