@@ -7868,7 +7868,7 @@ armies["Book IV"]["IV/38 Murcian or Granadine Army 1228-1492AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
-        list = '1x3Kn or Cv (Gen), 3xLH, 1xLH, 2xSp, 1x4Cb or Ps, 4x3Cb or Ps.'
+        list = '1x3Kn or Cv (Gen), 4xLH, 2xSp, 1x4Cb or Ps, 4x3Cb or Ps.'
     },
 
     base1 = {
