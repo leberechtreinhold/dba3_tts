@@ -9271,7 +9271,7 @@ armies["Book IV"]["IV/44b Post-Mongol Russian Army 1381-1533AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Forest',
-        list = '1xCv (Gen), 6xCv, 2xLH, 1xPs, (1xSp + 1x4Cb) + 2xWWg.'
+        list = '1xCv (Gen), 6xCv, 2xLH, 1xPs, (1xSp + 1x4Cb) o 2xWWg.'
     },
 
     base1 = {
