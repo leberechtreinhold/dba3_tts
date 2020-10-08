@@ -3723,7 +3723,7 @@ armies["Book IV"]["IV/13e Free Canton Army 1106-1518AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Littoral',
-        list = '1x3Kn or 3Pk (Gen), 8x3Pk, 1x4Ax or Ps, 2xPs.'
+        list = '1x3Kn/3Pk (Gen), 8x3Pk, 1x4Ax or Ps, 2xPs.'
     },
 
     base1 = {
