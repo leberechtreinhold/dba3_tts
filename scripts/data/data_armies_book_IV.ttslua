@@ -18841,7 +18841,7 @@ armies["Book IV"]["IV/83c Wars of the Roses Rebel Army of Lambert Simnel 1487AD 
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1x4Bd (Gen), 1x4Bd, 2x4Lb, 2x4Pk, 1x4Bd, 3x3Ax, 1xPs, 1xPs.'
+        list = '1x4Bd (Gen), 1x4Bd, 2x4Lb, 2x4Pk, 1x4Bd, 3x3Ax, 2xPs.'
     },
 
     base1 = {
