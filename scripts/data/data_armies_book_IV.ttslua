@@ -7864,6 +7864,106 @@ armies["Book IV"]["IV/37c Javanese Army 1222-1511AD (Plain)"] = {
     }
 }
 
+armies["Book IV"]["IV/37d Indonesian or Malay Other 1222-1511AD (Plain)"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Littoral',
+        list = '3Wb (Gen), 7x3Wb, 2x3Bw or Ps, 1xPs, 1x3Wb or LH.'
+    },
+
+    base1 = {
+        name = '3Wb_Gen',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 1,
+        model_data = 'troop_general_plain',
+        ignore_terrain = true
+    },
+    base2 = {
+        name = '3Wb',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base3 = {
+        name = '3Wb',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base4 = {
+        name = '3Wb',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base5 = {
+        name = '3Wb',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base6 = {
+        name = '3Wb',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base7 = {
+        name = '3Wb',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base9 = {
+        name = '3Bw',
+        base = 'tile_plain_3Bw_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base10 = {
+        name = '3Bw',
+        base = 'tile_plain_3Bw_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base11 = {
+        name = 'Ps',
+        base = 'tile_plain_2Ps_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_plain_2Ps_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_plain_2Ps_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base14 = {
+        name = '3Wb',
+        base = 'tile_plain_3Wb_40x20',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base15 = {
+        name = 'LH',
+        base = 'tile_plain_2LH_40x30',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base16 = {
+        name = 'Camp',
+        base = 'tile_plain_Camp_40x40',
+        n_models = 0,
+        ignore_terrain = true
+    }
+}
+
 armies["Book IV"]["IV/38 Murcian or Granadine Army 1228-1492AD (Plain)"] = {
     data = {
         aggresiveness = 0,
@@ -19086,7 +19186,7 @@ armies["Book IV"]["IV/84a Araucanians 1461-1552AD (Plain)"] = {
     }
 }
 
-armies["Book IV"]["IV/84a Other Mapuche 1461-1552AD (Plain)"] = {
+armies["Book IV"]["IV/84b Other Mapuche 1461-1552AD (Plain)"] = {
     data = {
         aggresiveness = 0,
         terrain = 'Hilly',
