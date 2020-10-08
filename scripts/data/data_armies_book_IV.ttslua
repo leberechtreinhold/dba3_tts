@@ -425,7 +425,7 @@ armies["Book IV"]["IV/3 Anglo-Norman Army 1072-1181AD (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Kn or 4Bd or CWg(Gen), 3x3Kn or 4Bd, 4xSp, 1xPs, 2xPs or 3Bw or 4Pk, 1x3Kn or 3Bw or 3Ax or 3Lb.'
+        list = '1x3Kn or 4Bd or CWg(Gen), 3x3Kn or 4Bd, 4xSp, 1xPs, 2xPs or 3Bw or 4Pk, 1x3Kn or 3Mtd-Bw or 3Ax or 3Lb.'
     },
 
     base1 = {
@@ -558,8 +558,8 @@ armies["Book IV"]["IV/3 Anglo-Norman Army 1072-1181AD (Plain)"] = {
         ignore_terrain = true
     },
     base22 = {
-        name = '3Bw',
-        base = 'tile_plain_3Bw_40x20',
+        name = '3Mtd-Bw',
+        base = 'tile_plain_Mtd_40x30',
         n_models = 0,
         ignore_terrain = true
     },
