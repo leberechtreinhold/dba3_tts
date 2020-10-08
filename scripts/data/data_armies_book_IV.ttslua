@@ -9371,7 +9371,7 @@ armies["Book IV"]["IV/45 Mamluk Egyptian Army 1250-1517AD (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Dry',
-        list = '1xCv (Gen), 4xCv, 2xCv or 3Bw or Ps, 1xLH, 1xLH or 4Cb or 3Kn or Art, 1xLH or 3Wb or 3Ax, 1xLH or Ps, 1xPs or 7Hd or 7Hd.'
+        list = '1xCv (Gen), 4xCv, 2xCv or 3Bw or Ps, 1xLH, 1xLH or 4Cb or 3Kn or Art, 1xLH or 3Wb or 3Ax, 1xLH or Ps, 1xPs or 7Hd or 5Hd.'
     },
 
     base1 = {
