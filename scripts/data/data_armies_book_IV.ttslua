@@ -1489,7 +1489,7 @@ armies["Book IV"]["IV/7 Early Crusader Army 1096-1128AD (Plain)"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
-        list = '1x3Kn (Gen), 3x3Kn or 4Bd, 4xSp or 7Hd, 2x4Cb, 1x3Bw, 1x7Hd or 7Hd or LH.'
+        list = '1x3Kn (Gen), 3x3Kn or 4Bd, 4xSp or 7Hd, 2x4Cb, 1x3Bw, 1x5Hd or 7Hd or LH.'
     },
 
     base1 = {
