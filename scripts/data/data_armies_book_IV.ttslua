@@ -10404,7 +10404,7 @@ armies["Book IV"]["IV/51b Morean Byzantine Army 1347-1460AD (Plain)"] = {
 armies["Book IV"]["IV/52 Later Nomadic Mongol Army 1226-1508AD (Plain)"] = {
     data = {
         aggresiveness = 1,
-        terrain = 'Hilly',
+        terrain = 'Steppe',
         list = '1xCv (Gen), 4xCv or LH, 5xLH, 2xLH or 3Bw or 7Hd.'
     },
 
