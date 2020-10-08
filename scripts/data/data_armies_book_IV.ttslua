@@ -16697,8 +16697,8 @@ armies["Book IV"]["IV/77 Black Sheep 1378AD or White Sheep Turkoman Armies 1387-
 
 armies["Book IV"]["IV/78 Yi Dynasty Korean Army 1392-1598AD (Plain)"] = {
     data = {
-        aggresiveness = 2,
-        terrain = 'Steppe',
+        aggresiveness = 0,
+        terrain = 'Hilly',
         list = '1xCv (Gen), 2xCv, 1xCv or LH, 1xLH, 2x4Bw, 2x4Pk, 1x7Hd or Cv, 1xPs, 1xArt.'
     },
 
