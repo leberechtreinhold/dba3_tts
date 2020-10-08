@@ -18560,7 +18560,7 @@ armies["Book IV"]["IV/83b Wars of the Roses Rebel Army of Henry Tudor 1485AD (Pl
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xCP or 4Bd (Gen), 4x4Bd, 4x4Pk or 4Bd, 3x4Bd, 2x4Lb, 1xArt or Ps.'
+        list = '1xCP or 4Bd (Gen), 4x4Bd, 4x4Pk or 4Bd, 2x4Lb, 1xArt or Ps.'
     },
 
     base1 = {
