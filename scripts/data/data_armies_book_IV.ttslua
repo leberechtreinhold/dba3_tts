@@ -8117,7 +8117,7 @@ armies["Book IV"]["IV/39b Navarrese Army 1328-1378AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hilly',
-        list = '1x3Kn (Gen), 1x3Kn, 3x3Ax or 4Ax, 2xSp or 4Lb, 2xCv or Ps, 3xPs.'
+        list = '1x3Kn (Gen), 1x3Kn, 3x3/4Ax, 2xSp or 4Lb, 2x3Cb or Ps, 3xPs.'
     },
 
     base1 = {
@@ -8194,8 +8194,8 @@ armies["Book IV"]["IV/39b Navarrese Army 1328-1378AD (Plain)"] = {
         ignore_terrain = true
     },
     base13 = {
-        name = 'Cv',
-        base = 'tile_plain_3Cv_40x30',
+        name = '3Cb',
+        base = 'tile_plain_3Cb_40x20',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8206,8 +8206,8 @@ armies["Book IV"]["IV/39b Navarrese Army 1328-1378AD (Plain)"] = {
         ignore_terrain = true
     },
     base15 = {
-        name = 'Cv',
-        base = 'tile_plain_3Cv_40x30',
+        name = '3Cb',
+        base = 'tile_plain_3Cb_40x20',
         n_models = 0,
         ignore_terrain = true
     },
