@@ -15378,7 +15378,7 @@ armies["Book IV"]["IV/69 Albanian Army 1345-1430AD & 1443-1479AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hilly',
-        list = '1xCv or 3Kn (Gen), 4xLH, 4xPs, 1x3Cb or Ps, 1x3Ax, 1x4Bd or 7Hd or 3Kn.'
+        list = '1xCv or 3Kn (Gen), 4xLH, 4xPs, 1x3Cb or Ps, 1x3Ax, 1x4Bd or 5Hd or 3Kn.'
     },
 
     base1 = {
@@ -15389,8 +15389,8 @@ armies["Book IV"]["IV/69 Albanian Army 1345-1430AD & 1443-1479AD (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Kn_Gen',
-        base = 'tile_plain_3Kn_40x30',
+        name = 'LH_Gen',
+        base = 'tile_plain_2LH_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
