@@ -7012,7 +7012,7 @@ armies["Book IV"]["IV/33 Epirot Byzantine Army 1204-1340AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xCv (Gen), 2xCv, 1x3Kn, 2xLH, 1xLH, 2x3Bw or 4Bw or Ps, 1xSp or Ps, 2xPs.'
+        list = '1xCv (Gen), 2xCv, 1x3Kn, 3xLH, 2x3Bw or 4Bw or Ps, 1xSp or Ps, 2xPs.'
     },
 
     base1 = {
