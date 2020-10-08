@@ -713,7 +713,7 @@ armies["Book IV"]["IV/4a Feudal French Army 1072-1199AD (Plain)"] = {
     }
 }
 
-armies["Book IV"]["IV/4a Feudal French Army 1072-1199AD (Plain)"] = {
+armies["Book IV"]["IV/4b Feudal French Army 1200-1330AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
