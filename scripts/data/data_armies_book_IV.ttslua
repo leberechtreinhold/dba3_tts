@@ -977,7 +977,7 @@ armies["Book IV"]["IV/5b Sicilian Army 1194-1266AD (Plain)"] = {
     data = {
         aggresiveness = 3,
         terrain = 'Littoral',
-        list = '1x3Kn (Gen), 3x3Kn, 1x4Bw or LH or 4Kn, 5xPs, 1xSp, 1x7Hd.'
+        list = '1x3Kn (Gen), 3x3Kn, 1xMtd-4Bw or LH or 4Kn, 5xPs, 1xSp, 1x7Hd.'
     },
 
     base1 = {
@@ -1006,8 +1006,8 @@ armies["Book IV"]["IV/5b Sicilian Army 1194-1266AD (Plain)"] = {
         ignore_terrain = true
     },
     base5 = {
-        name = '4Bw',
-        base = 'tile_plain_4Bw_40x20',
+        name = 'Mtd-4Bw',
+        base = 'tile_plain_Mtd_40x30',
         n_models = 0,
         ignore_terrain = true
     },
