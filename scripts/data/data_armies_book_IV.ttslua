@@ -7993,7 +7993,7 @@ armies["Book IV"]["IV/39a Navarrese Army 1234-1327AD (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Hilly',
-        list = '1x3Kn (Gen), 6x3Ax or 4Ax, 2xCv, 2xPs, 1xPs.'
+        list = '1x3Kn (Gen), 6x3/4Ax, 2x3Cb, 3xPs.'
     },
 
     base1 = {
@@ -8076,14 +8076,14 @@ armies["Book IV"]["IV/39a Navarrese Army 1234-1327AD (Plain)"] = {
         ignore_terrain = true
     },
     base14 = {
-        name = 'Cv',
-        base = 'tile_plain_3Cv_40x30',
+        name = '3Cb',
+        base = 'tile_plain_3Cb_40x20',
         n_models = 0,
         ignore_terrain = true
     },
     base15 = {
-        name = 'Cv',
-        base = 'tile_plain_3Cv_40x30',
+        name = '3Cb',
+        base = 'tile_plain_3Cb_40x20',
         n_models = 0,
         ignore_terrain = true
     },
