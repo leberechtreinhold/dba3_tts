@@ -421,6 +421,7 @@ function on_load_table(player, value, id)
         else
             spawn_table_obj(tables['model'], tex, is_large)
         end
+        change_bases_to_terrain(type)
     else
         print_error('There\'s already a table spawned')
     end
