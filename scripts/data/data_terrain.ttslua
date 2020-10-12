@@ -4,6 +4,7 @@ g_terrain = {
             objects = { 
                 'terrain_palm_tree' 
             },
+            multiplier = 1.3,
             texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1022823759371071004/DC4F81C7F92B971C1D1F83F2B12C0DE1E896ABEE/'
             }
@@ -17,20 +18,31 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1022823759371071004/DC4F81C7F92B971C1D1F83F2B12C0DE1E896ABEE/'
             }
         },
-        oasis = {
-            objects = { 
-                'terrain_palm_tree' 
-            },
-            texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
-            }
-        },
         plough = {
             objects = {
                 'terrain_wheat'
             },
             texture = {
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        },
+        enclosure = {
+            objects = { 
+                'terrain_wheat'
+            },
+            outline_objects = {
+                'terrain_fence'
+            },
+            texture = { 
+                'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        },
+        oasis = {
+            objects = { 
+                'terrain_palm_tree' 
+            },
+            texture = { 
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
         marsh = {
@@ -45,8 +57,9 @@ g_terrain = {
     grass = {
         forest = {
             objects = { 
-                'terrain_tree' 
+                'terrain_nogal'
             },
+            multiplier = 1.5,
             texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
@@ -59,14 +72,6 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
         },
-        oasis = {
-            objects = { 
-                'terrain_palm_tree' 
-            },
-            texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
-            }
-        },
         plough = {
             objects = {
                 'terrain_wheat'
@@ -76,14 +81,22 @@ g_terrain = {
             }
         },
         enclosure = {
-            objects = {
+            objects = { 
                 'terrain_wheat'
             },
             outline_objects = {
                 'terrain_fence'
             },
-            texture = {
+            texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        },
+        oasis = {
+            objects = { 
+                'terrain_palm_tree' 
+            },
+            texture = { 
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
         marsh = {
@@ -100,6 +113,7 @@ g_terrain = {
             objects = { 
                 'terrain_fir' 
             },
+            multiplier = 2,
             texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
@@ -112,14 +126,6 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
         },
-        oasis = {
-            objects = { 
-                'terrain_palm_tree' 
-            },
-            texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
-            }
-        },    
         plough = {
             objects = {
                 'terrain_wheat'
@@ -129,14 +135,22 @@ g_terrain = {
             }
         },
         enclosure = {
-            objects = {
+            objects = { 
                 'terrain_wheat'
             },
             outline_objects = {
                 'terrain_fence'
             },
-            texture = {
+            texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        },
+        oasis = {
+            objects = { 
+                'terrain_palm_tree' 
+            },
+            texture = { 
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
         marsh = {
@@ -153,6 +167,7 @@ g_terrain = {
             objects = { 
                 'terrain_fir' 
             },
+            multiplier = 1.5,
             texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
@@ -162,15 +177,7 @@ g_terrain = {
                 'terrain_rock_grey'
             },
             texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
-            }
-        },
-        oasis = {
-            objects = { 
-                'terrain_palm_tree' 
-            },
-            texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095379/0D3285C74959280FC90BBF4B968884A74740ED32/'
             }
         },
         plough = {
@@ -182,14 +189,22 @@ g_terrain = {
             }
         },
         enclosure = {
-            objects = {
+            objects = { 
                 'terrain_wheat'
             },
             outline_objects = {
                 'terrain_fence'
             },
-            texture = {
+            texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        },
+        oasis = {
+            objects = { 
+                'terrain_palm_tree' 
+            },
+            texture = { 
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
         marsh = {
@@ -197,15 +212,17 @@ g_terrain = {
                 'terrain_palm_shrubs' 
             },
             texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1056604919810095379/0D3285C74959280FC90BBF4B968884A74740ED32/'
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         }
     },
     steppe = {
         forest = {
             objects = { 
-                'terrain_fir' 
+                'terrain_nogal',
+                'terrain_shrub_nogal' 
             },
+            multiplier = 1.5,
             texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
@@ -218,14 +235,6 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
         },
-        oasis = {
-            objects = { 
-                'terrain_palm_tree' 
-            },
-            texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
-            }
-        },
         plough = {
             objects = {
                 'terrain_wheat'
@@ -235,14 +244,22 @@ g_terrain = {
             }
         },
         enclosure = {
-            objects = {
+            objects = { 
                 'terrain_wheat'
             },
             outline_objects = {
                 'terrain_fence'
             },
-            texture = {
+            texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        },
+        oasis = {
+            objects = { 
+                'terrain_palm_tree' 
+            },
+            texture = { 
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
         marsh = {
@@ -257,8 +274,10 @@ g_terrain = {
     tropical = {
         forest = {
             objects = { 
-                'terrain_tree' 
+                'terrain_tree',
+                'terrain_palm_shrubs' 
             },
+            multiplier = 2,
             texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
@@ -271,31 +290,31 @@ g_terrain = {
                 'http://cloud-3.steamusercontent.com/ugc/1267149286201969420/6FF3C9E1F3FF49AE28673503D1C73FD7E881F2C0/'
             }
         },
-        oasis = {
-            objects = { 
-                'terrain_palm_tree' 
-            },
-            texture = { 
-                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
-            }
-        },
         plough = {
             objects = {
-                'terrain_rice'
+                'terrain_wheat'
             },
             texture = {
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
             }
         },
         enclosure = {
-            objects = {
-                'terrain_rice'
+            objects = { 
+                'terrain_wheat'
             },
             outline_objects = {
                 'terrain_fence'
             },
-            texture = {
+            texture = { 
                 'http://cloud-3.steamusercontent.com/ugc/1294171285965572186/1650492F13F9754194BC57D2CBA0C5AB718CFE56/'
+            }
+        },
+        oasis = {
+            objects = { 
+                'terrain_palm_tree' 
+            },
+            texture = { 
+                'http://cloud-3.steamusercontent.com/ugc/1056604919810095519/542A46C870B041B7DC4B885E338E2D93D0699A2C/'
             }
         },
         marsh = {
@@ -389,7 +408,6 @@ terrain_fir = {
         'http://cloud-3.steamusercontent.com/ugc/1056603883717140704/6D5A3A5B786D6B46A32BDDB53071CAB2498243CA/'
     },
     texture = 'http://cloud-3.steamusercontent.com/ugc/1056603883717140905/53E5838C3E98E32E8ADF3FFE3C4FFCC248A264CD/'
-
 }
 
 terrain_wheat = {
@@ -420,4 +438,31 @@ terrain_rice = {
     description = 'Rice field',
     author = 'Rice field by LeberechtReinhold, Texture by Eric Delemer, edited by LeberechtReinhold.',
     customasset = 'http://cloud-3.steamusercontent.com/ugc/1500215314040216348/7D93BA2DA1A9DA3605ECAD330EF0120405567D30/'
+
+
+
+}
+
+terrain_nogal = {
+    height_correction = 0,
+    scale = 0.3,
+    rotation = 0,
+    description = 'Nogal Tree',
+    author = 'Nogal Tree by rezashams313, edited by LeberechtReinhold.',
+    mesh = {
+        'http://cloud-3.steamusercontent.com/ugc/1666853884552194667/0170BE1489904A8B52576566E92A6A3E8B0D29BE/'
+    },
+    texture = 'http://cloud-3.steamusercontent.com/ugc/1666853884552195011/EB014AC2051ABD9E900CBF41FBB7B56750486560/'
+}
+
+terrain_shrub_nogal = {
+    height_correction = 0,
+    scale = 0.3,
+    rotation = 0,
+    description = 'Nogal Shrub',
+    author = 'Nogal Tree by rezashams313, edited by LeberechtReinhold.',
+    mesh = {
+        'http://cloud-3.steamusercontent.com/ugc/1666853884552194857/2EAC3F8728CE5FFCE454C57F9E6ED64305E211B6/'
+    },
+    texture = 'http://cloud-3.steamusercontent.com/ugc/1666853884552195011/EB014AC2051ABD9E900CBF41FBB7B56750486560/'
 }
