@@ -80,6 +80,19 @@ function filter_bases(list)
     return filtered
 end
 
+-- 180º rotation a base
+function turn_around_base(obj)
+    local initial_transform = calculate_transform(obj)
+    local rotation = obj.getRotation()
+    rotation['y'] = rotation['y'] + 180
+    obj.setRotation(rotation)
+    
+    local new_transform = calculate_transform(obj)
+    local move = {}
+    add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
+    push_to_history_stack(move)
+end
+
 -- Moves one or more DBA bases g_bw_movement forward
 -- ASSUMES all bases are in a flat board!!!!
 -- Returns how much it moved (it cna move less in a collision)
