@@ -185,12 +185,23 @@ function spawn_base(base, pos, y_rotation, is_red_player, command_color)
         }
 
         local this_model_name = model_name
-        if this_model_name == nil then
+        local soldier_obj = nil
+        if this_model_name ~= nil then
+            -- The object has non-fixed models, so we use any of the
+            -- randomly selected meshes
+            soldier_obj = spawn_model(this_model_name, relative_pos, random_rotation, minimal_collider, is_red_player, nil, meshes[i])
+        else
+            -- Now we have fixed models, so we use the corresponding one
+            -- Except that fixed models may use assets instead of meshes!
             this_model_name = base['fixed_models'][i]
+            if _G[this_model_name]['customasset'] ~= nil then
+                soldier_obj = spawn_asset(this_model_name, relative_pos, random_rotation)
+            else
             meshes[i] = random_element(_G[this_model_name]['mesh'])
+                soldier_obj = spawn_model(this_model_name, relative_pos, random_rotation, minimal_collider, is_red_player, nil, meshes[i])
+            end
         end
 
-        local soldier_obj = spawn_model(this_model_name, relative_pos, random_rotation, minimal_collider, is_red_player, nil, meshes[i])
         base_obj.addAttachment(soldier_obj)
     end
 
