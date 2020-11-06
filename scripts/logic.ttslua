@@ -1189,7 +1189,7 @@ function onObjectDrop(player_color,  picked_up_object)    local obj_name = picke
         g_picked_base_initial_transform['corners'])
 
     if distance > 0 then
-        print_info(string.format('Movement for %q is %.1f paces', obj_name, distance * 100))
+        print_info(string.format('Movement for %q is %.1f BW', obj_name, distance))
         local move = {}
         add_transform_to_move(move, obj_name, g_picked_base_initial_transform, new_transform)
         push_to_history_stack(move)
