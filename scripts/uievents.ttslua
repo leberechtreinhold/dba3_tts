@@ -12,7 +12,7 @@ function slider_BWs_changed(player, value, id)
     elseif math.abs(g_bw_movement - 3) < g_ui_snap_slider_movement then
         g_bw_movement = 3
     end
-    
+
     -- It's undocumented, but changing the value of the button does not update
     -- the button_move_forward
     -- Instead we have to change the undocumented text attribute, but we still
@@ -32,7 +32,7 @@ end
 function move_bases(player, value, id)
     local objs = filter_bases(player.getSelectedObjects())
     if tlen(objs) < 1 then
-        print_error(player.steam_name ..' is trying to move, but (s)he has no object selected, ignoring')
+        print_warning(player.steam_name ..' is trying to move, but (s)he has no object selected, ignoring')
     return
     end
 
@@ -43,7 +43,7 @@ function move_bases(player, value, id)
         local new_transform = calculate_transform(obj)
         add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
 
-        print_info(player.steam_name .. ' is moving ' .. obj.getName() .. ' ' 
+        print_info(player.steam_name .. ' is moving ' .. obj.getName() .. ' '
             .. from_in_to_bw(moved) .. ' BW forward')
     end
     push_to_history_stack(move)
@@ -101,7 +101,7 @@ end
 
 function on_load_army(player, value, id)
     spawn_army(g_army_selected, armies[g_book_selected][g_army_selected], g_color_spawn_army_selected == 'Red', g_command_spawn_army_selected)
-    
+
     UI.setAttribute('panel_dba_troop_selection', 'active', false)
     UI.setAttribute('panel_dba_troop_selection_bg', 'active', false)
     UI.setAttribute('panel_dba_troop_selection', 'visibility', '')
@@ -122,7 +122,7 @@ function get_initial_army()
     else
         g_book_selected = first_key_table(armies)
         book = armies[g_book_selected]
-    
+
         g_army_selected = first_key_table(book)
         army = armies[g_book_selected][g_army_selected]
     end
@@ -132,7 +132,7 @@ end
 g_filter_armies_models = false
 function on_filter_models(player, value, id)
     g_filter_armies_models = value == "True"
-    
+
     local book, army = get_initial_army()
 
     print_debug('Selected army is ' .. g_army_selected)
@@ -193,7 +193,7 @@ function on_book_selected(player, value, id)
             i = i + 1
         end
 
-        if g_filter_armies_models 
+        if g_filter_armies_models
             and book_has_an_army_with_models(book_name) then
 
             if book_name == g_book_selected then
@@ -241,12 +241,12 @@ function on_army_selected(player, value, id)
     update_authors_text(army)
 
     if str_has_substr(g_army_selected, "(Plain)") then
-        UI.setValue('text_ag_terr', 
+        UI.setValue('text_ag_terr',
             'Aggresiveness: ' .. army['data']['aggresiveness']
             .. ', Terrain: ' .. army['data']['terrain']
             .. ', Flat bases')
     else
-        UI.setValue('text_ag_terr', 
+        UI.setValue('text_ag_terr',
             'Aggresiveness: ' .. army['data']['aggresiveness']
             .. ', Terrain: ' .. army['data']['terrain']
             .. ', Bases with models')
@@ -423,7 +423,7 @@ function on_load_table(player, value, id)
         end
         change_bases_to_terrain(type)
     else
-        print_error('There\'s already a table spawned')
+        print_warning('There\'s already a table spawned')
     end
 
     UI.setAttribute('panel_dba_table_selection_bg', 'active', false)
@@ -447,7 +447,7 @@ function on_push_back(player, value, id)
     local objs = filter_bases(player.getSelectedObjects())
     local len = tlen(objs)
     if len < 1 then
-        print_error(player.steam_name .. ' is pushing back troops but doesn\'t have any base selected')
+        print_warning(player.steam_name .. ' is pushing back troops but doesn\'t have any base selected')
         return
     end
 
@@ -467,7 +467,7 @@ function on_wheel(player, value, id)
     local objs = filter_bases(player.getSelectedObjects())
     local len = tlen(objs)
     if len < 1 then
-        print_error(player.steam_name .. ' is wheeling troops but doesn\'t have any base selected')
+        print_warning(player.steam_name .. ' is wheeling troops but doesn\'t have any base selected')
         return
     end
 
@@ -475,7 +475,7 @@ function on_wheel(player, value, id)
     on_change_orientation_wheel_ui('left')
     local distance = preview_wheel(objs)
     if distance < 0 then
-        print_error(player.steam_name .. ' is wheeling troops but doesn\'t have a valid group selected')
+        print_warning(player.steam_name .. ' is wheeling troops but doesn\'t have a valid group selected')
         return
     end
     g_player_wheeling = player.color
@@ -487,8 +487,8 @@ function on_wheel(player, value, id)
     UI.setAttribute('button_push_back', 'interactable', false)
 end
 
-function preview_wheel(objs_if_first_time)    
-    local distance = wheel_group(objs_if_first_time, 
+function preview_wheel(objs_if_first_time)
+    local distance = wheel_group(objs_if_first_time,
         math.rad(g_degrees_wheeling), g_current_orientation)
 
     if distance < 0 then
@@ -514,7 +514,7 @@ function on_make_wheeling(player, value, id)
     UI.setAttribute('button_move_forward', 'interactable', true)
     UI.setAttribute('button_wheel', 'interactable', true)
     UI.setAttribute('button_push_back', 'interactable', true)
-    
+
     Global.setVectorLines({})
 end
 
@@ -607,8 +607,11 @@ end
 
 function on_roll_pips_red(player, value, id)
     local red = roll_dice('red')
+    if red == nil then return end
     local orange = roll_dice('orange')
+    if orange == nil then return end
     local yellow = roll_dice('yellow')
+    if yellow == nil then return end
 
     print_important('Red: ' .. red .. ' (Or: ' .. orange .. ' Yw: ' .. yellow .. ')')
 end
