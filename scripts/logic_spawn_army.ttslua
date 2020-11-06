@@ -158,6 +158,8 @@ function spawn_base(base, pos, y_rotation, is_red_player, command_color)
     local model_name = base['model_data']
     local meshes = {}
 
+    -- If the element has multiple nonfixed element, select randomly without
+    -- repeating
     if model_name ~= nil then
         meshes = calculate_random_meshes(n, _G[model_name]['mesh'])
     end
@@ -545,6 +547,10 @@ end
 
 function spawn_asset(asset_name, pos, added_y_axis_rotation)
     print_debug('Spawning asset ' .. asset_name)
+    if _G[asset_name]['rotation'] then
+        added_y_axis_rotation = added_y_axis_rotation + _G[asset_name]['rotation']
+    end
+
     local obj = spawnObject({
         type = 'Custom_Assetbundle',
         position = pos,
