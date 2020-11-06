@@ -24,7 +24,7 @@ function spawn_dice(color, pos)
         snap_to_grid = false,
         callback_function = function(obj)
             g_current_dice[color] = obj.getGUID()
-            
+
             print_debug('Spawned ' .. color .. ' with guid ' .. g_current_dice[color])
         end
     })
@@ -52,11 +52,11 @@ function spawn_dice(color, pos)
         function onRandomize()
             startLuaCoroutine(self, 'check_if_at_rest')
         end
-        
+
         function onObjectDrop()
             startLuaCoroutine(self, 'check_if_at_rest')
         end
-        
+
         function check_if_at_rest()
             while not self.resting do
                 coroutine.yield(0)
@@ -75,7 +75,11 @@ end
 
 function roll_dice(color)
     local obj = getObjectFromGUID(g_current_dice[color])
-    
+
+    if obj == nil then
+        print_error('No dice found, please use !dba_regen_dice')
+        return
+    end
     local val = math.random(1,6)
     UI.setValue('text_pips_player_' .. color, val)
     obj.setValue(val)
@@ -84,6 +88,7 @@ end
 
 function delete_all_dice()
     local all_objs = getAllObjects()
+    g_current_dice = {}
     for _,obj in ipairs(all_objs) do
         local name = obj.getName()
         if str_starts_with(name, 'PIP dice') then
@@ -97,7 +102,7 @@ function spawn_all_dice()
     spawn_dice('red', {x=-7, y=2, z=-27})
     spawn_dice('yellow', {x=-5, y=2, z=-27})
     spawn_dice('orange', {x=-3, y=2, z=-27})
-    
+
     spawn_dice('blue', {x=-3, y=2, z=27})
     spawn_dice('green', {x=-5, y=2, z=27})
     spawn_dice('purple', {x=-7, y=2, z=27})
