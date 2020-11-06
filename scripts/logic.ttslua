@@ -91,6 +91,10 @@ function turn_around_base(obj)
     local move = {}
     add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
     push_to_history_stack(move)
+    
+    local distance = max_distance_between_bases(initial_transform['corners'], new_transform['corners'])
+    print_info(obj.getName() .. ' has turned around 180º, which costs ' 
+        .. string.format('%.2f', from_in_to_bw(distance)) .. ' BW')
 end
 
 -- Moves one or more DBA bases g_bw_movement forward
@@ -132,6 +136,10 @@ function push_back(obj)
     local move = {}
     add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
     push_to_history_stack(move)
+
+    local distance = max_distance_between_bases(initial_transform['corners'], new_transform['corners'])
+    print_info(obj.getName() .. ' has moved backwards its own depth, ' 
+        .. string.format('%.2f', from_in_to_bw(distance)) .. ' BW')
 end
 
 -- Like push back but in the other direction
@@ -149,6 +157,10 @@ function push_forward(obj)
     local move = {}
     add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
     push_to_history_stack(move)
+    
+    local distance = max_distance_between_bases(initial_transform['corners'], new_transform['corners'])
+    print_info(obj.getName() .. ' has moved forward its own depth, ' 
+        .. string.format('%.2f', from_in_to_bw(distance)) .. ' BW')
 end
 
 -- Given a bunch of objects returns them in a column, which is 
