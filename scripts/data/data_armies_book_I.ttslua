@@ -5873,6 +5873,109 @@ armies["Book I"]["I/22a New-Kingdom Egyptian Army 1543-1200BC (Plain)"] = {
     }
 }
 
+armies["Book I"]["I/22a New-Kingdom Egyptian Army 1543-1200BC"] = {
+    data = {
+        aggresiveness = 2,
+        terrain = 'Littoral',
+        list = '1xLCh (Gen), 3xLCh, 3x3Bd, 3x4Bw, 1x4Bw or 4Bd, 1xPs.',
+        manufacturer = 'Magister Militum and Essex miniatures'
+    },
+
+    base1 = {
+        name = 'LCh_Gen',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch_gen'
+        }
+    },
+    base2 = {
+        name = 'LCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch'
+        }
+    },
+    base3 = {
+        name = 'LCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch'
+        }
+    },
+    base4 = {
+        name = 'LCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch'
+        }
+    },
+    base5 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_egyptian_bd1'
+    },
+    base6 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_egyptian_bd1'
+    },
+    base7 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_egyptian_bd1'
+    },
+    base8 = {
+        name = '4Bw',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_egyptian_bow'
+    },
+    base9 = {
+        name = '4Bw',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_egyptian_bow'
+    },
+    base10 = {
+        name = '4Bw',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_egyptian_bow'
+    },
+    base11 = {
+        name = '4Bw',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_egyptian_bow'
+    },
+    base12 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_egyptian_bd2'
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_egyptian_horde',
+        loose = true
+    },
+    base14 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_egyptian_sphinx'
+    }
+}
+
 armies["Book I"]["I/22b New Kingdom Egyptian Army 1199-1069BC (Plain)"] = {
     data = {
         aggresiveness = 2,
@@ -5964,6 +6067,110 @@ armies["Book I"]["I/22b New Kingdom Egyptian Army 1199-1069BC (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book I"]["I/22b New Kingdom Egyptian Army 1199-1069BC"] = {
+    data = {
+        aggresiveness = 2,
+        terrain = 'Littoral',
+        list = '1xLCh (Gen), 3xLCh, 3x4Bd, 2x4Bw, 1x3Bd or 4Bd, 1x3Wb, 1xPs.',
+        manufacturer = 'Magister Militum and Essex miniatures'
+    },
+
+    base1 = {
+        name = 'LCh_Gen',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch_gen'
+        }
+    },
+    base2 = {
+        name = 'LCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch'
+        }
+    },
+    base3 = {
+        name = 'LCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch'
+        }
+    },
+    base4 = {
+        name = 'LCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_egyptian_lch'
+        }
+    },
+    base5 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_egyptian_bd1'
+    },
+    base6 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_egyptian_bd1'
+    },
+    base7 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_egyptian_bd1'
+    },
+    base8 = {
+        name = '4Bw',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_egyptian_bow'
+    },
+    base9 = {
+        name = '4Bw',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_egyptian_bow'
+    },
+    base10 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_egyptian_bd2'
+    },
+    base11 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_egyptian_bd3'
+    },
+    base12 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_egyptian_lybian_wb',
+        loose = true
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_egyptian_horde',
+        loose = true
+    },
+    base14 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_egyptian_sphinx'
     }
 }
 

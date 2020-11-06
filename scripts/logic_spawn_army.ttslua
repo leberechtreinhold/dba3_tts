@@ -199,7 +199,7 @@ function spawn_base(base, pos, y_rotation, is_red_player, command_color)
             if _G[this_model_name]['customasset'] ~= nil then
                 soldier_obj = spawn_asset(this_model_name, relative_pos, random_rotation)
             else
-            meshes[i] = random_element(_G[this_model_name]['mesh'])
+                meshes[i] = random_element(_G[this_model_name]['mesh'])
                 soldier_obj = spawn_model(this_model_name, relative_pos, random_rotation, minimal_collider, is_red_player, nil, meshes[i])
             end
         end

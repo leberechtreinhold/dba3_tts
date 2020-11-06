@@ -438,9 +438,6 @@ terrain_rice = {
     description = 'Rice field',
     author = 'Rice field by LeberechtReinhold, Texture by Eric Delemer, edited by LeberechtReinhold.',
     customasset = 'http://cloud-3.steamusercontent.com/ugc/1500215314040216348/7D93BA2DA1A9DA3605ECAD330EF0120405567D30/'
-
-
-
 }
 
 terrain_nogal = {
