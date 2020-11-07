@@ -2888,7 +2888,7 @@ troop_egyptian_lch = {
     rotation = 180,
     description = 'Egyptian Light Chariot',
     author = 'Egyptian Light Chariot by Eric Delemer.',
-    customasset = 'http://cloud-3.steamusercontent.com/ugc/1697255428452040586/C91FC6B11F214066B4F2E513F21F054C7C973015/'
+    customasset = 'http://cloud-3.steamusercontent.com/ugc/1697255614217892175/AF61FF5D8048CC931E5178CB5FC432AAC5BD6FB5/'
 }
 
 troop_egyptian_lch_gen = {
@@ -2897,7 +2897,7 @@ troop_egyptian_lch_gen = {
     rotation = 180,
     description = 'Egyptian Light Chariot General',
     author = 'Egyptian Light Chariot General by Eric Delemer.',
-    customasset = 'http://cloud-3.steamusercontent.com/ugc/1697255428452040744/E06286E7FD967F6EAE6BCE76D49401E705060C6E/'
+    customasset = 'http://cloud-3.steamusercontent.com/ugc/1697255614217892038/20B778D554F7E87A76BA67F2F9FEE0E184A21AA5/'
 }
 
 troop_egyptian_sphinx = {
