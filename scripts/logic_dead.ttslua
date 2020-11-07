@@ -45,12 +45,34 @@ function update_zone_value(zone)
     end
 
     local dead = 0
+    local has_double_element = false
     for _,obj in ipairs(zone.getObjects()) do
-        log(obj)
-        log('Name is <' .. obj.getName() .. '>')
-        if str_has_substr(obj.getName(), 'base') then
-            dead = dead + 1
+        local obj_name = obj.getName()
+        print_debug('Name is <' .. obj_name .. '>')
+        if str_has_substr(obj_name, 'base') then
+            if not (str_has_substr(obj_name, 'Hd')
+                    or str_has_substr(obj_name, 'SCh')) then
+                dead = dead + 1
+            end
+
+            if str_has_substr(obj_name, '6Kn')
+               or str_has_substr(obj_name, '6Cv')
+               or str_has_substr(obj_name, '8Sp')
+               or str_has_substr(obj_name, '6Bd')
+               or str_has_substr(obj_name, '8Bw') then
+                has_double_element = true
+            end
+            
+            if str_has_substr(obj_name, 'Gen') then
+                -- Generals count as one extra element lost
+                dead = dead + 1
+            end
         end
+    end
+
+    -- The first double element counts as one additional death
+    if has_double_element then
+        dead = dead + 1
     end
 
     if is_red then
