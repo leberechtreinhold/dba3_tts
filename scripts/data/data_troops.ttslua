@@ -2857,11 +2857,26 @@ troop_egyptian_horde = {
     description = 'Egyptian Horde',
     author = 'Egyptian Horde by Eric Delemer.',
     mesh = {
+          'http://cloud-3.steamusercontent.com/ugc/1697255428451813029/6EBE6E86134140003AA2DDE0118BFCF86F2392E9/',
+          'http://cloud-3.steamusercontent.com/ugc/1697255428451813272/776AB6CF12345813BED73A3A4165C83C81D40A9B/',
+          'http://cloud-3.steamusercontent.com/ugc/1697255428451813410/064D0EFEC4A156B87C625B764D590D866364B788/'
+          
+          
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1697255428451812619/9C9AF1E79F52E5F30C00B929CC202E9E933E6565/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1697255428451812619/9C9AF1E79F52E5F30C00B929CC202E9E933E6565/'
+}
+
+troop_egyptian_horde_melee = {
+    height_correction = 0,
+    scale = 0.9,
+    rotation = 180,
+    description = 'Egyptian Horde',
+    author = 'Egyptian Horde by Eric Delemer.',
+    mesh = {
           'http://cloud-3.steamusercontent.com/ugc/1697255428451812744/5C61A8761625A8E8AE4A9328DCDF18256E9BCADE/',
           'http://cloud-3.steamusercontent.com/ugc/1697255428451812863/5E74F841476460C233E443B795E244B9882761D4/',
           'http://cloud-3.steamusercontent.com/ugc/1697255428451813150/2AC1BE1BB953BD95FE1B2A8179D8D61E6CD72278/',
-          'http://cloud-3.steamusercontent.com/ugc/1697255428451813272/776AB6CF12345813BED73A3A4165C83C81D40A9B/',
-          'http://cloud-3.steamusercontent.com/ugc/1697255428451813410/064D0EFEC4A156B87C625B764D590D866364B788/'
     },
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1697255428451812619/9C9AF1E79F52E5F30C00B929CC202E9E933E6565/',
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1697255428451812619/9C9AF1E79F52E5F30C00B929CC202E9E933E6565/'
