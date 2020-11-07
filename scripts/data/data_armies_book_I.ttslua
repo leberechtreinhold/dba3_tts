@@ -6153,7 +6153,7 @@ armies["Book I"]["I/22b New Kingdom Egyptian Army 1199-1069BC"] = {
         model_data = 'troop_egyptian_bd3'
     },
     base12 = {
-        name = '3Bd',
+        name = '3Wb',
         base = 'tile_grass_40x20',
         n_models = 3,
         model_data = 'troop_egyptian_lybian_wb',
