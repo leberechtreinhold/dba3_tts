@@ -5053,7 +5053,8 @@ armies["Book I"]["I/17a Early Hyksos Army 1645-1591BC"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Littoral',
-        list = '1xLCh (Gen), 4x3Bd, 1x4Ax, 3x3Ax or Ps, 2xPs, 1x7Hd or Ps.'
+        list = '1xLCh (Gen), 4x3Bd, 1x4Ax, 3x3Ax or Ps, 2xPs, 1x7Hd or Ps.',
+        manufacturer = 'Magister Militum miniatures'
     },
 
     base1 = {
@@ -5270,7 +5271,8 @@ armies["Book I"]["I/17b Later Hyksos Army 1590-1537BC"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Littoral',
-        list = '1xLCh (Gen), 2xLCh, 3x3Bd, 3x3Ax, 2xPs, 1x2Ps or 7Hd.'
+        list = '1xLCh (Gen), 2xLCh, 3x3Bd, 3x3Ax, 2xPs, 1x2Ps or 7Hd.',
+        manufacturer = 'Magister Militum miniatures'
     },
 
     base1 = {
