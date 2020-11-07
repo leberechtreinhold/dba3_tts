@@ -2860,8 +2860,6 @@ troop_egyptian_horde = {
           'http://cloud-3.steamusercontent.com/ugc/1697255428451813029/6EBE6E86134140003AA2DDE0118BFCF86F2392E9/',
           'http://cloud-3.steamusercontent.com/ugc/1697255428451813272/776AB6CF12345813BED73A3A4165C83C81D40A9B/',
           'http://cloud-3.steamusercontent.com/ugc/1697255428451813410/064D0EFEC4A156B87C625B764D590D866364B788/'
-          
-          
     },
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1697255428451812619/9C9AF1E79F52E5F30C00B929CC202E9E933E6565/',
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1697255428451812619/9C9AF1E79F52E5F30C00B929CC202E9E933E6565/'
