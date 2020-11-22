@@ -5062,32 +5062,32 @@ armies["Book I"]["I/17a Early Hyksos Army 1645-1591BC"] = {
         base = 'tile_grass_40x40',
         n_models = 1,
         fixed_models = {
-            [1] = 'troop_egyptian_lch_gen'
+            [1] = 'troop_hyksos_lch_gen'
         }
     },
     base2 = {
         name = '3Bd',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_egyptian_bd1'
+        model_data = 'troop_hyksos_bd1'
     },
     base3 = {
         name = '3Bd',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_egyptian_bd1'
+        model_data = 'troop_hyksos_bd1'
     },
     base4 = {
         name = '3Bd',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_egyptian_bd1'
+        model_data = 'troop_hyksos_bd1'
     },
     base5 = {
         name = '3Bd',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_egyptian_bd1'
+        model_data = 'troop_hyksos_bd1'
     },
     base6 = {
         name = '4Ax',
@@ -5280,7 +5280,7 @@ armies["Book I"]["I/17b Later Hyksos Army 1590-1537BC"] = {
         base = 'tile_grass_40x40',
         n_models = 1,
         fixed_models = {
-            [1] = 'troop_egyptian_lch_gen'
+            [1] = 'troop_hyksos_lch_gen'
         }
     },
     base2 = {
@@ -5288,7 +5288,7 @@ armies["Book I"]["I/17b Later Hyksos Army 1590-1537BC"] = {
         base = 'tile_grass_40x40',
         n_models = 1,
         fixed_models = {
-            [1] = 'troop_egyptian_lch'
+            [1] = 'troop_hyksos_lch'
         }
     },
     base3 = {
@@ -5296,26 +5296,26 @@ armies["Book I"]["I/17b Later Hyksos Army 1590-1537BC"] = {
         base = 'tile_grass_40x40',
         n_models = 1,
         fixed_models = {
-            [1] = 'troop_egyptian_lch'
+            [1] = 'troop_hyksos_lch'
         }
     },
     base4 = {
         name = '3Bd',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_egyptian_bd1'
+        model_data = 'troop_hyksos_bd1'
     },
     base5 = {
         name = '3Bd',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_egyptian_bd1'
+        model_data = 'troop_hyksos_bd1'
     },
     base6 = {
         name = '3Bd',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'troop_egyptian_bd1'
+        model_data = 'troop_hyksos_bd1'
     },
     base7 = {
         name = '3Ax',
