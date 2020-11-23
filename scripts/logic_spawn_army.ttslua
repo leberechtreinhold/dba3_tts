@@ -455,6 +455,16 @@ function change_bases_to_terrain(terrain_type)
             base.reload()
         end
     end
+    Wait.frames(function()
+        local all_objs = getAllObjects()
+        local bases = filter_bases(all_objs)
+        for _,base in ipairs(bases) do
+            local name = base.getName()
+            if g_bases[name] ~= nil then
+                add_context_menu_base(base)
+            end
+        end
+    end, 1)
 end
 
 function rotate_table()
