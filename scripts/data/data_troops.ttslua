@@ -3077,6 +3077,19 @@ troop_norman_knight_flag = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735686886/080E6B739096201C7AF5312C69A1D19959E7CFF0/',
 }
 
+troop_frank_knight_flag = {
+    height_correction = 0,
+    scale = 2,
+    rotation = 0,
+    description = 'Frank Knight with Flag',
+    author = 'Frank Knight with Flag by Helveticus, modified by LeberechtReinhold',
+    mesh = {
+          'http://cloud-3.steamusercontent.com/ugc/1667983596735688196/B0FCB3C74E40B473E3AE94D706623EB21132E8F4/'
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735684389/9943F56AA6F72C6F139400C0CBF0638DF10A899A/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735684389/9943F56AA6F72C6F139400C0CBF0638DF10A899A/',
+}
+
 troop_norman_knight_lance = {
     height_correction = 0,
     scale = 2,
