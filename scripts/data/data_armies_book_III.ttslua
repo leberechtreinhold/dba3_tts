@@ -11033,6 +11033,178 @@ armies["Book III"]["III/52 West Frankish or Norman Army 888-1072AD (Plain)"] = {
     }
 }
 
+armies["Book III"]["III/52 West Frankish or Norman Army 888-1072AD"] = {
+    data = {
+        aggresiveness = 0,
+        terrain = 'Littoral',
+        list = '1x3Kn (Gen), 3x3Kn, 3x3Kn or 4Bd, 2x3Kn or Cv, 2x3Bw or Sp or 3Ax, 1x3Bd or Ps or 3Cb or 7Hd or 2LH.'
+    },
+
+    base1 = {
+        name = '3Kn_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_norman_knight_lance_pennat',
+            [2] = 'troop_norman_knight_sword',
+            [3] = 'troop_norman_knight_flag'
+        }
+    },
+    base2 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance_pennat'
+    },
+    base3 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance_pennat'
+    },
+    base4 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance_pennat'
+    },
+    base5 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance_pennat'
+    },
+    base6 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_norman_armor_foot_sword'
+    },
+    base7 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance_pennat'
+    },
+    base8 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_norman_armor_foot_sword'
+    },
+    base9 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance_pennat'
+    },
+    base10 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_norman_armor_foot_sword'
+    },
+    base11 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance'
+    },
+    base12 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_sword'
+    },
+    base13 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_lance'
+    },
+    base14 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_norman_knight_sword'
+    },
+    base15 = {
+        name = '3Bw',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_norman_archer'
+    },
+    base16 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_norman_spear'
+    },
+    base17 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_norman_levy'
+    },
+    base18 = {
+        name = '3Bw',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_norman_archer'
+    },
+    base19 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_norman_spear'
+    },
+    base20 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_norman_levy'
+    },
+    base21 = {
+        name = '3Bw',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_norman_archer'
+    },
+    base22 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_norman_archer',
+        loose = true
+    },
+    base23 = {
+        name = '3Cb',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_norman_crossbow'
+    },
+    base24 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        model_data = 'troop_norman_levy',
+        loose = true
+    },
+    base25 = {
+        name = '2LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_norman_lightcav',
+        loose = true
+    },
+    base26 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_campfire'
+    }
+}
+
 armies["Book III"]["III/53 East Frankish Army 888-1106AD (Plain)"] = {
     data = {
         aggresiveness = 3,
