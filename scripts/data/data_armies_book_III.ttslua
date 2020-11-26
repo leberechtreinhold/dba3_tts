@@ -11035,9 +11035,9 @@ armies["Book III"]["III/52 West Frankish or Norman Army 888-1072AD (Plain)"] = {
 
 armies["Book III"]["III/52 West Frankish or Norman Army 888-1072AD"] = {
     data = {
-        aggresiveness = 0,
-        terrain = 'Littoral',
-        list = '1x3Kn (Gen), 3x3Kn, 3x3Kn or 4Bd, 2x3Kn or Cv, 2x3Bw or Sp or 3Ax, 1x3Bd or Ps or 3Cb or 7Hd or 2LH.'
+        aggresiveness = '2 if Frankish, 3 if Norman',
+        terrain = 'Arable',
+        list = '1x3Kn (Gen), 3x3Kn, 3x3Kn or 4Bd, 2x3Kn or Cv, 2x3Bw or Sp or 3Ax, 1x3Bw or Ps or 3Cb or 7Hd or 2LH.'
     },
 
     base1 = {
