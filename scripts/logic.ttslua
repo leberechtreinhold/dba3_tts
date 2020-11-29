@@ -1192,7 +1192,7 @@ function onObjectDrop(player_color,  picked_up_object)
         g_picked_base_initial_transform['corners'])
 
     if distance > 0 then
-        print_info(string.format('Movement for %q is %.2 BW', obj_name, from_in_to_bw(distance)))
+        print_info(string.format('Movement for %q is %.2f BW', obj_name, from_in_to_bw(distance)))
         local move = {}
         add_transform_to_move(move, obj_name, g_picked_base_initial_transform, new_transform)
         push_to_history_stack(move)
