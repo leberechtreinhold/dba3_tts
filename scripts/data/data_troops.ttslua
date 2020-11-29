@@ -3031,7 +3031,7 @@ troop_egyptian_drummer = {
 
 troop_norman_knight_sword = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Knight',
     author = 'Norman Knight by Helveticus.',
@@ -3047,7 +3047,7 @@ troop_norman_knight_sword = {
 
 troop_norman_knight_lance_pennat = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Knight',
     author = 'Norman Knight by Helveticus.',
@@ -3066,7 +3066,7 @@ troop_norman_knight_lance_pennat = {
 
 troop_norman_knight_flag = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Knight with Flag',
     author = 'Norman Knight with Flag by Helveticus, modified by LeberechtReinhold',
@@ -3079,7 +3079,7 @@ troop_norman_knight_flag = {
 
 troop_frank_knight_flag = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Frank Knight with Flag',
     author = 'Frank Knight with Flag by Helveticus, modified by LeberechtReinhold',
@@ -3092,7 +3092,7 @@ troop_frank_knight_flag = {
 
 troop_norman_knight_lance = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Knight',
     author = 'Norman Knight by Helveticus.',
@@ -3107,7 +3107,7 @@ troop_norman_knight_lance = {
 
 troop_norman_armor_foot_sword = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Foot',
     author = 'Norman Foot by Helveticus.',
@@ -3122,7 +3122,7 @@ troop_norman_armor_foot_sword = {
 
 troop_norman_archer = {
     height_correction = 0.4,
-    scale = 0.4,
+    scale = 0.3,
     rotation = 90,
     description = 'Norman Archer',
     author = 'Norman Archer by Helveticus.',
@@ -3137,7 +3137,7 @@ troop_norman_archer = {
 
 troop_norman_spear = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Spear',
     author = 'Norman Spear by Helveticus.',
@@ -3158,7 +3158,7 @@ troop_norman_spear = {
 
 troop_norman_levy = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Levy',
     author = 'Norman Levy by Helveticus.',
@@ -3174,7 +3174,7 @@ troop_norman_levy = {
 
 troop_norman_levy_shield = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Levy',
     author = 'Norman Levy by Helveticus.',
@@ -3190,7 +3190,7 @@ troop_norman_levy_shield = {
 
 troop_norman_lightcav = {
     height_correction = 0,
-    scale = 2,
+    scale = 1.7,
     rotation = 0,
     description = 'Norman Light Cavalry',
     author = 'Norman Light Cavalry by Helveticus, modified by LeberechtReinhold.',
@@ -3205,7 +3205,7 @@ troop_norman_lightcav = {
 
 troop_norman_crossbow = {
     height_correction = 0.4,
-    scale = 0.4,
+    scale = 0.3,
     rotation = 0,
     description = 'Norman Crossbowmen',
     author = 'Norman Crossbowmen by Helveticus.',
