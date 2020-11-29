@@ -2866,7 +2866,7 @@ troop_egyptian_bow = {
 
 troop_egyptian_bow_alt = {
     height_correction = 0,
-    scale = 0.9,
+    scale = 0.8,
     rotation = 180,
     description = 'Egyptian Archers',
     author = 'Egyptian Archers by Eric Delemer.',
