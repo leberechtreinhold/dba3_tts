@@ -3073,8 +3073,21 @@ troop_norman_knight_flag = {
     mesh = {
           'http://cloud-3.steamusercontent.com/ugc/1667983596735688196/B0FCB3C74E40B473E3AE94D706623EB21132E8F4/'
     },
-    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735686886/080E6B739096201C7AF5312C69A1D19959E7CFF0/',
-    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735686886/080E6B739096201C7AF5312C69A1D19959E7CFF0/',
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1667984994449859379/D9318B6173BB036C3F50006BDC4B89BE6D360800/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667984994449859379/D9318B6173BB036C3F50006BDC4B89BE6D360800/',
+}
+
+troop_anglonorman_wagon = {
+    height_correction = 0.38,
+    scale = 0.42,
+    rotation = 0,
+    description = 'Anglo-Norman Command-Wagon',
+    author = 'Anglo-Norman Command-Wagon by Helveticus and Bog Hardlog, modified by LeberechtReinhold',
+    mesh = {
+          'http://cloud-3.steamusercontent.com/ugc/1667984994449859201/00D608CE88F22A4F7B2AE5BBB03D39D7E7F2BF93/'
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1667984994449859650/493524D973DAD8CD98FC658F2ED2AEE9C4C45449/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667984994449859650/493524D973DAD8CD98FC658F2ED2AEE9C4C45449/',
 }
 
 troop_frank_knight_flag = {
@@ -3167,6 +3180,20 @@ troop_norman_levy = {
           'http://cloud-3.steamusercontent.com/ugc/1667983596735684873/E5B92DB8E3A5173BF6EAD9EEB1BFFBA5E43C462E/',
           'http://cloud-3.steamusercontent.com/ugc/1667983596735684975/305AA49B6AE3F59E906D4B1F56AA35E54435A0CD/',
           'http://cloud-3.steamusercontent.com/ugc/1667983596735685063/F83785285F88EC6AC3E216E5CC207B52DF131DEA/'
+    },
+    player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735689295/2F646F0D122E17AAD86DD4D6F465766E9EE0219A/',
+    player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735689295/2F646F0D122E17AAD86DD4D6F465766E9EE0219A/',
+}
+
+troop_norman_pikemen = {
+    height_correction = 0,
+    scale = 1.7,
+    rotation = 0,
+    description = 'Norman Pikemen',
+    author = 'Norman Pikemen by Helveticus, modified by LeberechtReinhold',
+    mesh = {
+          'http://cloud-3.steamusercontent.com/ugc/1667984994449859886/66ABAA1EC56DE1370C18C7C04FB880C41553949B/',
+          'http://cloud-3.steamusercontent.com/ugc/1667984994449860002/38F1D83DC24436D33D341A9270201C33843ABA43/'
     },
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735689295/2F646F0D122E17AAD86DD4D6F465766E9EE0219A/',
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735689295/2F646F0D122E17AAD86DD4D6F465766E9EE0219A/',
