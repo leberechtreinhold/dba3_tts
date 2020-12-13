@@ -10435,7 +10435,7 @@ armies["Book II"]["II/30a Galatian Army 280-274BC (Plain)"] = {
     }
 }
 
-armies["Book II"]["II/30a Galatian Army 280-274BC (Plain)"] = {
+armies["Book II"]["II/30a Galatian Army 280-274BC"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
