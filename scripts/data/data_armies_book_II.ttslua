@@ -9638,6 +9638,103 @@ armies["Book II"]["II/27a Pyrrhic Army 300-281BC (Plain)"] = {
     }
 }
 
+
+armies["Book II"]["II/27a Pyrrhic Army 300-281BC"] = {
+    data = {
+        aggresiveness = 4,
+        terrain = 'Arable',
+        list = '1x3Kn (Gen), 1xCv, 6x4Pk, 4xPs.',
+        manufacturer = 'Essex miniatures'
+    },
+
+    base1 = {
+        name = '3Kn_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_successors_cavalry_bodyguard',
+            [2] = 'troop_successors_cavalry_general',
+            [3] = 'troop_successors_cavalry_bodyguard'
+        }
+    },
+    base2 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_successors_cav'
+    },
+    base3 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1'
+    },
+    base4 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1'
+    },
+    base5 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1'
+    },
+    base6 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2'
+    },
+    base7 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2'
+    },
+    base8 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2'
+    },
+    base9 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi',
+        loose = true
+    },
+    base10 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi',
+        loose = true
+    },
+    base11 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi',
+        loose = true
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi',
+        loose = true
+    },
+    base13 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_camp'
+    }
+}
+
 armies["Book II"]["II/27b Pyrrhic Army 280-276BC (Plain)"] = {
     data = {
         aggresiveness = 4,
