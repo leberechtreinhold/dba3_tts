@@ -1,6 +1,6 @@
 
 function snap_waterway(waterway)
-    if g_current_table then
+    if g_current_table == nil then
         print_debug('No table spawned yet, no need to do anything')
         return
     end
@@ -96,6 +96,70 @@ function snap_road(road)
     end
 end
 
+
+function fix_terrain_and_lock()
+    local all_objs = getAllObjects()
+    local terrains = {}
+    for _,obj in ipairs(all_objs) do
+        local name = obj.getName()
+        if str_starts_with(name, 'terrain') then
+            table.insert(terrains, obj)
+        end
+    end
+
+    local gametable = getObjectFromGUID(g_current_table)
+    local size = gametable.getBoundsNormalized()['size']
+    local max_distance_from_table_sq = (size['x']/2)^2 + (size['z'] / 2)^2
+    local pos_table = gametable.getPosition()
+    local terrain_type = from_toggle_number_to_table_type(g_current_table_type)
+
+    gametable.setLock(false)
+    for _,terrain in ipairs(terrains) do
+        local terrain_pos = terrain.getPosition()
+        local distance = distance_points_flat_sq(pos_table, terrain_pos)
+        if distance <= max_distance_from_table_sq
+            and pos_table['y'] < terrain_pos['y'] then
+
+            print_debug('Found terrain with name ' .. terrain.getName())
+
+            local current_scale = terrain.getScale()
+            print_debug('The terrain had scale ' .. vec_to_str(current_scale))
+            if str_has_substr(terrain.getName(), 'Road') then
+                current_scale.y = 0.8 + math.random()*0.1 - 0.05
+            else
+                current_scale.y = 0.1
+            end
+            terrain.setScale(current_scale)
+
+            local current_rotation = terrain.getRotation()
+            print_debug('The terrain had rotation ' .. vec_to_str(current_rotation))
+            current_rotation.x = 0
+            current_rotation.z = 0
+            terrain.setRotation(current_rotation)
+
+            local current_pos = terrain.getPosition()
+            print_debug('The terrain had position ' .. vec_to_str(current_pos))
+            current_pos.y = g_terrain_pos
+            terrain.setPosition(current_pos)
+
+            Wait.frames(function ()
+                if g_use_3d_terrain then
+                    process_vegetation(terrain, terrain_type)
+                end
+    
+                gametable.addAttachment(terrain)
+                print_info('Attaching ' .. terrain.getName())                
+            end, 1)
+        end
+    end
+    Wait.frames(function()
+        g_current_table = gametable.getGUID()
+        gametable.setRotation({ x = 0, y = 0, z = 0})
+        gametable.setPosition({ x = 0, y = g_base_height_tabletop, z = 0})
+        gametable.setLock(true)
+        print_important('Table is now locked')
+    end, 1)
+end
 
 function change_texture_terrain(terrain_obj, new_tex_url)
     local custom = terrain_obj.getCustomObject()
