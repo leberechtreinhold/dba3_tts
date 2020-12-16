@@ -1,5 +1,9 @@
 
 function snap_waterway(waterway)
+    if g_current_table then
+        print_debug('No table spawned yet, no need to do anything')
+        return
+    end
     local gametable = getObjectFromGUID(g_current_table)
     if gametable == nil then
         print_error('There is no current table, stored GUID is: ' .. g_current_table)
