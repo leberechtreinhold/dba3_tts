@@ -1,11 +1,20 @@
+function set_vec_to_above_terrain(vec)
+    vec['y'] = g_terrain_pos + g_base_height_inches
+    return vec
+end
 
 function get_strokes_future_position(base_obj, transform)
     local stroke_points = {}
-    table.insert(stroke_points, transform['corners']['topright'])
-    table.insert(stroke_points, transform['corners']['topleft'])
-    table.insert(stroke_points, transform['corners']['botleft'])
-    table.insert(stroke_points, transform['corners']['botright'])
-    table.insert(stroke_points, transform['corners']['topright'])
+    table.insert(stroke_points, 
+        set_vec_to_above_terrain(transform['corners']['topright']))
+    table.insert(stroke_points, 
+        set_vec_to_above_terrain(transform['corners']['topleft']))
+    table.insert(stroke_points, 
+        set_vec_to_above_terrain(transform['corners']['botleft']))
+    table.insert(stroke_points, 
+        set_vec_to_above_terrain(transform['corners']['botright']))
+    table.insert(stroke_points, 
+        set_vec_to_above_terrain(transform['corners']['topright']))
 
     local color = g_gizmo_color_player_red
     if is_base_blue_player(base_obj.getName()) then
@@ -46,7 +55,7 @@ function get_strokes_zoc(base_obj, transform)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        -- We can ignore the y because we assume XZ plane
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
         paux['z'] = paux_rotated['z']
     end
 
@@ -155,7 +164,7 @@ function get_strokes_fire_arc(base_obj, transform, shooting_range, max_width)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        -- We can ignore the y because we assume XZ plane
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
         paux['z'] = paux_rotated['z']
     end
 
@@ -442,7 +451,7 @@ function get_strokes_fire_around(size, transform, shooting_range, max_width, col
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point_relative(paux, pos, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = pos['y']
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
         paux['z'] = paux_rotated['z']
     end
 
@@ -568,7 +577,7 @@ function get_strokes_around(size, transform, range, color)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        -- We can ignore the y because we assume XZ plane
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
         paux['z'] = paux_rotated['z']
     end
 
@@ -856,7 +865,7 @@ function get_strokes_arrow_position(base_obj, transform)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        -- We can ignore the y because we assume XZ plane
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
         paux['z'] = paux_rotated['z']
     end
 
