@@ -432,6 +432,7 @@ function spawn_table_obj(model_url, texture_array_urls, is_large)
     end
 
     add_context_menu_table(obj)
+    obj.setLock(true)
 end
 
 function change_bases_to_terrain(terrain_type)
