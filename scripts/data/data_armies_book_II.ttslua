@@ -8121,6 +8121,174 @@ armies["Book II"]["II/20a Ptolemaic Army 320-275BC (Plain)"] = {
     }
 }
 
+armies["Book II"]["II/20a Ptolemaic Army 320-275BC"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Littoral',
+        list = '1x3Kn or 4Pk (Gen), 1x3Kn, 1xLH, 2x4Pk, 3x3/4Ax, 2x3/4Ax or 4Pk, 1xEl or 4Pk or 4Ax or Ps, 1xPs.',
+        manufacturer = 'Essex miniatures'
+    },
+
+    base1 = {
+        name = '3Kn_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_successors_cavalry_bodyguard_blue',
+            [2] = 'troop_successors_cavalry_general_blue',
+            [3] = 'troop_successors_cavalry_bodyguard_blue'
+        }
+    },
+    base2 = {
+        name = '4Pk_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        fixed_models = {
+            [1] = 'troop_successors_pike1_blue',
+            [2] = 'troop_successors_pike2_blue',
+            [3] = 'troop_successors_cavalry_general_blue',
+            [4] = 'troop_successors_pike1_blue'
+        }
+    },
+    base3 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_successors_cavalry_bodyguard_blue'
+    },
+    base4 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_successors_lh_blue'
+    },
+    base5 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_blue'
+    },
+    base6 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2_blue'
+    },
+    base7 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base8 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue'
+    },
+    base9 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base10 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue'
+    },
+    base11 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base12 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue'
+    },
+    base13 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base14 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue'
+    },
+    base15 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_blue'
+    },
+    base16 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base17 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue'
+    },
+    base18 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_blue'
+    },
+    base19 = {
+        name = 'El',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_successors_el_blue'
+    },
+    base20 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2_blue'
+    },
+    base21 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_thracian_ax1'
+    },
+    base22 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_blue'
+    },
+    base23 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_blue'
+    },
+    base24 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_egyptian_sphinx'
+    }
+}
+
 armies["Book II"]["II/20b Ptolemaic Army 274-167BC (Plain)"] = {
     data = {
         aggresiveness = 1,
@@ -8212,6 +8380,104 @@ armies["Book II"]["II/20b Ptolemaic Army 274-167BC (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book II"]["II/20b Ptolemaic Army 274-167BC"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Littoral',
+        list = '1x3Kn (Gen), 1x3Kn, 1xLH, 4x4Pk, 2x4Ax, 1x4Wb or 4Ax, 1xEl, 1xPs.',
+        manufacturer = 'Essex miniatures'
+    },
+
+    base1 = {
+        name = '3Kn_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_successors_cavalry_bodyguard_blue',
+            [2] = 'troop_successors_cavalry_general_blue',
+            [3] = 'troop_successors_cavalry_bodyguard_blue'
+        }
+    },
+    base2 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_successors_cavalry_bodyguard_blue'
+    },
+    base3 = {
+        name = 'LH',
+        base = 'tile_grass_40x30',
+        n_models = 2,
+        model_data = 'troop_successors_lh_blue'
+    },
+    base4 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_blue'
+    },
+    base5 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2_blue'
+    },
+    base6 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_blue'
+    },
+    base7 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2_blue'
+    },
+    base8 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue'
+    },
+    base9 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue'
+    },
+    base10 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base11 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_thracian_ax1'
+    },
+    base12 = {
+        name = 'El',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_successors_el_blue'
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_blue'
+    },
+    base14 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_egyptian_sphinx'
     }
 }
 
