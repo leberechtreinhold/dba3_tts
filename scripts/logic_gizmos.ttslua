@@ -595,10 +595,76 @@ function get_strokes_command(base_obj, transform, range)
     return get_strokes_around(size, transform, range, g_gizmo_color_command)
 end
 
-function draw_gizmo_future_movements(new_selected_items)
-    if #new_selected_items == 0 then
-        Global.setVectorLines({})
-        return
+function get_strokes_base_pos(obj, transform)
+    local strokes = {}
+    
+    table.insert(strokes, get_strokes_future_position(obj, transform))
+
+    if str_has_substr(obj.getName(), 'Bw')
+       or str_has_substr(obj.getName(), 'Cb')
+       or str_has_substr(obj.getName(), 'Lb') then
+        table.insert(strokes, get_strokes_bow(obj, transform))
+    elseif str_has_substr(obj.getName(), 'Art') then
+        table.insert(strokes, get_strokes_art(obj, transform))
+    elseif str_has_substr(obj.getName(), 'WWg') then
+        table.insert(strokes, get_strokes_wwg(obj, transform))
+    end
+
+    if str_has_substr(obj.getName(), 'Gen') then
+        table.insert(strokes, get_strokes_command(obj, transform, g_command_distance_short))
+        table.insert(strokes, get_strokes_command(obj, transform, g_command_distance_long))
+    end
+
+    if g_zoc_enabled then
+        table.insert(strokes, get_strokes_zoc(obj, transform))
+    end
+    return strokes
+end
+
+function get_strokes_pickup(picked_up_object)
+    if picked_up_object == nil then
+        return {}
+    end
+    local pos = g_picked_base_initial_transform['position']
+    local radius = from_bw_to_in(g_bw_movement)
+
+    local color = g_gizmo_color_player_red
+    if is_base_blue_player(picked_up_object.getName()) then
+        color = g_gizmo_color_player_blue
+    end
+
+    local strokes = {}
+    table.insert(strokes, get_strokes_arrow_position(picked_up_object, g_picked_base_initial_transform))
+    table.insert(strokes, {
+        points    = get_coordinates_circle(pos, radius, g_precision_circle),
+        color     = color,
+        thickness = g_line_thickness,
+        rotation  = {0,0,0}
+    })
+    local transform = calculate_transform(picked_up_object)
+    local height = g_picked_base_initial_transform['position'].y
+    transform['corners']['topright'] = { 
+        x = transform['corners']['topright'].x, y = height, z = transform['corners']['topright'].z
+    }
+    transform['corners']['topleft'] = { 
+        x = transform['corners']['topleft'].x, y = height, z = transform['corners']['topleft'].z
+    }
+    transform['corners']['botleft'] = { 
+        x = transform['corners']['botleft'].x, y = height, z = transform['corners']['botleft'].z
+    }
+    transform['corners']['topright'] = { 
+        x = transform['corners']['topright'].x, y = height, z = transform['corners']['topright'].z
+    }
+    transform['corners']['botright'] = { 
+        x = transform['corners']['botright'].x, y = height, z = transform['corners']['botright'].z
+    }
+    array_concat(strokes, get_strokes_base_pos(picked_up_object, transform))
+    return strokes
+end
+
+function get_strokes_future_movements(new_selected_items)
+    if new_selected_items == nil or #new_selected_items == 0 then
+        return {}
     end
 
     local strokes = {}
@@ -607,29 +673,66 @@ function draw_gizmo_future_movements(new_selected_items)
         if g_bases[obj.getName()] ~= nil then
             local transform = calculate_future_position(obj, magnitude)
 
-            table.insert(strokes, get_strokes_future_position(obj, transform))
-
-            if str_has_substr(obj.getName(), 'Bw')
-               or str_has_substr(obj.getName(), 'Cb')
-               or str_has_substr(obj.getName(), 'Lb') then
-                table.insert(strokes, get_strokes_bow(obj, transform))
-            elseif str_has_substr(obj.getName(), 'Art') then
-                table.insert(strokes, get_strokes_art(obj, transform))
-            elseif str_has_substr(obj.getName(), 'WWg') then
-                table.insert(strokes, get_strokes_wwg(obj, transform))
-            end
-
-            if str_has_substr(obj.getName(), 'Gen') then
-                table.insert(strokes, get_strokes_command(obj, transform, g_command_distance_short))
-                table.insert(strokes, get_strokes_command(obj, transform, g_command_distance_long))
-            end
-
-            if g_zoc_enabled then
-                table.insert(strokes, get_strokes_zoc(obj, transform))
-            end
+            array_concat(strokes, get_strokes_base_pos(obj, transform))
         end
 
     end
+    return strokes
+end
+
+function get_strokes_bases_nothing(bases)
+    if bases == nil or #bases == 0 then
+        return {}
+    end
+
+    local strokes = {}
+    for _, obj in ipairs(bases) do
+        if g_zoc_enabled then
+            table.insert(strokes, get_strokes_zoc(obj, calculate_transform(obj)))
+        end
+    end
+    return strokes
+end
+
+function get_bases_for_gizmos()
+    local all_objs = getAllObjects()
+    local bases = get_bases_with_guid(all_objs)
+
+    local picked_base = nil
+    if g_picked_base_obj then
+        if bases[g_picked_base_obj.getGUID()] then
+            picked_base = g_picked_base_obj
+            bases[g_picked_base_obj.getGUID()] = nil
+        end
+        
+    end
+    local bases_selected = {}
+    local player_colors = getSeatedPlayers()
+    for _, player_color in ipairs(player_colors) do
+        local selected_bases_player = Player[player_color].getSelectedObjects()
+        for _, base in ipairs(selected_bases_player) do
+            if bases[base.getGUID()] then
+                table.insert(bases_selected, base)
+                bases[base.getGUID()] = nil
+            end
+        end
+    end
+
+    local other_bases = {}
+    for _,base in pairs(bases) do
+        table.insert(other_bases, base)
+    end
+
+    return bases_selected, picked_base, other_bases
+end
+
+function draw_all_gizmos()
+    local strokes = {}
+    -- This is terrible code!
+    local moving_selected_items, pickedup_object, other_bases = get_bases_for_gizmos()
+    array_concat(strokes, get_strokes_pickup(pickedup_object))
+    array_concat(strokes, get_strokes_future_movements(moving_selected_items))
+    array_concat(strokes, get_strokes_bases_nothing(other_bases))
     Global.setVectorLines(strokes)
 end
 
@@ -881,44 +984,6 @@ function get_strokes_arrow_position(base_obj, transform)
         thickness = g_line_thickness,
         rotation  = {0,0,0}
     }
-end
-
-function draw_pickup_strokes(picked_up_object)
-    local pos = g_picked_base_initial_transform['position']
-    local radius = from_bw_to_in(g_bw_movement)
-
-    local color = g_gizmo_color_player_red
-    if is_base_blue_player(picked_up_object.getName()) then
-        color = g_gizmo_color_player_blue
-    end
-
-    local strokes = {}
-    table.insert(strokes, get_strokes_arrow_position(picked_up_object, g_picked_base_initial_transform))
-    table.insert(strokes, {
-        points    = get_coordinates_circle(pos, radius, g_precision_circle),
-        color     = color,
-        thickness = g_line_thickness,
-        rotation  = {0,0,0}
-    })
-    local transform = calculate_transform(picked_up_object)
-    local height = g_picked_base_initial_transform['position'].y
-    transform['corners']['topright'] = { 
-        x = transform['corners']['topright'].x, y = height, z = transform['corners']['topright'].z
-    }
-    transform['corners']['topleft'] = { 
-        x = transform['corners']['topleft'].x, y = height, z = transform['corners']['topleft'].z
-    }
-    transform['corners']['botleft'] = { 
-        x = transform['corners']['botleft'].x, y = height, z = transform['corners']['botleft'].z
-    }
-    transform['corners']['topright'] = { 
-        x = transform['corners']['topright'].x, y = height, z = transform['corners']['topright'].z
-    }
-    transform['corners']['botright'] = { 
-        x = transform['corners']['botright'].x, y = height, z = transform['corners']['botright'].z
-    }
-    table.insert(strokes, get_strokes_future_position(picked_up_object, transform))
-    Global.setVectorLines(strokes)
 end
 
 
