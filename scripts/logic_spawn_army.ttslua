@@ -41,7 +41,7 @@ function add_context_menu_table(table_obj)
     table_obj.addContextMenuItem('Toggle rulers', function()
         toggle_deployment_ruler()
     end)
-    table_obj.addContextMenuItem('Toggle BUA fire', function()
+    table_obj.addContextMenuItem('Toggle BUA fire/ZOC', function()
         show_gizmo_bua()
     end)
 end
