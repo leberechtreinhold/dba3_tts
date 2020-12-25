@@ -6371,7 +6371,7 @@ armies["Book II"]["II/17a Lysimachid Army 320-303BC (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Kn (Gen), 1xLH, 2x4Pk, 2x4Pk or 3Ax or 4Ax, 4x3Ax or 4Ax or Ps, 2xSp, 1xPs.'
+        list = '1x3Kn (Gen), 1xLH, 2x4Pk, 2x4Pk or 3Ax or 4Ax, 4x3Ax or 4Ax or Ps, 1xSp, 1xPs.'
     },
 
     base1 = {
@@ -6537,7 +6537,7 @@ armies["Book II"]["II/17a Lysimachid Army 320-303BC"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Kn (Gen), 1xLH, 2x4Pk, 2x4Pk or 3Ax or 4Ax, 4x3Ax or 4Ax or Ps, 2xSp, 1xPs.',
+        list = '1x3Kn (Gen), 1xLH, 2x4Pk, 2x4Pk or 3Ax or 4Ax, 4x3Ax or 4Ax or Ps, 1xSp, 1xPs.',
         manufacturer = 'Essex miniatures'
     },
 
@@ -6611,80 +6611,80 @@ armies["Book II"]["II/17a Lysimachid Army 320-303BC"] = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'trop_thracian_ax1',
+        model_data = 'troop_thracian_ax1',
         loose = true
     },
     base12 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'trop_thracian_ax2'
+        model_data = 'troop_thracian_ax2'
     },
     base13 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
-        model_data = 'trop_thracian_ps',
+        model_data = 'troop_thracian_ps',
         loose = true
     },
     base14 = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'trop_thracian_ax1',
+        model_data = 'troop_thracian_ax1',
         loose = true
     },
     base15 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'trop_thracian_ax2'
+        model_data = 'troop_thracian_ax2'
     },
     base16 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
-        model_data = 'trop_thracian_ps',
+        model_data = 'troop_thracian_ps',
         loose = true
     },
     base17 = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'trop_thracian_ax1',
+        model_data = 'troop_thracian_ax1',
         loose = true
     },
     base18 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'trop_thracian_ax2'
+        model_data = 'troop_thracian_ax2'
     },
     base19 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
-        model_data = 'trop_thracian_ps',
+        model_data = 'troop_thracian_ps',
         loose = true
     },
     base20 = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'trop_thracian_ax1',
+        model_data = 'troop_thracian_ax1',
         loose = true
     },
     base21 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'trop_thracian_ax2'
+        model_data = 'troop_thracian_ax2'
     },
     base22 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
-        model_data = 'trop_thracian_ps',
+        model_data = 'troop_thracian_ps',
         loose = true
     },
     base23 = {
@@ -6692,12 +6692,6 @@ armies["Book II"]["II/17a Lysimachid Army 320-303BC"] = {
         base = 'tile_grass_40x15',
         n_models = 4,
         model_data = 'troop_successors_spear1_black'
-    },
-    base24 = {
-        name = 'Sp',
-        base = 'tile_grass_40x15',
-        n_models = 4,
-        model_data = 'troop_successors_spear2_black'
     },
     base25 = {
         name = 'Ps',
@@ -6907,20 +6901,20 @@ armies["Book II"]["II/17b Lysimachid Army 302-281BC"] = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'trop_thracian_ax1',
+        model_data = 'troop_thracian_ax1',
         loose = true
     },
     base7 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'trop_thracian_ax2'
+        model_data = 'troop_thracian_ax2'
     },
     base8 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
-        model_data = 'trop_thracian_ps',
+        model_data = 'troop_thracian_ps',
         loose = true
     },
     base9 = {
@@ -6933,20 +6927,20 @@ armies["Book II"]["II/17b Lysimachid Army 302-281BC"] = {
         name = '3Ax',
         base = 'tile_grass_40x20',
         n_models = 3,
-        model_data = 'trop_thracian_ax1',
+        model_data = 'troop_thracian_ax1',
         loose = true
     },
     base11 = {
         name = '4Ax',
         base = 'tile_grass_40x20',
         n_models = 4,
-        model_data = 'trop_thracian_ax2'
+        model_data = 'troop_thracian_ax2'
     },
     base12 = {
         name = 'Ps',
         base = 'tile_grass_40x20',
         n_models = 2,
-        model_data = 'trop_thracian_ps',
+        model_data = 'troop_thracian_ps',
         loose = true
     },
     base13 = {

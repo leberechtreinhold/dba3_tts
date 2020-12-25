@@ -2704,7 +2704,7 @@ troop_thracian_lh = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1483325549680496262/352AD507845CF4F92893A642D681D02867526884/'
 }
 
-trop_thracian_ps = {
+troop_thracian_ps = {
     height_correction = 0,
     scale = 0.9,
     rotation = 180,
@@ -2720,7 +2720,7 @@ trop_thracian_ps = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1483325549680492783/F4A80D438752E7111D3FDB356856FE90CF5CDD0A/'
 }
 
-trop_thracian_ax1 = {
+troop_thracian_ax1 = {
     height_correction = 0,
     scale = 0.9,
     rotation = 180,
@@ -2738,7 +2738,7 @@ trop_thracian_ax1 = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1483325549680484315/D56255B5EA8C48294E29A762DA3995D2A6CD634B/'
 }
 
-trop_thracian_ax2 = {
+troop_thracian_ax2 = {
     height_correction = 0,
     scale = 0.9,
     rotation = 180,
@@ -2755,7 +2755,7 @@ trop_thracian_ax2 = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1483325549680486871/0A938B3E4C7DF597E1ED6C4FC5543C4A6A55FB2F/'
 }
 
-trop_thracian_axgen = {
+troop_thracian_axgen = {
     height_correction = 0,
     scale = 0.9,
     rotation = 180,
