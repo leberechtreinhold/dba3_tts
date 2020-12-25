@@ -863,12 +863,12 @@ function get_strokes_bases_nothing(bases)
                 
                 table.insert(strokes, g_cache_zocs[name].strokes)
             else
-                local strokes = get_strokes_zoc(obj, calculate_transform(obj))
-                table.insert(strokes, strokes)
+                local base_strokes = get_strokes_zoc(obj, calculate_transform(obj))
+                table.insert(strokes, base_strokes)
                 g_cache_zocs[name] = {}
                 g_cache_zocs[name].pos = pos
                 g_cache_zocs[name].rot = rot
-                g_cache_zocs[name].strokes = strokes
+                g_cache_zocs[name].strokes = base_strokes
             end
         end
     end
@@ -914,9 +914,7 @@ end
 function draw_all_gizmos_execute()
     local strokes = {}
     -- This is terrible code!
-    local t0 = os.clock()
     local moving_selected_items, pickedup_object, other_bases = get_bases_for_gizmos()
-    print(string.format("Getting bases: %.4f\n", os.clock() - t0))
     
     local t1 = os.clock()
     if pickedup_object then
@@ -928,7 +926,6 @@ function draw_all_gizmos_execute()
     if g_zoc_enabled then
         array_concat(strokes, get_strokes_bases_nothing(other_bases))
     end
-    print(string.format("Getting strokes: %.4f\n", os.clock() - t1))
     Global.setVectorLines(strokes)
 end
 
