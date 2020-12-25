@@ -1361,8 +1361,9 @@ function main_loop()
     check_selection_change()
     check_change_zoc()
 
-    if g_picked_base_obj then
-        draw_all_gizmos()
+    if g_draw_all_gizmos or g_picked_base_obj then
+        draw_all_gizmos_execute()
+        g_draw_all_gizmos = false
     end
 end
 

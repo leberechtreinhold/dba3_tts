@@ -87,7 +87,7 @@ g_gizmo_color_command = { 0.8, 0.8, 0.8 }
 
 -- How frequently the main loop runs, in seconds
 -- The main loop redraws selections, movement, etc
-g_seconds_main_loop = 0.5
+g_seconds_main_loop = 0.1
 
 -- How close to a exact movement (paces or BW) should be the slider to snap
 g_ui_snap_slider_movement = 0.1

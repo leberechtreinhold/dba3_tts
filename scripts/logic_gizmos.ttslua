@@ -838,6 +838,14 @@ function get_strokes_future_movements(new_selected_items)
     return strokes
 end
 
+-- This caches the strokes for a given base in certain pos and rotation
+-- g_cache_zocs["basename"] =  {
+--      "pos" = {x=1,y=1,z=1}
+--      "rot" = {x=1,y=1,z=1}
+--      "strokes" = {}
+--   }
+g_cache_zocs = {}
+
 function get_strokes_bases_nothing(bases)
     if bases == nil or #bases == 0 then
         return {}
@@ -846,7 +854,22 @@ function get_strokes_bases_nothing(bases)
     local strokes = {}
     for _, obj in ipairs(bases) do
         if g_zoc_enabled then
-            table.insert(strokes, get_strokes_zoc(obj, calculate_transform(obj)))
+            local name = obj.getName()
+            local pos = obj.getPosition()
+            local rot = obj.getRotation()
+            if g_cache_zocs[name]
+                and g_cache_zocs[name].pos == pos
+                and g_cache_zocs[name].rot == rot then
+                
+                table.insert(strokes, g_cache_zocs[name].strokes)
+            else
+                local strokes = get_strokes_zoc(obj, calculate_transform(obj))
+                table.insert(strokes, strokes)
+                g_cache_zocs[name] = {}
+                g_cache_zocs[name].pos = pos
+                g_cache_zocs[name].rot = rot
+                g_cache_zocs[name].strokes = strokes
+            end
         end
     end
     return strokes
@@ -885,12 +908,27 @@ function get_bases_for_gizmos()
 end
 
 function draw_all_gizmos()
+    g_draw_all_gizmos = true
+end
+
+function draw_all_gizmos_execute()
     local strokes = {}
     -- This is terrible code!
+    local t0 = os.clock()
     local moving_selected_items, pickedup_object, other_bases = get_bases_for_gizmos()
-    array_concat(strokes, get_strokes_pickup(pickedup_object))
-    array_concat(strokes, get_strokes_future_movements(moving_selected_items))
-    array_concat(strokes, get_strokes_bases_nothing(other_bases))
+    print(string.format("Getting bases: %.4f\n", os.clock() - t0))
+    
+    local t1 = os.clock()
+    if pickedup_object then
+        array_concat(strokes, get_strokes_pickup(pickedup_object))
+    end
+    if moving_selected_items and #moving_selected_items > 0 then
+        array_concat(strokes, get_strokes_future_movements(moving_selected_items))
+    end
+    if g_zoc_enabled then
+        array_concat(strokes, get_strokes_bases_nothing(other_bases))
+    end
+    print(string.format("Getting strokes: %.4f\n", os.clock() - t1))
     Global.setVectorLines(strokes)
 end
 
