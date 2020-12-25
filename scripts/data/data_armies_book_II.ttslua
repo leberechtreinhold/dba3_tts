@@ -8185,6 +8185,117 @@ armies["Book II"]["II/18f Queen Olympias’ Army 317-316BC (Plain)"] = {
     }
 }
 
+armies["Book II"]["II/18f Queen Olympias’ Army 317-316BC"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Arable',
+        list = '1xLit (if Olympias) or 4Pk (Gen), 1x3Kn, 6x4Pk, 2x3Ax, 1xEl, 1xPs.'
+    },
+
+    base1 = {
+        name = 'Lit_Gen',
+        base = 'tile_grass_40x80',
+        n_models = 9,
+        fixed_models = {
+            [1] = 'troop_successors_spear2_green',
+            [2] = 'troop_successors_spear1_green',
+            [3] = 'troop_successors_spear2_green',
+            [4] = 'troop_successors_cavalry_bodyguard_green',
+            [5] = 'troop_successors_cavalry_general_green',
+            [6] = 'troop_successors_cavalry_bodyguard_green',
+            [7] = 'troop_successors_spear1_green',
+            [8] = 'troop_successors_spear2_green',
+            [9] = 'troop_successors_spear1_green'
+        }
+    },
+    base2 = {
+        name = '4Pk_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        fixed_models = {
+            [1] = 'troop_successors_pike1_green',
+            [2] = 'troop_successors_pike2_green',
+            [3] = 'troop_successors_spear1_green',
+            [4] = 'troop_successors_pike1_green'
+        }
+    },
+    base3 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_successors_cavalry_bodyguard_green'
+    },
+    base4 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_green'
+    },
+    base5 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2_green'
+    },
+    base6 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_green'
+    },
+    base7 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2_green'
+    },
+    base8 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike1_green'
+    },
+    base9 = {
+        name = '4Pk',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_successors_pike2_green'
+    },
+    base10 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_green',
+        loose = true
+    },
+    base11 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_green',
+        loose = true
+    },
+    base12 = {
+        name = 'El',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_successors_el_green'
+    },
+    base13 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_green',
+        loose = true
+    },
+    base14 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_camp'
+    }
+}
+
 armies["Book II"]["II/19a Seleucid Army 320-280BC (Plain)"] = {
     data = {
         aggresiveness = 2,
@@ -11619,7 +11730,7 @@ armies["Book II"]["II/27b Pyrrhic Army 280-272BC"] = {
         }
     },
     base2 = {
-        name = '3Kn_Gen',
+        name = '3Cv_Gen',
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
