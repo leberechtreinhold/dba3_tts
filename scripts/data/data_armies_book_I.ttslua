@@ -456,7 +456,7 @@ armies["Book I"]["I/2a Early Egyptian Army 3000-1690BC"] = {
     },
     base2 = {
         name = 'Lit_Gen',
-        base = 'tile_plain_Lit_40x80',
+        base = 'tile_grass_40x80',
         n_models = 9,
         fixed_models = {
             [1] = 'troop_egyptian_bd1',
