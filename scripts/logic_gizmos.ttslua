@@ -5,15 +5,15 @@ end
 
 function get_strokes_future_position(base_obj, transform)
     local stroke_points = {}
-    table.insert(stroke_points, 
+    table.insert(stroke_points,
         set_vec_to_above_terrain(transform['corners']['topright']))
-    table.insert(stroke_points, 
+    table.insert(stroke_points,
         set_vec_to_above_terrain(transform['corners']['topleft']))
-    table.insert(stroke_points, 
+    table.insert(stroke_points,
         set_vec_to_above_terrain(transform['corners']['botleft']))
-    table.insert(stroke_points, 
+    table.insert(stroke_points,
         set_vec_to_above_terrain(transform['corners']['botright']))
-    table.insert(stroke_points, 
+    table.insert(stroke_points,
         set_vec_to_above_terrain(transform['corners']['topright']))
 
     local color = g_gizmo_color_player_red
@@ -55,7 +55,7 @@ function get_strokes_zoc_base(base_obj, transform)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y']
         paux['z'] = paux_rotated['z']
     end
     return stroke_points
@@ -75,7 +75,7 @@ function get_strokes_zoc_wwg(base_obj, transform)
     local bl = { x = -size['x'] / 2, y = 0, z = -size['z'] / 2 }
 
     -- TOP
-    
+
     table.insert(stroke_points, {
         x = tr['x'],
         y = tr['y'],
@@ -156,7 +156,7 @@ function get_strokes_zoc_wwg(base_obj, transform)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point_relative(paux, pos, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y']
         paux['z'] = paux_rotated['z']
     end
 
@@ -175,17 +175,17 @@ function get_strokes_zoc(base_obj, transform)
         if is_base_blue_player(base_obj.getName()) then
             color = g_gizmo_zoc_color_player_blue
         end
-    
+
         local size = get_size(base_obj.getName())
         return get_strokes_around(size, transform, g_base_width_inches, color)
     end
-    
+
     if str_has_substr(base_obj.getName(), 'WWg') then
         local color = g_gizmo_zoc_color_player_red
         if is_base_blue_player(base_obj.getName()) then
             color = g_gizmo_zoc_color_player_blue
         end
-    
+
         return get_strokes_zoc_wwg(base_obj, transform)
     end
 
@@ -213,7 +213,7 @@ function get_strokes_zoc(base_obj, transform)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y']
         paux['z'] = paux_rotated['z']
     end
 
@@ -322,7 +322,7 @@ function get_strokes_fire_arc(base_obj, transform, shooting_range, max_width)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y']
         paux['z'] = paux_rotated['z']
     end
 
@@ -360,7 +360,7 @@ function get_strokes_fire_around(size, transform, shooting_range, max_width, col
     local side_height = math.sin(max_angle_arc) * shooting_range
 
     -- TOP
-    
+
     table.insert(stroke_points, {
         x = tr['x'] + max_width,
         y = tr['y'],
@@ -580,7 +580,7 @@ function get_strokes_fire_around(size, transform, shooting_range, max_width, col
         tr,
         shooting_range,
         g_precision_circle / 4,
-        0, 
+        0,
         90 - math.deg(max_angle_arc))
     array_concat(stroke_points, middleright_top_arc)
     table.insert(stroke_points, {
@@ -609,7 +609,7 @@ function get_strokes_fire_around(size, transform, shooting_range, max_width, col
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point_relative(paux, pos, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y']
         paux['z'] = paux_rotated['z']
     end
 
@@ -735,7 +735,7 @@ function get_strokes_around(size, transform, range, color)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y']
         paux['z'] = paux_rotated['z']
     end
 
@@ -755,7 +755,7 @@ end
 
 function get_strokes_base_pos(obj, transform)
     local strokes = {}
-    
+
     table.insert(strokes, get_strokes_future_position(obj, transform))
 
     if str_has_substr(obj.getName(), 'Bw')
@@ -801,19 +801,19 @@ function get_strokes_pickup(picked_up_object)
     })
     local transform = calculate_transform(picked_up_object)
     local height = g_picked_base_initial_transform['position'].y
-    transform['corners']['topright'] = { 
+    transform['corners']['topright'] = {
         x = transform['corners']['topright'].x, y = height, z = transform['corners']['topright'].z
     }
-    transform['corners']['topleft'] = { 
+    transform['corners']['topleft'] = {
         x = transform['corners']['topleft'].x, y = height, z = transform['corners']['topleft'].z
     }
-    transform['corners']['botleft'] = { 
+    transform['corners']['botleft'] = {
         x = transform['corners']['botleft'].x, y = height, z = transform['corners']['botleft'].z
     }
-    transform['corners']['topright'] = { 
+    transform['corners']['topright'] = {
         x = transform['corners']['topright'].x, y = height, z = transform['corners']['topright'].z
     }
-    transform['corners']['botright'] = { 
+    transform['corners']['botright'] = {
         x = transform['corners']['botright'].x, y = height, z = transform['corners']['botright'].z
     }
     array_concat(strokes, get_strokes_base_pos(picked_up_object, transform))
@@ -860,7 +860,7 @@ function get_strokes_bases_nothing(bases)
             if g_cache_zocs[name]
                 and g_cache_zocs[name].pos == pos
                 and g_cache_zocs[name].rot == rot then
-                
+
                 table.insert(strokes, g_cache_zocs[name].strokes)
             else
                 local base_strokes = get_strokes_zoc(obj, calculate_transform(obj))
@@ -885,18 +885,20 @@ function get_bases_for_gizmos()
             picked_base = g_picked_base_obj
             bases[g_picked_base_obj.getGUID()] = nil
         end
-        
+
     end
     local bases_selected = {}
     local player_colors = getSeatedPlayers()
     for _, player_color in ipairs(player_colors) do
         local selected_bases_player = Player[player_color].getSelectedObjects()
-        for _, base in ipairs(selected_bases_player) do
-            if bases[base.getGUID()] then
-                table.insert(bases_selected, base)
-                bases[base.getGUID()] = nil
-            end
-        end
+        if selected_bases_player then
+          for _, base in ipairs(selected_bases_player) do
+              if bases[base.getGUID()] then
+                  table.insert(bases_selected, base)
+                  bases[base.getGUID()] = nil
+              end
+          end
+      end
     end
 
     local other_bases = {}
@@ -915,7 +917,7 @@ function draw_all_gizmos_execute()
     local strokes = {}
     -- This is terrible code!
     local moving_selected_items, pickedup_object, other_bases = get_bases_for_gizmos()
-    
+
     local t1 = os.clock()
     if pickedup_object then
         array_concat(strokes, get_strokes_pickup(pickedup_object))
@@ -1084,7 +1086,7 @@ function draw_numbers_quadrant(size)
     table.insert(g_current_numbers,
         spawn_text('3', { size['x'] / 4, height_text, size['z'] / 4}))
 
-    table.insert(g_current_numbers, 
+    table.insert(g_current_numbers,
         spawn_text('4', { size['x'] / 4, height_text, -size['z'] / 4}))
 end
 
@@ -1104,10 +1106,10 @@ function draw_deployment_lines()
 
     local strokes = {}
     table.insert(strokes,
-        get_strokes_deployment('top', 
+        get_strokes_deployment('top',
             g_gizmo_color_player_blue, angle, proportion, w, h))
     table.insert(strokes,
-        get_strokes_deployment('bot', 
+        get_strokes_deployment('bot',
             g_gizmo_color_player_red, angle, proportion, w, h))
     table.insert(strokes, get_strokes_quadrant_vertical(angle, w, h))
     table.insert(strokes, get_strokes_quadrant_horizontal(angle, w, h))
@@ -1161,7 +1163,7 @@ function get_strokes_arrow_position(base_obj, transform)
     for _, paux in ipairs(stroke_points) do
         local paux_rotated = rotate_point(paux, p, rotation)
         paux['x'] = paux_rotated['x']
-        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y'] 
+        paux['y'] = set_vec_to_above_terrain(paux_rotated)['y']
         paux['z'] = paux_rotated['z']
     end
 
@@ -1209,18 +1211,18 @@ function show_gizmo_bua_afterdetach()
                 print_debug('There\'s a BUA at position ' .. vec_to_str(terrain_pos))
 
                 terrain_pos['y'] = height_strokes
-                    
+
                 local angle = normalize_angle(math.rad(terrain.getRotation()['y']))
                 local scale = terrain.getScale()
                 local size = terrain.getBoundsNormalized()['size']
                 size = vec_mul_vec(size, scale)
                 local corners = compute_corners_coords(size, angle, terrain_pos)
                 local transform = get_transform(terrain_pos, corners, angle)
-                
+
                 local strokes_zoc = get_strokes_around(size, transform, g_base_width_inches, g_gizmo_color_command)
                 local strokes_bw = get_strokes_around(size, transform, g_bow_range, g_gizmo_color_command)
                 local strokes_art = get_strokes_around(size, transform, g_art_range,  g_gizmo_color_command)
-                
+
                 table.insert(strokes, strokes_zoc)
                 table.insert(strokes, strokes_bw)
                 table.insert(strokes, strokes_art)
