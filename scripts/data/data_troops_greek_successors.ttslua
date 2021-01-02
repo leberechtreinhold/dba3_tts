@@ -952,5 +952,5 @@ troop_galatian_sch = {
     rotation = 180,
     description = 'Gallatian Scythed Chariot',
     author = 'Gallatian Scythed Chariot by Eric Delemer.',
-    customasset = 'http://cloud-3.steamusercontent.com/ugc/1669113108791669623/DB9622959A6891B57D42D78EC1BB35A374EAAFF8/'
+    customasset = 'http://cloud-3.steamusercontent.com/ugc/1669113173143663962/2A81EF1672D9987F5546FD0C082DF3D410467751/'
 }
