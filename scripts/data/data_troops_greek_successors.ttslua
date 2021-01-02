@@ -946,3 +946,11 @@ troop_successors_cavalry_general_green = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667986062169022440/671643EE97F034A09BDD103B5C0EBB87ADAD2305/'
 }
 
+troop_galatian_sch = {
+    height_correction = 0,
+    scale = 1,
+    rotation = 180,
+    description = 'Gallatian Scythed Chariot',
+    author = 'Gallatian Scythed Chariot by Eric Delemer.',
+    customasset = 'http://cloud-3.steamusercontent.com/ugc/1669113108791669623/DB9622959A6891B57D42D78EC1BB35A374EAAFF8/'
+}

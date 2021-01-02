@@ -12514,7 +12514,6 @@ armies["Book II"]["II/30b Galatian Army 273-65BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xLCh or 4Bd (Gen), 1xCv, 1x4Bd or LCh or 4Wb, 5x4Wb, 1xSCh or 4Wb or Ps, 2x4Wb or Ps.'
         list = '1xLCh or 4Bd (Gen), 2xCv, 1x4Bd or LCh or 4Wb, 5x4Wb, 1xSCh or 4Wb or Ps, 2x4Wb or Ps.'
     },
 
@@ -12639,6 +12638,145 @@ armies["Book II"]["II/30b Galatian Army 273-65BC (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book II"]["II/30b Galatian Army 273-65BC"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Arable',
+        list = '1xLCh or 4Bd (Gen), 2xCv, 1x4Bd or LCh or 4Wb, 5x4Wb, 1xSCh or 4Wb or Ps, 2x4Wb or Ps.',
+        manufacturer = 'J2C Creation miniatures'
+    },
+
+    base1 = {
+        name = 'LCh_Gen',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_gallic_lch_gen'
+        }
+    },
+    base2 = {
+        name = '4Bd_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband_general'
+    },
+    base3 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_gallic_cav'
+    },
+    base20 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_gallic_cav'
+    },
+    base4 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallatian_bd'
+    },
+    base5 = {
+        name = 'LCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_gallic_lch'
+        }
+    },
+    base6 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base7 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base8 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base9 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base10 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base11 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base12 = {
+        name = 'SCh',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        fixed_models = {
+            [1] = 'troop_galatian_sch'
+        }
+    },
+    base13 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base14 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_gallic_ps'
+    },
+    base15 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base16 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_gallic_ps'
+    },
+    base17 = {
+        name = '4Wb',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_gallic_warband'
+    },
+    base18 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_gallic_ps'
+    },
+    base19 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_campfire'
     }
 }
 
