@@ -1410,6 +1410,8 @@ function reset_state()
         end
     end
     print_info('If there\'s terrain on top of the table, please, do a Fix and Lock')
+
+    remove_deployment_lines()
 end
 
 function get_closest_tile(base_obj)

@@ -1068,26 +1068,20 @@ function spawn_text(text, pos)
     local obj = spawnObject(params)
     obj.setValue(text)
     obj.TextTool.setFontSize(180)
-
+    obj.setName('Text ' .. text)
     return obj
 end
 
-g_current_numbers = {}
 function draw_numbers_quadrant(size)
     local height_text = g_table_thickness * 2 + g_base_height_tabletop + g_base_height_inches / 2
+    
+    spawn_text('1', { -size['x'] / 4, height_text, -size['z'] / 4})
 
+    spawn_text('2', { -size['x'] / 4, height_text, size['z'] / 4})
 
-    table.insert(g_current_numbers,
-        spawn_text('1', { -size['x'] / 4, height_text, -size['z'] / 4}))
+    spawn_text('3', { size['x'] / 4, height_text, size['z'] / 4})
 
-    table.insert(g_current_numbers,
-            spawn_text('2', { -size['x'] / 4, height_text, size['z'] / 4}))
-
-    table.insert(g_current_numbers,
-        spawn_text('3', { size['x'] / 4, height_text, size['z'] / 4}))
-
-    table.insert(g_current_numbers,
-        spawn_text('4', { size['x'] / 4, height_text, -size['z'] / 4}))
+    spawn_text('4', { size['x'] / 4, height_text, -size['z'] / 4})
 end
 
 function draw_deployment_lines()
@@ -1123,10 +1117,14 @@ function remove_deployment_lines()
     if gametable ~= nil then
         gametable.setVectorLines({})
     end
-    for _, obj in ipairs(g_current_numbers) do
-        obj.destroy()
+    local all_objs = getAllObjects()
+    for _,obj in ipairs(all_objs) do
+        local name = obj.getName()
+        if str_starts_with(name, 'Text ') then
+            -- This executes on next frame
+            obj.destroy()
+        end
     end
-    g_current_numbers = {}
 end
 
 function get_strokes_arrow_position(base_obj, transform)
