@@ -12515,6 +12515,7 @@ armies["Book II"]["II/30b Galatian Army 273-65BC (Plain)"] = {
         aggresiveness = 1,
         terrain = 'Arable',
         list = '1xLCh or 4Bd (Gen), 1xCv, 1x4Bd or LCh or 4Wb, 5x4Wb, 1xSCh or 4Wb or Ps, 2x4Wb or Ps.'
+        list = '1xLCh or 4Bd (Gen), 2xCv, 1x4Bd or LCh or 4Wb, 5x4Wb, 1xSCh or 4Wb or Ps, 2x4Wb or Ps.'
     },
 
     base1 = {
@@ -12532,6 +12533,12 @@ armies["Book II"]["II/30b Galatian Army 273-65BC (Plain)"] = {
         ignore_terrain = true
     },
     base3 = {
+        name = 'Cv',
+        base = 'tile_plain_3Cv_40x30',
+        n_models = 0,
+        ignore_terrain = true
+    },
+    base20 = {
         name = 'Cv',
         base = 'tile_plain_3Cv_40x30',
         n_models = 0,
