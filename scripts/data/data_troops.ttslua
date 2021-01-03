@@ -3192,7 +3192,10 @@ troop_norman_armor_foot_sword = {
     author = 'Norman Foot by Helveticus.',
     mesh = {
           'http://cloud-3.steamusercontent.com/ugc/1667983596735685682/F437101F0B39C5F6546D5AC3D158BAB44C7976B8/',
-          'http://cloud-3.steamusercontent.com/ugc/1667983596735685772/2E028386F06D81F4B14C5E10FEDAD7AA50B8CD17/'
+          'http://cloud-3.steamusercontent.com/ugc/1667983596735685772/2E028386F06D81F4B14C5E10FEDAD7AA50B8CD17/',
+          'http://cloud-3.steamusercontent.com/ugc/1669113275266171326/027E34C2F5BD1FB890E94BB723F5127FA4DBFAC2/',
+          'http://cloud-3.steamusercontent.com/ugc/1669113275266171446/2E20C908B781C1BE387B2F5D46D95F76EEBFA984//',
+          'http://cloud-3.steamusercontent.com/ugc/1669113275266171556/1DECAC04E071C63CCB68FF82D98DD9E7B45422CF/'
 
     },
     player_red_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735689636/75B0FE309A23F3655C21B886BC3DDE56380A2A64/',
