@@ -1022,9 +1022,9 @@ function is_snapable(obj, base, obj_large_base, base_large_base)
   local max_distance = g_max_distance_alignment
   if obj_large_base or base_large_base then
       if obj_large_base and base_large_base then
-          max_distance = (math.sqrt(max_distance) * 4)^2
+          max_distance = max_distance * 16
       else
-          max_distance = (math.sqrt(max_distance) * 2)^2
+          max_distance = max_distance * 4
       end
   end
 
