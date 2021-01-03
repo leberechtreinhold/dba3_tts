@@ -1010,6 +1010,28 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
     obj.setPosition(new_pos)
 end
 
+-- is the moved base close enough to be snapped to another base?
+-- obj base being moved
+-- base Other base to compare against
+-- obj_large_base Boolean.  true if obj is a large base.
+-- base_large_base Boolean.  true if base is a large base.
+function is_snapable(obj, base, obj_large_base, base_large_base)
+  local pos = obj.getPosition()
+  local pos_base = base.getPosition()
+  local distance = distance_points_flat_sq(pos, pos_base)
+  local max_distance = g_max_distance_alignment
+  if obj_large_base or base_large_base then
+      if obj_large_base and base_large_base then
+          max_distance = (math.sqrt(max_distance) * 4)^2
+      else
+          max_distance = (math.sqrt(max_distance) * 2)^2
+      end
+  end
+
+  local result = distance < max_distance and distance > 0.0001
+  return result
+end
+
 function snap_picked_base(obj)
     local initial_corners = g_picked_base_initial_transform['corners']
 
@@ -1053,21 +1075,11 @@ function snap_picked_base(obj)
     for _, base in ipairs(bases) do
         local pos_base = base.getPosition()
 
-        -- Discard fast bases that are too far
-        local distance = distance_points_flat_sq(pos, pos_base)
-        local max_distance = g_max_distance_alignment
 
         local is_other_wwg = str_has_substr(base.getName(), 'WWg')
         local is_large_base_other = is_other_wwg or str_has_substr(base.getName(), '6Kn')
-        if is_large_base or is_large_base_other then
-            if is_large_base and is_large_base_other then
-                max_distance = (math.sqrt(max_distance) * 4)^2
-            else
-                max_distance = (math.sqrt(max_distance) * 2)^2
-            end
-        end
-
-        if distance < max_distance and distance > 0.0001 then
+        -- Discard fast bases that are too far
+        if is_snapable(obj, base, is_large_base, is_larget_base_other) then
             print_debug('Checking snap of ' .. obj.getName()
                         .. ' with ' .. base.getName())
             local transformObj = calculate_transform(obj)
