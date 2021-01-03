@@ -42,6 +42,8 @@ The project is structured in the following way:
 - dice/pip_blue-red: The code assigned to two dice objets, both should be D6 and they calculate the PIPs.
 - ui/main.xml: The XML for the UI, which, AFAIK, cannot be #included into TTS through ATOM and needs to be copy/pasted. Can be used directly using include src tag.
 - ui/ui_elements.txt: Since the UI is referenced by the Scripting window and must be imported in each game, this is a list to the elements with the corresponding url.
+- unittests: Unit tests.  Test cases start with the file name "test_".  
+  Run each file in isolation outside of TTS using lua.
 
 It's not required, but it's encouraged to put this repo with the name "dba3_tts" with main.ttslua inside and everything following the structure of the repo. That's only if you want to match the one uploaded in the repo. Otherwise, the only thing required is:
 
