@@ -208,6 +208,18 @@ function bounding_box(corners)
   end
   return {min=min, max=max}
 end
+
+function is_point_in_bounding_box(point, box)
+  for k,v in pairs(point) do
+    if v < box[ 'min' ] [ k ] then
+      return false
+    end
+    if v > box[ 'max' ] [ k ]  then
+      return false
+    end
+  end
+  return true
+end
   
 
 -- Helper function for find_ui_element

@@ -41,4 +41,23 @@ function test_bounding_box_with_named_corners()
   lu.assertEquals(actual, expected)
 end
 
+function test_point_in_bounding_box()
+  local box={min={x=9,z=23}, max={x=56,z=93}}
+  local point={x=33,z=78}
+  lu.assertTrue(is_point_in_bounding_box(point,box))
+end
+
+function test_point_to_right_bounding_box()
+  local box={min={x=9,z=23}, max={x=56,z=93}}
+  local point={x=3,z=78}
+  lu.assertFalse(is_point_in_bounding_box(point,box))
+end
+
+function test_point_to_above_bounding_box()
+  local box={min={x=9,z=23}, max={x=56,z=93}}
+  local point={x=33,z=178}
+  lu.assertFalse(is_point_in_bounding_box(point,box))
+end
+
+
 os.exit( lu.LuaUnit.run() )
