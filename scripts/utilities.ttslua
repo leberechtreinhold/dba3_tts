@@ -281,6 +281,33 @@ function mid_point(shape)
   return result
 end
 
+-- Check of a point is in a 2D triangle.
+-- triangle is defined by three points for its vertices (x,z)
+-- point to check is (x,z)
+-- There may be false errors if the point is on the line or very close to
+-- the line.
+-- See http://totologic.blogspot.com/2014/01/accurate-point-in-triangle-test.html
+-- 2nd method : parametric equations system
+-- p is the point to check
+-- v1, v2, v3 are the vertices of the triangle.
+function is_point_in_2d_triangle(p, v1, v2, v3)
+  local x1 = v1['x']
+  local y1 = v1['z']
+  local x2 = v2['x']
+  local y2 = v2['z']
+  local x3 = v3['x']
+  local y3 = v3['z']
+  local x = p['x']
+  local y = p['z']
+
+  local denominator = (x1*(y2 - y3) + y1*(x3 - x2) + x2*y3 - y2*x3)
+  local t1 = (x*(y3 - y1) + y*(x1 - x3) - x1*y3 + y1*x3) / denominator
+  local t2 = (x*(y2 - y1) + y*(x1 - x2) - x1*y2 + y1*x2) / -denominator
+  local s = t1 + t2
+ 
+  return 0 <= t1 and t1 <= 1 and 0 <= t2 and t2 <= 1 and s <= 1
+end
+
 -- Helper function for find_ui_element
 function find_ui_element_in_element(root_element, id)
     for k, v in pairs(root_element) do

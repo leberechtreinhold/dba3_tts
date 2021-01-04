@@ -137,4 +137,18 @@ function test_mid_point_2d()
   lu.assertEquals(actual, expected)
 end
 
+function test_is_point_in_2d_triangle_returns_true()
+  local shape = { {x=1,z=2}, {x=13,z=1}, {x=6,z=52}}  
+  local mid = mid_point(shape)
+  local actual = is_point_in_2d_triangle(mid, shape[1], shape[2], shape[3])
+  lu.assertTrue(actual)
+end
+
+function test_is_point_in_2d_triangle_returns_false()
+  local shape = { {x=1,z=2}, {x=13,z=1}, {x=6,z=52}}  
+  local mid = {x=0,z=0}
+  local actual = is_point_in_2d_triangle(mid, shape[1], shape[2], shape[3])
+  lu.assertFalse(actual)
+end
+
 os.exit( lu.LuaUnit.run() )
