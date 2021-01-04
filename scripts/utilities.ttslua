@@ -56,9 +56,13 @@ function vec_mul_vec(vec, vec2)
     return { x = vec['x'] * vec2['x'], y = vec['y'] * vec2['y'], z = vec['z'] * vec2['z'] }
 end
 
--- Given a table with x,y,z numerical components, and a escalar number, returns a vector with each component divided
+-- Given a table with (x,y) or (x,y,z) numerical components, and a escalar number, returns a vector with each component divided
 function vec_div_escalar(vec, num)
-    return { x = vec['x'] / num, y = vec['y'] / num, z = vec['z'] / num }
+  local result = {}
+  for k,v in pairs(vec) do
+    result[k] = vec[k] / num
+  end
+  return result
 end
 
 -- Given two tables with x,y,z numerical components, returns a vector
@@ -258,6 +262,7 @@ function is_point_in_bounding_box(point, box)
   return true
 end
 
+-- Do the two bounding boxes intersect each other?
 function is_bounding_boxes_intersecting(box1, box2)
   for _,corner in pairs(box1) do
     if is_point_in_bounding_box(corner, box2) then
@@ -265,6 +270,15 @@ function is_bounding_boxes_intersecting(box1, box2)
     end
   end
   return false
+end
+
+-- Calculate the mid-point of a shape.
+-- The shape is a table of points.  Each point is a 
+-- vector of ordinate values.
+function mid_point(shape)
+  local sum = vec_add_n(shape)
+  local result = vec_div_escalar(sum, #shape)
+  return result
 end
 
 -- Helper function for find_ui_element

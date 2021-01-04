@@ -27,6 +27,20 @@ function test_vec_add_arbitrary_number_of_vectors()
   lu.assertEquals(actual, expected)
 end
 
+function test_vec_div_escalar_3d()
+  local v = {x=2,y=16,z=64}
+  local actual = vec_div_escalar(v, 2)
+  local expected = {x=1,y=8,z=32}
+  lu.assertEquals(actual, expected)
+end
+
+function test_vec_div_escalar_2d()
+  local v = {x=2,z=64}
+  local actual = vec_div_escalar(v, 2)
+  local expected = {x=1,z=32}
+  lu.assertEquals(actual, expected)
+end
+
 function test_vec_dot_product()
   local vec1={x=1,y=2,z=3}
   local vec2={x=4,y=5,z=6}
@@ -109,5 +123,18 @@ function test_is_bounding_boxes_intersecting_return_false()
   lu.assertFalse( is_bounding_boxes_intersecting(box1, box2))
 end
 
+function test_mid_point()
+  local shape = { {x=1, y=0, z=2}, {x=3,y=0,z=4}, {x=51,y=0,z=52}, {x=54,y=0,z=54}}  
+  local actual = mid_point(shape)
+  local expected = {x=27.25, y=0, z=28}
+  lu.assertEquals(actual, expected)
+end
+
+function test_mid_point_2d()
+  local shape = { {x=1,z=2}, {x=3,z=4}, {x=51,z=52}, {x=54,z=54}}  
+  local actual = mid_point(shape)
+  local expected = {x=27.25, z=28}
+  lu.assertEquals(actual, expected)
+end
 
 os.exit( lu.LuaUnit.run() )
