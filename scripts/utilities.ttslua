@@ -180,6 +180,35 @@ function corners_to_str(corner)
         'botleft='  .. vec_to_str(corner['botleft']) .. '}'
 end
 
+function shallow_copy(orig)
+  local result={}
+  for k,v in pairs(orig) do
+    result[k] = v
+  end
+  return result
+end
+
+function get_any_key(a_table) 
+  for k,_ in pairs(a_table) do
+    return k
+  end
+end
+
+-- Returns the minimum and maximum value of each ordinate.
+-- n-dimensional bounding box
+function bounding_box(corners) 
+  local k = get_any_key(corners)
+  local min = shallow_copy(corners[k])
+  local max = shallow_copy(corners[k])
+  for i,corner in pairs(corners) do
+    for k,v in pairs(corner) do
+      min[k] = math.min(min[k], v)
+      max[k] = math.max(max[k], v)
+    end
+  end
+  return {min=min, max=max}
+end
+  
 
 -- Helper function for find_ui_element
 function find_ui_element_in_element(root_element, id)
