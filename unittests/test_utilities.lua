@@ -18,6 +18,15 @@ function test_vec_add_2d()
   lu.assertEquals(actual, expected)
 end
 
+function test_vec_add_arbitrary_number_of_vectors()
+  local vec1={x=1,z=3}
+  local vec2={x=4,z=6}
+  local vec3={x=7,z=8}
+  local actual = vec_add_n({vec1, vec2, vec3})
+  local expected={x=12,z=17}
+  lu.assertEquals(actual, expected)
+end
+
 function test_vec_dot_product()
   local vec1={x=1,y=2,z=3}
   local vec2={x=4,y=5,z=6}

@@ -18,6 +18,28 @@ function vec_add(vec1, vec2)
   return result
 end
 
+-- helper for vec_add_n 
+-- gets the keys from a point and returns a new
+-- vector with the value zero for each key.
+function zero_vector_(point)
+  local result = {}
+  for key,_ in pairs(point) do
+    result[key] = 0
+  end
+  return result
+end
+
+-- Add the values of a table, where the table contains points
+function vec_add_n(points)
+  a_point_key = get_any_key(points)
+  a_point = points[a_point_key]
+  local result = zero_vector_(a_point)
+  for _,v in pairs(points) do
+    result = vec_add(result, v)
+  end 
+  return result
+end
+
 -- Given two tables with x,y,z numerical components, computes the vec1-vec2
 function vec_sub(vec1, vec2)
     return { x = vec1['x'] - vec2['x'], y = vec1['y'] - vec2['y'], z = vec1['z'] - vec2['z'] }
