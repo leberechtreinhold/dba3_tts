@@ -1,10 +1,12 @@
--- Given two tables with x,y,z numerical components, computes the dot product of them
+-- Given two tables with (x,y,z) or (x,z) numerical components, 
+-- computes the dot product of them
 function vec_dot_product(vec1, vec2)
-    local xs = (vec1['x'] * vec2['x'])
-    local ys = (vec1['y'] * vec2['y']) 
-    local zs = (vec1['z'] * vec2['z'])
-    local sum = xs + ys + zs 
-    return sum
+  local sum = 0
+  for k,v1 in pairs(vec1) do
+    local v2 = vec2[k]
+    sum = sum + (v1 * v2)
+  end
+  return sum
 end
 
 -- Given two tables with x,y,z numerical components, computes the sum of both
