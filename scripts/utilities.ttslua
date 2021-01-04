@@ -535,3 +535,19 @@ function random_point_ellipse(w, h, added_from_center)
         z = random_radius * math.sin(random_theta)
     }
 end
+
+-- Print contents of `tbl`, with indentation.
+-- `indent` sets the initial level of indentation.
+function table_print (tbl, indent)
+  if not indent then indent = 0 end
+  for k, v in pairs(tbl) do
+    formatting = string.rep("  ", indent) .. k .. ": "
+    if type(v) == "table" then
+      print(formatting)
+      table_print(v, indent+1)
+    else
+      print(formatting .. tostring(v))
+    end
+  end
+end
+
