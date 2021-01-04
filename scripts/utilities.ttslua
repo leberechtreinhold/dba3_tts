@@ -340,6 +340,15 @@ function is_point_in_2d_shape(p, shape)
   return is_point_in_2d_triangle(p, last, shape[1], mid)
  end
 
+function is_2d_shapes_intersecting(shape1, shape2)
+  for _,p in ipairs(shape2) do
+    if is_point_in_2d_shape(p, shape1) then
+      return true
+    end
+  end
+  return false
+end
+
 -- Helper function for find_ui_element
 function find_ui_element_in_element(root_element, id)
     for k, v in pairs(root_element) do

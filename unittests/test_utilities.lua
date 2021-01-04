@@ -205,4 +205,18 @@ function test_is_point_in_2d_shape_returns_true_for_last_triangle()
   lu.assertTrue(actual)
 end 
 
+function test_is_2d_shapes_intersecting_true()
+  local shape1 = { {x=1,z=2}, {x=1,z=12}, {x=21,z=12},{x=21,z=12}}  
+  local shape2 = { {x=6,z=7}, {x=6,z=17}, {x=26,z=17},{x=26,z=7}}  
+  local actual = is_2d_shapes_intersecting(shape1, shape2)
+  lu.assertTrue(actual)
+end 
+
+function test_is_2d_shapes_intersecting_false()
+  local shape1 = { {x=1,z=2}, {x=1,z=12}, {x=21,z=12},{x=21,z=12}}  
+  local shape2 = { {x=31,z=2}, {x=31,z=12}, {x=51,z=12},{x=51,z=7}}  
+  local actual = is_2d_shapes_intersecting(shape1, shape2)
+  lu.assertFalse(actual)
+end 
+
 os.exit( lu.LuaUnit.run() )
