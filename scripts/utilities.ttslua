@@ -9,9 +9,13 @@ function vec_dot_product(vec1, vec2)
   return sum
 end
 
--- Given two tables with x,y,z numerical components, computes the sum of both
+-- Given two tables with (x,y,z) or (x,z) numerical components, computes the sum of both
 function vec_add(vec1, vec2)
-    return { x = vec1['x'] + vec2['x'], y = vec1['y'] + vec2['y'], z = vec1['z'] + vec2['z'] }
+  local result = shallow_copy(vec1)
+  for k,v in pairs(vec2) do
+    result[k] = result[k] + vec2[k]
+  end 
+  return result
 end
 
 -- Given two tables with x,y,z numerical components, computes the vec1-vec2

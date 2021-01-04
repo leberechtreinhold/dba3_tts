@@ -1,6 +1,23 @@
 lu = require('externals/luaunit/luaunit')
 require('scripts/utilities')
 
+
+function test_vec_add_3d()
+  local vec1={x=1,y=2,z=3}
+  local vec2={x=4,y=5,z=6}
+  local actual = vec_add(vec1, vec2)
+  local expected={x=5,y=7,z=9}
+  lu.assertEquals(actual, expected)
+end
+
+function test_vec_add_2d()
+  local vec1={x=1,z=3}
+  local vec2={x=4,z=6}
+  local actual = vec_add(vec1, vec2)
+  local expected={x=5,z=9}
+  lu.assertEquals(actual, expected)
+end
+
 function test_vec_dot_product()
   local vec1={x=1,y=2,z=3}
   local vec2={x=4,y=5,z=6}
