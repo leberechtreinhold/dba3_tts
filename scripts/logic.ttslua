@@ -1270,6 +1270,15 @@ function calculate_transform(base_obj)
     }
 end
 
+-- Shape is the corners of the transform is a specific order so adjoining
+-- points form an edge, with an implied edge from the last to the
+-- first point.
+function transform_to_shape(transform)
+  local corners = transform['corners']
+  return { corners['topleft'], corners['topright'],
+      corners['botright'], corners['botleft']  }
+end
+
 function transform_to_str(transform)
     if transform == nil then
         return 'NIL'

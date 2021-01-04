@@ -79,8 +79,8 @@ function test_is_behind_returns_true()
 
   local base_depth = get_size(resting_base.getName())['z']
   moving_base.position['z'] = resting_base.position['z'] - base_depth
-  transform_resting = calculate_transform(resting_base)
-  transform_moving = calculate_transform(moving_base)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
   local actual = is_behind(transform_moving, transform_resting)
   lu.assertTrue(actual) 
 end
@@ -94,8 +94,8 @@ function test_is_behind_returns_false_if_unit_is_too_far_behind()
   local base_depth = get_size(resting_base.getName())['z']
   local threshold = g_max_corner_distance_snap^0.5
   moving_base.position['z'] = resting_base.position['z'] - (base_depth + threshold)
-  transform_resting = calculate_transform(resting_base)
-  transform_moving = calculate_transform(moving_base)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
   local actual = is_behind(transform_moving, transform_resting)
   lu.assertFalse(actual) 
 end
@@ -109,8 +109,8 @@ function test_is_behind_returns_true_if_unit_is_close_behind()
   local base_depth = get_size(resting_base.getName())['z']
   local under_threshold = (g_max_corner_distance_snap^0.5) - 0.1
   moving_base.position['z'] = resting_base.position['z'] - (base_depth + under_threshold)
-  transform_resting = calculate_transform(resting_base)
-  transform_moving = calculate_transform(moving_base)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
   local actual = is_behind(transform_moving, transform_resting)
   lu.assertTrue(actual) 
 end
@@ -125,8 +125,8 @@ function test_is_behind_returns_true_if_unit_is_close_intersect()
   local base_depth = get_size(resting_base.getName())['z']
   local under_threshold = (g_max_corner_distance_snap^0.5) - 0.1
   moving_base.position['z'] = resting_base.position['z'] - (base_depth - under_threshold)
-  transform_resting = calculate_transform(resting_base)
-  transform_moving = calculate_transform(moving_base)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
   local actual = is_behind(transform_moving, transform_resting)
   lu.assertTrue(actual) 
 end
@@ -141,10 +141,21 @@ function test_is_behind_returns_false_if_unit_is_far_intersect()
   local base_depth = get_size(resting_base.getName())['z']
   local threshold = g_max_corner_distance_snap^0.5
   moving_base.position['z'] = resting_base.position['z'] - (base_depth - threshold)  
-  transform_resting = calculate_transform(resting_base)
-  transform_moving = calculate_transform(moving_base)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
   local actual = is_behind(transform_moving, transform_resting)
   lu.assertFalse(actual) 
+end
+
+function test_transform_to_shape()
+  local base = build_base("base 4Bw # 16")
+  local transform = calculate_transform(base)
+  local corners = transform['corners']
+  local actual = transform_to_shape(transform)
+  lu.assertEquals(actual[1], corners['topleft'])
+  lu.assertEquals(actual[2], corners['topright'])
+  lu.assertEquals(actual[3], corners['botright'])
+  lu.assertEquals(actual[4], corners['botleft'])
 end
 
 os.exit( lu.LuaUnit.run() )
