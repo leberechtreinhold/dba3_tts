@@ -1010,15 +1010,23 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
     obj.setPosition(new_pos)
 end
 
+
 -- is the moved base close enough to be snapped to another base?
 -- obj base being moved
 -- base Other base to compare against
 -- obj_large_base Boolean.  true if obj is a large base.
 -- base_large_base Boolean.  true if base is a large base.
 function is_snapable(obj, base, obj_large_base, base_large_base)
+  -- Check if the two bases are pretty close
   local pos = obj.getPosition()
   local pos_base = base.getPosition()
   local distance = distance_points_flat_sq(pos, pos_base)
+
+  -- no snap if the distance is too small
+  if distance < 0.0001 then
+    return false
+  end
+
   local max_distance = g_max_distance_alignment
   if obj_large_base or base_large_base then
       if obj_large_base and base_large_base then
@@ -1028,8 +1036,12 @@ function is_snapable(obj, base, obj_large_base, base_large_base)
       end
   end
 
-  local result = distance < max_distance and distance > 0.0001
-  return result
+  local close_enough = distance < max_distance
+  if close_enough then
+    return true
+  end
+
+  return false
 end
 
 function snap_picked_base(obj)
