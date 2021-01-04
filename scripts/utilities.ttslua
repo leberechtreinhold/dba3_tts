@@ -316,23 +316,28 @@ function is_point_in_2d_triangle(p, v1, v2, v3)
 end
 
 function is_point_in_2d_shape(p, shape)
+  if #shape == 4 then
+    -- Use only two triangles instead of the generic algorithm
+    -- that will use four.
+    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3]) or 
+       is_point_in_2d_triangle(p, shape[3], shape[4], shape[1]) 
+  end
+  if #shape == 3 then
+    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3]) 
+  end
   -- Check triangles from two adjacent vertices to the mid-point
   local mid = mid_point(shape)
-  local first = nil
   local last
-  for k,v in pairs(shape) do
-    if first == nil then
-      first = v
-      last = v
-    else
+  for k,v in ipairs(shape) do
+    if k ~= 1 then
       if is_point_in_2d_triangle(p, last, v, mid) then
         return true
       end 
-      last = v
     end
+    last = v
   end
   
-  return is_point_in_2d_triangle(p, last, first, mid)
+  return is_point_in_2d_triangle(p, last, shape[1], mid)
  end
 
 -- Helper function for find_ui_element
