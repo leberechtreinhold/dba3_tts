@@ -1,4 +1,4 @@
--- Given two tables with (x,y,z) or (x,z) numerical components, 
+-- Given two tables with (x,y,z) or (x,z) numerical components,
 -- computes the dot product of them
 function vec_dot_product(vec1, vec2)
   local sum = 0
@@ -56,12 +56,12 @@ end
 
 
 -- Given two points represented by tables with x,z coords, determines the angle
--- in radains, of point B relative to A, taking into account the orientation 
+-- in radains, of point B relative to A, taking into account the orientation
 -- of A (in the Y axis) in radians
 function relative_angle_from_point(pointA, pointB, rotationA)
     local zdiff = pointB['z'] - pointA['z']
     local xdiff = pointB['x'] - pointA['x']
-    
+
     local relative_angle = math.atan2(zdiff, xdiff)
     if relative_angle < 0 then
         relative_angle = 2*math.pi + relative_angle
@@ -101,7 +101,7 @@ function distance_points_flat_sq(point1, point2)
     return (point1['x'] - point2['x'])^2 + (point1['z'] - point2['z'])^2
 end
 
--- Given two tables with x,y,z representing world coords, calculates the distance 
+-- Given two tables with x,y,z representing world coords, calculates the distance
 -- between them in x,z
 function distance_points_flat(point1, point2)
     return math.sqrt((point1['x'] - point2['x'])^2 + (point1['z'] - point2['z'])^2)
@@ -142,7 +142,7 @@ end
 -- Given a point with xyz coordinates, relative to the center, rotates along
 -- theta
 function rotate_point_relative(point, center_coordinates, theta)
-    return { 
+    return {
         x = point['x'] * math.cos(theta) - point['z'] * math.sin(theta) + center_coordinates['x'],
         y = point['y'] + center_coordinates['y'],
         z = point['x'] * math.sin(theta) + point['z'] * math.cos(theta) + center_coordinates['z']
@@ -188,7 +188,7 @@ function shallow_copy(orig)
   return result
 end
 
-function get_any_key(a_table) 
+function get_any_key(a_table)
   for k,_ in pairs(a_table) do
     return k
   end
@@ -196,7 +196,7 @@ end
 
 -- Returns the minimum and maximum value of each ordinate.
 -- n-dimensional bounding box
-function bounding_box(corners) 
+function bounding_box(corners)
   local k = get_any_key(corners)
   local min = shallow_copy(corners[k])
   local max = shallow_copy(corners[k])
@@ -209,18 +209,37 @@ function bounding_box(corners)
   return {min=min, max=max}
 end
 
+
+-- Is min <= v <= max?
+function is_in_range(min,v,max)
+  if v < min then
+    return false
+  end
+  if v > max then
+    return false
+  end
+  return true
+end
+
 function is_point_in_bounding_box(point, box)
   for k,v in pairs(point) do
-    if v < box[ 'min' ] [ k ] then
-      return false
-    end
-    if v > box[ 'max' ] [ k ]  then
+    local min = box[ 'min' ] [ k ]
+    local max = box[ 'max' ] [ k ]
+    if not is_in_range(  min, v, max ) then
       return false
     end
   end
   return true
 end
-  
+
+function is_bounding_boxes_intersecting(box1, box2)
+  for _,corner in pairs(box1) do
+    if is_point_in_bounding_box(corner, box2) then
+      return true
+    end
+  end
+  return false
+end
 
 -- Helper function for find_ui_element
 function find_ui_element_in_element(root_element, id)
@@ -347,7 +366,7 @@ function friendlyname_to_dataname(friendly_name)
     return dataname
 end
 
--- Given a position for a center,  gets the coordinates of circle on the XZ plane 
+-- Given a position for a center,  gets the coordinates of circle on the XZ plane
 function get_coordinates_circle(center, radius, steps)
     local point_array = {}
     local degrees_per_step = 360 / steps
