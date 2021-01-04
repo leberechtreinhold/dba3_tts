@@ -146,9 +146,41 @@ end
 
 function test_is_point_in_2d_triangle_returns_false()
   local shape = { {x=1,z=2}, {x=13,z=1}, {x=6,z=52}}  
-  local mid = {x=0,z=0}
-  local actual = is_point_in_2d_triangle(mid, shape[1], shape[2], shape[3])
+  local p = {x=0,z=0}
+  local actual = is_point_in_2d_triangle(p, shape[1], shape[2], shape[3])
   lu.assertFalse(actual)
 end
+
+function test_is_point_in_2d_shape_returns_false()
+  local shape = { {x=1,z=2}, {x=51,z=52}, {x=101,z=102}, {x=151,z=152}}  
+  local p = {x=0,z=0}
+  local actual = is_point_in_2d_shape(p, shape)
+  lu.assertFalse(actual)
+end
+
+function test_is_point_in_2d_shape_returns_true_in_first_triangle()
+  local shape = { {x=1,z=2}, {x=3,z=52}, {x=101,z=102}, {x=151,z=152}}  
+  local shape_mid = mid_point(shape)
+  local p = mid_point{ shape[1], shape[2], shape_mid}
+  local actual = is_point_in_2d_shape(p, shape)
+  lu.assertTrue(actual)
+end
+
+function test_is_point_in_2d_shape_returns_true_for_second_to_last_triangle()
+  local shape = { {x=1,z=2}, {x=3,z=52}, {x=101,z=102}, {x=151,z=152}}  
+  local shape_mid = mid_point(shape)
+  local p = mid_point{ shape[3], shape[4], shape_mid}
+  local actual = is_point_in_2d_shape(p, shape)
+  lu.assertTrue(actual)
+end 
+
+function test_is_point_in_2d_shape_returns_true_for_last_triangle()
+  local shape = { {x=1,z=2}, {x=3,z=52}, {x=101,z=102}, {x=151,z=152}}  
+  local shape_mid = mid_point(shape)
+  local p = mid_point{ shape[4], shape[1], shape_mid}
+  local actual = is_point_in_2d_shape(p, shape)
+  lu.assertTrue(actual)
+end 
+
 
 os.exit( lu.LuaUnit.run() )

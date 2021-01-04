@@ -84,6 +84,13 @@ function vec_to_str(vec)
     return '[' .. string.format('%.2f',vec['x']) .. ', ' .. string.format('%.2f',vec['y']) .. ', ' .. string.format('%.2f',vec['z']) .. ']'
 end
 
+-- Given a tables with x,z numerical components, returns a [x,z] string with two decimals of precision
+function vec_2d_to_str(vec)
+    if vec == nil then
+        return '[nil]'
+    end
+    return '[' .. string.format('%.2f',vec['x']) .. ', ' .. string.format('%.2f',vec['z']) .. ']'
+end
 
 -- Given two points represented by tables with x,z coords, determines the angle
 -- in radains, of point B relative to A, taking into account the orientation
@@ -307,6 +314,26 @@ function is_point_in_2d_triangle(p, v1, v2, v3)
  
   return 0 <= t1 and t1 <= 1 and 0 <= t2 and t2 <= 1 and s <= 1
 end
+
+function is_point_in_2d_shape(p, shape)
+  -- Check triangles from two adjacent vertices to the mid-point
+  local mid = mid_point(shape)
+  local first = nil
+  local last
+  for k,v in pairs(shape) do
+    if first == nil then
+      first = v
+      last = v
+    else
+      if is_point_in_2d_triangle(p, last, v, mid) then
+        return true
+      end 
+      last = v
+    end
+  end
+  
+  return is_point_in_2d_triangle(p, last, first, mid)
+ end
 
 -- Helper function for find_ui_element
 function find_ui_element_in_element(root_element, id)
