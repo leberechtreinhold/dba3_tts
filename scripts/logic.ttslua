@@ -627,6 +627,29 @@ function calculate_future_position_wheel(obj, transform, pivot_point, angle, is_
     return get_transform(new_pos, new_corners, new_angle)
 end
 
+-- Are the specified corners of two bases are represented by
+-- their transforms close enough that the two bases can be
+-- snapped together.
+-- transformA: first object
+-- transformB: second object
+-- matching_corners:  vector of pairs of labels for the corners.
+-- first element in the pair is the label of the corner in the
+-- first object, second element is the label of the corner for the
+-- second object.
+function is_corners_snapping_adjacent(transformA, transformB, matching_corners)
+  local cornersA = transformA['corners']
+  local cornersB = transformB['corners']
+  for _,pair in ipairs(matching_corners) do
+    local pointA = cornersA [ pair[1] ] 
+    local pointB = cornersB [ pair[2] ] 
+    local distance = distance_points_flat_sq(pointA, pointB)
+    if distance >= g_max_corner_distance_snap then
+      return false
+    end
+  end
+  return true
+end
+
 -- Checks if the object A defined by its transform is inmediately behind
 -- object B, which is also represented by its transform
 function is_behind(transformA, transformB)
@@ -640,18 +663,18 @@ function is_behind(transformA, transformB)
        return false
     end
 
-    local cornersA = transformA['corners']
-    local cornersB = transformB['corners']
+    local matching_corners = {
+        {'topright', 'botright'},
+        {'topleft', 'botleft'}
+    }
 
-    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['botright'])
-    if distance < g_max_corner_distance_snap then
-        distance = distance_points_flat_sq(cornersA['topleft'], cornersB['botleft'])
-        if distance < g_max_corner_distance_snap then
-            return true
-        end
-    end
-    return false
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+
+    return true
 end
+
 
 -- Determines if A is to the left of B
 function is_left_side(transformA, transformB)
