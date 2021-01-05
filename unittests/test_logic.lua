@@ -147,6 +147,79 @@ function test_is_behind_returns_false_if_unit_is_far_intersect()
   lu.assertFalse(actual) 
 end
 
+function test_is_behind_returns_false_if_tl_too_far()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be behind the resting base, but skewed
+  -- with one corner within the threshold and one corner more than the 
+  -- threshold
+  moving_base.position = shallow_copy(resting_base.position)
+  moving_base['rotation']['y']= g_max_angle_pushback_rad
+
+  local base_depth = get_size(resting_base.getName())['z']
+  local threshold = (g_max_corner_distance_snap^0.5) 
+  moving_base.position['z'] = resting_base.position['z'] - (base_depth + threshold)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  local actual = is_behind(transform_moving, transform_resting)
+  lu.assertFalse(actual) 
+end
+
+function test_is_behind_returns_false_if_tr_too_far()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be behind the resting base, but skewed
+  -- with one corner within the threshold and one corner more than the 
+  -- threshold
+  moving_base.position = shallow_copy(resting_base.position)
+  moving_base['rotation']['y']= g_max_angle_pushback_rad
+
+  local base_depth = get_size(resting_base.getName())['z']
+  local threshold = (g_max_corner_distance_snap^0.5) 
+  moving_base.position['z'] = resting_base.position['z'] - (base_depth + threshold)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  local actual = is_behind(transform_moving, transform_resting)
+  lu.assertFalse(actual) 
+end
+
+function test_is_behind_returns_false_if_tl_too_far_on_intersect()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be behind the resting base, but skewed
+  -- with one corner within the threshold and one corner more than the 
+  -- threshold
+  moving_base.position = shallow_copy(resting_base.position)
+  moving_base['rotation']['y']= g_max_angle_pushback_rad
+
+  local base_depth = get_size(resting_base.getName())['z']
+  local threshold = (g_max_corner_distance_snap^0.5) 
+  moving_base.position['z'] = resting_base.position['z'] - (base_depth - 2*threshold)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  local actual = is_behind(transform_moving, transform_resting)
+  lu.assertFalse(actual) 
+end
+
+function test_is_behind_returns_false_if_tr_too_far_on_intersect()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be behind the resting base, but skewed
+  -- with one corner within the threshold and one corner more than the 
+  -- threshold
+  moving_base.position = shallow_copy(resting_base.position)
+  moving_base['rotation']['y']= g_max_angle_pushback_rad
+
+  local base_depth = get_size(resting_base.getName())['z']
+  local threshold = (g_max_corner_distance_snap^0.5) 
+  moving_base.position['z'] = resting_base.position['z'] - (base_depth - threshold)
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  local actual = is_behind(transform_moving, transform_resting)
+  lu.assertFalse(actual) 
+end
+
+
 function test_transform_to_shape()
   local base = build_base("base 4Bw # 16")
   local transform = calculate_transform(base)
