@@ -688,16 +688,16 @@ function is_left_side(transformA, transformB)
        return false
     end
 
-    local cornersA = transformA['corners']
-    local cornersB = transformB['corners']
+    local matching_corners = {
+        {'topright', 'topleft'}
+    }
+    -- Note: We do not check the bottom because bases may be of different
+    -- sizes and we already check the angle
 
-    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['topleft'])
-    if distance < g_max_corner_distance_snap then
-        -- Note: We do not check the bottom because bases may be of different
-        -- sizes and we already check the angle
-        return true
-    end
-    return false
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 -- Determines if A is to the right of B
@@ -724,16 +724,16 @@ function is_wwg_aligned_right_back(transformWWgA, transformB)
        return false
     end
 
-    local cornersA = transformWWgA['corners']
-    local cornersB = transformB['corners']
+    local matching_corners = {
+        {'botleft', 'topright'}
+    }
+    -- Note: We do not check the bottom because bases may be of different
+    -- sizes and we already check the angle
 
-    local distance = distance_points_flat_sq(cornersA['botleft'], cornersB['topright'])
-    if distance < g_max_corner_distance_snap then
-        -- Note: We do not check the bottom because bases may be of different
-        -- sizes and we already check the angle
-        return true
-    end
-    return false
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 -- Returns if A, a WWg, is aligned to the right of B, with the front of A
@@ -750,16 +750,16 @@ function is_wwg_aligned_right_front(transformWWgA, transformB)
        return false
     end
 
-    local cornersA = transformWWgA['corners']
-    local cornersB = transformB['corners']
+    local matching_corners = {
+        {'topright', 'topright'}
+    }
+    -- Note: We do not check the bottom because bases may be of different
+    -- sizes and we already check the angle
 
-    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['topright'])
-    if distance < g_max_corner_distance_snap then
-        -- Note: We do not check the bottom because bases may be of different
-        -- sizes and we already check the angle
-        return true
-    end
-    return false
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 -- Returns if A, a WWg, is aligned to the left of B, with the back of A
@@ -776,16 +776,16 @@ function is_wwg_aligned_left_back(transformWWgA, transformB)
        return false
     end
 
-    local cornersA = transformWWgA['corners']
-    local cornersB = transformB['corners']
+   local matching_corners = {
+        {'botright', 'topleft'}
+    }
+    -- Note: We do not check the bottom because bases may be of different
+    -- sizes and we already check the angle
 
-    local distance = distance_points_flat_sq(cornersA['botright'], cornersB['topleft'])
-    if distance < g_max_corner_distance_snap then
-        -- Note: We do not check the bottom because bases may be of different
-        -- sizes and we already check the angle
-        return true
-    end
-    return false
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 -- Returns if A, a WWg, is aligned to the left of B, with the front of A
@@ -802,16 +802,16 @@ function is_wwg_aligned_left_front(transformWWgA, transformB)
        return false
     end
 
-    local cornersA = transformWWgA['corners']
-    local cornersB = transformB['corners']
+   local matching_corners = {
+        {'topleft', 'topleft'}
+    }
+    -- Note: We do not check the bottom because bases may be of different
+    -- sizes and we already check the angle
 
-    local distance = distance_points_flat_sq(cornersA['topleft'], cornersB['topleft'])
-    if distance < g_max_corner_distance_snap then
-        -- Note: We do not check the bottom because bases may be of different
-        -- sizes and we already check the angle
-        return true
-    end
-    return false
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 
@@ -827,17 +827,14 @@ function is_opposite_front(transformA, transformB)
        return false
     end
 
-    local cornersA = transformA['corners']
-    local cornersB = transformB['corners']
-
-    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['topleft'])
-    if distance < g_max_corner_distance_snap then
-        distance = distance_points_flat_sq(cornersA['topleft'], cornersB['topright'])
-        if distance < g_max_corner_distance_snap then
-            return true
-        end
-    end
-    return false
+   local matching_corners = {
+        {'topright', 'topleft'},
+        {'topleft', 'topright'}
+    }
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 -- Determines if A is in the of side of B, "closing its door", which in DBA
@@ -856,14 +853,13 @@ function is_closing_door_to_left(transformA, transformB)
        return false
     end
 
-    local cornersA = transformA['corners']
-    local cornersB = transformB['corners']
-
-    local distance = distance_points_flat_sq(cornersA['topleft'], cornersB['topleft'])
-    if distance < g_max_corner_distance_snap then
-        return true
-    end
-    return false
+   local matching_corners = {
+        {'topright', 'topleft'},
+    }
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 function is_closing_door_to_right(transformA, transformB)
@@ -879,14 +875,14 @@ function is_closing_door_to_right(transformA, transformB)
        return false
     end
 
-    local cornersA = transformA['corners']
-    local cornersB = transformB['corners']
 
-    local distance = distance_points_flat_sq(cornersA['topright'], cornersB['topright'])
-    if distance < g_max_corner_distance_snap then
-        return true
-    end
-    return false
+   local matching_corners = {
+        {'topright', 'topright'},
+    }
+    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+      return false 
+    end 
+    return true
 end
 
 function get_depth_base(tile_name)
