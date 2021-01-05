@@ -627,6 +627,70 @@ function calculate_future_position_wheel(obj, transform, pivot_point, angle, is_
     return get_transform(new_pos, new_corners, new_angle)
 end
 
+
+function transform_to_shape(transform)
+  corners=transform['corners']
+  shape={
+    corners['topright'], corners['topleft'], corners['botleft'],
+    corners['botright']
+  }
+  print("==shape")
+  table_print(shape)
+  return shape
+end
+
+-- get a shape that defines a quarter of a base.
+-- corners:  transform of the base.
+-- quadrant: "topright", "topleft", "botright", or "botleft"
+-- return the shape of the quadrant
+function base_quadrant_shape(transform, quadrant)
+  local corners = transform['corners']
+  local mid = mid_point(corners)
+  if quadrant == "topleft" then
+    local topmid = mid_point(corners['topleft'], corners['topright'])
+    local midleft = mid_point(corners['topleft'], corners['botleft'])
+    return { corners['topleft'], topmid, mid, midleft }
+  end
+  if quadrant == "topright" then
+    local topmid = mid_point(corners['topleft'], corners['topright'])
+    local midright = mid_point(corners['topright'], corners['botright'])
+    return { corners['topright'], topmid, mid, midright }
+  end
+  if quadrant == "botleft" then
+    local botmid = mid_point(corners['botleft'], corners['botright'])
+    local midleft = mid_point(corners['topleft'], corners['botleft'])
+    return { corners['botleft'], botmid, mid, midleft }
+  end
+  -- botright
+  local botmid = mid_point(corners['botleft'], corners['botright'])
+  local midright = mid_point(corners['topright'], corners['botright'])
+  return { corners['botright'], botmid, mid, midright }
+end
+
+
+function is_corner_snapping_close(transformA, transformB, cornerALabel,cornerBLabel, threshold)
+  local cornersA = transformA['corners']
+  local cornersB = transformB['corners']
+  local pointA = cornersA [ cornerALabel ]
+  local pointB = cornersB [ cornerBLabel ]
+  local distance_sq = distance_points_flat_sq(pointA, pointB)
+  if distance_sq < threshold then
+    return true
+  end
+  return false
+end
+
+function is_corners_snapping_close(transformA, transformB, matching_corners, threshold)
+  for _,pair in ipairs(matching_corners) do
+    if not is_corner_snapping_close(transformA, transformB, pair[1], pair[2], threshold) then
+      return false
+    end
+  end
+  return true
+end
+
+
+
 -- Are the specified corners of two bases are represented by
 -- their transforms close enough that the two bases can be
 -- snapped together.
@@ -637,18 +701,17 @@ end
 -- first object, second element is the label of the corner for the
 -- second object.
 function is_corners_snapping_adjacent(transformA, transformB, matching_corners)
-  local cornersA = transformA['corners']
-  local cornersB = transformB['corners']
-  for _,pair in ipairs(matching_corners) do
-    local pointA = cornersA [ pair[1] ] 
-    local pointB = cornersB [ pair[2] ] 
-    local distance = distance_points_flat_sq(pointA, pointB)
-    if distance >= g_max_corner_distance_snap then
-      return false
-    end
+  local shapeA = transform_to_shape(transformA)
+  local shapeB = transform_to_shape(transformB)
+  local intersecting = is_2d_shapes_intersecting(shapeA, shapeB)
+  local threshold =g_max_corner_distance_snap
+  if intersecting then
+    threshold = g_max_corner_distance_snap_intersect_sq
   end
-  return true
+  local result = is_corners_snapping_close(transformA, transformB, matching_corners, threshold)
+  return result
 end
+
 
 -- Checks if the object A defined by its transform is inmediately behind
 -- object B, which is also represented by its transform
@@ -669,8 +732,8 @@ function is_behind(transformA, transformB)
     }
 
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
 
     return true
 end
@@ -695,8 +758,8 @@ function is_left_side(transformA, transformB)
     -- sizes and we already check the angle
 
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -731,8 +794,8 @@ function is_wwg_aligned_right_back(transformWWgA, transformB)
     -- sizes and we already check the angle
 
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -757,8 +820,8 @@ function is_wwg_aligned_right_front(transformWWgA, transformB)
     -- sizes and we already check the angle
 
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -783,8 +846,8 @@ function is_wwg_aligned_left_back(transformWWgA, transformB)
     -- sizes and we already check the angle
 
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -809,8 +872,8 @@ function is_wwg_aligned_left_front(transformWWgA, transformB)
     -- sizes and we already check the angle
 
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -832,8 +895,8 @@ function is_opposite_front(transformA, transformB)
         {'topleft', 'topright'}
     }
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -857,8 +920,8 @@ function is_closing_door_to_left(transformA, transformB)
         {'topright', 'topleft'},
     }
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -880,8 +943,8 @@ function is_closing_door_to_right(transformA, transformB)
         {'topright', 'topright'},
     }
     if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
-      return false 
-    end 
+      return false
+    end
     return true
 end
 
@@ -1102,10 +1165,10 @@ function snap_picked_base(obj)
     local bases = get_all_bases()
     local is_wwg = str_has_substr(obj.getName(), 'WWg')
     local is_large_base = is_wwg or str_has_substr(obj.getName(), '6Kn')
+    local transformObj = nil
 
     for _, base in ipairs(bases) do
         local pos_base = base.getPosition()
-
 
         local is_other_wwg = str_has_substr(base.getName(), 'WWg')
         local is_large_base_other = is_other_wwg or str_has_substr(base.getName(), '6Kn')
@@ -1113,7 +1176,9 @@ function snap_picked_base(obj)
         if is_snapable(obj, base, is_large_base, is_larget_base_other) then
             print_debug('Checking snap of ' .. obj.getName()
                         .. ' with ' .. base.getName())
-            local transformObj = calculate_transform(obj)
+            if transformObj == nil then
+              transformObj = calculate_transform(obj)
+            end
             local transformBase = calculate_transform(base)
 
             -- Calculate relative position

@@ -14,11 +14,11 @@ function vec_add(vec1, vec2)
   local result = shallow_copy(vec1)
   for k,v in pairs(vec2) do
     result[k] = result[k] + vec2[k]
-  end 
+  end
   return result
 end
 
--- helper for vec_add_n 
+-- helper for vec_add_n
 -- gets the keys from a point and returns a new
 -- vector with the value zero for each key.
 function zero_vector_(point)
@@ -36,7 +36,7 @@ function vec_add_n(points)
   local result = zero_vector_(a_point)
   for _,v in pairs(points) do
     result = vec_add(result, v)
-  end 
+  end
   return result
 end
 
@@ -280,7 +280,7 @@ function is_bounding_boxes_intersecting(box1, box2)
 end
 
 -- Calculate the mid-point of a shape.
--- The shape is a table of points.  Each point is a 
+-- The shape is a table of points.  Each point is a
 -- vector of ordinate values.
 function mid_point(shape)
   local sum = vec_add_n(shape)
@@ -311,7 +311,7 @@ function is_point_in_2d_triangle(p, v1, v2, v3)
   local t1 = (x*(y3 - y1) + y*(x1 - x3) - x1*y3 + y1*x3) / denominator
   local t2 = (x*(y2 - y1) + y*(x1 - x2) - x1*y2 + y1*x2) / -denominator
   local s = t1 + t2
- 
+
   return 0 <= t1 and t1 <= 1 and 0 <= t2 and t2 <= 1 and s <= 1
 end
 
@@ -319,11 +319,11 @@ function is_point_in_2d_shape(p, shape)
   if #shape == 4 then
     -- Use only two triangles instead of the generic algorithm
     -- that will use four.
-    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3]) or 
-       is_point_in_2d_triangle(p, shape[3], shape[4], shape[1]) 
+    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3]) or
+       is_point_in_2d_triangle(p, shape[3], shape[4], shape[1])
   end
   if #shape == 3 then
-    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3]) 
+    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3])
   end
   -- Check triangles from two adjacent vertices to the mid-point
   local mid = mid_point(shape)
@@ -332,17 +332,22 @@ function is_point_in_2d_shape(p, shape)
     if k ~= 1 then
       if is_point_in_2d_triangle(p, last, v, mid) then
         return true
-      end 
+      end
     end
     last = v
   end
-  
+
   return is_point_in_2d_triangle(p, last, shape[1], mid)
  end
 
 function is_2d_shapes_intersecting(shape1, shape2)
   for _,p in ipairs(shape2) do
     if is_point_in_2d_shape(p, shape1) then
+      return true
+    end
+  end
+  for _,p in ipairs(shape1) do
+    if is_point_in_2d_shape(p, shape2) then
       return true
     end
   end
@@ -559,4 +564,3 @@ function table_print (tbl, indent)
     end
   end
 end
-
