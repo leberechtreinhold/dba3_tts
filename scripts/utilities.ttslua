@@ -111,6 +111,51 @@ function relative_angle_from_point(pointA, pointB, rotationA)
     return angle_adjusted_coords
 end
 
+-- Normalize an angle between zero and 2 PI.
+function normalize_radians(angle)
+  while (angle < 0) do
+    angle = angle + (math.pi * 2)
+  end
+  while (angle >= (math.pi * 2)) do
+    angle = angle - (math.pi * 2)
+  end
+  return angle
+end
+
+-- Are two angles approximately the same.  Angles are measured in rad
+function is_angle_same_rad(angleA, angleB)
+  -- normalize to be between 0 and 2 PI
+  angleA = normalize_radians(angleA)
+  angleB = normalize_radians(angleB)
+
+  -- Find the smallest and largest values
+  local hi
+  local lo
+  if angleA > angleB then
+    hi = angleA
+    lo = angleB
+  else
+    lo = angleA
+    hi = angleB
+  end
+
+  -- calculate the difference, so the difference is always a positive value
+  local diff_angle = hi - lo
+
+  -- Check if the difference
+  if diff_angle < g_max_angle_pushback_rad then
+    return true
+  end
+
+  -- Check if the value is close to 2 PI + threshold
+  diff_angle =  -(diff_angle - (2 * math.pi))
+  if diff_angle < g_max_angle_pushback_rad then
+    return true
+  end
+
+  return false
+end
+
 -- Given a tables with x,y,z each with a degree number [0-360], returns a table with x,y,z converted to radians (o, 2pi)
 function from_degrees_to_rad(vec)
     return { x = math.rad(vec['x']),  y = math.rad(vec['y']), z = math.rad(vec['z']) }

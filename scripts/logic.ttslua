@@ -718,10 +718,7 @@ end
 function is_behind(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
-    local diff_angle = math.abs(angleB - angleA)
-
-    if diff_angle > g_max_angle_pushback_rad
-       and diff_angle < (2*math.pi - g_max_angle_pushback_rad) then
+    if not is_angle_same_rad(angleA, angleB) then
        -- Angle is too different, skip
        return false
     end
@@ -743,10 +740,7 @@ end
 function is_left_side(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
-    local diff_angle = math.abs(angleB - angleA)
-
-    if diff_angle > g_max_angle_pushback_rad
-       and diff_angle < (2*math.pi - g_max_angle_pushback_rad) then
+    if not is_angle_same_rad(angleA, angleB) then
        -- Angle is too different, skip
        return false
     end
@@ -793,7 +787,7 @@ function is_wwg_aligned_right_back(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+    if not is_corners_snapping_adjacent(transformWWgA, transformB, matching_corners) then
       return false
     end
     return true
@@ -819,7 +813,7 @@ function is_wwg_aligned_right_front(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+    if not is_corners_snapping_adjacent(transformWWgA, transformB, matching_corners) then
       return false
     end
     return true
@@ -845,7 +839,7 @@ function is_wwg_aligned_left_back(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+    if not is_corners_snapping_adjacent(transformWWgA, transformB, matching_corners) then
       return false
     end
     return true
@@ -871,7 +865,7 @@ function is_wwg_aligned_left_front(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    if not is_corners_snapping_adjacent(transformA, transformB, matching_corners) then
+    if not is_corners_snapping_adjacent(transformWWgA, transformB, matching_corners) then
       return false
     end
     return true
@@ -937,7 +931,6 @@ function is_closing_door_to_right(transformA, transformB)
        -- Angle is too different, skip
        return false
     end
-
 
    local matching_corners = {
         {'topright', 'topright'},
