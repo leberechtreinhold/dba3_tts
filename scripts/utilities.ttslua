@@ -251,6 +251,7 @@ function corners_in_to_mm(corner)
     }
 end
 
+
 -- Given a table with four corners top/bot left/right, each with a xyz
 -- vector representing coordinates, returns a str version of it
 -- { corner = [coords], corner = [coords], ...}
@@ -595,13 +596,82 @@ function random_point_ellipse(w, h, added_from_center)
     }
 end
 
+function table_length(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
+
+function is_vec_3d(obj)
+  if type(obj) ~= "table" then
+    return false
+  end
+  if table_length(obj) ~= 3 then
+    return false
+  end
+  if obj['x'] == nil then
+    return false
+  end
+  if obj['y'] == nil then
+    return false
+  end
+  if obj['z'] == nil then
+    return false
+  end
+  return true
+end
+
+function is_vec_2d(obj)
+  if type(obj) ~= "table" then
+    return false
+  end
+  if table_length(obj) ~= 3 then
+    return false
+  end
+  if obj['x'] == nil then
+    return false
+  end
+  if obj['z'] == nil then
+    return false
+  end
+  return true
+end
+
+function is_corners(obj)
+  if type(obj) ~= "table" then
+    return false
+  end
+  if table_length(obj) ~= 4 then
+    return false
+  end
+  if obj['topleft'] == nil then
+    return false
+  end
+  if obj['topright'] == nil then
+    return false
+  end
+  if obj['botleft'] == nil then
+    return false
+  end
+  if obj['botright'] == nil then
+    return false
+  end
+  return true
+end
+
 -- Print contents of `tbl`, with indentation.
 -- `indent` sets the initial level of indentation.
 function table_print (tbl, indent)
   if not indent then indent = 0 end
   for k, v in pairs(tbl) do
     formatting = string.rep("  ", indent) .. k .. ": "
-    if type(v) == "table" then
+    if is_vec_2d(v) then
+      print(formatting .. vec_2d_to_str(v))
+    elseif is_vec_3d(v) then
+      print(formatting .. vec_to_str(v))
+    elseif is_corners(v) then
+      print(formatting .. corners_to_str(v))
+    elseif type(v) == "table" then
       print(formatting)
       table_print(v, indent+1)
     else

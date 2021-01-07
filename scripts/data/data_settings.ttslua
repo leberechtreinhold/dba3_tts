@@ -48,7 +48,8 @@ g_max_corner_distance_snap = 0.2*0.2
 g_max_camp_edge_snap = 1
 -- Max distance in inches between corenrs for aligment when snapping
 -- when the two bases intersect, i.e. the units are on top of each other.
-g_max_corner_distance_snap_intersect = 0.5
+-- Since stacking is not allowed in DBA, we can have a big value.
+g_max_corner_distance_snap_intersect = 0.6
 g_max_corner_distance_snap_intersect_sq = g_max_corner_distance_snap_intersect * g_max_corner_distance_snap_intersect
 
 -- Command distances from the general

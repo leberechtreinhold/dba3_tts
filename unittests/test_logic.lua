@@ -9,7 +9,11 @@ end
 
 -- Create a fake base that can be used for
 -- testing
-function build_base(base_name)
+function build_base(base_name, tile)
+  if tile == nil then
+    tile="tile_plain_4Bw_40x20"
+  end
+
   local base = {
     name=base_name,
     position={
@@ -27,14 +31,22 @@ function build_base(base_name)
   base['getName']=function()
     return base.name
   end
+
   base['getPosition']=function()
     return base.position
   end
+
+  base['setPosition']=function(new_value)
+    base.position = new_value
+  end
+
   base['getRotation']=function()
     return base.rotation
   end
 
-  local tile="tile_plain_4Bw_40x20"
+  base['setRotation']=function(new_value)
+    base.rotation = new_value
+  end
 
   g_bases[ base_name] = {
     tile=tile,
@@ -70,8 +82,22 @@ function test_distance_points_flat_sq()
     distance_moved^2, 1e-4)
   end
 
--- front and back bases edges are the touching
-function test_is_behind_returns_true()
+function test_distance_behind()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be immediately behind the resting base
+  moving_base.position = shallow_copy(resting_base.position)
+
+  local base_depth = get_size(resting_base.getName())['z']
+  moving_base.position['z'] = resting_base.position['z'] - base_depth
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  local actual = distance_behind(transform_moving, transform_resting)
+  -- max distance between the front and back corners
+  lu.assertAlmostEquals(actual, 0, 1e-4)
+end
+
+function test_is_behind()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately behind the resting base
@@ -85,8 +111,7 @@ function test_is_behind_returns_true()
   lu.assertTrue(actual)
 end
 
--- front and back bases edges are the touching
-function test_is_infront_returns_true()
+function test_distance_infront()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately behind the resting base
@@ -96,73 +121,30 @@ function test_is_infront_returns_true()
   moving_base.position['z'] = resting_base.position['z'] + base_depth
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
+  -- front and back bases edges are touching
+  local actual = distance_infront(transform_moving, transform_resting)
+  -- max distance between the front and back corners
+  lu.assertAlmostEquals(actual, 0, 1e-4)
+end
+
+function test_is_infront()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be immediately behind the resting base
+  moving_base.position = shallow_copy(resting_base.position)
+
+  local base_depth = get_size(resting_base.getName())['z']
+  moving_base.position['z'] = resting_base.position['z'] + base_depth
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  -- front and back bases edges are touching
+
   local actual = is_infront(transform_moving, transform_resting)
   lu.assertTrue(actual)
 end
 
-function test_is_behind_returns_false_if_unit_is_too_far_behind()
-  local resting_base = build_base("base 4Bw # 16")
-  local moving_base = build_base("base 4Bw # 17")
-  -- have the moving base be behind the resting base
-  moving_base.position = shallow_copy(resting_base.position)
 
-  local base_depth = get_size(resting_base.getName())['z']
-  local threshold = g_max_corner_distance_snap^0.5
-  moving_base.position['z'] = resting_base.position['z'] - (base_depth + threshold)
-  local transform_resting = calculate_transform(resting_base)
-  local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertFalse(actual)
-end
-
-function test_is_behind_returns_true_if_unit_is_close_behind()
-  local resting_base = build_base("base 4Bw # 16")
-  local moving_base = build_base("base 4Bw # 17")
-  -- have the moving base be behind the resting base
-  moving_base.position = shallow_copy(resting_base.position)
-
-  local base_depth = get_size(resting_base.getName())['z']
-  local under_threshold = (g_max_corner_distance_snap^0.5) - 0.1
-  moving_base.position['z'] = resting_base.position['z'] - (base_depth + under_threshold)
-  local transform_resting = calculate_transform(resting_base)
-  local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertTrue(actual)
-end
-
--- moving unit is on-top of the resting unit
-function test_is_behind_returns_true_if_unit_is_close_intersect()
-  local resting_base = build_base("base 4Bw # 16")
-  local moving_base = build_base("base 4Bw # 17")
-  -- have the moving base be behind the resting base
-  moving_base.position = shallow_copy(resting_base.position)
-
-  local base_depth = get_size(resting_base.getName())['z']
-  local under_threshold = (g_max_corner_distance_snap^0.5) - 0.1
-  moving_base.position['z'] = resting_base.position['z'] - (base_depth - under_threshold)
-  local transform_resting = calculate_transform(resting_base)
-  local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertTrue(actual)
-end
-
--- moving unit is on-top of the resting unit
-function test_is_behind_returns_false_if_unit_is_far_intersect()
-  local resting_base = build_base("base 4Bw # 16")
-  local moving_base = build_base("base 4Bw # 17")
-  -- have the moving base be behind the resting base
-  moving_base.position = shallow_copy(resting_base.position)
-
-  local base_depth = get_size(resting_base.getName())['z']
-  local threshold = g_max_corner_distance_snap_intersect
-  moving_base.position['z'] = resting_base.position['z'] - (base_depth - threshold)
-  local transform_resting = calculate_transform(resting_base)
-  local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertFalse(actual)
-end
-
-function test_is_behind_returns_false_if_tl_too_far()
+function test_distance_behind_returns_furthest_distance()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be behind the resting base, but skewed
@@ -176,66 +158,11 @@ function test_is_behind_returns_false_if_tl_too_far()
   moving_base.position['z'] = resting_base.position['z'] - (base_depth + threshold)
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertFalse(actual)
+  local actual = distance_behind(transform_moving, transform_resting)
+  lu.assertFalse(actual > threshold)
 end
 
-function test_is_behind_returns_false_if_tr_too_far()
-  local resting_base = build_base("base 4Bw # 16")
-  local moving_base = build_base("base 4Bw # 17")
-  -- have the moving base be behind the resting base, but skewed
-  -- with one corner within the threshold and one corner more than the
-  -- threshold
-  moving_base.position = shallow_copy(resting_base.position)
-  moving_base['rotation']['y']= g_max_angle_pushback_rad
-
-  local base_depth = get_size(resting_base.getName())['z']
-  local threshold = (g_max_corner_distance_snap^0.5)
-  moving_base.position['z'] = resting_base.position['z'] - (base_depth + threshold)
-  local transform_resting = calculate_transform(resting_base)
-  local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertFalse(actual)
-end
-
-function test_is_behind_returns_false_if_tl_too_far_on_intersect()
-  local resting_base = build_base("base 4Bw # 16")
-  local moving_base = build_base("base 4Bw # 17")
-  -- have the moving base be behind the resting base, but skewed
-  -- with one corner within the threshold and one corner more than the
-  -- threshold
-  moving_base.position = shallow_copy(resting_base.position)
-  moving_base['rotation']['y']= g_max_angle_pushback_rad
-
-  local base_depth = get_size(resting_base.getName())['z']
-  local threshold = g_max_corner_distance_snap_intersect
-  moving_base.position['z'] = resting_base.position['z'] - (base_depth - 2*threshold)
-  local transform_resting = calculate_transform(resting_base)
-  local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertFalse(actual)
-end
-
-function test_is_behind_returns_false_if_tr_too_far_on_intersect()
-  local resting_base = build_base("base 4Bw # 16")
-  local moving_base = build_base("base 4Bw # 17")
-  -- have the moving base be behind the resting base, but skewed
-  -- with one corner within the threshold and one corner more than the
-  -- threshold
-  moving_base.position = shallow_copy(resting_base.position)
-  moving_base['rotation']['y']= g_max_angle_pushback_rad
-
-  local base_depth = get_size(resting_base.getName())['z']
-  local threshold = g_max_corner_distance_snap_intersect
-  moving_base.position['z'] = resting_base.position['z'] - (base_depth - threshold)
-  local transform_resting = calculate_transform(resting_base)
-  local transform_moving = calculate_transform(moving_base)
-  local actual = is_behind(transform_moving, transform_resting)
-  lu.assertFalse(actual)
-end
-
--- left and right bases edges are the touching
-function test_is_left_side_returns_true()
+function test_distance_left_side()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately beside the resting base
@@ -245,12 +172,27 @@ function test_is_left_side_returns_true()
   moving_base.position['x'] = resting_base.position['x'] - base_width
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
+  -- left and right bases edges are touching
+  local actual = distance_left_side(transform_moving, transform_resting)
+  lu.assertAlmostEquals(actual, 0, 1e-4)
+end
+
+function test_is_left_side()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be immediately beside the resting base
+  moving_base.position = shallow_copy(resting_base.position)
+
+  local base_width = get_size(resting_base.getName())['x']
+  moving_base.position['x'] = resting_base.position['x'] - base_width
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  -- left and right bases edges are touching
   local actual = is_left_side(transform_moving, transform_resting)
   lu.assertTrue(actual)
 end
 
--- right and left bases edges are the touching
-function test_is_right_side_returns_true()
+function test_distance_right_side()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately beside the resting base
@@ -260,9 +202,25 @@ function test_is_right_side_returns_true()
   moving_base.position['x'] = resting_base.position['x'] + base_width
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
+  -- right and left bases edges are the touching
+  local actual = distance_right_side(transform_moving, transform_resting)
+  lu.assertAlmostEquals(actual, 0, 1e-4)
+end
+
+function test_is_right_side()
+  local resting_base = build_base("base 4Bw # 16")
+  local moving_base = build_base("base 4Bw # 17")
+  -- have the moving base be immediately beside the resting base
+  moving_base.position = shallow_copy(resting_base.position)
+
+  local base_width = get_size(resting_base.getName())['x']
+  moving_base.position['x'] = resting_base.position['x'] + base_width
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  -- right and left bases edges are the touching
   local actual = is_right_side(transform_moving, transform_resting)
   lu.assertTrue(actual)
-end
+Send
 
 
 function test_transform_to_shape()
