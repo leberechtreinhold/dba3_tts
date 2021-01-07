@@ -62,7 +62,9 @@ function update_zone_value(zone)
                or str_has_substr(obj_name, '6Cv')
                or str_has_substr(obj_name, '8Sp')
                or str_has_substr(obj_name, '6Bd')
-               or str_has_substr(obj_name, '8Bw') then
+               or str_has_substr(obj_name, '8Bw')
+               or str_has_substr(obj_name, '8Lb')
+               or str_has_substr(obj_name, '8Cb') then
                 has_double_element = true
             end
             
