@@ -1,11 +1,43 @@
--- Given two tables with x,y,z numerical components, computes the dot product of them
+-- Given two tables with (x,y,z) or (x,z) numerical components,
+-- computes the dot product of them
 function vec_dot_product(vec1, vec2)
-    return { x = vec1['x'] * vec2['x'], y = vec1['y'] * vec2['y'], z = vec1['z'] * vec2['z'] }
+  local sum = 0
+  for k,v1 in pairs(vec1) do
+    local v2 = vec2[k]
+    sum = sum + (v1 * v2)
+  end
+  return sum
 end
 
--- Given two tables with x,y,z numerical components, computes the sum of both
+-- Given two tables with (x,y,z) or (x,z) numerical components, computes the sum of both
 function vec_add(vec1, vec2)
-    return { x = vec1['x'] + vec2['x'], y = vec1['y'] + vec2['y'], z = vec1['z'] + vec2['z'] }
+  local result = shallow_copy(vec1)
+  for k,v in pairs(vec2) do
+    result[k] = result[k] + vec2[k]
+  end 
+  return result
+end
+
+-- helper for vec_add_n 
+-- gets the keys from a point and returns a new
+-- vector with the value zero for each key.
+function zero_vector_(point)
+  local result = {}
+  for key,_ in pairs(point) do
+    result[key] = 0
+  end
+  return result
+end
+
+-- Add the values of a table, where the table contains points
+function vec_add_n(points)
+  a_point_key = get_any_key(points)
+  a_point = points[a_point_key]
+  local result = zero_vector_(a_point)
+  for _,v in pairs(points) do
+    result = vec_add(result, v)
+  end 
+  return result
 end
 
 -- Given two tables with x,y,z numerical components, computes the vec1-vec2
@@ -24,9 +56,13 @@ function vec_mul_vec(vec, vec2)
     return { x = vec['x'] * vec2['x'], y = vec['y'] * vec2['y'], z = vec['z'] * vec2['z'] }
 end
 
--- Given a table with x,y,z numerical components, and a escalar number, returns a vector with each component divided
+-- Given a table with (x,y) or (x,y,z) numerical components, and a escalar number, returns a vector with each component divided
 function vec_div_escalar(vec, num)
-    return { x = vec['x'] / num, y = vec['y'] / num, z = vec['z'] / num }
+  local result = {}
+  for k,v in pairs(vec) do
+    result[k] = vec[k] / num
+  end
+  return result
 end
 
 -- Given two tables with x,y,z numerical components, returns a vector
@@ -48,14 +84,21 @@ function vec_to_str(vec)
     return '[' .. string.format('%.2f',vec['x']) .. ', ' .. string.format('%.2f',vec['y']) .. ', ' .. string.format('%.2f',vec['z']) .. ']'
 end
 
+-- Given a tables with x,z numerical components, returns a [x,z] string with two decimals of precision
+function vec_2d_to_str(vec)
+    if vec == nil then
+        return '[nil]'
+    end
+    return '[' .. string.format('%.2f',vec['x']) .. ', ' .. string.format('%.2f',vec['z']) .. ']'
+end
 
 -- Given two points represented by tables with x,z coords, determines the angle
--- in radains, of point B relative to A, taking into account the orientation 
+-- in radains, of point B relative to A, taking into account the orientation
 -- of A (in the Y axis) in radians
 function relative_angle_from_point(pointA, pointB, rotationA)
     local zdiff = pointB['z'] - pointA['z']
     local xdiff = pointB['x'] - pointA['x']
-    
+
     local relative_angle = math.atan2(zdiff, xdiff)
     if relative_angle < 0 then
         relative_angle = 2*math.pi + relative_angle
@@ -95,7 +138,7 @@ function distance_points_flat_sq(point1, point2)
     return (point1['x'] - point2['x'])^2 + (point1['z'] - point2['z'])^2
 end
 
--- Given two tables with x,y,z representing world coords, calculates the distance 
+-- Given two tables with x,y,z representing world coords, calculates the distance
 -- between them in x,z
 function distance_points_flat(point1, point2)
     return math.sqrt((point1['x'] - point2['x'])^2 + (point1['z'] - point2['z'])^2)
@@ -136,7 +179,7 @@ end
 -- Given a point with xyz coordinates, relative to the center, rotates along
 -- theta
 function rotate_point_relative(point, center_coordinates, theta)
-    return { 
+    return {
         x = point['x'] * math.cos(theta) - point['z'] * math.sin(theta) + center_coordinates['x'],
         y = point['y'] + center_coordinates['y'],
         z = point['x'] * math.sin(theta) + point['z'] * math.cos(theta) + center_coordinates['z']
@@ -174,6 +217,123 @@ function corners_to_str(corner)
         'botleft='  .. vec_to_str(corner['botleft']) .. '}'
 end
 
+function shallow_copy(orig)
+  local result={}
+  for k,v in pairs(orig) do
+    result[k] = v
+  end
+  return result
+end
+
+function get_any_key(a_table)
+  for k,_ in pairs(a_table) do
+    return k
+  end
+end
+
+-- Returns the minimum and maximum value of each ordinate.
+-- n-dimensional bounding box
+function bounding_box(corners)
+  local k = get_any_key(corners)
+  local min = shallow_copy(corners[k])
+  local max = shallow_copy(corners[k])
+  for i,corner in pairs(corners) do
+    for k,v in pairs(corner) do
+      min[k] = math.min(min[k], v)
+      max[k] = math.max(max[k], v)
+    end
+  end
+  return {min=min, max=max}
+end
+
+
+-- Is min <= v <= max?
+function is_in_range(min,v,max)
+  if v < min then
+    return false
+  end
+  if v > max then
+    return false
+  end
+  return true
+end
+
+function is_point_in_bounding_box(point, box)
+  for k,v in pairs(point) do
+    local min = box[ 'min' ] [ k ]
+    local max = box[ 'max' ] [ k ]
+    if not is_in_range(  min, v, max ) then
+      return false
+    end
+  end
+  return true
+end
+
+-- Do the two bounding boxes intersect each other?
+function is_bounding_boxes_intersecting(box1, box2)
+  for _,corner in pairs(box1) do
+    if is_point_in_bounding_box(corner, box2) then
+      return true
+    end
+  end
+  return false
+end
+
+-- Calculate the mid-point of a shape.
+-- The shape is a table of points.  Each point is a 
+-- vector of ordinate values.
+function mid_point(shape)
+  local sum = vec_add_n(shape)
+  local result = vec_div_escalar(sum, #shape)
+  return result
+end
+
+-- Check of a point is in a 2D triangle.
+-- triangle is defined by three points for its vertices (x,z)
+-- point to check is (x,z)
+-- There may be false errors if the point is on the line or very close to
+-- the line.
+-- See http://totologic.blogspot.com/2014/01/accurate-point-in-triangle-test.html
+-- 2nd method : parametric equations system
+-- p is the point to check
+-- v1, v2, v3 are the vertices of the triangle.
+function is_point_in_2d_triangle(p, v1, v2, v3)
+  local x1 = v1['x']
+  local y1 = v1['z']
+  local x2 = v2['x']
+  local y2 = v2['z']
+  local x3 = v3['x']
+  local y3 = v3['z']
+  local x = p['x']
+  local y = p['z']
+
+  local denominator = (x1*(y2 - y3) + y1*(x3 - x2) + x2*y3 - y2*x3)
+  local t1 = (x*(y3 - y1) + y*(x1 - x3) - x1*y3 + y1*x3) / denominator
+  local t2 = (x*(y2 - y1) + y*(x1 - x2) - x1*y2 + y1*x2) / -denominator
+  local s = t1 + t2
+ 
+  return 0 <= t1 and t1 <= 1 and 0 <= t2 and t2 <= 1 and s <= 1
+end
+
+function is_point_in_2d_shape(p, shape)
+  -- Check triangles from two adjacent vertices to the mid-point
+  local mid = mid_point(shape)
+  local first = nil
+  local last
+  for k,v in pairs(shape) do
+    if first == nil then
+      first = v
+      last = v
+    else
+      if is_point_in_2d_triangle(p, last, v, mid) then
+        return true
+      end 
+      last = v
+    end
+  end
+  
+  return is_point_in_2d_triangle(p, last, first, mid)
+ end
 
 -- Helper function for find_ui_element
 function find_ui_element_in_element(root_element, id)
@@ -300,7 +460,7 @@ function friendlyname_to_dataname(friendly_name)
     return dataname
 end
 
--- Given a position for a center,  gets the coordinates of circle on the XZ plane 
+-- Given a position for a center,  gets the coordinates of circle on the XZ plane
 function get_coordinates_circle(center, radius, steps)
     local point_array = {}
     local degrees_per_step = 360 / steps
