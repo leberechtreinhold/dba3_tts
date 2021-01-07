@@ -14,6 +14,7 @@
 #include scripts/data/data_armies_book_II
 #include scripts/data/data_armies_book_III
 #include scripts/data/data_armies_book_IV
+#include scripts/base_cache
 #include scripts/log
 #include scripts/utilities_lua
 #include scripts/utilities
@@ -134,7 +135,7 @@ function onChat(message, player)
         print_info(player.get_steam_name() .. ': ' .. message)
         local _,book = random_kv(armies)
         local army_name, army = random_kv(book)
-        
+
         print_important('Army selected: ' .. army_name .. '')
         print_info('List: ' .. army['data']['list'])
         print_info('Agressiveness: ' .. army['data']['aggresiveness']

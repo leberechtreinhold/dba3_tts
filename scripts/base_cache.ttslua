@@ -1,0 +1,62 @@
+
+
+-- Returns cache of calculated data values related to a base.
+-- The values are only valid as long as the base does not
+-- change, i.e. no moving or rotation.
+function build_base_cache(base)
+  local cache = {
+    base = base,
+    transform = nil,
+    shape = nil,
+  }
+
+  cache['getName'] = function()
+    return cache['base'].getName()
+  end
+
+  cache['is_wwg'] = str_has_substr(base.getName(), 'WWg')
+  cache['is_large_base'] = (cache['is_wwg'] or str_has_substr(base.getName(), '6Kn'))
+
+  cache['getBase'] = function()
+    return cache.base
+  end
+
+  cache['getPosition'] = function()
+    return cache['base'].getPosition()
+  end
+
+  cache['getRotation'] = function()
+    return cache['base'].getRotation()
+  end
+
+  -- Return the size in inches
+  cache['getSize'] = function()
+    return get_size(cache.getName())
+  end
+
+  cache['getTransform'] = function()
+    if cache['transform'] == nil then
+      cache['transform'] = calculate_transform(cache.base)
+    end
+    return cache['transform']
+  end
+
+  cache['getCorners'] = function()
+    return cache.getTransform()['corners']
+  end
+
+  cache['getShape'] = function()
+    if cache['shape'] == nil then
+      cache['shape'] = transform_to_shape( cache.getTransform())
+    end
+    return cache['shape']
+  end
+
+  cache['intersectsWith'] = function(otherBase)
+    local myShape = cache.getShape()
+    local otherShape = otherBase.getShape()
+    return is_2d_shapes_intersecting(myShape, otherShape)
+  end
+
+  return cache
+end

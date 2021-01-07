@@ -14,11 +14,11 @@ function vec_add(vec1, vec2)
   local result = shallow_copy(vec1)
   for k,v in pairs(vec2) do
     result[k] = result[k] + vec2[k]
-  end 
+  end
   return result
 end
 
--- helper for vec_add_n 
+-- helper for vec_add_n
 -- gets the keys from a point and returns a new
 -- vector with the value zero for each key.
 function zero_vector_(point)
@@ -36,7 +36,7 @@ function vec_add_n(points)
   local result = zero_vector_(a_point)
   for _,v in pairs(points) do
     result = vec_add(result, v)
-  end 
+  end
   return result
 end
 
@@ -109,6 +109,51 @@ function relative_angle_from_point(pointA, pointB, rotationA)
         angle_adjusted_coords = angle_adjusted_coords - 2*math.pi
     end
     return angle_adjusted_coords
+end
+
+-- Normalize an angle between zero and 2 PI.
+function normalize_radians(angle)
+  while (angle < 0) do
+    angle = angle + (math.pi * 2)
+  end
+  while (angle >= (math.pi * 2)) do
+    angle = angle - (math.pi * 2)
+  end
+  return angle
+end
+
+-- Are two angles approximately the same.  Angles are measured in rad
+function is_angle_same_rad(angleA, angleB)
+  -- normalize to be between 0 and 2 PI
+  angleA = normalize_radians(angleA)
+  angleB = normalize_radians(angleB)
+
+  -- Find the smallest and largest values
+  local hi
+  local lo
+  if angleA > angleB then
+    hi = angleA
+    lo = angleB
+  else
+    lo = angleA
+    hi = angleB
+  end
+
+  -- calculate the difference, so the difference is always a positive value
+  local diff_angle = hi - lo
+
+  -- Check if the difference
+  if diff_angle < g_max_angle_pushback_rad then
+    return true
+  end
+
+  -- Check if the value is close to 2 PI + threshold
+  diff_angle =  -(diff_angle - (2 * math.pi))
+  if diff_angle < g_max_angle_pushback_rad then
+    return true
+  end
+
+  return false
 end
 
 -- Given a tables with x,y,z each with a degree number [0-360], returns a table with x,y,z converted to radians (o, 2pi)
@@ -206,6 +251,7 @@ function corners_in_to_mm(corner)
     }
 end
 
+
 -- Given a table with four corners top/bot left/right, each with a xyz
 -- vector representing coordinates, returns a str version of it
 -- { corner = [coords], corner = [coords], ...}
@@ -280,7 +326,7 @@ function is_bounding_boxes_intersecting(box1, box2)
 end
 
 -- Calculate the mid-point of a shape.
--- The shape is a table of points.  Each point is a 
+-- The shape is a table of points.  Each point is a
 -- vector of ordinate values.
 function mid_point(shape)
   local sum = vec_add_n(shape)
@@ -311,29 +357,48 @@ function is_point_in_2d_triangle(p, v1, v2, v3)
   local t1 = (x*(y3 - y1) + y*(x1 - x3) - x1*y3 + y1*x3) / denominator
   local t2 = (x*(y2 - y1) + y*(x1 - x2) - x1*y2 + y1*x2) / -denominator
   local s = t1 + t2
- 
+
   return 0 <= t1 and t1 <= 1 and 0 <= t2 and t2 <= 1 and s <= 1
 end
 
 function is_point_in_2d_shape(p, shape)
+  if #shape == 4 then
+    -- Use only two triangles instead of the generic algorithm
+    -- that will use four.
+    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3]) or
+       is_point_in_2d_triangle(p, shape[3], shape[4], shape[1])
+  end
+  if #shape == 3 then
+    return is_point_in_2d_triangle(p, shape[1], shape[2], shape[3])
+  end
   -- Check triangles from two adjacent vertices to the mid-point
   local mid = mid_point(shape)
-  local first = nil
   local last
-  for k,v in pairs(shape) do
-    if first == nil then
-      first = v
-      last = v
-    else
+  for k,v in ipairs(shape) do
+    if k ~= 1 then
       if is_point_in_2d_triangle(p, last, v, mid) then
         return true
-      end 
-      last = v
+      end
+    end
+    last = v
+  end
+
+  return is_point_in_2d_triangle(p, last, shape[1], mid)
+ end
+
+function is_2d_shapes_intersecting(shape1, shape2)
+  for _,p in ipairs(shape2) do
+    if is_point_in_2d_shape(p, shape1) then
+      return true
     end
   end
-  
-  return is_point_in_2d_triangle(p, last, first, mid)
- end
+  for _,p in ipairs(shape1) do
+    if is_point_in_2d_shape(p, shape2) then
+      return true
+    end
+  end
+  return false
+end
 
 -- Helper function for find_ui_element
 function find_ui_element_in_element(root_element, id)
@@ -529,4 +594,88 @@ function random_point_ellipse(w, h, added_from_center)
         y = 0,
         z = random_radius * math.sin(random_theta)
     }
+end
+
+function table_length(T)
+  local count = 0
+  for _ in pairs(T) do count = count + 1 end
+  return count
+end
+
+function is_vec_3d(obj)
+  if type(obj) ~= "table" then
+    return false
+  end
+  if table_length(obj) ~= 3 then
+    return false
+  end
+  if obj['x'] == nil then
+    return false
+  end
+  if obj['y'] == nil then
+    return false
+  end
+  if obj['z'] == nil then
+    return false
+  end
+  return true
+end
+
+function is_vec_2d(obj)
+  if type(obj) ~= "table" then
+    return false
+  end
+  if table_length(obj) ~= 3 then
+    return false
+  end
+  if obj['x'] == nil then
+    return false
+  end
+  if obj['z'] == nil then
+    return false
+  end
+  return true
+end
+
+function is_corners(obj)
+  if type(obj) ~= "table" then
+    return false
+  end
+  if table_length(obj) ~= 4 then
+    return false
+  end
+  if obj['topleft'] == nil then
+    return false
+  end
+  if obj['topright'] == nil then
+    return false
+  end
+  if obj['botleft'] == nil then
+    return false
+  end
+  if obj['botright'] == nil then
+    return false
+  end
+  return true
+end
+
+-- Print contents of `tbl`, with indentation.
+-- `indent` sets the initial level of indentation.
+function table_print (tbl, indent)
+  if not indent then indent = 0 end
+  for k, v in pairs(tbl) do
+    formatting = string.rep("  ", indent) .. k .. ": "
+    if is_vec_2d(v) then
+      print(formatting .. vec_2d_to_str(v))
+    elseif is_vec_3d(v) then
+      print(formatting .. vec_to_str(v))
+    elseif is_corners(v) then
+      print(formatting .. corners_to_str(v))
+    elseif type(v) == "table" then
+      print(formatting)
+      table_print(v, indent+1)
+    else
+      print(formatting .. tostring(v))
+    end
+  end
 end
