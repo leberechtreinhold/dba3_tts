@@ -106,7 +106,7 @@ function turn_around_base(obj)
     add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
     push_to_history_stack(move)
 
-    local distance = max_distance_between_bases(initial_transform['corners'], new_transform['corners'])
+    local distance = max_distance_between_bases_front_corners(initial_transform['corners'], new_transform['corners'])
     print_info(obj.getName() .. ' has turned around 180º, which costs '
         .. string.format('%.2f', from_in_to_bw(distance)) .. ' BW')
 end
@@ -151,7 +151,7 @@ function push_back(obj)
     add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
     push_to_history_stack(move)
 
-    local distance = max_distance_between_bases(initial_transform['corners'], new_transform['corners'])
+    local distance = max_distance_between_bases_front_corners(initial_transform['corners'], new_transform['corners'])
     print_info(obj.getName() .. ' has moved backwards its own depth, '
         .. string.format('%.2f', from_in_to_bw(distance)) .. ' BW')
 end
@@ -172,7 +172,7 @@ function push_forward(obj)
     add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
     push_to_history_stack(move)
 
-    local distance = max_distance_between_bases(initial_transform['corners'], new_transform['corners'])
+    local distance = max_distance_between_bases_front_corners(initial_transform['corners'], new_transform['corners'])
     print_info(obj.getName() .. ' has moved forward its own depth, '
         .. string.format('%.2f', from_in_to_bw(distance)) .. ' BW')
 end
@@ -582,7 +582,7 @@ function wheel_group(objs, angle, direction)
 end
 
 function apply_transform_obj(base_obj, old_transform, new_transform)
-    local distance = max_distance_between_bases(old_transform['corners'], new_transform['corners'])
+    local distance = max_distance_between_bases_front_corners(old_transform['corners'], new_transform['corners'])
     print_info('Base ' .. base_obj.getName() .. ' is moving '
         .. string.format('%.2f', from_in_to_bw(distance)) .. ' BW')
     base_obj.setPosition(new_transform['position'])
@@ -962,6 +962,15 @@ function max_distance_between_bases(base1_corners, base2_corners)
         distance_points_flat(base1_corners['topleft'], base2_corners['topleft']),
         distance_points_flat(base1_corners['botright'], base2_corners['botright']),
         distance_points_flat(base1_corners['botleft'], base2_corners['botleft'])
+    })
+end
+
+-- On tactical moves, you only use the front corners to measure, even if the
+-- back corner moves more!
+function max_distance_between_bases_front_corners(base1_corners, base2_corners)
+    return compute_max_array({
+        distance_points_flat(base1_corners['topright'], base2_corners['topright']),
+        distance_points_flat(base1_corners['topleft'], base2_corners['topleft'])
     })
 end
 
@@ -1411,7 +1420,7 @@ function onObjectDrop(player_color,  picked_up_object)
         new_transform = calculate_transform(picked_up_object)
     end
 
-    local distance = max_distance_between_bases(
+    local distance = max_distance_between_bases_front_corners(
         new_transform['corners'],
         g_picked_base_initial_transform['corners'])
 
@@ -1545,7 +1554,7 @@ g_last_zoc_value = nil
 function check_picked_base()
     if g_picked_base_obj and g_bases[g_picked_base_obj.getName()] then
         local new_corners = compute_corners_base(g_picked_base_obj)
-        local distance = max_distance_between_bases(new_corners, g_picked_base_initial_transform['corners'])
+        local distance = max_distance_between_bases_front_corners(new_corners, g_picked_base_initial_transform['corners'])
         distance = from_in_to_bw(distance)
 
         UI.setAttribute('panel_current_movement', 'active', true)
