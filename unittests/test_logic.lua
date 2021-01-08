@@ -220,7 +220,7 @@ function test_is_right_side()
   -- right and left bases edges are the touching
   local actual = is_right_side(transform_moving, transform_resting)
   lu.assertTrue(actual)
-Send
+end
 
 
 function test_transform_to_shape()
