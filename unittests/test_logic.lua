@@ -1,14 +1,13 @@
 lu = require('externals/luaunit/luaunit')
-lu = require('externals/luaunit/luaunit')
 require('scripts/data/data_settings')
 require('scripts/data/data_tables')
 require('scripts/data/data_terrain')
 require('scripts/data/data_troops')
-require('scripts/data/data_troops_greek_successors')
-require('scripts/data/data_armies_book_I')
-require('scripts/data/data_armies_book_II')
-require('scripts/data/data_armies_book_III')
-require('scripts/data/data_armies_book_IV')
+--require('scripts/data/data_troops_greek_successors')
+--require('scripts/data/data_armies_book_I')
+--require('scripts/data/data_armies_book_II')
+--require('scripts/data/data_armies_book_III')
+--require('scripts/data/data_armies_book_IV')
 require('scripts/base_cache')
 require('scripts/log')
 require('scripts/utilities_lua')
@@ -87,6 +86,20 @@ function test_turn_around_base()
   
   local expected_corner = before['corners']['topleft']
   local actual_corner = after['corners']['botright']
+  lu.assertAlmostEquals(actual_corner['x'], expected_corner['x'], 0.01)
+  lu.assertAlmostEquals(actual_corner['z'], expected_corner['z'], 0.01)
+end
+
+function test_rotate_CCW_90()
+  lu.assertNotNil(tile_plain_WWg_40x40)
+  local moving_base = build_base("base WWg # 19", 'tile_plain_WWg_40x40')
+  local before = calculate_transform(moving_base)
+  local rotation = moving_base.getRotation()
+  rotation['y'] = rotation['y'] - 90
+  local after = calculate_transform(moving_base)
+  
+  local expected_corner = before['corners']['topleft']
+  local actual_corner = after['corners']['topright']
   lu.assertAlmostEquals(actual_corner['x'], expected_corner['x'], 0.01)
   lu.assertAlmostEquals(actual_corner['z'], expected_corner['z'], 0.01)
 end
