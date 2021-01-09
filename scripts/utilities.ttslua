@@ -111,6 +111,18 @@ function relative_angle_from_point(pointA, pointB, rotationA)
     return angle_adjusted_coords
 end
 
+-- Normalize an angle between 0 and 360
+function normalize_degrees(angle_degrees)
+  while (angle_degrees < 0) do
+    angle_degrees = angle_degrees + 360
+  end
+  while (angle_degrees >= 360) do
+    angle_degrees = angle_degrees - 360
+  end
+  return angle_degrees
+end
+
+
 -- Normalize an angle between zero and 2 PI.
 function normalize_radians(angle)
   while (angle < 0) do

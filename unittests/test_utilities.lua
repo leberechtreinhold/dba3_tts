@@ -56,6 +56,55 @@ function test_vec_dot_product_2d()
   lu.assertEquals(actual, 22)
 end
 
+function test_normalize_radians_makes_number_non_negative()
+  local expected = math.pi / 4
+  local actual = normalize_radians ( expected - (4 * math.pi))
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_radians_makes_number_less_than_2_pi()
+  local expected = math.pi / 4
+  local actual = normalize_radians ( expected + (4 * math.pi))
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_radians_leaves_zero_alone()
+  local expected = 0
+  local actual = normalize_radians ( expected )
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_radians_reduces_2_pi_to_zero()
+  local expected = 0
+  local actual = normalize_radians ( expected + (2 * math.pi))
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degress_makes_number_non_negative()
+  local expected = 45
+  local actual = normalize_degrees ( expected - 720)
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degrees_makes_number_less_than_360()
+  local expected =45
+  local actual = normalize_degrees ( expected + 720)
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degrees_leaves_zero_alone()
+  local expected = 0
+  local actual = normalize_degrees ( expected )
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degrees_reduces_360_to_zero()
+  local expected = 0
+  local actual = normalize_degrees ( expected + 360)
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+
 function test_is_angle_same_rad_true_if_same()
   local actual = is_angle_same_rad(math.pi, math.pi)
   lu.assertTrue(actual)
