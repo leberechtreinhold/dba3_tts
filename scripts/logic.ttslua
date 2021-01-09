@@ -770,7 +770,7 @@ end
 --
 --     +-------------+
 --     | TL   ^   TR |
---     |     WWG     |           Resting
+--     |             |           Resting
 --     | BL       BR |
 --     +-------------+------+
 --     | TR              BR |
@@ -791,7 +791,7 @@ function distance_wwg_aligned_right_back(transformWWgA, transformB)
     end
 
     local matching_corners = {
-        {'botleft', 'topright'}
+        {'topright', 'botleft'}
     }
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
@@ -934,6 +934,8 @@ function distance_closing_door_to_right(transformA, transformB)
     return corners_snapping_distance(transformA, transformB, matching_corners)
 end
 
+-- tile_name: string.  e.g. 'tile_plain_WWg_40x80'  Name of the
+-- variable that contains the information for a tile.
 function get_depth_base(tile_name)
     local base_data = _G[tile_name]
     return from_mm_to_in(base_data['depth'])
