@@ -870,6 +870,17 @@ end
 -- Returns if A, a WWg, is aligned to the left of B, with the front of A
 -- against B, which happens if the WWg is on his side but still in a battle line
 -- returns the maximum (distance^2) for the corners aligning
+-- 
+-- +------------------+
+-- | TR            BR |
+-- |     < WWg        |
+-- | TL            BL |
+-- +------------+-----+
+-- | TL      TR |
+-- |      ^     |
+-- | BL      BR |
+-- +---------- -+
+--
 function distance_wwg_aligned_left_front(transformWWgA, transformB)
     local angleA = transformWWgA['rotation']
     local angleB = transformB['rotation']
