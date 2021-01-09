@@ -1,10 +1,33 @@
 lu = require('externals/luaunit/luaunit')
+lu = require('externals/luaunit/luaunit')
 require('scripts/data/data_settings')
-require('scripts/logic')
+require('scripts/data/data_tables')
+require('scripts/data/data_terrain')
+require('scripts/data/data_troops')
+require('scripts/data/data_troops_greek_successors')
+require('scripts/data/data_armies_book_I')
+require('scripts/data/data_armies_book_II')
+require('scripts/data/data_armies_book_III')
+require('scripts/data/data_armies_book_IV')
+require('scripts/base_cache')
+require('scripts/log')
+require('scripts/utilities_lua')
 require('scripts/utilities')
+require('scripts/logic_terrain')
+require('scripts/logic_gizmos')
+require('scripts/logic_spawn_army')
+require('scripts/logic_dead')
+require('scripts/logic_dice')
+require('scripts/logic_history_stack')
+require('scripts/logic')
+require('scripts/uievents')
 
-if g_bases == nil then
-  g_bases = {}
+log = function(...)
+  -- stub out for testing
+end
+
+print_info = function(...)
+  -- stub out for testing
 end
 
 -- Create a fake base that can be used for
@@ -53,11 +76,19 @@ function build_base(base_name, tile)
     is_red_player=true
   }
 
-  if _G [tile] == nil then
-    _G[tile]={ depth=20  }
-  end
-
   return base
+end
+
+function test_turn_around_base()
+  local moving_base = build_base("base 4Bw # 16")
+  local before = calculate_transform(moving_base)
+  turn_around_base(moving_base)
+  local after = calculate_transform(moving_base)
+  
+  local expected_corner = before['corners']['topleft']
+  local actual_corner = after['corners']['botright']
+  lu.assertAlmostEquals(actual_corner['x'], expected_corner['x'], 0.01)
+  lu.assertAlmostEquals(actual_corner['z'], expected_corner['z'], 0.01)
 end
 
 function test_distance_points_flat_sq()
