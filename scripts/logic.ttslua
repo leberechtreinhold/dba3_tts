@@ -905,6 +905,18 @@ end
 
 -- Determines if A is in front B, looking at B, while B looks at A
 -- returns the maximum (distance^2) for the corners aligning
+-- 
+-- +--------+
+-- | BR  BL |
+-- |        |
+-- |    V   |
+-- | TR  TL |
+-- +--------+
+-- | TL  TR |
+-- |    ^   |
+-- | BL  BR |
+-- +--------+
+--
 function distance_opposite_front(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
