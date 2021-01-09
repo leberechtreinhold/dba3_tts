@@ -436,6 +436,67 @@ function test_distance_opposite_front_returns_distance()
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
+
+function test_distance_closing_door_to_left_returns_huge_on_bad_angle()
+  -- if the WWg is not facing the right way for the rule to be used
+  -- then math.huge is returned.
+  local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
+  local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x80')
+  moving_base.position['x'] = moving_base.position['x'] - g_base_width_inches
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  local actual = distance_closing_door_to_left(transform_moving, transform_resting)
+  lu.assertEquals(actual, math.huge)
+end
+
+function test_distance_closing_door_to_left_returns_distance()
+  local resting_base = build_base("base Bw # 19")
+  local transform_resting = calculate_transform(resting_base)
+  
+  local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  moving_base.rotation['y'] = moving_base.rotation['y'] + 90
+  local transform_moving = calculate_transform(moving_base)
+  local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topleft.x
+  local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topleft.z
+  moving_base.position['x'] = moving_base.position['x'] + delta_x   
+  moving_base.position['z'] = moving_base.position['z'] + delta_z   
+  transform_moving = calculate_transform(moving_base)
+    
+  local actual = distance_closing_door_to_left(transform_moving, transform_resting)
+  lu.assertAlmostEquals(actual, 0.0, 0.01)
+end
+
+
+function test_distance_closing_door_to_right_returns_huge_on_bad_angle()
+  -- if the WWg is not facing the right way for the rule to be used
+  -- then math.huge is returned.
+  local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
+  local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x80')
+  moving_base.position['x'] = moving_base.position['x'] + g_base_width_inches
+  local transform_resting = calculate_transform(resting_base)
+  local transform_moving = calculate_transform(moving_base)
+  local actual = distance_closing_door_to_right(transform_moving, transform_resting)
+  lu.assertEquals(actual, math.huge)
+end
+
+function test_distance_closing_door_to_right_returns_distance()
+  local resting_base = build_base("base Bw # 19")
+  local transform_resting = calculate_transform(resting_base)
+  
+  local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  moving_base.rotation['y'] = moving_base.rotation['y'] - 90
+  local transform_moving = calculate_transform(moving_base)
+  local delta_x = transform_resting.corners.topright.x - transform_moving.corners.topright.x
+  local delta_z = transform_resting.corners.topright.z - transform_moving.corners.topright.z
+  moving_base.position['x'] = moving_base.position['x'] + delta_x   
+  moving_base.position['z'] = moving_base.position['z'] + delta_z   
+  transform_moving = calculate_transform(moving_base)
+    
+  local actual = distance_closing_door_to_right(transform_moving, transform_resting)
+  lu.assertAlmostEquals(actual, 0.0, 0.01)
+end
+
+
 function test_transform_to_shape()
   local base = build_base("base 4Bw # 16")
   local transform = calculate_transform(base)

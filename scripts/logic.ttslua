@@ -938,6 +938,17 @@ end
 -- Determines if A is in the of side of B, "closing its door", which in DBA
 -- terms means that the left corner of A is touching the left corner B, and A
 -- is looking at B, while B does NOT look at A.
+--
+-- +----------------+------------+
+-- | BL         TL  | TL      BR |
+-- |    Moving    > |      ^     |
+-- |                |   Resting  |
+-- | BR         TR  |            |
+-- +----------------+ BL      BR |
+--                  +------------+
+-- 
+--           A            B
+--
 -- returns the maximum (distance^2) for the corners aligning
 function distance_closing_door_to_left(transformA, transformB)
     local angleA = transformA['rotation']
@@ -952,12 +963,25 @@ function distance_closing_door_to_left(transformA, transformB)
     end
 
    local matching_corners = {
-        {'topright', 'topleft'},
+        {'topleft', 'topleft'},
     }
     return corners_snapping_distance(transformA, transformB, matching_corners)
 end
 
 -- returns the maximum (distance^2) for the corners aligning
+--
+-- +----------+----------------+
+-- | TL    TR | TR          BR |
+-- |     ^    |   < Moving     |
+-- |          | TL          BL |
+-- |          +----------------+
+-- | Resting  |
+-- |          |
+-- | BL    BR |
+-- +----------+
+--
+--      B                A
+--
 function distance_closing_door_to_right(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
