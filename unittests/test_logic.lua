@@ -317,6 +317,7 @@ end
 
 function test_distance_wwg_aligned_right_back_returns_distance()
   local resting_base = build_base("base Bw # 19")
+  
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -327,8 +328,27 @@ function test_distance_wwg_aligned_right_back_returns_distance()
   moving_base.position['x'] = moving_base.position['x'] + delta_x   
   moving_base.position['z'] = moving_base.position['z'] + delta_z   
   transform_moving = calculate_transform(moving_base)
+  -- assert that the bases are located where they are supposed to be.
+  local corners = transform_moving.corners
+  local tr = corners['topright']
+  local tl = corners['topleft']
+  local br = corners['botright']
+  local bl = corners['botleft']
+  -- assert TR relations
+  lu.assertAlmostEquals(tr.x, tl.x, 0.01)
+  lu.assertTrue(tr.z > tl.z)
+  lu.assertAlmostEquals(tr.z, br.z, 0.01)
+  -- assert TL relations
+  lu.assertAlmostEquals(tl.z, bl.z, 0.01)
+  lu.assertTrue(tl.x < bl.x)
+  -- assert BR relations
+  lu.assertTrue(br.z > bl.z)
+  lu.assertAlmostEquals(br.x, bl.x, 0.01)
     
+  -- Exercise  
   local actual = distance_wwg_aligned_right_back(transform_moving, transform_resting)
+
+  -- Validate
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
