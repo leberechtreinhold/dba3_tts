@@ -90,6 +90,24 @@ function test_turn_around_base()
   lu.assertAlmostEquals(actual_corner['z'], expected_corner['z'], 0.01)
 end
 
+function test_calculate_transform_keeps_rotation_between_zero_and_two_pi_negative_degrees()
+  local base = build_base("base WWg # 19", 'tile_plain_WWg_40x40')
+  base.rotation.y = -90
+  local t = calculate_transform(base)
+  local actual= t.rotation
+  lu.assertTrue(0 <= actual)
+  lu.assertTrue(actual < (2*math.pi))
+end
+
+function test_calculate_transform_keeps_rotation_between_zero_and_two_pi_large_positive_degrees()
+  local base = build_base("base WWg # 19", 'tile_plain_WWg_40x40')
+  base.rotation.y = 90 + 720
+  local t = calculate_transform(base)
+  local actual= t.rotation
+  lu.assertTrue(0 <= actual)
+  lu.assertTrue(actual < (2*math.pi))
+end
+
 function test_rotate_CCW_90()
   lu.assertNotNil(tile_plain_WWg_40x40)
   local moving_base = build_base("base WWg # 19", 'tile_plain_WWg_40x40')
@@ -103,6 +121,8 @@ function test_rotate_CCW_90()
   lu.assertAlmostEquals(actual_corner['x'], expected_corner['x'], 0.01)
   lu.assertAlmostEquals(actual_corner['z'], expected_corner['z'], 0.01)
 end
+
+
 
 function test_distance_points_flat_sq()
   local resting_base = build_base("base 4Bw # 16")

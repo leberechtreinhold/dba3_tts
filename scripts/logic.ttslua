@@ -1527,10 +1527,12 @@ function calculate_future_position(base_obj, movement)
 end
 
 function calculate_transform(base_obj)
+  local angle_degrees = normalize_degrees(base_obj.getRotation()['y'])
+  local angle_rad = math.rad(angle_degrees)
     return {
         position = base_obj.getPosition(),
         corners = compute_corners_base(base_obj),
-        rotation = normalize_angle(math.rad(base_obj.getRotation()['y']))
+        rotation = normalize_angle(angle_rad)
     }
 end
 
