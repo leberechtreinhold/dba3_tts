@@ -276,6 +276,9 @@ function corners_to_str(corner)
 end
 
 function shallow_copy(orig)
+  if not (type(orig) == 'table') then
+    return orig
+  end
   local result={}
   for k,v in pairs(orig) do
     result[k] = v
