@@ -21,7 +21,7 @@ require('scripts/logic_history_stack')
 require('scripts/logic')
 require('scripts/uievents')
 
-lu.assertPointsAlmostEquals = function(a,b)
+lu.assertPointAlmostEquals = function(a,b)
   lu.assertAlmostEquals(a['x'], b['x'], 0.01)
   lu.assertAlmostEquals(a['y'], b['y'], 0.01)
   lu.assertAlmostEquals(a['z'], b['z'], 0.01)
@@ -402,10 +402,10 @@ function test_snap_to_base_wwg_right_back()
   local actual_rotation = transform_actual.rotation
   lu.assertAlmostEquals(actual_rotation, rotation, 0.01)
   local corners_actual = transform_actual['corners']
-  lu.assertPointsAlmostEquals(corners_actual.topleft, tl)  
-  lu.assertPointsAlmostEquals(corners_actual.topright, tr)  
-  lu.assertPointsAlmostEquals(corners_actual.botleft, bl)  
-  lu.assertPointsAlmostEquals(corners_actual.botright, br)  
+  lu.assertPointAlmostEquals(corners_actual.topleft, tl)  
+  lu.assertPointAlmostEquals(corners_actual.topright, tr)  
+  lu.assertPointAlmostEquals(corners_actual.botleft, bl)  
+  lu.assertPointAlmostEquals(corners_actual.botright, br)  
 end
 
 
@@ -427,7 +427,7 @@ function test_distance_wwg_aligned_right_front_returns_distance()
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
-  moving_base.rotation['y'] = moving_base.rotation['y'] - 90
+  moving_base.rotation['y'] = moving_base.rotation['y'] + 90
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topright.x - transform_moving.corners.topright.x
   local delta_z = transform_resting.corners.topright.z - transform_moving.corners.topright.z
@@ -439,6 +439,55 @@ function test_distance_wwg_aligned_right_front_returns_distance()
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
+function test_snap_to_base_wwg_right_front()
+  -- Setup
+  local resting_base = build_base("base Bw # 19")
+  local transform_resting = calculate_transform(resting_base)
+  
+  local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  moving_base.rotation['y'] = normalize_degrees(moving_base.rotation['y'] + 90)
+  local transform_moving = calculate_transform(moving_base)
+  local delta_x = transform_resting.corners.topright.x - transform_moving.corners.topright.x
+  local delta_z = transform_resting.corners.topright.z - transform_moving.corners.topright.z
+  moving_base.position['x'] = moving_base.position['x'] + delta_x   
+  moving_base.position['z'] = moving_base.position['z'] + delta_z   
+  transform_moving = calculate_transform(moving_base)
+  local corners = transform_moving.corners
+  local tr = shallow_copy(corners['topright'])
+  local tl = shallow_copy(corners['topleft'])
+  local br = shallow_copy(corners['botright'])
+  local bl = shallow_copy(corners['botleft'])
+  local rotation = transform_moving['rotation']
+  -- assert that the bases are located where they are supposed to be.
+  -- assert TR relations
+  lu.assertAlmostEquals(tr.x, tl.x, 0.01)
+  lu.assertTrue(tr.z < tl.z)
+  lu.assertAlmostEquals(tr.z, br.z, 0.01)
+  -- assert TL relations
+  lu.assertAlmostEquals(tl.z, bl.z, 0.01)
+  lu.assertTrue(tl.x > bl.x)
+  -- assert BR relations
+  lu.assertTrue(br.z < bl.z)
+  lu.assertAlmostEquals(br.x, bl.x, 0.01)
+
+  -- assert that the rule applies
+  local distance = distance_wwg_aligned_right_front(transform_moving, transform_resting)
+  lu.assertAlmostEquals(distance, 0.0, 0.01)
+  
+  -- Exercise
+  -- no movement needed
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_right_front')
+        
+  -- Validate
+  local transform_actual = calculate_transform(moving_base)
+  local actual_rotation = transform_actual.rotation
+  lu.assertAlmostEquals(actual_rotation, rotation, 0.01)
+  local corners_actual = transform_actual['corners']
+  lu.assertPointAlmostEquals(corners_actual.topleft, tl)  
+  lu.assertPointAlmostEquals(corners_actual.topright, tr)  
+  lu.assertPointAlmostEquals(corners_actual.botleft, bl)  
+  lu.assertPointAlmostEquals(corners_actual.botright, br)  
+end
 
 function test_distance_wwg_aligned_left_back_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
