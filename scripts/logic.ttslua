@@ -847,7 +847,6 @@ end
 --    +------------+
 --
 --
-
 function distance_wwg_aligned_left_back(transformWWgA, transformB)
     local angleA = transformWWgA['rotation']
     local angleB = transformB['rotation']
@@ -873,16 +872,18 @@ end
 -- against B, which happens if the WWg is on his side but still in a battle line
 -- returns the maximum (distance^2) for the corners aligning
 --
--- +------------------+
--- | TR            BR |
--- |     < WWg        |
--- | TL            BL |
--- +------------+-----+
--- | TL      TR |
--- |      ^     |
--- | BL      BR |
--- +---------- -+
 --
+--    +------------+------------+
+--    | TR      BR | TL      TR |
+--    |            |      ^     |
+--    |    WWg >   |      B     |
+--    |     A      | BL      BR |
+--    | TL      BL +------------+
+--    +------------+
+--
+-- This is the same thing as door_left.  The difference being that
+-- closing the door is usually against an enemy, and here both
+-- troops are friendly.
 function distance_wwg_aligned_left_front(transformWWgA, transformB)
     local angleA = transformWWgA['rotation']
     local angleB = transformB['rotation']
