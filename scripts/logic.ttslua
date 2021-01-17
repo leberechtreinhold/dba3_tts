@@ -700,7 +700,20 @@ end
 -- Checks if the object A defined by its transform is inmediately behind
 -- object B, which is also represented by its transform
 -- returns the maximum (distance^2) for the corners aligning
-function distance_behind(transformA, transformB)
+--
+--    +---------+
+--    | TL   TR |
+--    |    ^    |
+--    |    B    |
+--    | BL   BR |
+--    +---------+
+--    | TL   TR |
+--    |    ^    |
+--    |    A    |
+--    | BL   BR |
+--    +---------+
+--
+function distance_front_to_back(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     if not is_angle_same_rad(angleA, angleB) then
@@ -718,12 +731,20 @@ end
 
 
 function is_behind(transformA, transformB)
-  return is_corners_adjacent(distance_behind(transformA, transformB))
+  return is_corners_adjacent(distance_front_to_back(transformA, transformB))
 end
 
 -- Determines if A is to the left of B
 -- returns the maximum (distance^2) for the corners aligning
-function distance_left_side(transformA, transformB)
+--
+--   +----------+---------+
+--   | TL    TR | TL   TR |
+--   |    ^     |    ^    |
+--   |    A     |    B    |
+--   | BL    BR | BL   BR |
+--   +----------+---------+
+--
+function distance_right_to_left_side(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     if not is_angle_same_rad(angleA, angleB) then
@@ -741,45 +762,62 @@ function distance_left_side(transformA, transformB)
 end
 
 function is_left_side(transformA, transformB)
-  return is_corners_adjacent(distance_left_side(transformA, transformB))
+  return is_corners_adjacent(distance_right_to_left_side(transformA, transformB))
 end
 
 -- Determines if A is to the right of B
 -- returns the maximum (distance^2) for the corners aligning
-function distance_right_side(transformA, transformB)
-  return distance_left_side(transformB, transformA)
+--
+--   +----------+---------+
+--   | TL    TR | TL   TR |
+--   |    ^     |    ^    |
+--   |    B     |    A    |
+--   | BL    BR | BL   BR |
+--   +----------+---------+
+--
+function distance_left_to_right_side(transformA, transformB)
+  return distance_right_to_left_side(transformB, transformA)
 end
 
 function is_right_side(transformA, transformB)
-  return is_corners_adjacent(distance_right_side(transformA, transformB))
+  return is_corners_adjacent(distance_left_to_right_side(transformA, transformB))
 end
 
 -- Determines if A is in front of B
 -- returns the maximum (distance^2) for the corners aligning
-function distance_infront(transformA, transformB)
-  return distance_behind(transformB, transformA)
+--
+--    +---------+
+--    | TL   TR |
+--    |    ^    |
+--    |    A    |
+--    | BL   BR |
+--    +---------+
+--    | TL   TR |
+--    |    ^    |
+--    |    B    |
+--    | BL   BR |
+--    +---------+
+--
+function distance_back_to_front(transformA, transformB)
+  return distance_front_to_back(transformB, transformA)
 end
 
 function is_infront(transformA, transformB)
-  return is_corners_adjacent(distance_infront(transformA, transformB))
+  return is_corners_adjacent(distance_back_to_front(transformA, transformB))
 end
 
--- Returns if A, a WWg, is aligned to the right of B, with the back of A
--- against B, which happens if the WWg is on his side but still in a battle line
--- returns the maximum (distance^2) for the corners aligning
---
+
 --     +-------------+
 --     | TL   ^   TR |
---     |             |           Resting
+--     |      B      |          
 --     | BL       BR |
 --     +-------------+------+
 --     | TR              BR |
---     |      <  WWG        |   Moving
+--     |      <  A          |   
 --     | TL              BL |
 --     +--------------------+
---
-function distance_wwg_aligned_right_back(transformWWgA, transformB)
-    local angleA = transformWWgA['rotation']
+function distance_right_to_back(transformA, transformB)
+    local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     local diff_angle = math.abs(angleB - angleA)
 
@@ -796,25 +834,20 @@ function distance_wwg_aligned_right_back(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    return corners_snapping_distance(transformWWgA, transformB, matching_corners)
+    return corners_snapping_distance(transformA, transformB, matching_corners)
 end
 
--- Returns if A, a WWg, is aligned to the right of B, with the front of A
--- against B, which happens if the WWg is on his side but still in a battle line
--- returns the maximum (distance^2) for the corners aligning
---
---
 --   +------------------+
 --   | BL           TL  |
---   |          WWg  >  |           Moving
+--   |          A  >    |  
 --   | BL           TR  |
 --   +----+-------------+
 --        | TL   ^   TR |
---        |             |           Resting
+--        |      B      |  
 --        | BL       BR |
 --        +-------------+-
-function distance_wwg_aligned_right_front(transformWWgA, transformB)
-    local angleA = transformWWgA['rotation']
+function distance_right_to_front(transformA, transformB)
+    local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     local diff_angle = math.abs(angleB - angleA)
 
@@ -831,24 +864,21 @@ function distance_wwg_aligned_right_front(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    return corners_snapping_distance(transformWWgA, transformB, matching_corners)
+    return corners_snapping_distance(transformA, transformB, matching_corners)
 end
 
--- Returns if A, a WWg, is aligned to the left of B, with the back of A
--- against B, which happens if the WWg is on his side but still in a battle line
--- returns the maximum (distance^2) for the corners aligning
---
---    +------------+------------+
---    | TR      BR | TL      TR |
---    |            |      ^     |
---    |  < WWg     |      B     |
---    |     A      | BL      BR |
---    | TL      BL +------------+
 --    +------------+
---
---
-function distance_wwg_aligned_left_back(transformWWgA, transformB)
-    local angleA = transformWWgA['rotation']
+--    | TL      TR |
+--    |      ^     |
+--    |      B     |
+--    | BL      BR |
+--    +------------+-----+
+--    | TL            BL |
+--    |     < A          |
+--    | TR            BR |
+--    +------------------+
+function distance_left_to_back(transformA, transformB)
+    local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     local diff_angle = math.abs(angleB - angleA)
 
@@ -865,27 +895,22 @@ function distance_wwg_aligned_left_back(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    return  corners_snapping_distance(transformWWgA, transformB, matching_corners)
+    return  corners_snapping_distance(transformA, transformB, matching_corners)
 end
 
--- Returns if A, a WWg, is aligned to the left of B, with the front of A
--- against B, which happens if the WWg is on his side but still in a battle line
--- returns the maximum (distance^2) for the corners aligning
---
---
---    +------------+------------+
---    | TR      BR | TL      TR |
---    |            |      ^     |
---    |    WWg >   |      B     |
---    |     A      | BL      BR |
---    | TL      BL +------------+
+
+--    +------------------+
+--    | TR            BR |
+--    |      < A         |
+--    | TL            BL |
+--    +------------+-----+
+--    | TL      TR |
+--    |      ^     |
+--    |      B     |
+--    | BL      BR |
 --    +------------+
---
--- This is the same thing as door_left.  The difference being that
--- closing the door is usually against an enemy, and here both
--- troops are friendly.
-function distance_wwg_aligned_left_front(transformWWgA, transformB)
-    local angleA = transformWWgA['rotation']
+function distance_left_to_front(transformA, transformB)
+   local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     local diff_angle = math.abs(angleB - angleA)
 
@@ -902,8 +927,9 @@ function distance_wwg_aligned_left_front(transformWWgA, transformB)
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    return corners_snapping_distance(transformWWgA, transformB, matching_corners)
-end
+    return corners_snapping_distance(transformA, transformB, matching_corners)
+ end
+ 
 
 
 -- Determines if A is in front B, looking at B, while B looks at A
@@ -920,7 +946,7 @@ end
 -- | BL  BR |
 -- +--------+
 --
-function distance_opposite_front(transformA, transformB)
+function distance_front_to_front(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     local diff_angle = math.abs(angleB - angleA)
@@ -942,18 +968,15 @@ end
 -- terms means that the left corner of A is touching the left corner B, and A
 -- is looking at B, while B does NOT look at A.
 --
--- +----------------+------------+
--- | BL         TL  | TL      BR |
--- |    Moving    > |      ^     |
--- |                |   Resting  |
--- | BR         TR  |            |
--- +----------------+ BL      BR |
---                  +------------+
---
---           A            B
+-- +----------+------------+
+-- | BL    TL | TL      TR |
+-- |    A>    |      ^     |
+-- | BR    TR |      B     |
+-- +----------+ BL      BR |
+--            +------------+
 --
 -- returns the maximum (distance^2) for the corners aligning
-function distance_closing_door_to_left(transformA, transformB)
+function distance_front_to_left(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     local diff_angle = angleB - angleA
@@ -975,17 +998,15 @@ end
 --
 -- +----------+----------------+
 -- | TL    TR | TR          BR |
--- |     ^    |   < Moving     |
--- |          | TL          BL |
+-- |     ^    |   < A          |
+-- |     B    | TL          BL |
 -- |          +----------------+
--- | Resting  |
+-- |          |
 -- |          |
 -- | BL    BR |
 -- +----------+
 --
---      B                A
---
-function distance_closing_door_to_right(transformA, transformB)
+function distance_front_to_right(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
     local diff_angle = angleB - angleA
@@ -1249,43 +1270,43 @@ function find_best_snap_rule_for_base(obj, base)
   local transformObj = obj.getTransform()
   local transformBase = base.getTransform()
 
-  distance = distance_infront(transformObj, transformBase)
+  distance = distance_back_to_front(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
     best_snap_fn = 'infront'
   end
 
-  distance = distance_behind(transformObj, transformBase)
+  distance = distance_front_to_back(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
     best_snap_fn = 'behind'
   end
 
-  distance = distance_left_side(transformObj, transformBase)
+  distance = distance_right_to_left_side(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
     best_snap_fn = 'left'
   end
 
-  distance = distance_right_side(transformObj, transformBase)
+  distance = distance_left_to_right_side(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
     best_snap_fn = 'right'
   end
 
-  distance = distance_opposite_front(transformObj, transformBase)
+  distance = distance_front_to_front(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
     best_snap_fn = 'opposite'
   end
 
-  distance = distance_closing_door_to_left(transformObj, transformBase)
+  distance = distance_front_to_left(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
     best_snap_fn = 'door_left'
   end
 
-  distance = distance_closing_door_to_right(transformObj, transformBase)
+  distance = distance_front_to_right(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
     best_snap_fn = 'door_right'
@@ -1293,25 +1314,25 @@ function find_best_snap_rule_for_base(obj, base)
 
   if obj['is_wwg'] then
     print_debug('The base is a WWg, checking special snapping')
-    distance = distance_wwg_aligned_left_back(transformObj, transformBase)
+    distance = distance_left_to_back(transformObj, transformBase)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_left_back'
     end
 
-    distance = distance_wwg_aligned_left_front(transformObj, transformBase)
+    distance = distance_left_to_front(transformObj, transformBase)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_left_front'
     end
 
-    distance = distance_wwg_aligned_right_back(transformObj, transformBase)
+    distance = distance_right_to_back(transformObj, transformBase)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_right_back'
     end
 
-    distance = distance_wwg_aligned_right_front(transformObj, transformBase)
+    distance = distance_right_to_front(transformObj, transformBase)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_right_front'
@@ -1320,25 +1341,25 @@ function find_best_snap_rule_for_base(obj, base)
 
   if base['is_wwg'] then
     print_debug('Trying to snap against a WWg, checking special positions')
-     distance = distance_wwg_aligned_left_back(transformBase, transformObj)
+     distance = distance_left_to_back(transformBase, transformObj)
      if distance < best_snap_distance_sq then
        best_snap_distance_sq = distance
        best_snap_fn = 'wwg_to_left_back'
     end
 
-    distance = distance_wwg_aligned_left_front(transformBase, transformObj)
+    distance = distance_left_to_front(transformBase, transformObj)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_to_left_front'
     end
 
-    distance = distance_wwg_aligned_right_back(transformBase, transformObj)
+    distance = distance_right_to_back(transformBase, transformObj)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_to_right_back'
     end
 
-    distance = distance_wwg_aligned_right_front(transformBase, transformObj)
+    distance = distance_right_to_front(transformBase, transformObj)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_to_right_front'

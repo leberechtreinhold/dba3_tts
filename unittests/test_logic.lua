@@ -152,7 +152,7 @@ function test_distance_points_flat_sq()
     distance_moved^2, 1e-4)
   end
 
-function test_distance_behind()
+function test_distance_front_to_back()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately behind the resting base
@@ -162,7 +162,7 @@ function test_distance_behind()
   moving_base.position['z'] = resting_base.position['z'] - base_depth
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_behind(transform_moving, transform_resting)
+  local actual = distance_front_to_back(transform_moving, transform_resting)
   -- max distance between the front and back corners
   lu.assertAlmostEquals(actual, 0, 1e-4)
 end
@@ -181,7 +181,7 @@ function test_is_behind()
   lu.assertTrue(actual)
 end
 
-function test_distance_infront()
+function test_distance_back_to_front()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately behind the resting base
@@ -192,7 +192,7 @@ function test_distance_infront()
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
   -- front and back bases edges are touching
-  local actual = distance_infront(transform_moving, transform_resting)
+  local actual = distance_back_to_front(transform_moving, transform_resting)
   -- max distance between the front and back corners
   lu.assertAlmostEquals(actual, 0, 1e-4)
 end
@@ -214,7 +214,7 @@ function test_is_infront()
 end
 
 
-function test_distance_behind_returns_furthest_distance()
+function test_distance_front_to_back_returns_furthest_distance()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be behind the resting base, but skewed
@@ -228,11 +228,11 @@ function test_distance_behind_returns_furthest_distance()
   moving_base.position['z'] = resting_base.position['z'] - (base_depth + threshold)
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_behind(transform_moving, transform_resting)
+  local actual = distance_front_to_back(transform_moving, transform_resting)
   lu.assertFalse(actual > threshold)
 end
 
-function test_distance_left_side()
+function test_distance_right_to_left_side()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately beside the resting base
@@ -243,7 +243,7 @@ function test_distance_left_side()
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
   -- left and right bases edges are touching
-  local actual = distance_left_side(transform_moving, transform_resting)
+  local actual = distance_right_to_left_side(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0, 1e-4)
 end
 
@@ -262,7 +262,7 @@ function test_is_left_side()
   lu.assertTrue(actual)
 end
 
-function test_distance_right_side()
+function test_distance_left_to_right_side()
   local resting_base = build_base("base 4Bw # 16")
   local moving_base = build_base("base 4Bw # 17")
   -- have the moving base be immediately beside the resting base
@@ -273,7 +273,7 @@ function test_distance_right_side()
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
   -- right and left bases edges are the touching
-  local actual = distance_right_side(transform_moving, transform_resting)
+  local actual = distance_left_to_right_side(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0, 1e-4)
 end
 
@@ -308,7 +308,7 @@ function test_is_right_side()
 end
 
 
-function test_distance_wwg_aligned_right_back_returns_huge_on_bad_angle()
+function test_distance_right_to_back_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
   -- then math.huge is returned.
   local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
@@ -317,11 +317,11 @@ function test_distance_wwg_aligned_right_back_returns_huge_on_bad_angle()
   moving_base.position['z'] = moving_base.position['z'] - base_height
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_wwg_aligned_right_back(transform_moving, transform_resting)
+  local actual = distance_right_to_back(transform_moving, transform_resting)
   lu.assertEquals(actual, math.huge)
 end
 
-function test_distance_wwg_aligned_right_back_returns_distance()
+function test_distance_right_to_back_returns_distance()
   local resting_base = build_base("base Bw # 19")
   
   local transform_resting = calculate_transform(resting_base)
@@ -352,7 +352,7 @@ function test_distance_wwg_aligned_right_back_returns_distance()
   lu.assertAlmostEquals(br.x, bl.x, 0.01)
     
   -- Exercise  
-  local actual = distance_wwg_aligned_right_back(transform_moving, transform_resting)
+  local actual = distance_right_to_back(transform_moving, transform_resting)
 
   -- Validate
   lu.assertAlmostEquals(actual, 0.0, 0.01)
@@ -390,7 +390,7 @@ function test_snap_to_base_wwg_right_back()
   lu.assertTrue(br.z > bl.z)
   lu.assertAlmostEquals(br.x, bl.x, 0.01)
   -- assert right back rule applies
-  local fixup_distance_sq = distance_wwg_aligned_right_back(transform_moving, transform_resting)
+  local fixup_distance_sq = distance_right_to_back(transform_moving, transform_resting)
   lu.assertAlmostEquals(fixup_distance_sq, 0.0, 0.01)
 
   -- Exericse 
@@ -409,7 +409,7 @@ function test_snap_to_base_wwg_right_back()
 end
 
 
-function test_distance_wwg_aligned_right_front_returns_huge_on_bad_angle()
+function test_distance_right_to_front_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
   -- then math.huge is returned.
   local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
@@ -418,11 +418,11 @@ function test_distance_wwg_aligned_right_front_returns_huge_on_bad_angle()
   moving_base.position['z'] = moving_base.position['z'] - base_height
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_wwg_aligned_right_front(transform_moving, transform_resting)
+  local actual = distance_right_to_front(transform_moving, transform_resting)
   lu.assertEquals(actual, math.huge)
 end
 
-function test_distance_wwg_aligned_right_front_returns_distance()
+function test_distance_right_to_front_returns_distance()
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -435,7 +435,7 @@ function test_distance_wwg_aligned_right_front_returns_distance()
   moving_base.position['z'] = moving_base.position['z'] + delta_z   
   transform_moving = calculate_transform(moving_base)
     
-  local actual = distance_wwg_aligned_right_front(transform_moving, transform_resting)
+  local actual = distance_right_to_front(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
@@ -471,7 +471,7 @@ function test_snap_to_base_wwg_right_front()
   lu.assertAlmostEquals(br.x, bl.x, 0.01)
 
   -- assert that the rule applies
-  local distance = distance_wwg_aligned_right_front(transform_moving, transform_resting)
+  local distance = distance_right_to_front(transform_moving, transform_resting)
   lu.assertAlmostEquals(distance, 0.0, 0.01)
   
   -- Exercise
@@ -489,7 +489,7 @@ function test_snap_to_base_wwg_right_front()
   lu.assertPointAlmostEquals(corners_actual.botright, br)  
 end
 
-function test_distance_wwg_aligned_left_back_returns_huge_on_bad_angle()
+function test_distance_left_to_back_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
   -- then math.huge is returned.
   local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
@@ -498,12 +498,12 @@ function test_distance_wwg_aligned_left_back_returns_huge_on_bad_angle()
   moving_base.position['z'] = moving_base.position['z'] - base_height
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_wwg_aligned_left_back(transform_moving, transform_resting)
+  local actual = distance_left_to_back(transform_moving, transform_resting)
   lu.assertEquals(actual, math.huge)
 end
 
 
-function test_distance_wwg_aligned_left_back_returns_distance()
+function test_distance_left_to_back_returns_distance()
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -516,7 +516,7 @@ function test_distance_wwg_aligned_left_back_returns_distance()
   moving_base.position['z'] = moving_base.position['z'] + delta_z   
   transform_moving = calculate_transform(moving_base)
     
-  local actual = distance_wwg_aligned_left_back(transform_moving, transform_resting)
+  local actual = distance_left_to_back(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
@@ -555,7 +555,7 @@ function test_snap_to_base_wwg_left_back()
   lu.assertTrue(br.z > bl.z)
     
   -- assert rule applies
-  local distance = distance_wwg_aligned_left_back(transform_moving, transform_resting)
+  local distance = distance_left_to_back(transform_moving, transform_resting)
   lu.assertAlmostEquals(distance, 0.0, 0.01)
   
   -- Exercise
@@ -573,7 +573,7 @@ function test_snap_to_base_wwg_left_back()
   lu.assertPointAlmostEquals(corners_actual.botright, br)  
 end
 
-function test_distance_wwg_aligned_left_front_returns_huge_on_bad_angle()
+function test_distance_left_to_front_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
   -- then math.huge is returned.
   local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
@@ -582,11 +582,11 @@ function test_distance_wwg_aligned_left_front_returns_huge_on_bad_angle()
   moving_base.position['z'] = moving_base.position['z'] - base_height
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_wwg_aligned_left_front(transform_moving, transform_resting)
+  local actual = distance_left_to_front(transform_moving, transform_resting)
   lu.assertEquals(actual, math.huge)
 end
 
-function test_distance_wwg_aligned_left_front_returns_distance()
+function test_distance_left_to_front_returns_distance()
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -599,7 +599,7 @@ function test_distance_wwg_aligned_left_front_returns_distance()
   moving_base.position['z'] = moving_base.position['z'] + delta_z   
   transform_moving = calculate_transform(moving_base)
     
-  local actual = distance_wwg_aligned_left_front(transform_moving, transform_resting)
+  local actual = distance_left_to_front(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
@@ -625,7 +625,7 @@ function test_snap_to_base_wwg_left_front()
   local rotation = transform_moving['rotation']
     
   -- Assert rule applies  
-  local distance = distance_wwg_aligned_left_front(transform_moving, transform_resting)
+  local distance = distance_left_to_front(transform_moving, transform_resting)
   lu.assertAlmostEquals(distance, 0.0, 0.01)
   -- Assert the orientation
   lu.assertTrue(bl.x < tl.x)
@@ -648,7 +648,7 @@ function test_snap_to_base_wwg_left_front()
   lu.assertPointAlmostEquals(corners_actual.botright, br)  
 end
 
-function test_distance_opposite_front_returns_huge_on_bad_angle()
+function test_distance_front_to_front_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
   -- then math.huge is returned.
   local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
@@ -657,11 +657,11 @@ function test_distance_opposite_front_returns_huge_on_bad_angle()
   moving_base.position['z'] = moving_base.position['z'] - base_height
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_opposite_front(transform_moving, transform_resting)
+  local actual = distance_front_to_front(transform_moving, transform_resting)
   lu.assertEquals(actual, math.huge)
 end
 
-function test_distance_opposite_front_returns_distance()
+function test_distance_front_to_front_returns_distance()
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -674,12 +674,12 @@ function test_distance_opposite_front_returns_distance()
   moving_base.position['z'] = moving_base.position['z'] + delta_z   
   transform_moving = calculate_transform(moving_base)
     
-  local actual = distance_opposite_front(transform_moving, transform_resting)
+  local actual = distance_front_to_front(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
 
-function test_distance_closing_door_to_left_returns_huge_on_bad_angle()
+function test_distance_front_to_left_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
   -- then math.huge is returned.
   local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
@@ -687,11 +687,11 @@ function test_distance_closing_door_to_left_returns_huge_on_bad_angle()
   moving_base.position['x'] = moving_base.position['x'] - g_base_width_inches
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_closing_door_to_left(transform_moving, transform_resting)
+  local actual = distance_front_to_left(transform_moving, transform_resting)
   lu.assertEquals(actual, math.huge)
 end
 
-function test_distance_closing_door_to_left_returns_distance()
+function test_distance_front_to_left_returns_distance()
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -704,12 +704,12 @@ function test_distance_closing_door_to_left_returns_distance()
   moving_base.position['z'] = moving_base.position['z'] + delta_z   
   transform_moving = calculate_transform(moving_base)
     
-  local actual = distance_closing_door_to_left(transform_moving, transform_resting)
+  local actual = distance_front_to_left(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
 
-function test_distance_closing_door_to_right_returns_huge_on_bad_angle()
+function test_distance_front_to_right_returns_huge_on_bad_angle()
   -- if the WWg is not facing the right way for the rule to be used
   -- then math.huge is returned.
   local resting_base = build_base("base WWg # 19", 'tile_plain_WWg_40x80')
@@ -717,11 +717,11 @@ function test_distance_closing_door_to_right_returns_huge_on_bad_angle()
   moving_base.position['x'] = moving_base.position['x'] + g_base_width_inches
   local transform_resting = calculate_transform(resting_base)
   local transform_moving = calculate_transform(moving_base)
-  local actual = distance_closing_door_to_right(transform_moving, transform_resting)
+  local actual = distance_front_to_right(transform_moving, transform_resting)
   lu.assertEquals(actual, math.huge)
 end
 
-function test_distance_closing_door_to_right_returns_distance()
+function test_distance_front_to_right_returns_distance()
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -734,7 +734,7 @@ function test_distance_closing_door_to_right_returns_distance()
   moving_base.position['z'] = moving_base.position['z'] + delta_z   
   transform_moving = calculate_transform(moving_base)
     
-  local actual = distance_closing_door_to_right(transform_moving, transform_resting)
+  local actual = distance_front_to_right(transform_moving, transform_resting)
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
