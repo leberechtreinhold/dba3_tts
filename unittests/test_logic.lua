@@ -69,7 +69,7 @@ function build_base(base_name, tile)
   end
 
   base['getRotation']=function()
-    return base.rotation
+    return deep_copy(base.rotation)
   end
 
   base['setRotation']=function(new_value)
