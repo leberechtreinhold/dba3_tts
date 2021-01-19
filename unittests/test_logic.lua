@@ -1017,19 +1017,21 @@ function test_left_to_wwg_back()
   lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.botright)  
 end
 
-function test_wwg_to_left_front()
+function test_left_to_wwg_front()
   local jiggle_distance = 0.2
   local jiggle_angle = 5
   local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  resting_base.rotation.y = 270
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base Bw # 19")
+  moving_base.rotation.y = 180
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topleft.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topleft.z
   moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
   moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 + jiggle_angle
+  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -1037,12 +1039,11 @@ function test_wwg_to_left_front()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_to_left_front')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'left_to_wwg_front')
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
-  local actual_rotation = transform_actual.rotation
-  lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation+(math.pi*0.5)), 0.01)
+  lu.assertAlmostEquals(moving_base.rotation.y, 180, 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.topleft)  
 end
 
