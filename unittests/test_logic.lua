@@ -84,6 +84,22 @@ function build_base(base_name, tile)
   return base
 end
 
+-- slightly disturb the base position and rotation so we can
+-- check that snapping works.
+function jiggle(base)
+  local position = base.getPosition()
+  position['x'] = position['x'] + 0.15
+  position['x'] = position['z'] + 0.2
+  base.setPosition(position)
+  
+  local rotation = base.getRotation()
+  rotation['y'] = rotation['y'] + 5
+  base.setRotation(rotation)
+  
+  return base
+end
+  
+
 function test_turn_around_base()
   local moving_base = build_base("base 4Bw # 16")
   local before = calculate_transform(moving_base)
@@ -773,8 +789,6 @@ end
 
 function test_snap_infront()
   -- Setup
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -782,9 +796,9 @@ function test_snap_infront()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.botleft.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.botleft.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z 
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -804,8 +818,6 @@ end
 
 function test_snap_behind()
   -- Setup
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -813,9 +825,10 @@ function test_snap_behind()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.botleft.x - transform_moving.corners.topleft.x
   local delta_z = transform_resting.corners.botleft.z - transform_moving.corners.topleft.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z
+  moving_base.rotation['y'] = moving_base.rotation['y'] 
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -836,8 +849,6 @@ end
 
 function test_snap_opposite()
   -- Setup
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -845,9 +856,10 @@ function test_snap_opposite()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topright.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topright.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + 180 + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z
+  moving_base.rotation['y'] = moving_base.rotation['y'] + 180
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -867,8 +879,6 @@ end
 
 function test_snap_left()
   -- Setup
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -876,9 +886,10 @@ function test_snap_left()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topright.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topright.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x
+  moving_base.position['z'] = moving_base.position['z'] + delta_z
+  moving_base.rotation['y'] = moving_base.rotation['y']
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -898,8 +909,6 @@ end
 
 function test_snap_right()
   -- Setup
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -907,9 +916,10 @@ function test_snap_right()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topright.x - transform_moving.corners.topleft.x
   local delta_z = transform_resting.corners.topright.z - transform_moving.corners.topleft.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x
+  moving_base.position['z'] = moving_base.position['z'] + delta_z 
+  moving_base.rotation['y'] = moving_base.rotation['y'] 
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -928,8 +938,6 @@ end
 
 function test_snap_door_left()
   -- Setup
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -937,9 +945,10 @@ function test_snap_door_left()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topleft.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topleft.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + 90 + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z 
+  moving_base.rotation['y'] = moving_base.rotation['y'] + 90 
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -959,8 +968,6 @@ end
 
 function test_snap_door_right()
   -- Setup
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base Bw # 19")
   local transform_resting = calculate_transform(resting_base)
   
@@ -968,9 +975,10 @@ function test_snap_door_right()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topright.x - transform_moving.corners.topright.x
   local delta_z = transform_resting.corners.topright.z - transform_moving.corners.topright.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z
+  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -988,8 +996,6 @@ function test_snap_door_right()
 end
 
 function test_left_to_wwg_back()
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
   resting_base.rotation.y = 270
   local transform_resting = calculate_transform(resting_base)
@@ -999,9 +1005,9 @@ function test_left_to_wwg_back()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.botright.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.botright.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z  
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -1018,8 +1024,6 @@ function test_left_to_wwg_back()
 end
 
 function test_left_to_wwg_front()
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
   resting_base.rotation.y = 270
   local transform_resting = calculate_transform(resting_base)
@@ -1029,9 +1033,9 @@ function test_left_to_wwg_front()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topleft.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topleft.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z 
+  jiggle(moving_base)  
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -1048,8 +1052,6 @@ function test_left_to_wwg_front()
 end
 
 function test_right_to_wwg_back()
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
   local transform_resting = calculate_transform(resting_base)
   
@@ -1057,9 +1059,10 @@ function test_right_to_wwg_back()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.botleft.x - transform_moving.corners.topright.x
   local delta_z = transform_resting.corners.botleft.z - transform_moving.corners.topright.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z 
+  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 
+  jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
@@ -1078,8 +1081,6 @@ end
 
 
 function test_right_to_wwg_front()
-  local jiggle_distance = 0.2
-  local jiggle_angle = 5
   local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
   resting_base.rotation.y = 270
   local transform_resting = calculate_transform(resting_base)
@@ -1089,9 +1090,9 @@ function test_right_to_wwg_front()
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topright.x - transform_moving.corners.topright.x
   local delta_z = transform_resting.corners.topright.z - transform_moving.corners.topright.z
-  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
-  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
-  moving_base.rotation['y'] = moving_base.rotation['y'] + jiggle_angle
+  moving_base.position['x'] = moving_base.position['x'] + delta_x 
+  moving_base.position['z'] = moving_base.position['z'] + delta_z 
+  jiggle(moving_base)  
   transform_moving = calculate_transform(moving_base)
     
   -- check that rule applies  
