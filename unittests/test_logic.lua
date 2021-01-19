@@ -987,12 +987,122 @@ function test_snap_door_right()
   lu.assertPointAlmostEquals(transform_actual.corners.topright, transform_resting.corners.topright)  
 end
 
--- TOOO snapping rules to test
---    best_snap_fn = 'wwg_to_left_back'
---    best_snap_fn = 'wwg_to_left_front'
---    best_snap_fn = 'wwg_to_right_back'
---    best_snap_fn = 'wwg_to_right_front'
+function test_wwg_to_left_back()
+  local jiggle_distance = 0.2
+  local jiggle_angle = 5
+  local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  local transform_resting = calculate_transform(resting_base)
+  
+  local moving_base = build_base("base Bw # 19")
+  local transform_moving = calculate_transform(moving_base)
+  local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.botright.x
+  local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.botright.z
+  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
+  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
+  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 + jiggle_angle
+  transform_moving = calculate_transform(moving_base)
+    
+  -- check that rule applies  
+  local actual = distance_back_to_left(transform_moving, transform_resting)
+  lu.assertTrue(actual < math.huge)
+  
+  -- Exercise
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_to_left_back')
+  
+  -- Verify
+  local transform_actual = calculate_transform(moving_base)
+  local actual_rotation = transform_actual.rotation
+  lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation+(math.pi*1.5)), 0.01)
+  lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.botright)  
+end
 
+function test_wwg_to_left_front()
+  local jiggle_distance = 0.2
+  local jiggle_angle = 5
+  local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  local transform_resting = calculate_transform(resting_base)
+  
+  local moving_base = build_base("base Bw # 19")
+  local transform_moving = calculate_transform(moving_base)
+  local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topleft.x
+  local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topleft.z
+  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
+  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
+  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 + jiggle_angle
+  transform_moving = calculate_transform(moving_base)
+    
+  -- check that rule applies  
+  local actual = distance_back_to_left(transform_moving, transform_resting)
+  lu.assertTrue(actual < math.huge)
+  
+  -- Exercise
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_to_left_front')
+  
+  -- Verify
+  local transform_actual = calculate_transform(moving_base)
+  local actual_rotation = transform_actual.rotation
+  lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation+(math.pi*0.5)), 0.01)
+  lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.topleft)  
+end
+
+function test_wwg_to_right_back()
+  local jiggle_distance = 0.2
+  local jiggle_angle = 5
+  local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  local transform_resting = calculate_transform(resting_base)
+  
+  local moving_base = build_base("base Bw # 19")
+  local transform_moving = calculate_transform(moving_base)
+  local delta_x = transform_resting.corners.botleft.x - transform_moving.corners.topright.x
+  local delta_z = transform_resting.corners.botleft.z - transform_moving.corners.topright.z
+  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
+  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
+  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 + jiggle_angle
+  transform_moving = calculate_transform(moving_base)
+    
+  -- check that rule applies  
+  local actual = distance_right_to_back(transform_moving, transform_resting)
+  lu.assertTrue(actual < math.huge)
+  
+  -- Exercise
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_to_right_back')
+  
+  -- Verify
+  local transform_actual = calculate_transform(moving_base)
+  local actual_rotation = transform_actual.rotation
+  lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation+(math.pi*0.5)), 0.01)
+  lu.assertPointAlmostEquals(transform_actual.corners.topright, transform_resting.corners.botleft)  
+end
+
+
+function test_wwg_to_right_front()
+  local jiggle_distance = 0.2
+  local jiggle_angle = 5
+  local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  local transform_resting = calculate_transform(resting_base)
+  
+  local moving_base = build_base("base Bw # 19")
+  local transform_moving = calculate_transform(moving_base)
+  local delta_x = transform_resting.corners.topright.x - transform_moving.corners.topright.x
+  local delta_z = transform_resting.corners.topright.z - transform_moving.corners.topright.z
+  moving_base.position['x'] = moving_base.position['x'] + delta_x + jiggle_distance
+  moving_base.position['z'] = moving_base.position['z'] + delta_z + jiggle_distance  
+  moving_base.rotation['y'] = moving_base.rotation['y'] - 90 + jiggle_angle
+  transform_moving = calculate_transform(moving_base)
+    
+  -- check that rule applies  
+  local actual = distance_right_to_back(transform_moving, transform_resting)
+  lu.assertTrue(actual < math.huge)
+  
+  -- Exercise
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_to_right_front')
+  
+  -- Verify
+  local transform_actual = calculate_transform(moving_base)
+  local actual_rotation = transform_actual.rotation
+  lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation+(math.pi*1.5)), 0.01)
+  lu.assertPointAlmostEquals(transform_actual.corners.topright, transform_resting.corners.topright)  
+end
 
 function test_transform_to_shape()
   local base = build_base("base 4Bw # 16")

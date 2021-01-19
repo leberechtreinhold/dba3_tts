@@ -899,6 +899,12 @@ function distance_left_to_back(transformA, transformB)
 end
 
 
+function distance_back_to_left(transformA, transformB)
+  return distance_left_to_back(transformB, transformA)
+end
+
+
+
 --    +------------------+
 --    | TR            BR |
 --    |      < A         |
@@ -929,7 +935,12 @@ function distance_left_to_front(transformA, transformB)
 
     return corners_snapping_distance(transformA, transformB, matching_corners)
  end
- 
+
+
+
+function distance_back_to_left(transformA, transformB)
+  return distance_left_to_back(transformB, transformA)
+ end 
 
 
 -- Determines if A is in front B, looking at B, while B looks at A
@@ -1341,25 +1352,25 @@ function find_best_snap_rule_for_base(obj, base)
 
   if base['is_wwg'] then
     print_debug('Trying to snap against a WWg, checking special positions')
-     distance = distance_left_to_back(transformBase, transformObj)
+     distance = distance_back_to_left(transformObj, transformBase )
      if distance < best_snap_distance_sq then
        best_snap_distance_sq = distance
        best_snap_fn = 'wwg_to_left_back'
     end
 
-    distance = distance_left_to_front(transformBase, transformObj)
+    distance = distance_front_to_left(transformObj, transformBase)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_to_left_front'
     end
 
-    distance = distance_right_to_back(transformBase, transformObj)
+    distance = distance_right_to_back(transformObj, transformBase )
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_to_right_back'
     end
 
-    distance = distance_right_to_front(transformBase, transformObj)
+    distance = distance_front_to_right(transformObj, transformBase )
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
       best_snap_fn = 'wwg_to_right_front'
