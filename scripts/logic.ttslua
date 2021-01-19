@@ -809,11 +809,11 @@ end
 
 --     +-------------+
 --     | TL   ^   TR |
---     |      B      |          
+--     |      B      |
 --     | BL       BR |
 --     +-------------+------+
 --     | TR              BR |
---     |      <  A          |   
+--     |      <  A          |
 --     | TL              BL |
 --     +--------------------+
 function distance_right_to_back(transformA, transformB)
@@ -839,11 +839,11 @@ end
 
 --   +------------------+
 --   | BL           TL  |
---   |          A  >    |  
+--   |          A  >    |
 --   | BL           TR  |
 --   +----+-------------+
 --        | TL   ^   TR |
---        |      B      |  
+--        |      B      |
 --        | BL       BR |
 --        +-------------+-
 function distance_right_to_front(transformA, transformB)
@@ -940,7 +940,7 @@ function distance_left_to_front(transformA, transformB)
 
 function distance_back_to_left(transformA, transformB)
   return distance_left_to_back(transformB, transformA)
- end 
+ end
 
 
 -- Determines if A is in front B, looking at B, while B looks at A
@@ -1116,7 +1116,7 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
        or direction == 'wwg_to_left_front'
        or direction == 'wwg_to_left_back'
        or direction == 'wwg_to_right_front'
-       or direction == 'wwg_to_right_back' then
+       or direction == 'right_to_wwg_back' then
         local new_y = 0
         if direction == 'opposite' then
             new_y = new_rotation['y'] + 180
@@ -1130,7 +1130,7 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
           or direction == 'wwg_right_back'
           or direction == 'wwg_left_back'
                or direction == 'wwg_to_left_front'
-               or direction == 'wwg_to_right_back'  then
+               or direction == 'right_to_wwg_back'  then
             new_y = new_rotation['y'] - 90
         end
         if new_y >= 360 then
@@ -1175,7 +1175,7 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
     elseif direction == 'wwg_to_right_front' then
       relative_pos['x'] = -1*(sizeObj['z'] / 2) + sizeBase['x'] / 2
       relative_pos['z'] = sizeObj['x'] / 2 + sizeBase['z'] / 2
-    elseif direction == 'wwg_to_right_back' then
+    elseif direction == 'right_to_wwg_back' then
       relative_pos['x'] = sizeObj['z'] / 2 - sizeBase['x'] / 2
       relative_pos['z'] = -1*(sizeObj['x'] / 2 + (sizeBase['z'] / 2))
     elseif direction == 'wwg_to_left_front' then
@@ -1194,6 +1194,11 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
     new_pos['y'] = transformBase['position']['y']
 
     obj.setPosition(new_pos)
+
+    --print_info(obj.getName() .. ' rotation ' .. tostring( obj.getRotation() ))
+    --print_info(base.getName() .. ' rotation ' .. tostring( base.getRotation() ))
+    --local diff = obj.getRotation()['y'] - base.getRotation()['y']
+    --print_info(tostring( diff ))
 end
 
 
@@ -1367,7 +1372,7 @@ function find_best_snap_rule_for_base(obj, base)
     distance = distance_right_to_back(transformObj, transformBase )
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
-      best_snap_fn = 'wwg_to_right_back'
+      best_snap_fn = 'right_to_wwg_back'
     end
 
     distance = distance_front_to_right(transformObj, transformBase )

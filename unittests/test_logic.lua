@@ -1045,7 +1045,7 @@ function test_wwg_to_left_front()
   lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.topleft)  
 end
 
-function test_wwg_to_right_back()
+function test_right_to_wwg_back()
   local jiggle_distance = 0.2
   local jiggle_angle = 5
   local resting_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -1065,7 +1065,7 @@ function test_wwg_to_right_back()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_to_right_back')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'right_to_wwg_back')
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
