@@ -134,33 +134,20 @@ function normalize_radians(angle)
   return angle
 end
 
--- Are two angles approximately the same.  Angles are measured in rad
-function is_angle_same_rad(angleA, angleB)
+-- Are two angles approximately the same.  Angles are measured in radians.
+-- delta is the expected difference.
+function is_rad_angle_diff(angleA, angleB, delta)
   -- normalize to be between 0 and 2 PI
-  angleA = normalize_radians(angleA)
-  angleB = normalize_radians(angleB)
-
-  -- Find the smallest and largest values
-  local hi
-  local lo
-  if angleA > angleB then
-    hi = angleA
-    lo = angleB
-  else
-    lo = angleA
-    hi = angleB
-  end
-
-  -- calculate the difference, so the difference is always a positive value
-  local diff_angle = hi - lo
-
+  angleA = normalize_radians(angleA - delta) 
+  angleB = normalize_radians(angleB) 
+  local diff_angle = math.abs(angleA - angleB)
   -- Check if the difference
   if diff_angle < g_max_angle_pushback_rad then
     return true
   end
 
   -- Check if the value is close to 2 PI + threshold
-  diff_angle =  -(diff_angle - (2 * math.pi))
+  diff_angle =  (2 * math.pi)- diff_angle
   if diff_angle < g_max_angle_pushback_rad then
     return true
   end
