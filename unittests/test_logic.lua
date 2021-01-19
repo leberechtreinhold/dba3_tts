@@ -21,10 +21,21 @@ require('scripts/logic_history_stack')
 require('scripts/logic')
 require('scripts/uievents')
 
+lu.assertPointEquals = function(a,b)
+  lu.assertEquals(a['x'], b['x'])
+  lu.assertEquals(a['y'], b['y'])
+  lu.assertEquals(a['z'], b['z'])
+end
+
 lu.assertPointAlmostEquals = function(a,b)
   lu.assertAlmostEquals(a['x'], b['x'], 0.01)
   lu.assertAlmostEquals(a['y'], b['y'], 0.01)
   lu.assertAlmostEquals(a['z'], b['z'], 0.01)
+end
+
+lu.assertBaseEquals = function(a,b)
+  lu.assertPointEquals(a.getRotation(), b.getRotation())
+  lu.assertPointEquals(a.getPosition(), b.getPosition())
 end
 
 log = function(...)
@@ -380,6 +391,7 @@ end
 function test_snap_to_base_wwg_right_back()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   
   local transform_resting = calculate_transform(resting_base)
   
@@ -425,6 +437,7 @@ function test_snap_to_base_wwg_right_back()
   lu.assertPointAlmostEquals(corners_actual.topright, tr)  
   lu.assertPointAlmostEquals(corners_actual.botleft, bl)  
   lu.assertPointAlmostEquals(corners_actual.botright, br)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 
@@ -461,6 +474,7 @@ end
 function test_snap_to_base_wwg_right_front()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -506,6 +520,7 @@ function test_snap_to_base_wwg_right_front()
   lu.assertPointAlmostEquals(corners_actual.topright, tr)  
   lu.assertPointAlmostEquals(corners_actual.botleft, bl)  
   lu.assertPointAlmostEquals(corners_actual.botright, br)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 function test_distance_left_to_back_returns_huge_on_bad_angle()
@@ -544,6 +559,7 @@ function test_snap_to_base_wwg_left_back()
   -- setup
   local resting_base = build_base("base Bw # 19")
   resting_base.setRotation({0, 0, 0})
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -590,6 +606,7 @@ function test_snap_to_base_wwg_left_back()
   lu.assertPointAlmostEquals(corners_actual.topright, tr)  
   lu.assertPointAlmostEquals(corners_actual.botleft, bl)  
   lu.assertPointAlmostEquals(corners_actual.botright, br)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 function test_distance_left_to_front_returns_huge_on_bad_angle()
@@ -626,6 +643,7 @@ end
 function test_snap_to_base_wwg_left_front()
   -- setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -665,6 +683,7 @@ function test_snap_to_base_wwg_left_front()
   lu.assertPointAlmostEquals(corners_actual.topright, tr)  
   lu.assertPointAlmostEquals(corners_actual.botleft, bl)  
   lu.assertPointAlmostEquals(corners_actual.botright, br)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 function test_distance_front_to_front_returns_huge_on_bad_angle()
@@ -790,9 +809,10 @@ function test_distance_back_to_front_returns_distance()
   lu.assertAlmostEquals(actual, 0.0, 1e-4)
 end
 
-function test_snap_infront()
+function test_snap_to_base_infront()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -816,13 +836,15 @@ function test_snap_infront()
   local actual_rotation = transform_actual.rotation
   lu.assertAlmostEquals(actual_rotation, transform_resting.rotation, 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.botleft, transform_resting.corners.topleft)  
-  lu.assertPointAlmostEquals(transform_actual.corners.botright, transform_resting.corners.topright)  
+  lu.assertPointAlmostEquals(transform_actual.corners.botright, transform_resting.corners.topright)
+  lu.assertBaseEquals(resting_base, original_base)    
 end
 
-function test_snap_behind()
+function test_snap_to_base_behind()
   -- Setup
   local resting_base = build_base("base Bw # 19")
   resting_base.setRotation({0, 0, 0}) 
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -848,12 +870,14 @@ function test_snap_behind()
   lu.assertAlmostEquals(actual_rotation, transform_resting.rotation, 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.botleft)  
   lu.assertPointAlmostEquals(transform_actual.corners.topright, transform_resting.corners.botright)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 
-function test_snap_opposite()
+function test_snap_to_base_opposite()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -879,11 +903,13 @@ function test_snap_opposite()
   lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation+math.pi), 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.topright)  
   lu.assertPointAlmostEquals(transform_actual.corners.topright, transform_resting.corners.topleft)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
-function test_snap_left()
+function test_snap_to_base_left()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -908,12 +934,14 @@ function test_snap_left()
   local actual_rotation = transform_actual.rotation
   lu.assertAlmostEquals(actual_rotation, transform_resting.rotation, 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.topright, transform_resting.corners.topleft)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 
-function test_snap_right()
+function test_snap_to_base_right()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -938,11 +966,13 @@ function test_snap_right()
   local actual_rotation = transform_actual.rotation
   lu.assertAlmostEquals(actual_rotation, transform_resting.rotation, 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.topright)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
-function test_snap_door_left()
+function test_snap_to_base_door_left()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -967,12 +997,14 @@ function test_snap_door_left()
   local actual_rotation = transform_actual.rotation
   lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation-(math.pi/2)), 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.topleft, transform_resting.corners.topleft)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 
-function test_snap_door_right()
+function test_snap_to_base_door_right()
   -- Setup
   local resting_base = build_base("base Bw # 19")
+  local original_base = deep_copy(resting_base)
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
@@ -997,6 +1029,7 @@ function test_snap_door_right()
   local actual_rotation = transform_actual.rotation
   lu.assertAlmostEquals(actual_rotation, normalize_radians(transform_resting.rotation+(math.pi/2)), 0.01)
   lu.assertPointAlmostEquals(transform_actual.corners.topright, transform_resting.corners.topright)  
+  lu.assertBaseEquals(resting_base, original_base)
 end
 
 function test_left_to_wwg_back()
