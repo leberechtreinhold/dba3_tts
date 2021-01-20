@@ -388,7 +388,7 @@ function test_distance_right_to_back_returns_distance()
   lu.assertAlmostEquals(actual, 0.0, 0.01)
 end
 
-function test_snap_to_base_wwg_right_back()
+function test_snap_to_base_wwg_right_to_back()
   -- Setup
   local resting_base = build_base("base Bw # 19")
   local original_base = deep_copy(resting_base)
@@ -430,7 +430,7 @@ function test_snap_to_base_wwg_right_back()
 
   -- Exericse 
   -- snap to base should have nothing to do
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_right_back')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_right_to_back')
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
