@@ -1,13 +1,18 @@
+
 -- Given a base object, computes the 4 bounds points, returned in a table,
 -- each with a vector xyz of world pos coords
 --
---   topleft         rotation      topright
---      +-------------^--------------+
---      |             |              |
---      |             * center       |  z axis
---      |                            |
---      +----------------------------+
---    botleft      x axis          botright
+--                       FRONT
+--
+--        topleft         rotation      topright
+--   L       +-------------^--------------+            R
+--   E       |             |              |            I
+--   F       |             * center       |  z axis    G
+--   T       |                            |            H
+--           +----------------------------+            T
+--         botleft      x axis          botright
+--
+--                        BACK
 function compute_corners_base(base_obj)
     local rotation = normalize_angle(from_degrees_to_rad(base_obj.getRotation())['y'])
     -- print_debug(base_obj.getName() .. ' rotation is ' .. rotation)
