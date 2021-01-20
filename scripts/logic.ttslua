@@ -872,35 +872,31 @@ function distance_right_to_front(transformA, transformB)
     return corners_snapping_distance(transformA, transformB, matching_corners)
 end
 
---    +------------+
---    | TL      TR |
---    |      ^     |
---    |      B     |
---    | BL      BR |
---    +------------+-----+
---    | TL            BL |
---    |     < A          |
---    | TR            BR |
---    +------------------+
+--         +------------+
+--         | TL      TR |
+--         |      ^     |
+--         |      B     |
+--         | BL      BR |
+--    +----+------------+
+--    | BL           TL |
+--    |      A  >       |
+--    | BR           TR |
+--    +-----------------+
 function distance_left_to_back(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
-    local diff_angle = math.abs(angleB - angleA)
-
-    -- Around 90 or 270 degrees
-    if math.abs(math.pi/2 - diff_angle) > g_max_angle_pushback_rad and
-       math.abs(3*math.pi/2 - diff_angle) > g_max_angle_pushback_rad then
+    if not is_rad_angle_diff(angleA, angleB, 1.5*math.pi) then
        -- Angle is too different, skip
        return math.huge
     end
 
    local matching_corners = {
-        {'botright', 'topleft'}
+        {'topleft', 'botright'}
     }
     -- Note: We do not check the bottom because bases may be of different
     -- sizes and we already check the angle
 
-    return  corners_snapping_distance(transformA, transformB, matching_corners)
+    return corners_snapping_distance(transformA, transformB, matching_corners)
 end
 
 
@@ -1115,7 +1111,7 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
        or direction == 'door_left'
        or direction == 'door_right'
        or direction == 'wwg_left_front'
-       or direction == 'wwg_left_back'
+       or direction == 'wwg_left_to_back'
        or direction == 'wwg_right_front'
        or direction == 'wwg_right_back'
        or direction == 'left_to_wwg_front'
@@ -1129,11 +1125,11 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
                or direction == 'wwg_left_front'
                or direction == 'left_to_wwg_back'
                or direction == 'wwg_right_front'
+               or direction == 'wwg_left_to_back'
                or direction == 'right_to_wwg_front'then
             new_y = new_rotation['y'] + 90
         elseif direction == 'door_right'
           or direction == 'wwg_right_back'
-          or direction == 'wwg_left_back'
                or direction == 'left_to_wwg_front'
                or direction == 'right_to_wwg_back'  then
             new_y = new_rotation['y'] - 90
@@ -1163,8 +1159,10 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
     elseif direction == 'left' then
         relative_pos['x'] = -1*(sizeObj['x'] / 2 + sizeBase['x'] / 2)
         relative_pos['z'] = -1*(sizeObj['z'] - sizeBase['z']) / 2
+    elseif direction == 'wwg_left_to_back' then
+      relative_pos['x'] = (sizeObj['x']/-2) 
+      relative_pos['z'] = (sizeObj['x']  + sizeBase['z'] ) / -2
     elseif direction == 'door_left'
-           or direction == 'wwg_left_back'
            or direction == 'wwg_left_front' then
         relative_pos['x'] = -1*(sizeObj['z'] / 2 + sizeBase['x'] / 2)
         relative_pos['z'] = -1*(sizeObj['x'] / 2) + (sizeBase['z'] / 2)
@@ -1338,7 +1336,7 @@ function find_best_snap_rule_for_base(obj, base)
     distance = distance_left_to_back(transformObj, transformBase)
     if distance < best_snap_distance_sq then
       best_snap_distance_sq = distance
-      best_snap_fn = 'wwg_left_back'
+      best_snap_fn = 'wwg_left_to_back'
     end
 
     distance = distance_left_to_front(transformObj, transformBase)
