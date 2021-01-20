@@ -2,6 +2,60 @@ lu = require('externals/luaunit/luaunit')
 require('scripts/data/data_settings')
 require('scripts/utilities')
 
+function test_shallow_copy_on_number_returns_itself()
+  local expected = 3.14
+  local actual = shallow_copy(expected)
+  lu.assertAlmostEquals(actual, expected, 1e-6)
+end
+
+function test_shallow_copy_on_table_returns_table_with_same_key_values()
+  local expected = { a=1, b=2, c=3}
+  local actual = shallow_copy(expected)
+  lu.assertEquals(actual, expected)
+end
+
+
+function test_shallow_copy_on_table_returns_new_table()
+  local expected = { a=1, b=2, c=3}
+  local actual = shallow_copy(expected)
+  expected['a'] = 4
+  lu.assertEquals(actual['a'], 1)
+end
+
+function test_shallow_copy_does_not_copy_nested_tables()
+  local expected = { a=1, b=2, c=3, d={e=4}}
+  local actual = shallow_copy(expected)
+  expected['d']['e'] = 6
+  lu.assertEquals(actual['d']['e'], 6)
+end
+
+function test_deep_copy_on_number_returns_itself()
+  local expected = 3.14
+  local actual = deep_copy(expected)
+  lu.assertAlmostEquals(actual, expected, 1e-6)
+end
+
+function test_deep_copy_on_table_returns_table_with_same_key_values()
+  local expected = { a=1, b=2, c=3}
+  local actual = deep_copy(expected)
+  lu.assertEquals(actual, expected)
+end
+
+
+function test_deep_copy_on_table_returns_new_table()
+  local expected = { a=1, b=2, c=3}
+  local actual = deep_copy(expected)
+  expected['a'] = 4
+  lu.assertEquals(actual['a'], 1)
+end
+
+function test_deep_copy_does_copies_nested_tables()
+  local expected = { a=1, b=2, c=3, d={e=4}}
+  local actual = deep_copy(expected)
+  expected['d']['e'] = 6
+  lu.assertEquals(actual['d']['e'], 4)
+end
+
 
 function test_vec_add_3d()
   local vec1={x=1,y=2,z=3}
@@ -56,72 +110,135 @@ function test_vec_dot_product_2d()
   lu.assertEquals(actual, 22)
 end
 
-function test_is_angle_same_rad_true_if_same()
-  local actual = is_angle_same_rad(math.pi, math.pi)
+function test_normalize_radians_makes_number_non_negative()
+  local expected = math.pi / 4
+  local actual = normalize_radians ( expected - (4 * math.pi))
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_radians_makes_number_less_than_2_pi()
+  local expected = math.pi / 4
+  local actual = normalize_radians ( expected + (4 * math.pi))
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_radians_leaves_zero_alone()
+  local expected = 0
+  local actual = normalize_radians ( expected )
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_radians_reduces_2_pi_to_zero()
+  local expected = 0
+  local actual = normalize_radians ( expected + (2 * math.pi))
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degress_makes_number_non_negative()
+  local expected = 45
+  local actual = normalize_degrees ( expected - 720)
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degrees_makes_number_less_than_360()
+  local expected =45
+  local actual = normalize_degrees ( expected + 720)
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degrees_leaves_zero_alone()
+  local expected = 0
+  local actual = normalize_degrees ( expected )
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+function test_normalize_degrees_reduces_360_to_zero()
+  local expected = 0
+  local actual = normalize_degrees ( expected + 360)
+  lu.assertAlmostEquals(actual, expected, 0.001)
+end
+
+
+function test_is_rad_angle_diff_true_if_same()
+  local actual = is_rad_angle_diff(math.pi, math.pi, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_true_if_b_slightly_smaller()
-  local actual = is_angle_same_rad(math.pi, math.pi - g_max_angle_pushback_rad/2)
+function test_is_rad_angle_diff_true_if_b_slightly_smaller()
+  local actual = is_rad_angle_diff(math.pi, math.pi - g_max_angle_pushback_rad/2, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_false_if_b_smaller()
-  local actual = is_angle_same_rad(math.pi, math.pi - (g_max_angle_pushback_rad*1.1))
+function test_is_rad_angle_diff_false_if_b_smaller()
+  local actual = is_rad_angle_diff(math.pi, math.pi - (g_max_angle_pushback_rad*1.1), 0)
   lu.assertFalse(actual)
 end
 
-function test_is_angle_same_rad_true_if_b_slightly_larger()
-  local actual = is_angle_same_rad(math.pi, math.pi + g_max_angle_pushback_rad*0.51)
+function test_is_rad_angle_diff_true_if_b_slightly_larger()
+  local actual = is_rad_angle_diff(math.pi, math.pi + g_max_angle_pushback_rad*0.51, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_false_if_b_larger()
-  local actual = is_angle_same_rad(math.pi, math.pi + g_max_angle_pushback_rad*1.1)
+function test_is_rad_angle_diff_false_if_b_larger()
+  local actual = is_rad_angle_diff(math.pi, math.pi + g_max_angle_pushback_rad*1.1, 0)
   lu.assertFalse(actual)
 end
 
-function test_is_angle_same_rad_true_if_close_a_negative()
-  local actual = is_angle_same_rad(-g_max_angle_pushback_rad/4, g_max_angle_pushback_rad/4)
+function test_is_rad_angle_diff_true_if_close_a_negative()
+  local actual = is_rad_angle_diff(-g_max_angle_pushback_rad/4, g_max_angle_pushback_rad/4, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_true_if_close_b_negative()
-  local actual = is_angle_same_rad(g_max_angle_pushback_rad/4, -g_max_angle_pushback_rad/4)
+function test_is_rad_angle_diff_true_if_close_b_negative()
+  local actual = is_rad_angle_diff(g_max_angle_pushback_rad/4, -g_max_angle_pushback_rad/4, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_false_if_a_negative()
-  local actual = is_angle_same_rad(-g_max_angle_pushback_rad*0.51, g_max_angle_pushback_rad*0.51)
+function test_is_rad_angle_diff_false_if_a_negative()
+  local actual = is_rad_angle_diff(-g_max_angle_pushback_rad*0.51, g_max_angle_pushback_rad*0.51, 0)
   lu.assertFalse(actual)
 end
 
-function test_is_angle_same_rad_true_if_close_a_large()
+function test_is_rad_angle_diff_true_if_close_a_large()
   local a = (2 * math.pi) - (g_max_angle_pushback_rad/4)
   local b = (g_max_angle_pushback_rad/4)
-  local actual = is_angle_same_rad(a,b)
+  local actual = is_rad_angle_diff(a,b, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_true_if_close_a_very_large()
+function test_is_rad_angle_diff_true_if_close_a_very_large()
   local a = (10 * math.pi) - (g_max_angle_pushback_rad/4)
   local b = (g_max_angle_pushback_rad/4)
-  local actual = is_angle_same_rad(a,b)
+  local actual = is_rad_angle_diff(a,b, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_true_if_close_b_very_large()
+function test_is_rad_angle_diff_true_if_close_b_very_large()
   local a = (8 * math.pi)
   local b = a + (g_max_angle_pushback_rad/4)
-  local actual = is_angle_same_rad(a,b)
+  local actual = is_rad_angle_diff(a,b, 0)
   lu.assertTrue(actual)
 end
 
-function test_is_angle_same_rad_true_if_close_a_very_large_negative()
+function test_is_rad_angle_diff_true_if_close_a_very_large_negative()
   local a = -(10 * math.pi) - (g_max_angle_pushback_rad/4)
   local b = (g_max_angle_pushback_rad/4)
-  local actual = is_angle_same_rad(a,b)
+  local actual = is_rad_angle_diff(a,b, 0)
   lu.assertTrue(actual)
+end
+
+function test_is_rad_angle_diff_true_for_expected_angle_small_negative()
+  local a = 0
+  local b = math.pi/2
+  local actual = is_rad_angle_diff(a,b, -0.5 * math.pi)
+  lu.assertTrue(actual)
+end
+
+function test_is_rad_angle_diff_false_for_expected_angle_small_negative()
+  local a = math.pi/2
+  local b = 0
+  local actual = is_rad_angle_diff(a,b, -0.5 * math.pi)
+  lu.assertFalse(actual)
 end
 
 -- Returns the minimum and maximum value of each ordinate.
