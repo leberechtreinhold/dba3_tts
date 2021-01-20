@@ -420,9 +420,13 @@ function test_snap_to_base_wwg_right_back()
   -- assert BR relations
   lu.assertTrue(br.z > bl.z)
   lu.assertAlmostEquals(br.x, bl.x, 0.01)
+
+  jiggle(moving_base)
+  transform_moving = calculate_transform(moving_base)
+  
   -- assert right back rule applies
   local fixup_distance_sq = distance_right_to_back(transform_moving, transform_resting)
-  lu.assertAlmostEquals(fixup_distance_sq, 0.0, 0.01)
+  lu.assertTrue(fixup_distance_sq  < math.huge)
 
   -- Exericse 
   -- snap to base should have nothing to do
@@ -503,9 +507,12 @@ function test_snap_to_base_wwg_right_front()
   lu.assertTrue(br.z < bl.z)
   lu.assertAlmostEquals(br.x, bl.x, 0.01)
 
+  jiggle(moving_base)
+  transform_moving = calculate_transform(moving_base)
+
   -- assert that the rule applies
   local distance = distance_right_to_front(transform_moving, transform_resting)
-  lu.assertAlmostEquals(distance, 0.0, 0.01)
+  lu.assertTrue(distance < math.huge)
   
   -- Exercise
   -- no movement needed
@@ -589,9 +596,12 @@ function test_snap_to_base_wwg_left_back()
   lu.assertAlmostEquals(bl.x, br.x, 0.01)
   lu.assertTrue(br.z > bl.z)
     
+  jiggle(moving_base)
+  transform_moving = calculate_transform(moving_base)
+    
   -- assert rule applies
   local distance = distance_left_to_back(transform_moving, transform_resting)
-  lu.assertAlmostEquals(distance, 0.0, 0.01)
+  lu.assertTrue(distance < math.huge)
   
   -- Exercise
   -- no movement needed
@@ -661,9 +671,12 @@ function test_snap_to_base_wwg_left_front()
   local bl = shallow_copy(corners['botleft'])
   local rotation = transform_moving['rotation']
     
+  jiggle(moving_base)
+  transform_moving = calculate_transform(moving_base)
+    
   -- Assert rule applies  
   local distance = distance_left_to_front(transform_moving, transform_resting)
-  lu.assertAlmostEquals(distance, 0.0, 0.01)
+  lu.assertTrue(distance < math.huge)
   -- Assert the orientation
   lu.assertTrue(bl.x < tl.x)
   lu.assertAlmostEquals(bl.z, tl.z, 0.01)

@@ -1432,7 +1432,6 @@ end
 -- align with then snap to moving base to the aligned position.
 -- obj:  base that is being moved.
 function snap_picked_base(obj)
-    print_info("obj rotation " .. tostring(obj.getRotation()['y']))
     local initial_corners = g_picked_base_initial_transform['corners']
 
     local pos = obj.getPosition()
