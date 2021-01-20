@@ -1195,8 +1195,8 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
 
     obj.setPosition(new_pos)
 
-    print_info(obj.getName() .. ' rotation ' .. tostring( obj.getRotation() ))
-    print_info(base.getName() .. ' rotation ' .. tostring( base.getRotation() ))
+    print_debug(obj.getName() .. ' rotation ' .. tostring( obj.getRotation() ))
+    print_debug(base.getName() .. ' rotation ' .. tostring( base.getRotation() ))
     --local diff = obj.getRotation()['y'] - base.getRotation()['y']
     --print_info(tostring( diff ))
 end
