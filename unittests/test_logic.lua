@@ -650,7 +650,7 @@ function test_distance_left_to_front_returns_distance()
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
-  moving_base.setRotation({0, 90, 0})
+  moving_base.setRotation({0, 270, 0})
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topleft.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topleft.z
@@ -670,19 +670,13 @@ function test_snap_to_base_wwg_left_front()
   local transform_resting = calculate_transform(resting_base)
   
   local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
-  moving_base.setRotation({0, 90, 0})
+  moving_base.setRotation({0, 270, 0})
   local transform_moving = calculate_transform(moving_base)
   local delta_x = transform_resting.corners.topleft.x - transform_moving.corners.topleft.x
   local delta_z = transform_resting.corners.topleft.z - transform_moving.corners.topleft.z
   moving_base.position['x'] = moving_base.position['x'] + delta_x   
-  moving_base.position['z'] = moving_base.position['z'] + delta_z   
-  transform_moving = calculate_transform(moving_base)
-  local corners = transform_moving.corners
-  local tr = shallow_copy(corners['topright'])
-  local tl = shallow_copy(corners['topleft'])
-  local br = shallow_copy(corners['botright'])
-  local bl = shallow_copy(corners['botleft'])
-  local rotation = transform_moving['rotation']
+  moving_base.position['z'] = moving_base.position['z'] + delta_z  
+  local expected_moving = deep_copy(moving_base) 
     
   jiggle(moving_base)
   transform_moving = calculate_transform(moving_base)
@@ -690,25 +684,13 @@ function test_snap_to_base_wwg_left_front()
   -- Assert rule applies  
   local distance = distance_left_to_front(transform_moving, transform_resting)
   lu.assertTrue(distance < math.huge)
-  -- Assert the orientation
-  lu.assertTrue(bl.x < tl.x)
-  lu.assertAlmostEquals(bl.z, tl.z, 0.01)
-  lu.assertAlmostEquals(bl.x, br.x)
-  lu.assertTrue(bl.z > br.z)
   
   -- Exercise
   -- no movement needed
   snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_left_front')
         
   -- Validate
-  local transform_actual = calculate_transform(moving_base)
-  local actual_rotation = transform_actual.rotation
-  lu.assertAlmostEquals(actual_rotation, rotation, 0.01)
-  local corners_actual = transform_actual['corners']
-  lu.assertPointAlmostEquals(corners_actual.topleft, tl)  
-  lu.assertPointAlmostEquals(corners_actual.topright, tr)  
-  lu.assertPointAlmostEquals(corners_actual.botleft, bl)  
-  lu.assertPointAlmostEquals(corners_actual.botright, br)  
+  lu.assertBaseEquals(expected_moving, moving_base)
   lu.assertBaseEquals(resting_base, original_base)
 end
 

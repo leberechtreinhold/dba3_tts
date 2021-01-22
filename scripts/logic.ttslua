@@ -853,9 +853,7 @@ function distance_right_to_front(transformA, transformB)
     local angleB = transformB['rotation']
     local diff_angle = math.abs(angleB - angleA)
 
-    -- Around 90 or 270 degrees
-    if math.abs(math.pi/2 - diff_angle) > g_max_angle_pushback_rad and
-       math.abs(3*math.pi/2 - diff_angle) > g_max_angle_pushback_rad then
+    if not is_rad_angle_diff(angleA, angleB, math.pi/-2) then
        -- Angle is too different, skip
        return math.huge
     end
@@ -918,9 +916,7 @@ function distance_left_to_front(transformA, transformB)
     local angleB = transformB['rotation']
     local diff_angle = math.abs(angleB - angleA)
 
-    -- Around 90 or 270 degrees
-    if math.abs(math.pi/2 - diff_angle) > g_max_angle_pushback_rad and
-       math.abs(3*math.pi/2 - diff_angle) > g_max_angle_pushback_rad then
+    if not is_rad_angle_diff(angleA, angleB, math.pi/2) then
        -- Angle is too different, skip
        return math.huge
     end
@@ -958,10 +954,8 @@ function distance_back_to_left(transformA, transformB)
 function distance_front_to_front(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
-    local diff_angle = math.abs(angleB - angleA)
-    local angle_180 = math.abs(math.pi - diff_angle)
-
-    if angle_180 >= g_max_angle_pushback_rad then
+    
+    if not is_rad_angle_diff(angleA, angleB, math.pi) then
        -- Angle is too different, skip
        return math.huge
     end
@@ -988,13 +982,9 @@ end
 function distance_front_to_left(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
-    local diff_angle = angleB - angleA
-    if diff_angle < 0 then
-        diff_angle = diff_angle + 2*math.pi
-    end
-    local angle_90 = math.abs(math.pi/2 - diff_angle)
-    if angle_90 >= g_max_angle_pushback_rad then
-      return math.huge
+    if not is_rad_angle_diff(angleA, angleB, math.pi/-2) then
+       -- Angle is too different, skip
+       return math.huge
     end
 
    local matching_corners = {
@@ -1018,12 +1008,7 @@ end
 function distance_front_to_right(transformA, transformB)
     local angleA = transformA['rotation']
     local angleB = transformB['rotation']
-    local diff_angle = angleB - angleA
-    if diff_angle < 0 then
-        diff_angle = diff_angle + 2*math.pi
-    end
-    local angle_270 = math.abs(3*math.pi/2 - diff_angle)
-    if angle_270 >= g_max_angle_pushback_rad then
+    if not is_rad_angle_diff(angleA, angleB, math.pi/2) then
        -- Angle is too different, skip
        return math.huge
     end
@@ -1194,11 +1179,6 @@ function snap_to_base(obj, transformObj, base, transformBase, direction)
     new_pos['y'] = transformBase['position']['y']
 
     obj.setPosition(new_pos)
-
-    print_info(obj.getName() .. ' rotation ' .. tostring( obj.getRotation() ))
-    print_info(base.getName() .. ' rotation ' .. tostring( base.getRotation() ))
-    --local diff = obj.getRotation()['y'] - base.getRotation()['y']
-    --print_info(tostring( diff ))
 end
 
 
