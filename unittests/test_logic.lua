@@ -663,7 +663,7 @@ function test_distance_left_to_front_returns_distance()
 end
 
 
-function test_snap_to_base_wwg_left_front()
+function test_snap_to_base_wwg_left_to_front()
   -- setup
   local resting_base = build_base("base Bw # 19")
   local original_base = deep_copy(resting_base)
@@ -686,8 +686,7 @@ function test_snap_to_base_wwg_left_front()
   lu.assertTrue(distance < math.huge)
   
   -- Exercise
-  -- no movement needed
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_left_front')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_left_to_front')
         
   -- Validate
   lu.assertBaseEquals(expected_moving, moving_base)
