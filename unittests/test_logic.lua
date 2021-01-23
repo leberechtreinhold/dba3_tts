@@ -1,3 +1,6 @@
+
+package.path="?.lua;?.ttslua"
+
 require('scripts/data/data_settings')
 require('scripts/data/data_tables')
 require('scripts/data/data_terrain')

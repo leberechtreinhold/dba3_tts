@@ -1,3 +1,6 @@
+
+package.path="?.lua;?.ttslua"
+
 lu = require('externals/luaunit/luaunit')
 require('scripts/data/data_settings')
 require('scripts/utilities')
