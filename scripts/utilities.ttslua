@@ -638,7 +638,7 @@ function is_vec_2d(obj)
   if type(obj) ~= "table" then
     return false
   end
-  if table_length(obj) ~= 3 then
+  if table_length(obj) ~= 2 then
     return false
   end
   if obj['x'] == nil then
@@ -672,23 +672,38 @@ function is_corners(obj)
   return true
 end
 
+function format_table_value(v) 
+  if is_vec_2d(v) then
+    return vec_2d_to_str(v)
+  elseif is_vec_3d(v) then
+    return vec_to_str(v)
+  elseif is_corners(v) then
+    return corners_to_str(v)
+  elseif type(v) == "table" then
+    return ""
+  else
+    return tostring(v)
+  end
+end
+
 -- Print contents of `tbl`, with indentation.
 -- `indent` sets the initial level of indentation.
 function table_print (tbl, indent)
   if not indent then indent = 0 end
+  if indent == 0 then
+    local tbl_string = format_table_value(tbl)
+    if tbl_string ~= "" then
+      print(tbl_string)
+      return
+    end
+  end
+  
   for k, v in pairs(tbl) do
     formatting = string.rep("  ", indent) .. k .. ": "
-    if is_vec_2d(v) then
-      print(formatting .. vec_2d_to_str(v))
-    elseif is_vec_3d(v) then
-      print(formatting .. vec_to_str(v))
-    elseif is_corners(v) then
-      print(formatting .. corners_to_str(v))
-    elseif type(v) == "table" then
-      print(formatting)
+    local v_string = format_table_value(v)
+    print(formatting .. v_string)
+    if type(v) == "table" and v_string == "" then
       table_print(v, indent+1)
-    else
-      print(formatting .. tostring(v))
     end
   end
 end
