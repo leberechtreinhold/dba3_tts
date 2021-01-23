@@ -714,34 +714,34 @@ g_alignment_angles_transform_radians = {
   left = { front= math.pi/2, left=math.pi, back=math.pi/-2, right=0},
   back = { front=0, left=math.pi/2, back=-math.pi, right=math.pi/-2},
   right = { front=math.pi/-2, left=0, back=-1.5*math.pi, right=-math.pi}
-}  
+}
 
 -- corners that should be touching if the bases are aligned.
 -- key is from/to, with data being corner on from base that should be
 -- touching corner on to base.
 g_alignment_corners = {
-  front = { 
-    front={{from="topleft", to="topright"}, {from="topright",to="topleft"}}, 
-    left={{from="topleft", to="topleft"}}, 
+  front = {
+    front={{from="topleft", to="topright"}, {from="topright",to="topleft"}},
+    left={{from="topleft", to="topleft"}},
     back={{from="topleft", to="botleft"}, {from="topright",to="botright"}},
     right={{from="topright", to="topright"}}
   },
   left = {
-    front={{from="topleft", to="topleft"}}, 
+    front={{from="topleft", to="topleft"}},
     left={{invalid=1}},
-    back={{from="topleft", to="botright"}}, 
+    back={{from="topleft", to="botright"}},
     right={{from="topleft", to="topright"}}
   },
   back = {
     front={{from="topleft", to="botleft"}, {from="topright", to="botright"}},
-    left={{from="botright", to="topleft"}}, 
-    back={{from="botleft", to="botright"}, {from="botright", to="botleft"}}, 
+    left={{from="botright", to="topleft"}},
+    back={{from="botleft", to="botright"}, {from="botright", to="botleft"}},
     right={{from="botleft", to="botright"}}
   },
   right = {
-    front={{from="topright", to="topright"}}, 
-    left={{from="topright", to="topleft"}}, 
-    back={{from="topright", to="botleft"}}, 
+    front={{from="topright", to="topright"}},
+    left={{from="topright", to="topleft"}},
+    back={{from="topright", to="botleft"}},
     right={{invaldi=1}}
   }
 }
@@ -764,7 +764,7 @@ end
 
 -- Checks if two bases are almost aligned with respect to angle, and
 -- corners are close.
--- returns the maximum (distance^2) for the corners aligning, or 
+-- returns the maximum (distance^2) for the corners aligning, or
 -- math.huge if the angle is too large.
 -- tranformA: transform of the moving base (from)
 -- tranformB: transform of the moving base (to)
@@ -901,7 +901,7 @@ end
 --    | BR           TR |
 --    +-----------------+
 function distance_left_to_back(transformA, transformB)
-  return distance_snap_squared(transformA, transformB,  'left', 'back') 
+  return distance_snap_squared(transformA, transformB,  'left', 'back')
 end
 
 
@@ -922,7 +922,7 @@ end
 --    | BL      BR |
 --    +------------+
 function distance_left_to_front(transformA, transformB)
-  return distance_snap_squared(transformA, transformB,  'left', 'front') 
+  return distance_snap_squared(transformA, transformB,  'left', 'front')
  end
 
 
@@ -947,7 +947,7 @@ function distance_back_to_left(transformA, transformB)
 -- +--------+
 --
 function distance_front_to_front(transformA, transformB)
-  return distance_snap_squared(transformA, transformB,  'front', 'front') 
+  return distance_snap_squared(transformA, transformB,  'front', 'front')
 end
 
 -- Determines if A is in the of side of B, "closing its door", which in DBA
@@ -963,7 +963,7 @@ end
 --
 -- returns the maximum (distance^2) for the corners aligning
 function distance_front_to_left(transformA, transformB)
-  return distance_snap_squared(transformA, transformB,  'front', 'left') 
+  return distance_snap_squared(transformA, transformB,  'front', 'left')
 end
 
 -- returns the maximum (distance^2) for the corners aligning
@@ -979,7 +979,7 @@ end
 -- +----------+
 --
 function distance_front_to_right(transformA, transformB)
-  return distance_snap_squared(transformA, transformB,  'front', 'right') 
+  return distance_snap_squared(transformA, transformB,  'front', 'right')
 end
 
 -- tile_name: string.  e.g. 'tile_plain_WWg_40x80'  Name of the
@@ -1208,7 +1208,7 @@ function find_best_snap_rule_for_base(obj, base)
   distance = distance_back_to_front(transformObj, transformBase)
   if distance < best_snap_distance_sq then
     best_snap_distance_sq = distance
-    best_snap_fn = {name='infront', from='back', to='front'} 
+    best_snap_fn = {name='infront', from='back', to='front'}
   end
 
   distance = distance_front_to_back(transformObj, transformBase)
@@ -1304,8 +1304,9 @@ function find_best_snap_rule_for_base(obj, base)
   if nil == best_snap_fn then
     return nil
   end
-  
+
   best_snap_fn.best_snap_distance_sq=best_snap_distance_sq
+  best_snap_fn.best_base = base
   return best_snap_fn
 end
 
