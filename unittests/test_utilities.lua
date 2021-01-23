@@ -1,6 +1,7 @@
 lu = require('externals/luaunit/luaunit')
 require('scripts/data/data_settings')
 require('scripts/utilities')
+require('mock_base')
 
 function test_shallow_copy_on_number_returns_itself()
   local expected = 3.14
@@ -54,6 +55,26 @@ function test_deep_copy_does_copies_nested_tables()
   local actual = deep_copy(expected)
   expected['d']['e'] = 6
   lu.assertEquals(actual['d']['e'], 4)
+end
+
+function test_copy_base_returns_different_function_capture_getrotation()
+  local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  moving_base.setRotation({ 0,  90, 0})
+  local expected_moving = copy_base(moving_base)   
+  jiggle(moving_base)
+  local actual_rotation = moving_base.getRotation()
+  local expected_rotation = expected_moving.getRotation()
+  lu.assertTrue(actual_rotation.y ~= expected_rotation.y)
+end
+
+function test_copy_base_returns_different_function_capture_getposition()
+  local moving_base = build_base("base WWg # 20", 'tile_plain_WWg_40x40')
+  moving_base.setRotation({ 0,  90, 0})
+  local expected_moving = copy_base(moving_base)   
+  jiggle(moving_base)
+  local actual_position = moving_base.getPosition()
+  local expected_position = expected_moving.getPosition()
+  lu.assertTrue(actual_position.z ~= expected_position.z)
 end
 
 
