@@ -367,7 +367,8 @@ function test_snap_to_base_wwg_right_to_back()
 
   -- Exericse 
   -- snap to base should have nothing to do
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_right_to_back')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='wwg_right_to_back', from='right', to='back'})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -434,7 +435,8 @@ function test_snap_to_base_wwg_right_to_front()
   lu.assertTrue(distance < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_right_to_front')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='wwg_right_to_front', from='right', to='front'})
         
   -- Validate
   lu.assertBaseEquals(moving_base, expected_moving)
@@ -500,7 +502,7 @@ function test_snap_to_base_wwg_left_to_back()
   lu.assertTrue(distance < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_left_to_back')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, {name='wwg_left_to_back', from='left', to='back'})
         
   -- Validate
   lu.assertBaseEquals(moving_base, expected_moving_base)
@@ -534,7 +536,8 @@ function test_snap_to_base_wwg_left_to_back_large()
   
   -- Exercise
   -- no movement needed
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_left_to_back')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='wwg_left_to_back', from='left', to='back'})
         
   -- Validate
   lu.assertBaseEquals(moving_base, expected_moving_base)
@@ -595,7 +598,8 @@ function test_snap_to_base_wwg_left_to_front()
   lu.assertTrue(distance < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'wwg_left_to_front')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='wwg_left_to_front', from='left', to='front'})
         
   -- Validate
   lu.assertBaseEquals(expected_moving, moving_base)
@@ -745,7 +749,8 @@ function test_snap_to_base_infront()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'infront')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='infront', from="back", to="front"})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -778,7 +783,8 @@ function test_snap_to_base_behind()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'behind')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='behind', from="front", to="back"})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -811,7 +817,8 @@ function test_snap_to_base_opposite()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'opposite')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='opposite', from="front", to="front"})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -843,7 +850,8 @@ function test_snap_to_base_left()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'left')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='left', from='left', to='right'})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -875,7 +883,8 @@ function test_snap_to_base_right()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'right')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='right', from='right', to='left'})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -906,7 +915,8 @@ function test_snap_to_base_door_left()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'door_left')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='door_left', from='front', to='left'})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -939,7 +949,8 @@ function test_snap_to_base_door_right()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'door_right')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='door_right', from='front', to='right'})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -973,13 +984,10 @@ function test_snap_to_base_left_to_wwg_back()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'left_to_wwg_back')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='left_to_wwg_back', from="left", to="back"})
   
   -- Verify
-  table_print(moving_base.getRotation())
-  table_print(expected_moving.getRotation())
-  table_print(moving_base.getPosition())
-  table_print(expected_moving.getPosition())
   lu.assertBaseEquals(moving_base, expected_moving)
   lu.assertBaseEquals(resting_base, expected_resting)
 end
@@ -1004,7 +1012,8 @@ function test_snap_to_base_left_to_wwg_front()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'left_to_wwg_front')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='left_to_wwg_front', from='left', to='front'} )
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -1031,7 +1040,8 @@ function test_right_to_wwg_back()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'right_to_wwg_back')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='right_to_wwg_back', from='right', to='back'})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)
@@ -1061,7 +1071,8 @@ function test_right_to_wwg_front()
   lu.assertTrue(actual < math.huge)
   
   -- Exercise
-  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 'right_to_wwg_front')
+  snap_to_base(moving_base, transform_moving, resting_base, transform_resting, 
+    {name='right_to_wwg_front', from='right', to='front'})
   
   -- Verify
   local transform_actual = calculate_transform(moving_base)

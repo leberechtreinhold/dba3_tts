@@ -1049,43 +1049,20 @@ function onObjectPickUp(player_color,  picked_up_object)
     draw_all_gizmos()
 end
 
-function snap_to_base(obj, transformObj, base, transformBase, direction)
+-- Convert the radians used for rotation in the transform to degrees
+-- used on the base.
+function rotation_transform_to_base(radians)
+  return radians * (-180/math.pi)
+end
+
+function snap_to_base(obj, transformObj, base, transformBase, snap_rule)
+    local direction = snap_rule['name']
     print_info(obj.getName() .. ' is snapping to ' .. base.getName() .. ', ' .. direction)
     local new_rotation = base.getRotation()
-    if direction == 'opposite'
-       or direction == 'door_left'
-       or direction == 'door_right'
-       or direction == 'wwg_left_to_front'
-       or direction == 'wwg_left_to_back'
-       or direction == 'wwg_right_to_front'
-       or direction == 'wwg_right_to_back'
-       or direction == 'left_to_wwg_front'
-       or direction == 'left_to_wwg_back'
-       or direction == 'right_to_wwg_front'
-       or direction == 'right_to_wwg_back' then
-        local new_y = 0
-        if direction == 'opposite' then
-            new_y = new_rotation['y'] + 180
-        elseif direction == 'door_left'
-               or direction == 'left_to_wwg_back'
-               or direction == 'wwg_right_to_front'
-               or direction == 'wwg_left_to_back'
-               or direction == 'right_to_wwg_front'then
-            new_y = new_rotation['y'] + 90
-        elseif direction == 'door_right'
-               or direction == 'wwg_left_to_front'
-               or direction == 'wwg_right_to_back'
-               or direction == 'left_to_wwg_front'
-               or direction == 'right_to_wwg_back'  then
-            new_y = new_rotation['y'] - 90
-        end
-        if new_y >= 360 then
-            new_y = new_y - 360
-        elseif new_y < 0 then
-            new_y = new_y + 360
-        end
-        new_rotation['y'] = new_y
-    end
+    local delta_radians = g_alignment_angles_transform_radians[ snap_rule.from ] [ snap_rule.to ]
+    local delta_degrees = rotation_transform_to_base(delta_radians)
+    local new_y = new_rotation['y'] + delta_degrees
+    new_rotation['y'] = normalize_degrees(new_y)
     obj.setRotation(new_rotation)
 
     local sizeObj = get_size(obj.getName())
@@ -1416,7 +1393,7 @@ function snap_picked_base(obj)
       local best_base = snap_rule['best_base']['base']
       local best_transform = snap_rule['best_base'].getTransform()
       snap_to_base(obj, obj_cache.getTransform(),
-         best_base, best_transform, snap_rule['best_snap_fn'])
+         best_base, best_transform, snap_rule)
       return calculate_transform(obj)
     end
 
