@@ -22,7 +22,7 @@ function snap_waterway(waterway)
     local h = bounds['size']['z']
     local zpos = table_h / 2 - (h / 2 - bounds['offset']['z'])
     local xpos = table_w / 2 - (h / 2 - bounds['offset']['z'])
-    if g_is_double_dba then 
+    if g_is_double_dba then
         xpos = xpos + table_w / 2
     end
 
@@ -48,7 +48,7 @@ function snap_waterway(waterway)
         and equals_float(pos['x'], 0, g_max_camp_edge_snap)
         and equals_float(pos['z'], -zpos, g_max_camp_edge_snap)
         then
-            
+
         waterway.setPosition({x=0, y=g_terrain_pos, z=-zpos})
         waterway.setRotation({x=0, y=180, z=0})
         print_info('Waterway Snapping bot')
@@ -57,7 +57,7 @@ function snap_waterway(waterway)
         and equals_float(pos['x'], xpos, g_max_camp_edge_snap)
         and equals_float(pos['z'], 0, g_max_camp_edge_snap)
         then
-            
+
         waterway.setPosition({x=xpos, y=g_terrain_pos, z=0})
         waterway.setRotation({x=0, y=90, z=0})
         print_info('Waterway Snapping right')
@@ -72,7 +72,7 @@ function snap_road(road)
     local rotation = normalize_angle(math.rad(road.getRotation()['y']))
     local pos = road.getPosition()
 
-    if (equals_float(rotation, 0, 0.17) 
+    if (equals_float(rotation, 0, 0.17)
         or equals_float(rotation, math.pi, 0.17)
         or equals_float(rotation, 2*math.pi, 0.17))
         and equals_float(pos['z'], 0, g_max_camp_edge_snap)
@@ -82,7 +82,7 @@ function snap_road(road)
         road.setRotation({x=0, y=0, z=0})
         print_info('Road Snapping Vertical')
 
-    elseif (equals_float(rotation, math.pi/2, 0.17) 
+    elseif (equals_float(rotation, math.pi/2, 0.17)
             or equals_float(rotation, 3*math.pi/2, 0.17))
             and equals_float(pos['x'], 0, g_max_camp_edge_snap)
         then
@@ -146,9 +146,8 @@ function fix_terrain_and_lock()
                 if g_use_3d_terrain then
                     process_vegetation(terrain, terrain_type)
                 end
-    
-                gametable.addAttachment(terrain)
-                print_info('Attaching ' .. terrain.getName())                
+
+                terrain.setLock(true)
             end, 1)
         end
     end
@@ -167,6 +166,106 @@ function change_texture_terrain(terrain_obj, new_tex_url)
     terrain_obj.setCustomObject(custom)
 end
 
+-- Get the colors for the players. e.g. {"Red", "Blue"}
+function get_player_colors()
+  local playerList = Player.getPlayers()
+  local result = {}
+  for i, playerReference in ipairs(playerList) do
+    result[i] = playerReference.color
+  end
+  return result
+end
+
+-- terrain detail that will hide if there is a colliding base.
+-- key is the GUID of terrain detail object (e.g. tree), and the value
+-- is a set GUID's as the key of bases (objects) that are colliding
+-- with the terrain detail.
+--
+-- This structure is serialized when the game is saved, including
+-- auto saved which occurs frequently, which is why we
+-- are using GUID instead of object references.
+g_obscurring_terrain = {}
+
+g_hide_obscurring_terrain = true
+
+
+-- Set the visibility for a piece of terrain that may
+-- obscure bases.
+--
+-- detail: GUID of Object to hide, e.g. tree
+function set_obscurring_terrain_visibility(detail_guid)
+  local terrain_detail = getObjectFromGUID(detail_guid)
+  if terrain_detail == nill then
+      print_debug("terrain detail is nil: " .. terrain_guid)
+      return
+  end
+  terrain_detail.registerCollisions(false)
+  local hide = g_hide_obscurring_terrain and (not is_table_empty(g_obscurring_terrain[detail_guid]))
+  if hide then
+    terrain_detail.setInvisibleTo(get_player_colors())
+  else
+    terrain_detail.setInvisibleTo({})
+  end
+end
+
+-- Set the visibility of all the terrain that can obscure
+-- bases.
+function set_all_obscurring_terrain_visibility()
+  for terrain_guid,_ in pairs(g_obscurring_terrain) do
+    set_obscurring_terrain_visibility(terrain_guid)
+  end
+end
+
+function toggle_hide_obscuring_terrain()
+  g_hide_obscurring_terrain = not g_hide_obscurring_terrain
+  if g_hide_obscurring_terrain then
+    print_info("Obscurring terrain detail will be hidden")
+  else
+    print_info("Obscurring terrain detail will be shown")
+  end
+  set_all_obscurring_terrain_visibility()
+end
+
+function onObjectCollisionEnter(registered_object, info)
+  local collision_object = info.collision_object
+  if not is_base(collision_object) then
+    return
+  end
+  local registered_guid = registered_object.getGUID()
+  local collisions = g_obscurring_terrain[registered_guid]
+  if nil == collisions then
+    return
+  end
+  local colliding_guid = collision_object.getGUID()
+  collisions[colliding_guid] = true
+  if g_hide_obscurring_terrain then
+    registered_object.setInvisibleTo(get_player_colors())
+  else
+    registered_object.setInvisibleTo({})
+  end
+end
+
+function onObjectCollisionExit(registered_object, info)
+  local collision_object = info.collision_object
+  local collisions = g_obscurring_terrain[registered_object.getGUID()]
+  if nil == collisions then
+    return
+  end
+  -- Remove the colliding object from the set of collisions
+  local colliding_guid = collision_object.getGUID()
+  collisions[colliding_guid] = nil
+  if (not g_hide_obscurring_terrain) or is_table_empty(collisions) then
+    registered_object.setInvisibleTo({})
+  end
+end
+
+-- Setup a terrain detail to be able to hide when a base collides
+-- with it.
+function register_obscurring_terrain(obj)
+  g_obscurring_terrain[obj.getGUID()] = {  }
+  obj.registerCollisions(false)
+end
+
 function set_forest(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
     local options = g_terrain[table_type]['forest']
     local multiplier = options['multiplier']
@@ -175,7 +274,8 @@ function set_forest(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
         local point = random_point_ellipse(terrain_size['x'] / 2.5, terrain_size['z'] / 2.5)
         new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
         local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), minimal_collider, true)
-        terrain_obj.addAttachment(obj)
+        obj.setLock(true)
+        register_obscurring_terrain(obj)
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
 end
@@ -232,9 +332,9 @@ function set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
 
     for i=1,objs_x do
         for j=1,objs_z do
-            local point = { 
-                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-                y = 0, 
+            local point = {
+                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+                y = 0,
                 z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
             }
             local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
@@ -256,9 +356,9 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
 
     for i=1,objs_x do
         for j=1,objs_z do
-            local point = { 
-                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-                y = 0, 
+            local point = {
+                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+                y = 0,
                 z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
             }
             local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
@@ -269,39 +369,39 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
 
     local fence_asset = first_value_table(options['outline_objects'])
     for i=1,objs_x do
-        local point_up = { 
-            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-            y = 0, 
+        local point_up = {
+            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+            y = 0,
             z = terrain_size['z'] / 2 - 0.1
         }
         local new_pos_up = rotate_point_relative(point_up, terrain_pos, terrain_rotation)
-        
+
         local obj_up = spawn_model(fence_asset, new_pos_up, terrain_obj.getRotation()['y'], minimal_collider, true)
         terrain_obj.addAttachment(obj_up)
 
-        local point_down = { 
-            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-            y = 0, 
+        local point_down = {
+            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+            y = 0,
             z = - terrain_size['z'] / 2 + 0.1
         }
         local new_pos_down = rotate_point_relative(point_down, terrain_pos, terrain_rotation)
         local obj_down = spawn_model(fence_asset, new_pos_down, terrain_obj.getRotation()['y'] + 180, minimal_collider, true)
         terrain_obj.addAttachment(obj_down)
     end
-    
+
     for j=1,objs_z do
-        local point_left = { 
-            x = - terrain_size['x'] / 2 + 0.1, 
-            y = 0, 
+        local point_left = {
+            x = - terrain_size['x'] / 2 + 0.1,
+            y = 0,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_left = rotate_point_relative(point_left, terrain_pos, terrain_rotation)
         local obj_left = spawn_model(fence_asset, new_pos_left, terrain_obj.getRotation()['y'] + 90, minimal_collider, true)
         terrain_obj.addAttachment(obj_left)
 
-        local point_right = { 
-            x = terrain_size['x'] / 2 - 0.1, 
-            y = 0, 
+        local point_right = {
+            x = terrain_size['x'] / 2 - 0.1,
+            y = 0,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_right = rotate_point_relative(point_right, terrain_pos, terrain_rotation)

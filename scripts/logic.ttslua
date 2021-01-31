@@ -78,7 +78,7 @@ function filter_bases(list)
     local filtered = {}
     for _,obj in ipairs(list) do
         local name = obj.getName()
-        if g_bases[name] ~= nil or str_starts_with(obj.getName(), 'base') then
+        if g_bases[name] ~= nil or is_base(obj) then
             table.insert(filtered, obj)
         end
     end
@@ -635,8 +635,8 @@ end
 
 
 function transform_to_shape(transform)
-  corners=transform['corners']
-  shape={
+  local corners=transform['corners']
+  local shape={
     corners['topright'], corners['topleft'], corners['botleft'],
     corners['botright']
   }
@@ -1048,6 +1048,18 @@ function get_size(base_name)
         y = g_base_height_inches,
         z = get_depth_base(tile)
     }
+end
+
+-- Is an object a base (e.g. moving unit?)
+function is_base(obj)
+  if  obj == nil then
+    return false
+  end
+  local name = obj.getName()
+  if name == nil then
+    return false
+  end
+  return str_starts_with(name, "base")
 end
 
 function is_base_red_player(base_name)

@@ -44,6 +44,9 @@ function add_context_menu_table(table_obj)
     table_obj.addContextMenuItem('Toggle BUA fire/ZOC', function()
         show_gizmo_bua()
     end)
+    table_obj.addContextMenuItem('Toggle hide terrain', function()
+        toggle_hide_obscuring_terrain()
+    end)
 end
 
 function toggle_deployment_ruler()

@@ -1074,7 +1074,7 @@ end
 
 function draw_numbers_quadrant(size)
     local height_text = g_table_thickness * 2 + g_base_height_tabletop + g_base_height_inches / 2
-    
+
     spawn_text('1', { -size['x'] / 4, height_text, -size['z'] / 4})
 
     spawn_text('2', { -size['x'] / 4, height_text, size['z'] / 4})
@@ -1225,8 +1225,7 @@ function show_gizmo_bua_afterdetach()
                 table.insert(strokes, strokes_bw)
                 table.insert(strokes, strokes_art)
             end
-            gametable.addAttachment(terrain)
-            print_debug('Reattaching ' .. terrain.getName())
+            terrain.setLock(true)
         end
     end
     print_debug('Recalculation for fire gizmos BUAs done')
@@ -1240,7 +1239,5 @@ function show_gizmo_bua()
         return
     end
 
-    print_info('Showing BUA fire until deselection. All terrain will be reattached.')
-    gametable.removeAttachments()
     Wait.frames(show_gizmo_bua_afterdetach, 1)
 end

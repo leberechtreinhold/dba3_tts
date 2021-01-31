@@ -71,10 +71,10 @@ function array_equals(t1, t2, comparison_function)
     if t1 == nil or t2 == nil then
         return false
     end
-    if #t1 ~= #t2 then 
+    if #t1 ~= #t2 then
         return false
     end
-    
+
     for i=1,#t1 do
         if not find_in_array(t2, t1[i], comparison_function) then
             return false
@@ -82,7 +82,7 @@ function array_equals(t1, t2, comparison_function)
     end
     return true
   end
-  
+
 -- Rounds a number to the power of ten given
 -- For example, round_to_power(123, 1) => 120, round_to_power(123, 2) => 100
 function round_to_power(number, power)
@@ -101,10 +101,18 @@ end
 function str_has_substr(str, substr)
     return string.find(str, substr) ~= nil
 end
-  
+
+-- Is a table empty, i.e. tlen(table) == 0
+function is_table_empty(table)
+  for k,v in pairs(table) do
+    return false
+  end
+  return true
+end
+
 -- As insane as it sounds, tables in lua don't have a well-defined way
 -- of getting the number of entries
--- If the table is anything but a contiguous array, the # operator 
+-- If the table is anything but a contiguous array, the # operator
 -- is useless. This computes that.
 -- Beware that this iterates the whole table and is therefore, perf intensive.
 function tlen(table)

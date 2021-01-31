@@ -1185,4 +1185,23 @@ function test_transform_to_shape()
   lu.assertEquals(actual[4], corners['botleft'])
 end
 
+function test_is_base_returns_false_for_nil()
+  lu.assertFalse( is_base(nil) )
+end
+
+function test_is_base_returns_false_if_name_is_nil()
+  local base = { getName = function() return nil end }
+  lu.assertFalse( is_base(base) )
+end
+
+function test_is_base_returns_false_if_name_not_starting_with_base()
+  local base = { getName = function() return "abase" end }
+  lu.assertFalse( is_base(base) )
+end
+
+function test_is_base_returns_true_if_name_starting_with_base()
+  local base = { getName = function() return "base bow" end }
+  lu.assertTrue( is_base(base) )
+end
+
 os.exit( lu.LuaUnit.run() )

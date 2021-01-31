@@ -27,16 +27,61 @@
 #include scripts/logic
 #include scripts/uievents
 
-function onload()
+
+
+-- Return the string that will be stored when the game is saved.
+function save_game()
+  local data_table = {
+    g_hide_obscurring_terrain=g_hide_obscurring_terrain,
+    g_obscurring_terrain=g_obscurring_terrain
+  }
+  return JSON.encode(data_table)
+end
+
+
+-- Load a saved games daa from the string.
+-- save_state: String returned by save_game
+function load_saved_game(save_state)
+  if save_state == nil then
+    return
+  end
+  local status,saved_data = pcall( function() return JSON.decode(save_state) end)
+  if not status then
+    return
+  end
+  if type(saved_data) ~= 'table' then
+    return
+  end
+  if saved_data['g_hide_obscurring_terrain'] ~= nil then
+    g_hide_obscurring_terrain = saved_data['g_hide_obscurring_terrain']
+  else
+    g_hide_obscurring_terrain = true
+  end
+  if saved_data['g_obscurring_terrain'] ~= nil then
+    g_obscurring_terrain = saved_data['g_obscurring_terrain']
+  else
+    g_obscurring_terrain = {}
+  end
+end
+
+
+function onSave()
+  return save_game()
+end
+
+
+function onload(save_state)
     print_info('----------------------------------------------')
     print_info('                       DBA 3.0 v1.21 ')
     print_info('----------------------------------------------\n\nCheck the Notebook for instructions.')
+    load_saved_game(save_state)
     Wait.time(main_loop, g_seconds_main_loop, -1)
     make_scenery_non_interactable()
     reset_state()
     spawn_proxy_bases()
     spawn_all_dice()
     spawn_dead_zones()
+    set_all_obscurring_terrain_visibility()
 end
 
 function make_scenery_non_interactable()
