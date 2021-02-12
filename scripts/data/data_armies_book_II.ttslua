@@ -982,7 +982,7 @@ armies["Book II"]["II/3b Classical Indian Army 179-545AD"] = {
         model_data = 'troop_successors_bactrian_sp'
     },
     base15 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_indian_light_cavalry'
@@ -15834,7 +15834,7 @@ armies["Book II"]["II/39a Iberian Army 240-20BC"] = {
         }
     },
     base2 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_ancient_spanish_lh',
@@ -16061,7 +16061,7 @@ armies["Book II"]["II/39b Celtiberian Army 240-20BC"] = {
         }
     },
     base2 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_ancient_spanish_lh',
@@ -16275,7 +16275,7 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC"] = {
         }
     },
     base2 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_ancient_spanish_lh',
