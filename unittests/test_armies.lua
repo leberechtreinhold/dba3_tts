@@ -39,7 +39,6 @@ function assert_base_name_valid(name)
   valid['HCh']=true
   -- Cavalry
   valid['Cv']=true 
-  valid['3Cv']=true 
   valid['6Cv']=true 
   valid['LCh']=true
   -- Light Horse
