@@ -10330,7 +10330,7 @@ armies["Book III"]["III/46 Norse Irish Army 1014AD (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = 'Cp_Gen',
+        name = 'CP_Gen',
         base = 'tile_plain_Lit_40x80',
         n_models = 1,
         model_data = 'troop_general_plain',
@@ -15855,7 +15855,7 @@ armies["Book III"]["III/76 Konstantinian Byzantine Army 1042-1073AD (Plain)"] = 
         ignore_terrain = true
     },
     base2 = {
-        name = 'Cp_Gen',
+        name = 'CP_Gen',
         base = 'tile_plain_Lit_40x80',
         n_models = 1,
         model_data = 'troop_general_plain',

@@ -94,7 +94,6 @@ function assert_base_name_valid(name)
   -- War Wagons
   valid['WWg']=true
   -- Ceneral
-  valid['Cp']=true 
   valid['CP']=true 
   valid['3CP']=true 
   valid['Lit']=true 
