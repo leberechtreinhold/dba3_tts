@@ -11220,20 +11220,20 @@ armies["Book I"]["I/42 Neo-Elamite Army 800-639BC (Plain)"] = {
         ignore_terrain = true
     },
     base2 = {
-        name = '3Bw_Mtd_Gen',
+        name = 'Mtd-3Bw_Gen',
         base = 'tile_plain_Mtd_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base3 = {
-        name = '3Bw_Mtd',
+        name = 'Mtd-3Bw',
         base = 'tile_plain_Mtd_40x30',
         n_models = 0,
         ignore_terrain = true
     },
     base4 = {
-        name = '3Bw_Mtd',
+        name = 'Mtd-3Bw',
         base = 'tile_plain_Mtd_40x30',
         n_models = 0,
         ignore_terrain = true

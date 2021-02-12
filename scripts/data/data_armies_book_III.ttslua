@@ -2332,7 +2332,7 @@ armies["Book III"]["III/11b Other Turkish Armies 550-1330AD (Plain)"] = {
         ignore_terrain = true
     },
     base10 = {
-        name = '3Bw-Mtd',
+        name = 'Mtd-3Bw',
         base = 'tile_plain_Mtd_40x30',
         n_models = 0,
         ignore_terrain = true

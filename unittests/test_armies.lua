@@ -28,7 +28,7 @@ function normalize_base_name(name)
   return name
 end
 
-function assert_base_name_valid(name)
+function assert_base_name_valid(name, army_name)
   local valid= {}
   -- Elephants
   valid['El']=true
@@ -71,16 +71,10 @@ function assert_base_name_valid(name)
   valid['4Lb']=true 
   valid['3Lb']=true 
   valid['8Lb']=true
-  valid['3Bw_Mtd']=true 
-  valid['3Bw-Mtd']=true 
-  valid['3Mtd-Bw']=true 
-  valid['3Bw:Mtd']=true
-  valid['4Bw-Mtd']=true 
+  valid['Mtd-3Bw']=true 
   valid['Mtd-4Bw']=true 
-  valid['4Bw_Mtd']=true
-  valid['4Cb_Mtd']=true
-  valid['4Lb_Mtd']=true 
-  valid['4Lb-Mtd']=true
+  valid['Mtd-4Cb']=true
+  valid['Mtd-4Lb']=true 
   -- Psiloi
   valid['Ps']=true
   -- Warbands
@@ -105,6 +99,8 @@ function assert_base_name_valid(name)
     return
   end
   print("Invalid name ", name, " ", n_name)
+  print(army_name)
+  lu.assertTrue(false)
 end
 
 -- page 7 lists the abbreviations for the bases.  Verify only the correct
@@ -115,7 +111,7 @@ function test_bases_are_in_list()
       for k,v in pairs(army) do
         if starts_with(k, "base") then
           local name = v.name
-          assert_base_name_valid(name)
+          assert_base_name_valid(name, army_name)
         end
       end
     end
