@@ -25339,7 +25339,7 @@ armies["Book II"]["II/74b Palmyran Zenobia's Army 260-271AD (Plain)"] = {
         ignore_terrain = true
     },
     base3 = {
-        name = '2Cm_Gen',
+        name = 'LCm_Gen',
         base = 'tile_plain_2Cm_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',

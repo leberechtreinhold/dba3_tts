@@ -45,7 +45,6 @@ function assert_base_name_valid(name)
   -- Light Horse
   valid['LH']=true 
   valid['LCm']=true 
-  valid['2Cm']=true
   -- Scythed Chariots
   valid['SCh']=true
   -- Camelry
