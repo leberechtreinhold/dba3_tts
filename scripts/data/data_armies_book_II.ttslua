@@ -982,7 +982,7 @@ armies["Book II"]["II/3b Classical Indian Army 179-545AD"] = {
         model_data = 'troop_successors_bactrian_sp'
     },
     base15 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_indian_light_cavalry'
@@ -11967,7 +11967,7 @@ armies["Book II"]["II/27b Pyrrhic Army 280-272BC"] = {
         }
     },
     base2 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
@@ -15824,7 +15824,7 @@ armies["Book II"]["II/39a Iberian Army 240-20BC"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
@@ -15834,7 +15834,7 @@ armies["Book II"]["II/39a Iberian Army 240-20BC"] = {
         }
     },
     base2 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_ancient_spanish_lh',
@@ -16051,7 +16051,7 @@ armies["Book II"]["II/39b Celtiberian Army 240-20BC"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
@@ -16061,7 +16061,7 @@ armies["Book II"]["II/39b Celtiberian Army 240-20BC"] = {
         }
     },
     base2 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_ancient_spanish_lh',
@@ -16265,7 +16265,7 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC"] = {
     },
 
     base1 = {
-        name = '3Cv_Gen',
+        name = 'Cv_Gen',
         base = 'tile_grass_40x30',
         n_models = 3,
         fixed_models = {
@@ -16275,7 +16275,7 @@ armies["Book II"]["II/39c Lusitanian Army 240-20BC"] = {
         }
     },
     base2 = {
-        name = '2LH',
+        name = 'LH',
         base = 'tile_grass_40x30',
         n_models = 2,
         model_data = 'troop_ancient_spanish_lh',
@@ -25339,7 +25339,7 @@ armies["Book II"]["II/74b Palmyran Zenobia's Army 260-271AD (Plain)"] = {
         ignore_terrain = true
     },
     base3 = {
-        name = '2Cm_Gen',
+        name = 'LCm_Gen',
         base = 'tile_plain_2Cm_40x30',
         n_models = 1,
         model_data = 'troop_general_plain',
