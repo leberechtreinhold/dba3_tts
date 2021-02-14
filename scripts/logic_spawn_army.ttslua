@@ -29,6 +29,9 @@ function add_context_menu_base(base_obj)
     base_obj.addContextMenuItem("Turn around", function()
         turn_around_base(base_obj)
     end)
+    base_obj.addContextMenuItem("Toggle tool tips", function()
+        toggle_tool_tips()
+    end)
 end
 
 function add_context_menu_table(table_obj)
@@ -86,7 +89,7 @@ function onObjectSpawn(new_obj)
 
         if found_base ~= nil then
             on_clone(found_base, new_obj)
-        end    
+        end
     end
 end
 
@@ -108,7 +111,7 @@ function spawn_base(base, pos, y_rotation, is_red_player, command_color)
     end
 
     local base_obj = spawn_model(base['base'], pos, 0, nil, is_red_player, overriden_tex)
-    
+
     if base['name'] == nil then
         print_error('One of the bases of this army has no name! Please report to us so we can fix it asap')
         return
@@ -266,7 +269,7 @@ function spawn_army(army_name, army, is_red_player, command_color)
         y = g_base_height_tabletop + g_table_thickness + 1,
         z = z_pos * (1 + note_row) + z_pos_0
     }
-    
+
     local angle = 180
     if is_red_player then
         angle = 0
@@ -284,6 +287,8 @@ function spawn_army(army_name, army, is_red_player, command_color)
         .. maker,
         note_pos,
         angle)
+
+    update_tool_tips()
 
     print_important('Army deployed: ' .. army_name .. ', see chat for options')
     print_info('List: ' .. army['data']['list'])
@@ -366,7 +371,7 @@ function update_book_menu(book_selected)
             table.insert(options, dataname_to_friendlyname(book_name))
         end
 
-        if g_filter_armies_models 
+        if g_filter_armies_models
             and book_has_an_army_with_models(book_name) then
             table.insert(options, dataname_to_friendlyname(book_name))
         end
@@ -389,7 +394,7 @@ function update_armies_menu(book, army_selected)
             table.insert(options, dataname_to_friendlyname(army_name))
         end
 
-        if g_filter_armies_models 
+        if g_filter_armies_models
            and not str_has_substr(army_name, '(Plain)') then
             table.insert(options, dataname_to_friendlyname(army_name))
         end
@@ -441,7 +446,7 @@ function change_bases_to_terrain(terrain_type)
     local bases = filter_bases(all_objs)
     for _,base in ipairs(bases) do
         local name = base.getName()
-        if g_bases[name] ~= nil 
+        if g_bases[name] ~= nil
             and not str_has_substr(g_bases[name]['tile'], 'plain') then
 
             print_debug('Changing ' .. name)
@@ -486,7 +491,7 @@ function spawn_model(troop_name, pos, added_y_axis_rotation, collider, is_player
         if is_player_red then
             texture = model_data['player_red_tex']
         end
-        
+
         -- Vegetation etc does not have that kind of player texture
         -- they are global
         if texture == nil then

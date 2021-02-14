@@ -1,0 +1,120 @@
+
+----------------------------------------------
+-- Tool tips
+----------------------------------------------
+
+g_tool_tips_enabled = true
+
+function print_tool_tip_status()
+  if g_tool_tips_enabled then
+    print_info("Tool tips enabled")
+  else
+    print_info("Tool tips disabled")
+  end
+end
+
+function toggle_tool_tips()
+  g_tool_tips_enabled = not g_tool_tips_enabled
+  print_tool_tip_status()
+  update_tool_tips()
+end
+
+function update_tool_tips()
+  for _,base in pairs(get_all_bases()) do
+    local tip = get_tool_tip_for_base(base)
+    base.setDescription(tip)
+  end
+end
+
+function get_tool_tip_for_base(base)
+  if base == nil then
+    return nil
+  end
+  if not g_tool_tips_enabled then
+    return nil
+  end
+  return get_tool_tip_for_base_name(base.getName())
+end
+
+function get_tool_tip_for_base_name(base_name)
+  if base_name == nil then
+    return nil
+  end
+  local type = get_base_type_from_name(base_name)
+  if type == nil then
+    return nil
+  end
+  return get_tool_tip(type)
+end
+
+-- Example: "base WWg # 20" returns "WWg"
+function get_base_type_from_name(base_name)
+  local type = (base_name:gsub("base (.+) #.*", "%1"))
+  if type == base_name then
+    return nil -- no match.  this is an error
+  end
+  type = str_remove_suffix(type, "_Gen")
+  return type
+end
+
+-- Singleton.  Cache of tool tips for base type
+g_tool_tips = {}
+
+function get_tool_tip(base_type)
+  if not g_tool_tips_enabled then
+    return nil
+  end
+  local tip = g_tool_tips[base_type]
+  if tip ~= nil then
+    return tip
+  end
+  tip = build_tool_tip(base_type)
+  g_tool_tips[base_type] =  tip
+  return tip
+end
+
+function build_tool_tip(base_type)
+  local tip_data = base_tool_tips[base_type]
+  if tip_data == nil then
+    return nil
+  end
+  local result = tip_data.name
+  local shot_at = tip_data.combat.shot_at
+  if shot_at == nil then
+    shot_at = tip_data.combat.foot
+  end
+  result = string.format("%s %dBW/%dBW %d/%d/%d",
+    tip_data.name,
+    tip_data.speed.GG, tip_data.speed.BG,
+    tip_data.combat.foot, tip_data.combat.mounted, shot_at)
+  result = result .. join_tip_lines("", tip_data.combat_notes)
+  result = result .. join_tip_lines("\nQuick kills:", tip_data.can_quick_kill)
+  result = result .. join_tip_lines("\nMakes flee:", tip_data.makes_flee)
+  result = result .. join_tip_lines("\nCannot destroy:", tip_data.cannot_destroy)
+  result = result .. join_tip_lines("\nQuick killed by:", tip_data.quick_killed_by)
+  result = result .. join_tip_lines("\nFlees from:", tip_data.flees_from)
+  result = result .. join_tip_lines("", tip_data.movement_notes)
+
+  return result
+end
+
+-- Join all the tips for a category into a string
+-- header: text that describes the category
+-- lines:  tips in the category
+function join_tip_lines(header, lines)
+  if lines == nil then
+    return ""
+  end
+  local nb_lines = tlen(lines)
+  if nb_lines == 0 then
+    return ""
+  end
+  if nb_lines == 1 then
+    return header .. ' ' .. first_value_table(lines)
+  end
+  local result = header
+  for _,v in pairs(lines) do
+    result = result .. '\n- ' .. v
+  end
+  return result
+end
