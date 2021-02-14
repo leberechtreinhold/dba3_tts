@@ -89,7 +89,6 @@ function assert_base_name_valid(name, army_name)
   valid['WWg']=true
   -- Ceneral
   valid['CP']=true 
-  valid['3CP']=true 
   valid['Lit']=true 
   valid['CWg']=true
   valid['Camp']=true
