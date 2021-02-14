@@ -1,61 +1,7 @@
 lu = require('externals/luaunit/luaunit')
 require('scripts/data/data_settings')
+require('scripts/utilities_lua')
 require('scripts/utilities')
-
-function test_shallow_copy_on_number_returns_itself()
-  local expected = 3.14
-  local actual = shallow_copy(expected)
-  lu.assertAlmostEquals(actual, expected, 1e-6)
-end
-
-function test_shallow_copy_on_table_returns_table_with_same_key_values()
-  local expected = { a=1, b=2, c=3}
-  local actual = shallow_copy(expected)
-  lu.assertEquals(actual, expected)
-end
-
-
-function test_shallow_copy_on_table_returns_new_table()
-  local expected = { a=1, b=2, c=3}
-  local actual = shallow_copy(expected)
-  expected['a'] = 4
-  lu.assertEquals(actual['a'], 1)
-end
-
-function test_shallow_copy_does_not_copy_nested_tables()
-  local expected = { a=1, b=2, c=3, d={e=4}}
-  local actual = shallow_copy(expected)
-  expected['d']['e'] = 6
-  lu.assertEquals(actual['d']['e'], 6)
-end
-
-function test_deep_copy_on_number_returns_itself()
-  local expected = 3.14
-  local actual = deep_copy(expected)
-  lu.assertAlmostEquals(actual, expected, 1e-6)
-end
-
-function test_deep_copy_on_table_returns_table_with_same_key_values()
-  local expected = { a=1, b=2, c=3}
-  local actual = deep_copy(expected)
-  lu.assertEquals(actual, expected)
-end
-
-
-function test_deep_copy_on_table_returns_new_table()
-  local expected = { a=1, b=2, c=3}
-  local actual = deep_copy(expected)
-  expected['a'] = 4
-  lu.assertEquals(actual['a'], 1)
-end
-
-function test_deep_copy_does_copies_nested_tables()
-  local expected = { a=1, b=2, c=3, d={e=4}}
-  local actual = deep_copy(expected)
-  expected['d']['e'] = 6
-  lu.assertEquals(actual['d']['e'], 4)
-end
-
 
 function test_vec_add_3d()
   local vec1={x=1,y=2,z=3}
