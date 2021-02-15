@@ -223,18 +223,32 @@ function base_killed(base)
     print_info("killed blue ", base_name)
     dead_zone = g_dead_zones['blue']
   end
-  local initial_transform = calculate_transform(base)
 
+  local initial_transform = calculate_transform(base)
   local pos = dead_zone.getBounds().center
   base.setPosition(pos)
   -- WARNING: If we execute reorganize_dead_zone immediately we get a situation
   -- where the base is not yet in the dead_zone.getObjects()
   Wait.frames(function ()
-    reorganize_dead_zone(dead_zone)
-    local new_transform = calculate_transform(base)
-    local move = {}
-    add_transform_to_move(move, base.getName(), initial_transform, new_transform)
-    push_to_history_stack(move)
-    draw_all_gizmos()
+    local ok, error = pcall(function() reorganize_dead_zone(dead_zone) end)
+    if not ok then
+      print_error("reorganize_dead_zone failed with: ", error)
+    end
+
+    -- save history
+    ok, error = pcall( function()
+        local new_transform = calculate_transform(base)
+        local move = {}
+        add_transform_to_move(move, base.getName(), initial_transform, new_transform)
+        push_to_history_stack(move)
+        if not ok then
+          print_error("saving history failed with: ", error)
+        end
+      end)
+
+    ok, error = pcall(function() draw_all_gizmos() end)
+    if not ok then
+      print_error("draw_all_gizmos failed with: ", error)
+    end
   end, 2)
 end
