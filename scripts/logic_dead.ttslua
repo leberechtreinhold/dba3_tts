@@ -235,5 +235,6 @@ function base_killed(base)
     local move = {}
     add_transform_to_move(move, base.getName(), initial_transform, new_transform)
     push_to_history_stack(move)
+    draw_all_gizmos()
   end, 2)
 end
