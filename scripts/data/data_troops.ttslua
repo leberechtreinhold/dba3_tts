@@ -3284,7 +3284,7 @@ troop_spanish_armor_foot_sword = {
 }
 
 troop_norman_archer = {
-    height_correction = 0.4,
+    height_correction = 0.3,
     scale = 0.3,
     rotation = 90,
     description = 'Norman Archer',
@@ -3402,7 +3402,7 @@ troop_norman_lightcav = {
 }
 
 troop_norman_crossbow = {
-    height_correction = 0.4,
+    height_correction = 0.3,
     scale = 0.3,
     rotation = 0,
     description = 'Norman Crossbowmen',
