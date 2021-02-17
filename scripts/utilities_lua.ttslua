@@ -101,6 +101,44 @@ end
 function str_has_substr(str, substr)
     return string.find(str, substr) ~= nil
 end
+
+-- Concatenate the values of a table
+-- sep: string to place between values
+-- value: table of values to concatenate
+-- return: concatenated values as string
+function str_join(sep, values)
+  local result = ""
+  local first = true
+  for _,v in pairs(values) do
+    if not first then
+      result = result .. sep
+    end
+    result = result .. tostring(v)
+    first=false
+  end
+  return result
+end
+
+-- remove white space from beginning and end of string
+function str_trim(str)
+  return (str:gsub("^%s*(.-)%s*$", "%1"))
+end
+
+function str_remove_prefix(str, prefix)
+  local head = str:sub(1, prefix:len())
+  if head ~= prefix then
+    return str
+  end
+  return str:sub (prefix:len()+1)
+end
+  
+function str_remove_suffix(str, suffix)
+  local tail = str:sub(-suffix:len())
+  if tail ~= suffix then
+    return str
+  end
+  return str:sub (1, -(suffix:len()+1))
+end
   
 -- As insane as it sounds, tables in lua don't have a well-defined way
 -- of getting the number of entries
@@ -142,6 +180,28 @@ function random_kv(tablekv)
 
     local key = keys[math.random(1, #keys)]
     return key, tablekv[key]
+end
+
+function shallow_copy(orig)
+  if not (type(orig) == 'table') then
+    return orig
+  end
+  local result={}
+  for k,v in pairs(orig) do
+    result[k] = v
+  end
+  return result
+end
+
+function deep_copy(orig)
+  if not (type(orig) == 'table') then
+    return orig
+  end
+  local result={}
+  for k,v in pairs(orig) do
+    result[k] = deep_copy(v)
+  end
+  return result
 end
 
 -- Returns true if they are roughly the same, as defined by epsilon.

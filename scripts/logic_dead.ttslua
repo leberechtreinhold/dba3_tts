@@ -26,13 +26,15 @@ function create_zone(name, position, size)
     }
     local obj = spawnObject(zone_spawn)
     obj.setName(name)
+    return obj
 end
 
+g_dead_zones = {}
 function spawn_dead_zones_after_deletion()
-    create_zone('dead zone red',
+  g_dead_zones['red'] = create_zone('dead zone red',
                 { x = 0, y = 1.6, z = -27 },
                 { x = 10, y = 1, z = 10 })
-    create_zone('dead zone blue',
+  g_dead_zones['blue'] = create_zone('dead zone blue',
                 { x = 0, y = 1.6, z = 27 },
                 { x = 10, y = 1, z = 10 })
 end
@@ -67,7 +69,7 @@ function update_zone_value(zone)
                or str_has_substr(obj_name, '8Cb') then
                 has_double_element = true
             end
-            
+
             if str_has_substr(obj_name, 'Gen') then
                 -- Generals count as one extra element lost
                 dead = dead + 1
@@ -126,7 +128,7 @@ end
 
 function onObjectEnterScriptingZone(zone, obj)
     if not str_has_substr(obj.getName(), 'base') then
-        return 
+        return
     end
     print_debug(obj.getName() .. ' entered ' .. zone.getName())
     if not g_updating_zone[zone.getName()] then
@@ -139,7 +141,7 @@ end
 
 function onObjectLeaveScriptingZone(zone, obj)
     if not str_has_substr(obj.getName(), 'base') then
-        return 
+        return
     end
     print_debug(obj.getName() .. ' left ' .. zone.getName())
     if not g_updating_zone[zone.getName()] then
@@ -148,4 +150,105 @@ function onObjectLeaveScriptingZone(zone, obj)
     else
         print_debug('Ignoring dead Leave because already updating')
     end
+end
+
+
+-- Move the bases in the dead zone so they are not colliding with
+-- each other
+function reorganize_dead_zone(dead_zone)
+  local dead = dead_zone.getObjects()
+
+  -- have the unit facing off the board, since they are
+  -- running away.
+  local rotation = dead_zone.getRotation()
+  if dead_zone == g_dead_zones['red'] then
+    rotation['y'] = rotation['y'] + 180
+  end
+
+  local row_direction
+  if dead_zone == g_dead_zones['red'] then
+    row_direction = 1
+  else
+    row_direction = -1
+  end
+
+  local dead_bounds = dead_zone.getBounds()
+  local dead_pos = dead_bounds.center
+  -- BEWARE: dead_bounds size is zero, it is not the proper value.
+  local side_margin = dead_pos.x - (2 * g_base_width_inches * row_direction)
+  local top =  dead_pos.z - (row_direction * 2 * g_base_width_inches  )
+  local bases_per_row = 5
+  local row_contents = {}
+  local col  = 1
+  local row = 1
+  for _,base in pairs(dead) do
+    base.setRotation(rotation)
+    if (col == 1) and (row == 1) then
+        local base_pos = {x=side_margin, y = dead_pos.y, z=top}
+        base.setPosition(base_pos)
+    else
+      local dir
+      local other
+      if (row == 1) then
+        other = row_contents[col-1]
+        dir = "left"
+      else
+        other = row_contents[col]
+        dir = "behind"
+      end
+      snap_to_base(base,calculate_transform(base),other,calculate_transform(other),dir)
+    end
+    row_contents[col] = base
+     if col == 5 then
+       col = 1
+       row = row + 1
+     else
+       col = col  + 1
+     end
+  end
+end
+
+-- Move the base to the kill scripting zone
+function base_killed(base)
+  if base == nil then
+    print_error("base is nil")
+    return
+  end
+  local base_name = base.getName()
+  local dead_zone
+  if is_base_red_player(base_name) then
+    print_info("killed red ", base_name)
+    dead_zone = g_dead_zones['red']
+  else
+    print_info("killed blue ", base_name)
+    dead_zone = g_dead_zones['blue']
+  end
+
+  local initial_transform = calculate_transform(base)
+  local pos = dead_zone.getBounds().center
+  base.setPosition(pos)
+  -- WARNING: If we execute reorganize_dead_zone immediately we get a situation
+  -- where the base is not yet in the dead_zone.getObjects()
+  Wait.frames(function ()
+    local ok, error = pcall(function() reorganize_dead_zone(dead_zone) end)
+    if not ok then
+      print_error("reorganize_dead_zone failed with: ", error)
+    end
+
+    -- save history
+    ok, error = pcall( function()
+        local new_transform = calculate_transform(base)
+        local move = {}
+        add_transform_to_move(move, base.getName(), initial_transform, new_transform)
+        push_to_history_stack(move)
+        if not ok then
+          print_error("saving history failed with: ", error)
+        end
+      end)
+
+    ok, error = pcall(function() draw_all_gizmos() end)
+    if not ok then
+      print_error("draw_all_gizmos failed with: ", error)
+    end
+  end, 2)
 end

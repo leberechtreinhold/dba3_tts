@@ -18985,7 +18985,7 @@ armies["Book IV"]["IV/83b Wars of the Roses Rebel Army of Henry Tudor 1485AD"] =
         list = '1xCP or 4Bd (Gen), 1x4Bd, 4x4Pk or 4Bd, 3x4Bd, 2x4Lb, 1xArt or Ps.'
     },
     base1 = {
-        name = '3CP_Gen',
+        name = 'CP_Gen',
         base = 'tile_grass_40x40',
         n_models = 3,
 	      loose = true,
