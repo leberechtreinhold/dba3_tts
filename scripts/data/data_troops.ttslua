@@ -3232,7 +3232,7 @@ troop_norman_knight_lance = {
     player_blue_tex = 'http://cloud-3.steamusercontent.com/ugc/1667983596735685871/DD8719776E482AE319500D89AC8820DE62EBC7C4/',
 }
 
-troop_norman_knight_lance = {
+troop_spanish_knight_lance = {
     height_correction = 0,
     scale = 1.7,
     rotation = 0,
@@ -3284,7 +3284,7 @@ troop_spanish_armor_foot_sword = {
 }
 
 troop_norman_archer = {
-    height_correction = 0.4,
+    height_correction = 0.3,
     scale = 0.3,
     rotation = 90,
     description = 'Norman Archer',
@@ -3402,7 +3402,7 @@ troop_norman_lightcav = {
 }
 
 troop_norman_crossbow = {
-    height_correction = 0.4,
+    height_correction = 0.3,
     scale = 0.3,
     rotation = 0,
     description = 'Norman Crossbowmen',
