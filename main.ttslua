@@ -79,6 +79,42 @@ function update()
     check_picked_base()
 end
 
+-- Add a graphic to show the bounding box around an object.
+-- The game is unplayable with the graphic, it is strictly for
+-- debugging.
+-- obj: Object whose bounding box will be shown.
+function show_bounding_box_obj(obj)
+  local obj_size = obj.getBounds().size
+  print_info("object size: "  ..
+    tostring(obj_size.x) .. ' ' ..
+    tostring(obj_size.y) .. ' ' ..
+    tostring(obj_size.z) )
+  -- Grow the cube a little bit to make it visible
+  obj_size.x = obj_size.x + 0.25
+  obj_size.y = obj_size.y + 0.25
+  obj_size.z = obj_size.z + 0.25
+  local cube = spawnObject({
+    position = obj.getPosition(),
+    rotation = obj.getRotation(),
+    scale = obj_size,
+    type = 'BlockSquare' }
+  )
+  cube.setLock(true)
+  cube.setColorTint({r=0,g=1,b=0,a=0.15})
+end
+
+-- Add a graphic to show the bounding box around an object.
+-- The game is unplayable with the graphic, it is strictly for
+-- debugging.
+-- guid: GUID of the object to decorate.
+function show_bounding_box(guid)
+  local obj = getObjectFromGUID(guid)
+  if obj == nil then
+    print_error("object not found for " .. guid)
+  end
+  show_bounding_box_obj(obj)
+end
+
 function print_help()
     print_info('Write commands in the chat by writting !command.')
     print_info('A extended description can be found on the Notebook.')
@@ -146,6 +182,14 @@ function onChat(message, player)
         print_info('Agressiveness: ' .. army['data']['aggresiveness']
             .. ' Terrain: ' .. army['data']['terrain'])
         return false
+    end
+
+    if str_starts_with(message, '!dba_bounds') then
+      local guid_string = str_trim(string.sub(message, 12))
+      for word in string.gmatch(guid_string, ' *([^ ]+) *') do
+        show_bounding_box(word)
+      end
+      return false
     end
 
     if str_starts_with(message, '!dba') then
