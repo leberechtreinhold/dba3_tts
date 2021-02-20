@@ -170,7 +170,6 @@ function onChat(message, player)
     if str_starts_with(message, '!dba_bounds') then
       local guid_string = str_trim(string.sub(message, 12))
       for word in string.gmatch(guid_string, ' *([^ ]+) *') do
-        print(word)
         show_bounding_box(word)
       end
       return false
