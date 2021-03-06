@@ -250,7 +250,7 @@ function onObjectEnterScriptingZoneBua(zone,obj)
 end
 
 function onObjectLeaveScriptingZoneBua(zone,obj)
-  print('onObjectEnterScriptingZoneBua ', zone.getName(), ' ', obj.getName())
+  print('onObjectLeaveScriptingZoneBua ', zone.getName(), ' ', obj.getName())
 end
 
 function callback_bua_zone(zone, name, color)
@@ -276,8 +276,8 @@ end
 function set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
   local name = "zone bua " .. terrain_obj.getGUID()
   create_bua_zone(terrain_obj, name)
-  --local options = g_terrain[table_type]['bua']
-  --change_texture_terrain(terrain_obj, random_element(options['texture']))
+  local options = g_terrain[table_type]['bua']
+  change_texture_terrain(terrain_obj, random_element(options['texture']))
 end
 
 function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
