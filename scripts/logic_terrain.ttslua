@@ -279,22 +279,15 @@ g_building_number = 1
 
 -- Add a building to a plot, so BUA has some buildings to show
 function spawn_building(plot)
-  print_info("spawn_building ")
-
-  -- local spawn_data = get_spawn_data(model_name, pos, rotation.y, minimal_collider,
-  --   false)
-  -- if spawn_data == nil then
-  --   -- Error already logged
-  --   return nil
-  -- end
-  -- spawn_data['spawn'].callback_function = on_building_spawned
-  -- local building = spawnObject(spawn_data['spawn'])
-  -- building.setCustomObject(spawn_data['custom_obj_attrs'])
-  -- building.setLock(true)
-  -- building.setName("building # " .. tostring(g_building_number))
-  -- building.setRotation(rotation)
-  -- g_building_number = g_building_number + 1
-  -- return building
+  local building = spawn_model(
+    plot.model_name,
+    plot.position,
+    plot.rotation.y,
+    minimal_collider, true)
+  building.setLock(true)
+  building.setName("building # " .. tostring(g_building_number))
+  g_building_number = g_building_number + 1
+  return building
 end
 
 -- Find the location of buildings for a built up area.
