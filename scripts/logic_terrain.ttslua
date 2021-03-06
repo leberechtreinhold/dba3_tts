@@ -22,7 +22,7 @@ function snap_waterway(waterway)
     local h = bounds['size']['z']
     local zpos = table_h / 2 - (h / 2 - bounds['offset']['z'])
     local xpos = table_w / 2 - (h / 2 - bounds['offset']['z'])
-    if g_is_double_dba then 
+    if g_is_double_dba then
         xpos = xpos + table_w / 2
     end
 
@@ -48,7 +48,7 @@ function snap_waterway(waterway)
         and equals_float(pos['x'], 0, g_max_camp_edge_snap)
         and equals_float(pos['z'], -zpos, g_max_camp_edge_snap)
         then
-            
+
         waterway.setPosition({x=0, y=g_terrain_pos, z=-zpos})
         waterway.setRotation({x=0, y=180, z=0})
         print_info('Waterway Snapping bot')
@@ -57,7 +57,7 @@ function snap_waterway(waterway)
         and equals_float(pos['x'], xpos, g_max_camp_edge_snap)
         and equals_float(pos['z'], 0, g_max_camp_edge_snap)
         then
-            
+
         waterway.setPosition({x=xpos, y=g_terrain_pos, z=0})
         waterway.setRotation({x=0, y=90, z=0})
         print_info('Waterway Snapping right')
@@ -72,7 +72,7 @@ function snap_road(road)
     local rotation = normalize_angle(math.rad(road.getRotation()['y']))
     local pos = road.getPosition()
 
-    if (equals_float(rotation, 0, 0.17) 
+    if (equals_float(rotation, 0, 0.17)
         or equals_float(rotation, math.pi, 0.17)
         or equals_float(rotation, 2*math.pi, 0.17))
         and equals_float(pos['z'], 0, g_max_camp_edge_snap)
@@ -82,7 +82,7 @@ function snap_road(road)
         road.setRotation({x=0, y=0, z=0})
         print_info('Road Snapping Vertical')
 
-    elseif (equals_float(rotation, math.pi/2, 0.17) 
+    elseif (equals_float(rotation, math.pi/2, 0.17)
             or equals_float(rotation, 3*math.pi/2, 0.17))
             and equals_float(pos['x'], 0, g_max_camp_edge_snap)
         then
@@ -146,9 +146,9 @@ function fix_terrain_and_lock()
                 if g_use_3d_terrain then
                     process_vegetation(terrain, terrain_type)
                 end
-    
+
                 gametable.addAttachment(terrain)
-                print_info('Attaching ' .. terrain.getName())                
+                print_info('Attaching ' .. terrain.getName())
             end, 1)
         end
     end
@@ -232,9 +232,9 @@ function set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
 
     for i=1,objs_x do
         for j=1,objs_z do
-            local point = { 
-                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-                y = 0, 
+            local point = {
+                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+                y = 0,
                 z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
             }
             local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
@@ -243,6 +243,41 @@ function set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
         end
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
+end
+
+function onObjectEnterScriptingZoneBua(zone,obj)
+  print('onObjectEnterScriptingZoneBua ' , zone.getName(), ' ', obj.getName() )
+end
+
+function onObjectLeaveScriptingZoneBua(zone,obj)
+  print('onObjectEnterScriptingZoneBua ', zone.getName(), ' ', obj.getName())
+end
+
+function callback_bua_zone(zone, name, color)
+    print('callback_bua_zone ' .. zone.getName())
+end
+
+function create_bua_zone(bua, name)
+  local b = bua.getBounds()
+  local size = b.size
+  size.y = 3
+  local zone_spawn = {
+    position = bua.getPosition(),
+    rotation = bua.getRotation(),
+    scale = size,
+    type = 'ScriptingTrigger',
+        callback = 'callback_bua_zone'
+  }
+  local obj = spawnObject(zone_spawn)
+  obj.setName(name)
+  return obj
+end
+
+function set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
+  local name = "zone bua " .. terrain_obj.getGUID()
+  create_bua_zone(terrain_obj, name)
+  --local options = g_terrain[table_type]['bua']
+  --change_texture_terrain(terrain_obj, random_element(options['texture']))
 end
 
 function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
@@ -256,9 +291,9 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
 
     for i=1,objs_x do
         for j=1,objs_z do
-            local point = { 
-                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-                y = 0, 
+            local point = {
+                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+                y = 0,
                 z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
             }
             local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
@@ -269,39 +304,39 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
 
     local fence_asset = first_value_table(options['outline_objects'])
     for i=1,objs_x do
-        local point_up = { 
-            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-            y = 0, 
+        local point_up = {
+            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+            y = 0,
             z = terrain_size['z'] / 2 - 0.1
         }
         local new_pos_up = rotate_point_relative(point_up, terrain_pos, terrain_rotation)
-        
+
         local obj_up = spawn_model(fence_asset, new_pos_up, terrain_obj.getRotation()['y'], minimal_collider, true)
         terrain_obj.addAttachment(obj_up)
 
-        local point_down = { 
-            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-            y = 0, 
+        local point_down = {
+            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+            y = 0,
             z = - terrain_size['z'] / 2 + 0.1
         }
         local new_pos_down = rotate_point_relative(point_down, terrain_pos, terrain_rotation)
         local obj_down = spawn_model(fence_asset, new_pos_down, terrain_obj.getRotation()['y'] + 180, minimal_collider, true)
         terrain_obj.addAttachment(obj_down)
     end
-    
+
     for j=1,objs_z do
-        local point_left = { 
-            x = - terrain_size['x'] / 2 + 0.1, 
-            y = 0, 
+        local point_left = {
+            x = - terrain_size['x'] / 2 + 0.1,
+            y = 0,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_left = rotate_point_relative(point_left, terrain_pos, terrain_rotation)
         local obj_left = spawn_model(fence_asset, new_pos_left, terrain_obj.getRotation()['y'] + 90, minimal_collider, true)
         terrain_obj.addAttachment(obj_left)
 
-        local point_right = { 
-            x = terrain_size['x'] / 2 - 0.1, 
-            y = 0, 
+        local point_right = {
+            x = terrain_size['x'] / 2 - 0.1,
+            y = 0,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_right = rotate_point_relative(point_right, terrain_pos, terrain_rotation)
@@ -317,20 +352,17 @@ function process_vegetation(terrain_obj, type)
     local terrain_size = terrain_obj.getBoundsNormalized()['size']
     if str_starts_with(terrain_obj.getName(), 'terrain Forest') then
         set_forest(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Arid') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Arid') then
         set_arid(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Oasis') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Oasis') then
         set_oasis(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Plough') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Plough') then
         set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Enclosure') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Enclosure') then
         set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Marsh') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Marsh') then
         set_marsh(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
+    elseif str_starts_with(terrain_obj.getName(), 'terrain BUA') then
+          set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
     end
 end

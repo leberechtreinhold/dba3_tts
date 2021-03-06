@@ -126,30 +126,46 @@ function callback_zone(zone, name, color)
     end
 end
 
+function onObjectEnterScriptingZoneDead(zone, obj)
+  if not g_updating_zone[zone.getName()] then
+      g_updating_zone[zone.getName()] = true
+      Wait.frames(function() update_zone_value(zone) end, 60)
+  else
+      print_debug('Ignoring dead Enter because already updating')
+  end
+end
+
 function onObjectEnterScriptingZone(zone, obj)
+  print_debug(obj.getName() .. ' entered ' .. zone.getName())
     if not str_has_substr(obj.getName(), 'base') then
         return
     end
-    print_debug(obj.getName() .. ' entered ' .. zone.getName())
-    if not g_updating_zone[zone.getName()] then
-        g_updating_zone[zone.getName()] = true
-        Wait.frames(function() update_zone_value(zone) end, 60)
-    else
-        print_debug('Ignoring dead Enter because already updating')
+    if str_has_substr(zone.getName(), "zone bua") then
+      onObjectEnterScriptingZoneBua(zone,obj)
+      return
     end
+    onObjectEnterScriptingZoneDead(zone, obj)
+end
+
+function onObjectLeaveScriptingZoneDead(zone, obj)
+  if not g_updating_zone[zone.getName()] then
+      g_updating_zone[zone.getName()] = true
+      Wait.frames(function() update_zone_value(zone) end, 60)
+  else
+      print_debug('Ignoring dead Leave because already updating')
+  end
 end
 
 function onObjectLeaveScriptingZone(zone, obj)
+  print_debug(obj.getName() .. ' left ' .. zone.getName())
     if not str_has_substr(obj.getName(), 'base') then
         return
     end
-    print_debug(obj.getName() .. ' left ' .. zone.getName())
-    if not g_updating_zone[zone.getName()] then
-        g_updating_zone[zone.getName()] = true
-        Wait.frames(function() update_zone_value(zone) end, 60)
-    else
-        print_debug('Ignoring dead Leave because already updating')
+    if str_has_substr(zone.getName(), "zone bua") then
+      onObjectLeaveScriptingZoneBua(zone,obj)
+      return
     end
+    onObjectLeaveScriptingZoneDead(zone, obj)
 end
 
 
