@@ -270,6 +270,7 @@ function create_bua_zone(bua, name)
   }
   local obj = spawnObject(zone_spawn)
   obj.setName(name)
+  obj.setLock(true)
   return obj
 end
 
@@ -278,6 +279,7 @@ function set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table
   create_bua_zone(terrain_obj, name)
   local options = g_terrain[table_type]['bua']
   change_texture_terrain(terrain_obj, random_element(options['texture']))
+  terrain_obj.setLock(true)
 end
 
 function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
