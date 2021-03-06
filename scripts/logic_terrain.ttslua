@@ -260,7 +260,7 @@ end
 function create_bua_zone(bua, name)
   local b = bua.getBounds()
   local size = b.size
-  size.y = 3
+  size.y = 4
   local zone_spawn = {
     position = bua.getPosition(),
     rotation = bua.getRotation(),
@@ -274,12 +274,105 @@ function create_bua_zone(bua, name)
   return obj
 end
 
+
+g_building_number = 1
+
+-- Add a building to a plot, so BUA has some buildings to show
+function spawn_building(plot)
+  print_info("spawn_building ")
+
+  -- local spawn_data = get_spawn_data(model_name, pos, rotation.y, minimal_collider,
+  --   false)
+  -- if spawn_data == nil then
+  --   -- Error already logged
+  --   return nil
+  -- end
+  -- spawn_data['spawn'].callback_function = on_building_spawned
+  -- local building = spawnObject(spawn_data['spawn'])
+  -- building.setCustomObject(spawn_data['custom_obj_attrs'])
+  -- building.setLock(true)
+  -- building.setName("building # " .. tostring(g_building_number))
+  -- building.setRotation(rotation)
+  -- g_building_number = g_building_number + 1
+  -- return building
+end
+
+-- Find the location of buildings for a built up area.
+-- terrain_obj: Built Up Area that is to have buildings placed onto it.
+-- return: Structure describing the location of the buildings.
+function calc_bua_plots(terrain_obj)
+  local plots = {}
+  local plot_size = {x = 3, z= 2.25} -- size of land for a building
+  local terrain_size = terrain_obj.getBounds().size
+  -- Fake having a smaller terrain size since the values we get out of
+  -- bounds are not necessarily correct
+  terrain_size.x = terrain_size.x * 0.75
+  terrain_size.z = terrain_size.z * 0.75
+
+  local terrain_pos = terrain_obj.getPosition()
+  local nb_cols = math.floor(terrain_size.x / plot_size.x)
+  local nb_rows = math.floor(terrain_size.z / plot_size.z)
+  if (nb_cols == 0) then
+    plot_size.x = 0
+    nb_cols = 1
+  end
+  if (nb_rows == 0) then
+    plot_size.z = 0
+    nb_rows = 1
+  end
+  -- more faking of terrain size
+  if nb_rows > 2 then
+    nb_rows = 2
+  end
+  if nb_cols > 2 then
+    nb_cols = 2
+  end
+  local area = {x=plot_size.x * nb_cols, z=plot_size.z*nb_rows}
+  local margin = {x=(terrain_size.x-area.x), z=(terrain_size.z-area.z)}
+  local z = (-terrain_size.z/2) +  (plot_size.z/2) + ((terrain_size.z - area.z) / 2)
+  for row = 1,nb_rows do
+    local x = (-terrain_size.x/2) +  (plot_size.x/2) + ((terrain_size.x - area.x) / 2)
+    for col = 1,nb_cols do
+      local point = {x=x, y=0, z=z}
+      -- in degrees
+      local terrain_rotation = terrain_obj.getRotation()
+      -- in radians
+      terrain_rotation_y = math.rad(terrain_rotation.y)
+      local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation_y)
+      local rotation_y =  normalize_degrees(terrain_rotation.y + (180 * ((row+1) % 2)))
+      local plot = {
+        position = new_pos,
+        rotation = { x=terrain_rotation.x, y=rotation_y, z=terrain_rotation.z}
+      }
+      table.insert(plots, plot)
+      x = x + plot_size.x
+    end
+    z = z + plot_size.z
+  end
+  return plots
+end
+
+-- Add buildings to the Built Up Area (BUA) to make it look pretty.
+-- terrain_obj: template of the BUA
+-- terrain_rotation: float, y-axis rotation of BUA in radians
+-- options: Source of data for BUA for the table type
+function add_buildings(terrain_obj, terrain_rotation, options)
+  print("add_buildings")
+  local plots = calc_bua_plots(terrain_obj)
+  for _,plot in pairs(plots) do
+     plot.model_name = random_element(options['objects'])
+     local building = spawn_building(plot)
+  end
+  print("OUT add_buildings")
+end
+
 function set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
   local name = "zone bua " .. terrain_obj.getGUID()
   create_bua_zone(terrain_obj, name)
   local options = g_terrain[table_type]['bua']
   change_texture_terrain(terrain_obj, random_element(options['texture']))
   terrain_obj.setLock(true)
+  add_buildings(terrain_obj, terrain_rotation, options)
 end
 
 function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
