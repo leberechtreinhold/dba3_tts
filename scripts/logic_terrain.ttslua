@@ -22,7 +22,7 @@ function snap_waterway(waterway)
     local h = bounds['size']['z']
     local zpos = table_h / 2 - (h / 2 - bounds['offset']['z'])
     local xpos = table_w / 2 - (h / 2 - bounds['offset']['z'])
-    if g_is_double_dba then 
+    if g_is_double_dba then
         xpos = xpos + table_w / 2
     end
 
@@ -48,7 +48,7 @@ function snap_waterway(waterway)
         and equals_float(pos['x'], 0, g_max_camp_edge_snap)
         and equals_float(pos['z'], -zpos, g_max_camp_edge_snap)
         then
-            
+
         waterway.setPosition({x=0, y=g_terrain_pos, z=-zpos})
         waterway.setRotation({x=0, y=180, z=0})
         print_info('Waterway Snapping bot')
@@ -57,7 +57,7 @@ function snap_waterway(waterway)
         and equals_float(pos['x'], xpos, g_max_camp_edge_snap)
         and equals_float(pos['z'], 0, g_max_camp_edge_snap)
         then
-            
+
         waterway.setPosition({x=xpos, y=g_terrain_pos, z=0})
         waterway.setRotation({x=0, y=90, z=0})
         print_info('Waterway Snapping right')
@@ -72,7 +72,7 @@ function snap_road(road)
     local rotation = normalize_angle(math.rad(road.getRotation()['y']))
     local pos = road.getPosition()
 
-    if (equals_float(rotation, 0, 0.17) 
+    if (equals_float(rotation, 0, 0.17)
         or equals_float(rotation, math.pi, 0.17)
         or equals_float(rotation, 2*math.pi, 0.17))
         and equals_float(pos['z'], 0, g_max_camp_edge_snap)
@@ -82,7 +82,7 @@ function snap_road(road)
         road.setRotation({x=0, y=0, z=0})
         print_info('Road Snapping Vertical')
 
-    elseif (equals_float(rotation, math.pi/2, 0.17) 
+    elseif (equals_float(rotation, math.pi/2, 0.17)
             or equals_float(rotation, 3*math.pi/2, 0.17))
             and equals_float(pos['x'], 0, g_max_camp_edge_snap)
         then
@@ -146,9 +146,9 @@ function fix_terrain_and_lock()
                 if g_use_3d_terrain then
                     process_vegetation(terrain, terrain_type)
                 end
-    
+
                 gametable.addAttachment(terrain)
-                print_info('Attaching ' .. terrain.getName())                
+                print_info('Attaching ' .. terrain.getName())
             end, 1)
         end
     end
@@ -232,9 +232,9 @@ function set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
 
     for i=1,objs_x do
         for j=1,objs_z do
-            local point = { 
-                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-                y = 0, 
+            local point = {
+                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+                y = 0,
                 z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
             }
             local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
@@ -243,6 +243,234 @@ function set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
         end
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
+end
+
+
+-- Is the object a building?
+function is_building(obj)
+  local obj_name = obj.getName()
+  return str_has_substr(obj_name, 'building #')
+end
+
+function is_any_base_in_zone(zone)
+  for _,obj in pairs(zone.getObjects()) do
+    if is_base(obj) then
+      return true
+    end
+  end
+  return false
+end
+
+
+function remove_colliding_buildings(zone)
+  if not is_any_base_in_zone(zone) then
+    return
+  end
+  local bua_lot = zone.getTable("bua_lot")
+  if bua_lot == nil then
+    print_error("bua_lot is nil")
+    return
+  end
+  if bua_lot.building_guid == nil then
+    print_debug("building_guid is nil")
+    return
+  end
+  local building = getObjectFromGUID(bua_lot.building_guid)
+  if building == nil then
+    print_debug("building is nil: " .. bua_lot.building_guid)
+    return
+  end
+  bua_lot.building_guid = nil
+  destroyObject(building)
+  zone.setTable("bua_lot", bua_lot)
+end
+
+function restore_buildings(zone)
+  if is_any_base_in_zone(zone) then
+    print_error("zone has a base")
+    return
+  end
+  local bua_lot = zone.getTable("bua_lot")
+  if bua_lot == nil then
+    print_error("bua_lot is nil")
+    return
+  end
+  spawn_building(bua_lot)
+  zone.setTable("bua_lot", bua_lot)
+end
+
+function onObjectEnterScriptingZoneBuaPlot(zone,obj)
+  remove_colliding_buildings(zone)
+end
+
+function stop_zone_timer(zone)
+  local timer_id = zone.getVar("timer")
+  if timer_id ~= nil then
+    -- stop the existing timer
+    Wait.stop(timer_id)
+    zone.setVar("timer", nil)
+  end
+end
+
+function start_zone_timer(zone)
+  stop_zone_timer(zone)
+  timer_id = Wait.time(function ()
+    restore_buildings(zone)
+  end, 3, 1)
+  zone.setVar("timer", timer_id)
+end
+
+function onObjectLeaveScriptingZoneBuaPlot(zone,obj)
+  stop_zone_timer(zone)
+  if is_any_base_in_zone(zone) then
+    return
+  end
+  -- in the future restore the building.
+  start_zone_timer(zone)
+end
+
+
+
+function create_bua_lot_zone(bua_lot, name)
+
+  local size = shallow_copy(bua_lot.size)
+  size.y = 4
+  local zone_spawn = {
+    position = bua_lot.position,
+    rotation = bua_lot.rotation,
+    scale = size,
+    type = 'ScriptingTrigger'
+  }
+  local obj = spawnObject(zone_spawn)
+  obj.setName(name)
+  obj.setLock(true)
+
+  obj.setTable("bua_lot", bua_lot)
+  obj.setVar("zone_enter_callback", "onObjectEnterScriptingZoneBuaPlot")
+  obj.setVar("zone_leave_callback", "onObjectLeaveScriptingZoneBuaPlot")
+
+  print_debug("bua zone created: " .. obj.getGUID())
+  return obj
+end
+
+-- Add a building to a lot, so BUA has some buildings to show
+function spawn_building(lot)
+  local building = spawn_model(
+    lot.model_name,
+    lot.position,
+    lot.rotation.y,
+    minimal_collider, true)
+  building.setName(lot.name)
+  building.setLock(true)
+  lot.building_guid = building.getGUID()
+  return building
+end
+
+g_building_number = 1
+
+
+-- Find the location of buildings for a built up area.
+-- terrain_obj: Built Up Area that is to have buildings placed onto it.
+-- return: Structure describing the location of the buildings.
+function calc_bua_lots(terrain_obj)
+  local lots = {}
+
+  local bua_properties = terrain_bua[terrain_obj.getGUID()]
+  if bua_properties == nil then
+    print_error("terrain_bua not found: " .. terrain_obj.getGUID())
+    return lots
+  end
+  local terrain_size = bua_properties['habitable_area']
+  if terrain_size == nil then
+    print_error("habitable_area not found: " .. terrain_obj.getGUID())
+    return lots
+  end
+
+  local lot_size = {x = 3,y=0, z= 2.25} -- size of land for a building
+  local nb_cols = math.floor(terrain_size.x / lot_size.x)
+  local nb_rows = math.floor(terrain_size.z / lot_size.z)
+  if (nb_cols < 1) then
+    lot_size.x = 0
+    nb_cols = 1
+  elseif nb_rows > 3 then
+      nb_rows = 3
+  end
+  if (nb_rows <1) then
+    lot_size.z = 0
+    nb_rows = 1
+  elseif nb_cols > 3 then
+    nb_cols = 3
+  end
+
+  local terrain_pos = terrain_obj.getPosition()
+  -- in degrees
+  local terrain_rotation = terrain_obj.getRotation()
+  -- in radians
+  local terrain_rotation_y = - math.rad(terrain_rotation.y)
+
+  -- print("nb_rows (z): ", nb_rows)
+  -- print("nb_cols (x): ", nb_cols)
+  local z = -(lot_size.z/2) * (nb_rows-1)
+  for row = 1,nb_rows do
+    local x = -(lot_size.x/2) * (nb_cols-1)
+    for col = 1,nb_cols do
+      local point = {x=x, y=0, z=z}
+      -- print("row ", row, " col ", col, " center ", x, ' ', z)
+      local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation_y)
+      local rotation_y =  normalize_degrees(terrain_rotation.y + (180 * ((row+1) % 2)))
+      local corners = compute_corners_coords(lot_size, rotation_y, new_pos)
+      local name = "building # " .. tostring(g_building_number)
+      g_building_number = g_building_number + 1
+      local lot = {
+        name = name,
+        position = new_pos,
+        rotation = { x=terrain_rotation.x, y=rotation_y, z=terrain_rotation.z},
+        size = lot_size,
+        shape = corners_to_shape(corners)
+      }
+      table.insert(lots, lot)
+      x = x + lot_size.x
+    end
+    z = z + lot_size.z
+  end
+  return lots
+end
+
+-- Add buildings to the Built Up Area (BUA) to make it look pretty.
+-- terrain_obj: template of the BUA
+-- terrain_rotation: float, y-axis rotation of BUA in radians
+-- options: Source of data for BUA for the table type
+function add_buildings(terrain_obj, terrain_rotation, options)
+  local lots = calc_bua_lots(terrain_obj)
+  for _,lot in pairs(lots) do
+    lot.model_name = random_element(options['objects'])
+    spawn_building(lot)
+
+    -- Cube to show center of the bua_lot. (DEBUGGING ONLY)
+    -- The building should be in the center of the building.
+    -- local cube = spawnObject({
+    --   position = lot.position,
+    --   rotation = lot.rotation,
+    --   scale = {x=0.25,y=5,z=0.25},
+    --   type = 'BlockSquare' }
+    -- )
+    -- cube.setLock(true)
+    -- cube.setColorTint({r=0,g=1,b=0,a=0.5})
+    -- print("cube ")
+    -- table_print(lot.position)
+    -- table_print(lot.rotation)
+    -- table_print(lot.size)
+
+    local zone_name = "zone bua building " .. terrain_obj.getGUID()
+    create_bua_lot_zone(lot, zone_name)
+  end
+end
+
+function set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
+  local options = g_terrain[table_type]['bua']
+  change_texture_terrain(terrain_obj, random_element(options['texture']))
+  terrain_obj.setLock(true)
+  add_buildings(terrain_obj, terrain_rotation, options)
 end
 
 function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
@@ -256,9 +484,9 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
 
     for i=1,objs_x do
         for j=1,objs_z do
-            local point = { 
-                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-                y = 0, 
+            local point = {
+                x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+                y = 0,
                 z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
             }
             local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
@@ -269,39 +497,39 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
 
     local fence_asset = first_value_table(options['outline_objects'])
     for i=1,objs_x do
-        local point_up = { 
-            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-            y = 0, 
+        local point_up = {
+            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+            y = 0,
             z = terrain_size['z'] / 2 - 0.1
         }
         local new_pos_up = rotate_point_relative(point_up, terrain_pos, terrain_rotation)
-        
+
         local obj_up = spawn_model(fence_asset, new_pos_up, terrain_obj.getRotation()['y'], minimal_collider, true)
         terrain_obj.addAttachment(obj_up)
 
-        local point_down = { 
-            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2, 
-            y = 0, 
+        local point_down = {
+            x = margin_x + 0.5 + i - 1 - terrain_size['x'] / 2,
+            y = 0,
             z = - terrain_size['z'] / 2 + 0.1
         }
         local new_pos_down = rotate_point_relative(point_down, terrain_pos, terrain_rotation)
         local obj_down = spawn_model(fence_asset, new_pos_down, terrain_obj.getRotation()['y'] + 180, minimal_collider, true)
         terrain_obj.addAttachment(obj_down)
     end
-    
+
     for j=1,objs_z do
-        local point_left = { 
-            x = - terrain_size['x'] / 2 + 0.1, 
-            y = 0, 
+        local point_left = {
+            x = - terrain_size['x'] / 2 + 0.1,
+            y = 0,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_left = rotate_point_relative(point_left, terrain_pos, terrain_rotation)
         local obj_left = spawn_model(fence_asset, new_pos_left, terrain_obj.getRotation()['y'] + 90, minimal_collider, true)
         terrain_obj.addAttachment(obj_left)
 
-        local point_right = { 
-            x = terrain_size['x'] / 2 - 0.1, 
-            y = 0, 
+        local point_right = {
+            x = terrain_size['x'] / 2 - 0.1,
+            y = 0,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_right = rotate_point_relative(point_right, terrain_pos, terrain_rotation)
@@ -317,20 +545,17 @@ function process_vegetation(terrain_obj, type)
     local terrain_size = terrain_obj.getBoundsNormalized()['size']
     if str_starts_with(terrain_obj.getName(), 'terrain Forest') then
         set_forest(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Arid') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Arid') then
         set_arid(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Oasis') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Oasis') then
         set_oasis(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Plough') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Plough') then
         set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Enclosure') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Enclosure') then
         set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
-    end
-    if str_starts_with(terrain_obj.getName(), 'terrain Marsh') then
+    elseif str_starts_with(terrain_obj.getName(), 'terrain Marsh') then
         set_marsh(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
+    elseif str_starts_with(terrain_obj.getName(), 'terrain BUA') then
+          set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, type)
     end
 end

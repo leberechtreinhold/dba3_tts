@@ -34,9 +34,14 @@ function spawn_dead_zones_after_deletion()
   g_dead_zones['red'] = create_zone('dead zone red',
                 { x = 0, y = 1.6, z = -27 },
                 { x = 10, y = 1, z = 10 })
+  g_dead_zones['red'].setVar("zone_enter_callback", "onObjectEnterScriptingZoneDead")
+  g_dead_zones['red'].setVar("zone_leave_callback", "onObjectLeaveScriptingZoneDead")
+
   g_dead_zones['blue'] = create_zone('dead zone blue',
                 { x = 0, y = 1.6, z = 27 },
                 { x = 10, y = 1, z = 10 })
+  g_dead_zones['blue'].setVar("zone_enter_callback", "onObjectEnterScriptingZoneDead")
+  g_dead_zones['blue'].setVar("zone_leave_callback", "onObjectLeaveScriptingZoneDead")
 end
 
 
@@ -126,30 +131,56 @@ function callback_zone(zone, name, color)
     end
 end
 
+function onObjectEnterScriptingZoneDead(zone, obj)
+  if not g_updating_zone[zone.getName()] then
+      g_updating_zone[zone.getName()] = true
+      Wait.frames(function() update_zone_value(zone) end, 60)
+  else
+      print_debug('Ignoring dead Enter because already updating')
+  end
+end
+
 function onObjectEnterScriptingZone(zone, obj)
+    print_debug(obj.getName() .. ' entered ' .. zone.getName())
     if not str_has_substr(obj.getName(), 'base') then
         return
     end
-    print_debug(obj.getName() .. ' entered ' .. zone.getName())
-    if not g_updating_zone[zone.getName()] then
-        g_updating_zone[zone.getName()] = true
-        Wait.frames(function() update_zone_value(zone) end, 60)
-    else
-        print_debug('Ignoring dead Enter because already updating')
+    local fn = zone.getVar("zone_enter_callback")
+    if fn == nil then
+      print_error("zone_enter_callback is nil for " .. zone.getName() )
+      return
     end
+    if _G[fn] == nil then
+      print_error("Function not defined " .. fn)
+      return
+    end
+    _G[fn](zone, obj)
+end
+
+function onObjectLeaveScriptingZoneDead(zone, obj)
+  if not g_updating_zone[zone.getName()] then
+      g_updating_zone[zone.getName()] = true
+      Wait.frames(function() update_zone_value(zone) end, 60)
+  else
+      print_debug('Ignoring dead Leave because already updating')
+  end
 end
 
 function onObjectLeaveScriptingZone(zone, obj)
+  print_debug(obj.getName() .. ' left ' .. zone.getName())
     if not str_has_substr(obj.getName(), 'base') then
         return
     end
-    print_debug(obj.getName() .. ' left ' .. zone.getName())
-    if not g_updating_zone[zone.getName()] then
-        g_updating_zone[zone.getName()] = true
-        Wait.frames(function() update_zone_value(zone) end, 60)
-    else
-        print_debug('Ignoring dead Leave because already updating')
+    local fn = zone.getVar("zone_leave_callback")
+    if fn == nil then
+      print_error("zone_leave_callback is nil for " .. zone.getName() )
+      return
     end
+    if _G[fn] == nil then
+      print_error("Function not defined " .. fn)
+      return
+    end
+    _G[fn](zone, obj)
 end
 
 
