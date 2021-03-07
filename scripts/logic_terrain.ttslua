@@ -288,13 +288,51 @@ function remove_colliding_buildings(zone)
   print("OUT remove_colliding_buildings")
 end
 
+function restore_buildings(zone)
+  print("IN restore_buildings")
+  if is_any_base_in_zone(zone) then
+    print_error("zone has a base")
+    return
+  end
+  local bua_lot = zone.getTable("bua_lot")
+  if bua_lot == nil then
+    print_error("bua_lot is nil")
+    return
+  end
+  spawn_building(bua_lot)
+  zone.setTable("bua_lot", bua_lot)
+end
+
 function onObjectEnterScriptingZoneBuaPlot(zone,obj)
   print('onObjectEnterScriptingZoneBuaPlot ' , zone.getName(), ' ', obj.getName() )
   remove_colliding_buildings(zone)
 end
 
+function stop_zone_timer(zone)
+  local timer_id = zone.getVar("timer")
+  if timer_id ~= nil then
+    -- stop the existing timer
+    Wait.stop(timer_id)
+    zone.setVar("timer", nil)
+  end
+end
+
+function start_zone_timer(zone)
+  stop_zone_timer(zone)
+  timer_id = Wait.time(function ()
+    restore_buildings(zone)
+  end, 3, 1)
+  zone.setVar("timer", timer_id)
+end
+
 function onObjectLeaveScriptingZoneBuaPlot(zone,obj)
   print('onObjectLeaveScriptingZoneBuaPlot ', zone.getName(), ' ', obj.getName())
+  stop_zone_timer(zone)
+  if is_any_base_in_zone(zone) then
+    return
+  end
+  -- in the future restore the building.
+  start_zone_timer(zone)
 end
 
 
