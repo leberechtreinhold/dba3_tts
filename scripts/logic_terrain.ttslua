@@ -245,57 +245,101 @@ function set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
     change_texture_terrain(terrain_obj, random_element(options['texture']))
 end
 
-function onObjectEnterScriptingZoneBua(zone,obj)
-  print('onObjectEnterScriptingZoneBua ' , zone.getName(), ' ', obj.getName() )
+
+-- Is the object a building?
+function is_building(obj)
+  print("building")
+  local obj_name = obj.getName()
+  return str_has_substr(obj_name, 'building #')
 end
 
-function onObjectLeaveScriptingZoneBua(zone,obj)
-  print('onObjectLeaveScriptingZoneBua ', zone.getName(), ' ', obj.getName())
+function is_any_base_in_zone(zone)
+  for _,obj in pairs(zone.getObjects()) do
+    if is_base(obj) then
+      return true
+    end
+  end
+  return false
 end
 
-function callback_bua_zone(zone, name, color)
-    print('callback_bua_zone ' .. zone.getName())
+
+function remove_colliding_buildings(zone)
+  print("IN remove_colliding_buildings")
+  if not is_any_base_in_zone(zone) then
+    return
+  end
+  local bua_lot = zone.getTable("bua_lot")
+  if bua_lot == nil then
+    print_error("bua_lot is nil")
+    return
+  end
+  if bua_lot.building_guid == nil then
+    print_debug("building_guid is nil")
+    return
+  end
+  local building = getObjectFromGUID(bua_lot.building_guid)
+  if building == nil then
+    print_debug("building is nil: " .. bua_lot.building_guid)
+    return
+  end
+  bua_lot.building_guid = nil
+  destroyObject(building)
+  zone.setTable("bua_lot", bua_lot)
+  print("OUT remove_colliding_buildings")
 end
 
-function create_bua_zone(bua, name)
-  local b = bua.getBounds()
-  local size = b.size
+function onObjectEnterScriptingZoneBuaPlot(zone,obj)
+  print('onObjectEnterScriptingZoneBuaPlot ' , zone.getName(), ' ', obj.getName() )
+  remove_colliding_buildings(zone)
+end
+
+function onObjectLeaveScriptingZoneBuaPlot(zone,obj)
+  print('onObjectLeaveScriptingZoneBuaPlot ', zone.getName(), ' ', obj.getName())
+end
+
+
+
+function create_bua_lot_zone(bua_lot, name)
+
+  local size = shallow_copy(bua_lot.size)
   size.y = 4
   local zone_spawn = {
-    position = bua.getPosition(),
-    rotation = bua.getRotation(),
+    position = bua_lot.position,
+    rotation = bua_lot.rotation,
     scale = size,
-    type = 'ScriptingTrigger',
-        callback = 'callback_bua_zone'
+    type = 'ScriptingTrigger'
   }
   local obj = spawnObject(zone_spawn)
   obj.setName(name)
   obj.setLock(true)
+
+  obj.setTable("bua_lot", bua_lot)
+  obj.setVar("zone_enter_callback", "onObjectEnterScriptingZoneBuaPlot")
+  obj.setVar("zone_leave_callback", "onObjectLeaveScriptingZoneBuaPlot")
   return obj
 end
 
-
-g_building_number = 1
-
--- Add a building to a plot, so BUA has some buildings to show
-function spawn_building(plot)
+-- Add a building to a lot, so BUA has some buildings to show
+function spawn_building(lot)
   local building = spawn_model(
-    plot.model_name,
-    plot.position,
-    plot.rotation.y,
+    lot.model_name,
+    lot.position,
+    lot.rotation.y,
     minimal_collider, true)
+  building.setName(lot.name)
   building.setLock(true)
-  building.setName("building # " .. tostring(g_building_number))
-  g_building_number = g_building_number + 1
+  lot.building_guid = building.getGUID()
   return building
 end
+
+g_building_number = 1
 
 -- Find the location of buildings for a built up area.
 -- terrain_obj: Built Up Area that is to have buildings placed onto it.
 -- return: Structure describing the location of the buildings.
-function calc_bua_plots(terrain_obj)
-  local plots = {}
-  local plot_size = {x = 3, z= 2.25} -- size of land for a building
+function calc_bua_lots(terrain_obj)
+  local lots = {}
+  local lot_size = {x = 3,y=0, z= 2.25} -- size of land for a building
   local terrain_size = terrain_obj.getBounds().size
   -- Fake having a smaller terrain size since the values we get out of
   -- bounds are not necessarily correct
@@ -303,14 +347,14 @@ function calc_bua_plots(terrain_obj)
   terrain_size.z = terrain_size.z * 0.75
 
   local terrain_pos = terrain_obj.getPosition()
-  local nb_cols = math.floor(terrain_size.x / plot_size.x)
-  local nb_rows = math.floor(terrain_size.z / plot_size.z)
+  local nb_cols = math.floor(terrain_size.x / lot_size.x)
+  local nb_rows = math.floor(terrain_size.z / lot_size.z)
   if (nb_cols == 0) then
-    plot_size.x = 0
+    lot_size.x = 0
     nb_cols = 1
   end
   if (nb_rows == 0) then
-    plot_size.z = 0
+    lot_size.z = 0
     nb_rows = 1
   end
   -- more faking of terrain size
@@ -320,11 +364,11 @@ function calc_bua_plots(terrain_obj)
   if nb_cols > 2 then
     nb_cols = 2
   end
-  local area = {x=plot_size.x * nb_cols, z=plot_size.z*nb_rows}
+  local area = {x=lot_size.x * nb_cols, z=lot_size.z*nb_rows}
   local margin = {x=(terrain_size.x-area.x), z=(terrain_size.z-area.z)}
-  local z = (-terrain_size.z/2) +  (plot_size.z/2) + ((terrain_size.z - area.z) / 2)
+  local z = (-terrain_size.z/2) +  (lot_size.z/2) + ((terrain_size.z - area.z) / 2)
   for row = 1,nb_rows do
-    local x = (-terrain_size.x/2) +  (plot_size.x/2) + ((terrain_size.x - area.x) / 2)
+    local x = (-terrain_size.x/2) +  (lot_size.x/2) + ((terrain_size.x - area.x) / 2)
     for col = 1,nb_cols do
       local point = {x=x, y=0, z=z}
       -- in degrees
@@ -333,16 +377,22 @@ function calc_bua_plots(terrain_obj)
       terrain_rotation_y = math.rad(terrain_rotation.y)
       local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation_y)
       local rotation_y =  normalize_degrees(terrain_rotation.y + (180 * ((row+1) % 2)))
-      local plot = {
+      local corners = compute_corners_coords(lot_size, rotation_y, new_pos)
+      local name = "building # " .. tostring(g_building_number)
+      g_building_number = g_building_number + 1
+      local lot = {
+        name = name,
         position = new_pos,
-        rotation = { x=terrain_rotation.x, y=rotation_y, z=terrain_rotation.z}
+        rotation = { x=terrain_rotation.x, y=rotation_y, z=terrain_rotation.z},
+        size = lot_size,
+        shape = corners_to_shape(corners)
       }
-      table.insert(plots, plot)
-      x = x + plot_size.x
+      table.insert(lots, lot)
+      x = x + lot_size.x
     end
-    z = z + plot_size.z
+    z = z + lot_size.z
   end
-  return plots
+  return lots
 end
 
 -- Add buildings to the Built Up Area (BUA) to make it look pretty.
@@ -350,18 +400,18 @@ end
 -- terrain_rotation: float, y-axis rotation of BUA in radians
 -- options: Source of data for BUA for the table type
 function add_buildings(terrain_obj, terrain_rotation, options)
-  print("add_buildings")
-  local plots = calc_bua_plots(terrain_obj)
-  for _,plot in pairs(plots) do
-     plot.model_name = random_element(options['objects'])
-     local building = spawn_building(plot)
+  print("IN add_buildings")
+  local lots = calc_bua_lots(terrain_obj)
+  for _,lot in pairs(lots) do
+    lot.model_name = random_element(options['objects'])
+    spawn_building(lot)
+    local zone_name = "zone bua building " .. terrain_obj.getGUID()
+    create_bua_lot_zone(lot, zone_name)
   end
   print("OUT add_buildings")
 end
 
 function set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
-  local name = "zone bua " .. terrain_obj.getGUID()
-  create_bua_zone(terrain_obj, name)
   local options = g_terrain[table_type]['bua']
   change_texture_terrain(terrain_obj, random_element(options['texture']))
   terrain_obj.setLock(true)
