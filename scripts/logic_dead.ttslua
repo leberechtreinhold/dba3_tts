@@ -34,9 +34,14 @@ function spawn_dead_zones_after_deletion()
   g_dead_zones['red'] = create_zone('dead zone red',
                 { x = 0, y = 1.6, z = -27 },
                 { x = 10, y = 1, z = 10 })
+  g_dead_zones['red'].setVar("zone_enter_callback", "onObjectEnterScriptingZoneDead")
+  g_dead_zones['red'].setVar("zone_leave_callback", "onObjectLeaveScriptingZoneDead")
+
   g_dead_zones['blue'] = create_zone('dead zone blue',
                 { x = 0, y = 1.6, z = 27 },
                 { x = 10, y = 1, z = 10 })
+  g_dead_zones['blue'].setVar("zone_enter_callback", "onObjectEnterScriptingZoneDead")
+  g_dead_zones['blue'].setVar("zone_leave_callback", "onObjectLeaveScriptingZoneDead")
 end
 
 
@@ -136,15 +141,20 @@ function onObjectEnterScriptingZoneDead(zone, obj)
 end
 
 function onObjectEnterScriptingZone(zone, obj)
-  print_debug(obj.getName() .. ' entered ' .. zone.getName())
+    print_debug(obj.getName() .. ' entered ' .. zone.getName())
     if not str_has_substr(obj.getName(), 'base') then
         return
     end
-    if str_has_substr(zone.getName(), "zone bua") then
-      onObjectEnterScriptingZoneBua(zone,obj)
+    local fn = zone.getVar("zone_enter_callback")
+    if fn == nil then
+      print_error("zone_enter_callback is nil for " .. zone.getName() )
       return
     end
-    onObjectEnterScriptingZoneDead(zone, obj)
+    if _G[fn] == nil then
+      print_error("Function not defined " .. fn)
+      return
+    end
+    _G[fn](zone, obj)
 end
 
 function onObjectLeaveScriptingZoneDead(zone, obj)
@@ -161,11 +171,16 @@ function onObjectLeaveScriptingZone(zone, obj)
     if not str_has_substr(obj.getName(), 'base') then
         return
     end
-    if str_has_substr(zone.getName(), "zone bua") then
-      onObjectLeaveScriptingZoneBua(zone,obj)
+    local fn = zone.getVar("zone_leave_callback")
+    if fn == nil then
+      print_error("zone_leave_callback is nil for " .. zone.getName() )
       return
     end
-    onObjectLeaveScriptingZoneDead(zone, obj)
+    if _G[fn] == nil then
+      print_error("Function not defined " .. fn)
+      return
+    end
+    _G[fn](zone, obj)
 end
 
 
