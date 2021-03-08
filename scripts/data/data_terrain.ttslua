@@ -537,7 +537,21 @@ terrain_building_medieval_wooden_shack = {
     description = 'Medieval Wooden Shack',
     author = 'seriy00110 https://free3d.com/3d-model/medieval-hut-445193.html',
     mesh = {
-      "http://cloud-3.steamusercontent.com/ugc/1759190965544630770/E97A95E69DB14A46980E4AB43C284A10EAFFCC44/"
+      "http://cloud-3.steamusercontent.com/ugc/1759190965550146159/6FE834F1798B212511701BA3BBC94F3ECAA16F88/"
     },
     texture = "http://cloud-3.steamusercontent.com/ugc/1759190965544632020/CD45C81555FDABCE50A7699E5409A9D74D92CAE1/",
 }
+
+--terrain_building_sheeting_house = {
+--    height_correction = 0,
+--    scale = 0.30,
+--    rotation = 90,
+--    description = 'Sheeting house',
+--    author = 'amir-mohammed94 https://www.cgtrader.com/free-3d-models/exterior/house/sheeting-house-low-poly',
+--    mesh = {
+--      "",
+--    },
+--    texture = "",
+--}
+
+
