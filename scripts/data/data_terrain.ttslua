@@ -382,6 +382,49 @@ g_terrain = {
     },
 }
 
+-- Properties for the built up areas.
+-- Key is the guid
+terrain_bua = {}
+-- terrain_bua[guid of bua terrain] = {
+--  habitable_area = { x=width of bua,z=height of bua}
+-- }
+terrain_bua['d6667d'] = {
+  habitable_area = { x=9,z=4.5}
+}
+terrain_bua['b6ab2a'] = {
+  habitable_area = { x=9,z=4.5}
+}
+terrain_bua['968244'] = {
+  habitable_area = { x=5.5,z=5}
+}
+terrain_bua['2e85b3'] = {
+  habitable_area = { x=5.5,z=5}
+}
+terrain_bua['ad6ed9'] = {
+  habitable_area = { x=4,z=4}
+}
+terrain_bua['fd2028'] = {
+  habitable_area = { x=4,z=4}
+}
+terrain_bua['2bf0ba'] = {
+  habitable_area = { x=5.5,z=2.5}
+}
+terrain_bua['c054a7'] = {
+  habitable_area = { x=5.5,z=2.5}
+}
+terrain_bua['59f467'] = {
+  habitable_area = { x=2.5,z=2.5}
+}
+terrain_bua['b1d9ae'] = {
+  habitable_area = { x=2.5,z=2.5}
+}
+terrain_bua['b08499'] = {
+  habitable_area = { x=2.75,z=1.5}
+}
+terrain_bua['97d244'] = {
+  habitable_area = { x=2.75,z=1.5}
+}
+
 terrain_rock_sand = {
     height_correction = 0,
     scale = 0.1,
@@ -532,8 +575,8 @@ terrain_building_wooden_shack = {
 
 terrain_building_medieval_wooden_shack = {
     height_correction = 0,
-    scale = 0.30,
-    rotation = 90,
+    scale = 0.20,
+    rotation = 0,
     description = 'Medieval Wooden Shack',
     author = 'seriy00110 https://free3d.com/3d-model/medieval-hut-445193.html',
     mesh = {
@@ -553,5 +596,3 @@ terrain_building_medieval_wooden_shack = {
 --    },
 --    texture = "",
 --}
-
-

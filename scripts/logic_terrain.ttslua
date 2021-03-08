@@ -374,47 +374,54 @@ end
 
 g_building_number = 1
 
+
 -- Find the location of buildings for a built up area.
 -- terrain_obj: Built Up Area that is to have buildings placed onto it.
 -- return: Structure describing the location of the buildings.
 function calc_bua_lots(terrain_obj)
   local lots = {}
-  local lot_size = {x = 3,y=0, z= 2.25} -- size of land for a building
-  local terrain_size = terrain_obj.getBounds().size
-  -- Fake having a smaller terrain size since the values we get out of
-  -- bounds are not necessarily correct
-  terrain_size.x = terrain_size.x * 0.75
-  terrain_size.z = terrain_size.z * 0.75
 
-  local terrain_pos = terrain_obj.getPosition()
+  local bua_properties = terrain_bua[terrain_obj.getGUID()]
+  if bua_properties == nil then
+    print_error("terrain_bua not found: " .. terrain_obj.getGUID())
+    return lots
+  end
+  local terrain_size = bua_properties['habitable_area']
+  if terrain_size == nil then
+    print_error("habitable_area not found: " .. terrain_obj.getGUID())
+    return lots
+  end
+
+  local lot_size = {x = 3,y=0, z= 2.25} -- size of land for a building
   local nb_cols = math.floor(terrain_size.x / lot_size.x)
   local nb_rows = math.floor(terrain_size.z / lot_size.z)
-  if (nb_cols == 0) then
+  if (nb_cols < 1) then
     lot_size.x = 0
     nb_cols = 1
+  elseif nb_rows > 3 then
+      nb_rows = 3
   end
-  if (nb_rows == 0) then
+  if (nb_rows <1) then
     lot_size.z = 0
     nb_rows = 1
+  elseif nb_cols > 3 then
+    nb_cols = 3
   end
-  -- more faking of terrain size
-  if nb_rows > 2 then
-    nb_rows = 2
-  end
-  if nb_cols > 2 then
-    nb_cols = 2
-  end
-  local area = {x=lot_size.x * nb_cols, z=lot_size.z*nb_rows}
-  local margin = {x=(terrain_size.x-area.x), z=(terrain_size.z-area.z)}
-  local z = (-terrain_size.z/2) +  (lot_size.z/2) + ((terrain_size.z - area.z) / 2)
+
+  local terrain_pos = terrain_obj.getPosition()
+  -- in degrees
+  local terrain_rotation = terrain_obj.getRotation()
+  -- in radians
+  local terrain_rotation_y = - math.rad(terrain_rotation.y)
+
+  -- print("nb_rows (z): ", nb_rows)
+  -- print("nb_cols (x): ", nb_cols)
+  local z = -(lot_size.z/2) * (nb_rows-1)
   for row = 1,nb_rows do
-    local x = (-terrain_size.x/2) +  (lot_size.x/2) + ((terrain_size.x - area.x) / 2)
+    local x = -(lot_size.x/2) * (nb_cols-1)
     for col = 1,nb_cols do
       local point = {x=x, y=0, z=z}
-      -- in degrees
-      local terrain_rotation = terrain_obj.getRotation()
-      -- in radians
-      terrain_rotation_y = math.rad(terrain_rotation.y)
+      -- print("row ", row, " col ", col, " center ", x, ' ', z)
       local new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation_y)
       local rotation_y =  normalize_degrees(terrain_rotation.y + (180 * ((row+1) % 2)))
       local corners = compute_corners_coords(lot_size, rotation_y, new_pos)
@@ -455,12 +462,12 @@ function add_buildings(terrain_obj, terrain_rotation, options)
     --   type = 'BlockSquare' }
     -- )
     -- cube.setLock(true)
-    -- cube.setColorTint({r=0,g=1,b=0,a=0.15})
+    -- cube.setColorTint({r=0,g=1,b=0,a=0.5})
     -- print("cube ")
     -- table_print(lot.position)
     -- table_print(lot.rotation)
     -- table_print(lot.size)
-    
+
     local zone_name = "zone bua building " .. terrain_obj.getGUID()
     create_bua_lot_zone(lot, zone_name)
   end
