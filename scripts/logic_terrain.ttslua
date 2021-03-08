@@ -354,6 +354,8 @@ function create_bua_lot_zone(bua_lot, name)
   obj.setTable("bua_lot", bua_lot)
   obj.setVar("zone_enter_callback", "onObjectEnterScriptingZoneBuaPlot")
   obj.setVar("zone_leave_callback", "onObjectLeaveScriptingZoneBuaPlot")
+
+  print_debug("bua zone created: " .. obj.getGUID())
   return obj
 end
 
@@ -443,6 +445,22 @@ function add_buildings(terrain_obj, terrain_rotation, options)
   for _,lot in pairs(lots) do
     lot.model_name = random_element(options['objects'])
     spawn_building(lot)
+
+    -- Cube to show center of the bua_lot. (DEBUGGING ONLY)
+    -- The building should be in the center of the building.
+    -- local cube = spawnObject({
+    --   position = lot.position,
+    --   rotation = lot.rotation,
+    --   scale = {x=0.25,y=5,z=0.25},
+    --   type = 'BlockSquare' }
+    -- )
+    -- cube.setLock(true)
+    -- cube.setColorTint({r=0,g=1,b=0,a=0.15})
+    -- print("cube ")
+    -- table_print(lot.position)
+    -- table_print(lot.rotation)
+    -- table_print(lot.size)
+    
     local zone_name = "zone bua building " .. terrain_obj.getGUID()
     create_bua_lot_zone(lot, zone_name)
   end
