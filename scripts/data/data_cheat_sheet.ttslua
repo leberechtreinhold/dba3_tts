@@ -1,6 +1,6 @@
 
 base_tool_tips = {}
---mabase_tool_tips['']= {
+--base_tool_tips['']= {
 --  name = "",
 --  mounted = true,
 --  solid = true,
@@ -507,7 +507,7 @@ base_tool_tips['6Bd'] = {
 base_tool_tips['4Wb'] = {
   name = "Solid Warbands",
   solid = true,
-  combat = { foot = 3, mounted = 3 },
+  combat = { foot = 3, mounted = 2 },
   speed = { GG = 2, BG = 2 },
   can_quick_kill={
     "SCh, Pk, Sp, Bd, Hd, Art and civilians in any going"
