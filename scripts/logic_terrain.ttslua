@@ -248,7 +248,6 @@ end
 
 -- Is the object a building?
 function is_building(obj)
-  print("building")
   local obj_name = obj.getName()
   return str_has_substr(obj_name, 'building #')
 end
@@ -264,7 +263,6 @@ end
 
 
 function remove_colliding_buildings(zone)
-  print("IN remove_colliding_buildings")
   if not is_any_base_in_zone(zone) then
     return
   end
@@ -285,11 +283,9 @@ function remove_colliding_buildings(zone)
   bua_lot.building_guid = nil
   destroyObject(building)
   zone.setTable("bua_lot", bua_lot)
-  print("OUT remove_colliding_buildings")
 end
 
 function restore_buildings(zone)
-  print("IN restore_buildings")
   if is_any_base_in_zone(zone) then
     print_error("zone has a base")
     return
@@ -304,7 +300,6 @@ function restore_buildings(zone)
 end
 
 function onObjectEnterScriptingZoneBuaPlot(zone,obj)
-  print('onObjectEnterScriptingZoneBuaPlot ' , zone.getName(), ' ', obj.getName() )
   remove_colliding_buildings(zone)
 end
 
@@ -326,7 +321,6 @@ function start_zone_timer(zone)
 end
 
 function onObjectLeaveScriptingZoneBuaPlot(zone,obj)
-  print('onObjectLeaveScriptingZoneBuaPlot ', zone.getName(), ' ', obj.getName())
   stop_zone_timer(zone)
   if is_any_base_in_zone(zone) then
     return
@@ -447,7 +441,6 @@ end
 -- terrain_rotation: float, y-axis rotation of BUA in radians
 -- options: Source of data for BUA for the table type
 function add_buildings(terrain_obj, terrain_rotation, options)
-  print("IN add_buildings")
   local lots = calc_bua_lots(terrain_obj)
   for _,lot in pairs(lots) do
     lot.model_name = random_element(options['objects'])
@@ -471,7 +464,6 @@ function add_buildings(terrain_obj, terrain_rotation, options)
     local zone_name = "zone bua building " .. terrain_obj.getGUID()
     create_bua_lot_zone(lot, zone_name)
   end
-  print("OUT add_buildings")
 end
 
 function set_bua(terrain_obj, terrain_pos, terrain_rotation, terrain_size, table_type)
