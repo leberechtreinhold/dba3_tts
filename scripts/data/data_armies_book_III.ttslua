@@ -689,7 +689,7 @@ armies["Book III"]["III/4b Early Byzantine Army 545-578AD (Plain)"] = {
     },
     base2 = {
         name = '6Cv_Gen',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
@@ -702,7 +702,7 @@ armies["Book III"]["III/4b Early Byzantine Army 545-578AD (Plain)"] = {
     },
     base4 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -714,7 +714,7 @@ armies["Book III"]["III/4b Early Byzantine Army 545-578AD (Plain)"] = {
     },
     base6 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -726,7 +726,7 @@ armies["Book III"]["III/4b Early Byzantine Army 545-578AD (Plain)"] = {
     },
     base8 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -738,7 +738,7 @@ armies["Book III"]["III/4b Early Byzantine Army 545-578AD (Plain)"] = {
     },
     base10 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -750,7 +750,7 @@ armies["Book III"]["III/4b Early Byzantine Army 545-578AD (Plain)"] = {
     },
     base12 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3660,14 +3660,14 @@ armies["Book III"]["III/17 Maurikian Byzantine Army 575-650AD (Plain)"] = {
     },
     base2 = {
         name = '6Cv_Gen',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
     },
     base3 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3679,7 +3679,7 @@ armies["Book III"]["III/17 Maurikian Byzantine Army 575-650AD (Plain)"] = {
     },
     base5 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3691,7 +3691,7 @@ armies["Book III"]["III/17 Maurikian Byzantine Army 575-650AD (Plain)"] = {
     },
     base7 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3703,7 +3703,7 @@ armies["Book III"]["III/17 Maurikian Byzantine Army 575-650AD (Plain)"] = {
     },
     base9 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -3715,7 +3715,7 @@ armies["Book III"]["III/17 Maurikian Byzantine Army 575-650AD (Plain)"] = {
     },
     base11 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -6280,7 +6280,7 @@ armies["Book III"]["III/27 Rshtuni Armenian Army 639-717AD (Plain)"] = {
 
     base1 = {
         name = '6Cv_Gen',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
@@ -6294,13 +6294,13 @@ armies["Book III"]["III/27 Rshtuni Armenian Army 639-717AD (Plain)"] = {
     },
     base3 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
     base4 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -6726,13 +6726,13 @@ armies["Book III"]["III/29 Thematic Byzantine Army 650-963AD (Plain)"] = {
     },
     base8 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
     base9 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12451,7 +12451,7 @@ armies["Book III"]["III/55 Early Samurai Army 900-1300AD (Plain)"] = {
 
     base1 = {
         name = '6Cv_Gen',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
@@ -12471,7 +12471,7 @@ armies["Book III"]["III/55 Early Samurai Army 900-1300AD (Plain)"] = {
     },
     base4 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12483,7 +12483,7 @@ armies["Book III"]["III/55 Early Samurai Army 900-1300AD (Plain)"] = {
     },
     base6 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12495,13 +12495,13 @@ armies["Book III"]["III/55 Early Samurai Army 900-1300AD (Plain)"] = {
     },
     base8 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
     base9 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12525,7 +12525,7 @@ armies["Book III"]["III/55 Early Samurai Army 900-1300AD (Plain)"] = {
     },
     base13 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
@@ -12549,7 +12549,7 @@ armies["Book III"]["III/55 Early Samurai Army 900-1300AD (Plain)"] = {
     },
     base17 = {
         name = '6Cv',
-        base = 'tile_plain_Cv_40x60',
+        base = 'tile_plain_6Cv_40x60',
         n_models = 0,
         ignore_terrain = true
     },
