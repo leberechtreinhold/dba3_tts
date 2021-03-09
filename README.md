@@ -69,11 +69,12 @@ to make the table look pretty.
 Create a building that has its floor centered at 0,0,0, and have the
 .obj and .jpeg files on the local file system.
 
-Test the files by starting DBA3 in TTS.  Select Objects/Components/Custom/Model.The cursor will change to a chess pawn.  Click on the table, which should
-leave a white dot.  The click on the select menu item.  You should get
-a dialog for Custom Model. Under Model select your .obj and .jpeg file
-for Model/Mesh and Defuse/Image, choose local file.  Under Material 
-select Carboard. 
+Test the files by starting DBA3 in TTS.  Select 
+Objects/Components/Custom/Model.The cursor will change to a chess pawn. 
+Click on the table, which should leave a white dot.  Then click on the
+select menu item.  You should get a dialog for Custom Model. Under Model 
+select your .obj and .jpeg file for Model/Mesh and Defuse/Image, 
+choose local file.  Under Material select Carboard. 
 
 Ensure that the model looks good.
 
