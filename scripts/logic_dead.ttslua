@@ -184,7 +184,7 @@ function reorganize_dead_zone(dead_zone)
   for _,base in pairs(dead) do
     base.setRotation(rotation)
     if (col == 1) and (row == 1) then
-        local base_pos = {x=side_margin, y = dead_pos.y, z=top}
+        local base_pos = {x=side_margin, y = g_graveyard_y_pos, z=top}
         base.setPosition(base_pos)
     else
       local dir

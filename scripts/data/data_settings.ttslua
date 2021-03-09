@@ -7,6 +7,10 @@ g_base_height_inches = 0.11811023622047244094
 -- The default table is not at y=0 position, but rather a bit higher
 g_base_height_tabletop = 1.06
 
+-- Position in the y axis of a standard height base in the graveyard
+-- Equivalent to table level + graveyardheight - 0.5*g_base_height_inches
+g_graveyard_y_pos = 1.16
+
 -- The DBA tables are 3mm thick/tall
 g_table_thickness = 0.11811023622047244094
 g_bases_position = g_base_height_inches + g_table_thickness + g_base_height_tabletop
