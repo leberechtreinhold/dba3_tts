@@ -4738,7 +4738,7 @@ armies["Book II"]["II/12 Alexandrian Macedonian Army 359-319BC (Plain)"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
-        list = '1x3Kn (Gen), 1xCv, 1xLH, 1x4Ax, 8x4Pk, 1xPs, 1xSp or 3/4Ax or Art.'
+        list = '1x3Kn (Gen), 1xCv, 1xLH, 1x4Ax, 6x4Pk, 1xPs, 1xSp or 3/4Ax or Art.'
     },
 
     base1 = {
@@ -4802,18 +4802,6 @@ armies["Book II"]["II/12 Alexandrian Macedonian Army 359-319BC (Plain)"] = {
         n_models = 0,
         ignore_terrain = true
     },
-    base11 = {
-        name = '4Pk',
-        base = 'tile_plain_4Pk_40x15',
-        n_models = 0,
-        ignore_terrain = true
-    },
-    base12 = {
-        name = '4Pk',
-        base = 'tile_plain_4Pk_40x15',
-        n_models = 0,
-        ignore_terrain = true
-    },
     base13 = {
         name = 'Ps',
         base = 'tile_plain_2Ps_40x20',
@@ -4856,7 +4844,7 @@ armies["Book II"]["II/12 Alexandrian Macedonian Army 359-319BC"] = {
     data = {
         aggresiveness = 4,
         terrain = 'Arable',
-        list = '1x3Kn (Gen), 1xCv, 1xLH, 1x4Ax, 8x4Pk, 1xPs, 1xSp or 3/4Ax or Art.'
+        list = '1x3Kn (Gen), 1xCv, 1xLH, 1x4Ax, 6x4Pk, 1xPs, 1xSp or 3/4Ax or Art.'
     },
 
     base1 = {
@@ -4919,18 +4907,6 @@ armies["Book II"]["II/12 Alexandrian Macedonian Army 359-319BC"] = {
         model_data = 'troop_successors_pike1'
     },
     base10 = {
-        name = '4Pk',
-        base = 'tile_grass_40x15',
-        n_models = 4,
-        model_data = 'troop_successors_pike2'
-    },
-    base11 = {
-        name = '4Pk',
-        base = 'tile_grass_40x15',
-        n_models = 4,
-        model_data = 'troop_successors_pike1'
-    },
-    base12 = {
         name = '4Pk',
         base = 'tile_grass_40x15',
         n_models = 4,
