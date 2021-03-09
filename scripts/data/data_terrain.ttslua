@@ -561,7 +561,7 @@ terrain_building_wooden_shack = {
     scale = 0.3,
     rotation = 0,
     description = 'Wooden Shack',
-    author = 'TODO',
+    author = "JamesManhattan's Workshop Various Models - Ruins and Buildings and Rocks https://steamcommunity.com/sharedfiles/filedetails/?id=578880360",
     mesh = {
       "http://pastebin.com/raw.php?i=j13DYk5N"
     },
