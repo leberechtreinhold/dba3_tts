@@ -118,7 +118,8 @@ g_terrain = {
         },
         bua = {
             objects = {
-                'terrain_building_wooden_shack'
+              'terrain_building_thatch_building',
+              'terrain_building_wooden_shack'
             },
             texture = {
               'http://cloud-3.steamusercontent.com/ugc/1759190965544732048/3F3235AEE3C77F075D1C9C572E7D3339F8C8B914/'
@@ -180,7 +181,8 @@ g_terrain = {
         },
         bua = {
             objects = {
-                'terrain_building_medieval_wooden_shack'
+              'terrain_building_thatch_building',
+              'terrain_building_medieval_wooden_shack'
             },
             texture = {
               'http://cloud-3.steamusercontent.com/ugc/1759190965544732048/3F3235AEE3C77F075D1C9C572E7D3339F8C8B914/'
@@ -305,7 +307,8 @@ g_terrain = {
         },
         bua = {
             objects = {
-                'terrain_building_wooden_shack'
+              'terrain_building_thatch_building',
+              'terrain_building_wooden_shack'
             },
             texture = {
               'http://cloud-3.steamusercontent.com/ugc/1759190965544732048/3F3235AEE3C77F075D1C9C572E7D3339F8C8B914/'
@@ -368,7 +371,8 @@ g_terrain = {
         },
         bua = {
             objects = {
-                'terrain_building_wooden_shack'
+              'terrain_building_thatch_building',
+              'terrain_building_wooden_shack'
             },
             texture = {
               'http://cloud-3.steamusercontent.com/ugc/1759190965544732048/3F3235AEE3C77F075D1C9C572E7D3339F8C8B914/'
@@ -591,4 +595,17 @@ terrain_building_desert_shack = {
       "http://cloud-3.steamusercontent.com/ugc/1759190965551780999/D858D72A142FC40E61050C13A69D5B2E072980A5/",
     },
     texture = "http://cloud-3.steamusercontent.com/ugc/1759190965551758295/FD48DC26C437FFFCEB80EC686F6D7F195A5BE24D/"
+}
+
+terrain_building_thatch_building = {
+    height_correction = 0,
+    scale = 0.25,
+    rotation = 90,
+    description = 'thatched building',
+    author = "Almega's Workshop Fantasy Town with Modular Building Maps - Based on Phandalin from Lost Mine of Phandelver - (RPG, D&D, 3D, High Detail) https://steamcommunity.com/sharedfiles/filedetails/?id=706099411",
+    --license = "",
+    mesh = {
+      "http://pastebin.com/raw.php?i=MnkvwiVg",
+    },
+    texture = "http://i1374.photobucket.com/albums/ag416/JJMark/House23_zps154d04c0.jpg"
 }
