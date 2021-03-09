@@ -1,4 +1,9 @@
 
+function is_dead_zone(obj)
+  local name = obj.getName()
+  return str_starts_with(name, 'dead zone')
+end
+
 function spawn_dead_zones()
     delete_all_dead_zones()
     Wait.frames(function()
@@ -9,11 +14,10 @@ end
 function delete_all_dead_zones()
     local all_objs = getAllObjects()
     for _,obj in ipairs(all_objs) do
-        local name = obj.getName()
-        if str_starts_with(name, 'dead zone') then
-            -- This executes on next frame
-            obj.destroy()
-        end
+      if is_dead_zone(obj) then
+        -- This executes on next frame
+        obj.destroy()
+      end
     end
 end
 
@@ -29,19 +33,23 @@ function create_zone(name, position, size)
     return obj
 end
 
+-- Set the variables for the zone to indicate we are a dead zone.
+function setZoneDeadCallback(obj)
+  obj.setVar("zone_enter_callback", "onObjectEnterScriptingZoneDead")
+  obj.setVar("zone_leave_callback", "onObjectLeaveScriptingZoneDead")
+end
+
 g_dead_zones = {}
 function spawn_dead_zones_after_deletion()
   g_dead_zones['red'] = create_zone('dead zone red',
                 { x = 0, y = 1.6, z = -27 },
                 { x = 10, y = 1, z = 10 })
-  g_dead_zones['red'].setVar("zone_enter_callback", "onObjectEnterScriptingZoneDead")
-  g_dead_zones['red'].setVar("zone_leave_callback", "onObjectLeaveScriptingZoneDead")
+  setZoneDeadCallback(g_dead_zones['red'])
 
   g_dead_zones['blue'] = create_zone('dead zone blue',
                 { x = 0, y = 1.6, z = 27 },
                 { x = 10, y = 1, z = 10 })
-  g_dead_zones['blue'].setVar("zone_enter_callback", "onObjectEnterScriptingZoneDead")
-  g_dead_zones['blue'].setVar("zone_leave_callback", "onObjectLeaveScriptingZoneDead")
+  setZoneDeadCallback(g_dead_zones['blue'])
 end
 
 
@@ -147,7 +155,7 @@ function onObjectEnterScriptingZone(zone, obj)
     end
     local fn = zone.getVar("zone_enter_callback")
     if fn == nil then
-      print_error("zone_enter_callback is nil for " .. zone.getName() )
+      print_debug("zone_enter_callback is nil for " .. zone.getName() )
       return
     end
     if _G[fn] == nil then
@@ -173,7 +181,7 @@ function onObjectLeaveScriptingZone(zone, obj)
     end
     local fn = zone.getVar("zone_leave_callback")
     if fn == nil then
-      print_error("zone_leave_callback is nil for " .. zone.getName() )
+      print_debug("zone_leave_callback is nil for " .. zone.getName() )
       return
     end
     if _G[fn] == nil then

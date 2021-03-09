@@ -31,7 +31,22 @@
 #include scripts/logic
 #include scripts/uievents
 
-function onload()
+function onSave()
+  -- building locations
+  local lots = {}
+  for _,obj in pairs( getAllObjects()) do
+    if is_building_zone(obj) then
+      lots[ obj.getGUID()] = obj.getTable("bua_lot")
+    end
+  end
+  local extra = {}
+  extra['building_lots'] = lots
+  local saved_data = JSON.encode(extra)
+  return saved_data
+end
+
+
+function onload(saved_data)
     print_info('----------------------------------------------')
     print_info('                       DBA 3.0 v1.22 ')
     print_info('----------------------------------------------\n\nCheck the Notebook for instructions.')
@@ -41,7 +56,47 @@ function onload()
     spawn_proxy_bases()
     spawn_all_dice()
     spawn_dead_zones()
+    restore_zone_callbacks()
+    restore_extra_data(saved_data)
     print_tool_tip_status()
+end
+
+function restore_extra_data(saved_data)
+  if saved_data == nil then
+    return
+  end
+  local extra = JSON.decode(saved_data)
+  if extra == nil then
+    return
+  end
+  if type(extra) ~= 'table' then
+    return
+  end
+  local lots = extra['building_lots']
+  if lots == nil then
+    print_info('No BUA lots found')
+    return
+  end
+  for guid,table in pairs(lots) do
+    local zone = getObjectFromGUID(guid)
+    if zone == nil then
+      print_error("BUA Zone not found: " .. tostring(guid))
+    else
+      zone.setTable('bua_lot', table)
+    end
+  end
+end
+
+
+-- Set the callbacks for zones
+function restore_zone_callbacks()
+  for _,obj in pairs( getAllObjects()) do
+    if is_building_zone(obj) then
+      setZoneBuaCallback(obj)
+    elseif is_dead_zone(obj) then
+      setZoneDeadCallback(obj)
+    end
+  end
 end
 
 function make_scenery_non_interactable()

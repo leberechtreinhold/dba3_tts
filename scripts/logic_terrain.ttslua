@@ -245,11 +245,16 @@ function set_plough(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
     change_texture_terrain(terrain_obj, random_element(options['texture']))
 end
 
+-- Is the object a building scripting zone
+function is_building_zone(obj)
+  local obj_name = obj.getName()
+  return str_starts_with(obj_name, 'zone bua building ')
+end
 
 -- Is the object a building?
 function is_building(obj)
   local obj_name = obj.getName()
-  return str_has_substr(obj_name, 'building #')
+  return str_starts_with(obj_name, 'building #')
 end
 
 function is_any_base_in_zone(zone)
@@ -287,7 +292,7 @@ end
 
 function restore_buildings(zone)
   if is_any_base_in_zone(zone) then
-    print_error("zone has a base")
+    print_debug("zone has a base")
     return
   end
   local bua_lot = zone.getTable("bua_lot")
@@ -299,7 +304,7 @@ function restore_buildings(zone)
   zone.setTable("bua_lot", bua_lot)
 end
 
-function onObjectEnterScriptingZoneBuaPlot(zone,obj)
+function onObjectEnterScriptingZoneBuaLot(zone,obj)
   remove_colliding_buildings(zone)
 end
 
@@ -320,7 +325,7 @@ function start_zone_timer(zone)
   zone.setVar("timer", timer_id)
 end
 
-function onObjectLeaveScriptingZoneBuaPlot(zone,obj)
+function onObjectLeaveScriptingZoneBuaLot(zone,obj)
   stop_zone_timer(zone)
   if is_any_base_in_zone(zone) then
     return
@@ -329,7 +334,11 @@ function onObjectLeaveScriptingZoneBuaPlot(zone,obj)
   start_zone_timer(zone)
 end
 
-
+-- Set the variables for the zone to indicate we are a building zone.
+function setZoneBuaCallback(obj)
+  obj.setVar("zone_enter_callback", "onObjectEnterScriptingZoneBuaLot")
+  obj.setVar("zone_leave_callback", "onObjectLeaveScriptingZoneBuaLot")
+end
 
 function create_bua_lot_zone(bua_lot, name)
 
@@ -346,8 +355,7 @@ function create_bua_lot_zone(bua_lot, name)
   obj.setLock(true)
 
   obj.setTable("bua_lot", bua_lot)
-  obj.setVar("zone_enter_callback", "onObjectEnterScriptingZoneBuaPlot")
-  obj.setVar("zone_leave_callback", "onObjectLeaveScriptingZoneBuaPlot")
+  setZoneBuaCallback(obj)
 
   print_debug("bua zone created: " .. obj.getGUID())
   return obj
