@@ -15551,7 +15551,6 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
         terrain = 'Arable',
         list = '1x4Bd (Gen), 2x4Bd, 4xSp, 4xSp or 7Hd, 1xPs or Sp.'
     },
-
     base1 = {
         name = '4Bd_Gen',
         base = 'tile_plain_4Bd_40x15',
@@ -15606,6 +15605,7 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
         base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
+
     },
     base10 = {
         name = 'Sp',
@@ -15618,6 +15618,7 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
         base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
+
     },
     base12 = {
         name = 'Sp',
@@ -15630,6 +15631,7 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
         base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
+
     },
     base14 = {
         name = 'Sp',
@@ -15642,12 +15644,14 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
         base = 'tile_plain_7Hd_40x40',
         n_models = 0,
         ignore_terrain = true
+
     },
     base16 = {
         name = 'Ps',
         base = 'tile_plain_2Ps_40x20',
         n_models = 0,
         ignore_terrain = true
+
     },
     base17 = {
         name = 'Sp',
@@ -15660,6 +15664,134 @@ armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book III"]["III/72 Anglo-Danish Army 1014-1075AD"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Arable',
+        list = '1x4Bd (Gen), 2x4Bd, 4xSp, 4xSp or 7Hd, 1xPs or Sp.',
+        manufacturer = 'V&V, Gripping Beast, Footsore & Forged in Battle'
+    },
+
+    base1 = {
+        name = '4Bd_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        fixed_models = {
+            [1] = 'troop_viking_huscarls',
+            [2] = 'troop_viking_huscarl_general',
+            [3] = 'troop_viking_huscarls',
+            [4] = 'troop_viking_huscarls'
+        }
+    },
+    base2 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_huscarls'
+    },
+    base3 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_huscarls'
+    },
+    base4 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base5 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base6 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base7 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base8 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base9 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base10 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base11 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base12 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base13 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base14 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base15 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base16 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base17 = {
+        name = 'Sp',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base18 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_campfire'
     }
 }
 
