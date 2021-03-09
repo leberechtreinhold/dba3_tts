@@ -217,10 +217,10 @@ function base_killed(base)
   local base_name = base.getName()
   local dead_zone
   if is_base_red_player(base_name) then
-    print_info("killed red ", base_name)
+    print_info(base_name .. ' is now dead and is sent to red graveyard')
     dead_zone = g_dead_zones['red']
   else
-    print_info("killed blue ", base_name)
+    print_info(base_name .. ' is now dead and is sent to blue graveyard')
     dead_zone = g_dead_zones['blue']
   end
 
