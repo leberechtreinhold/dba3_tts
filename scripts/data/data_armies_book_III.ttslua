@@ -8874,6 +8874,112 @@ armies["Book III"]["III/40a Viking Army 790-849AD (Plain)"] = {
     }
 }
 
+armies["Book III"]["III/40a Viking Army 790-849AD"] = {
+    data = {
+        aggresiveness = 4,
+        terrain = 'Littoral',
+        list = '1x4Bd (Gen), 10x3Bd, 1x4Bd or 3Wb or Ps.',
+        manufacturer = 'V&V, Gripping Beast, Footsore & Forged in Battle'
+    },
+
+    base1 = {
+        name = '4Bd_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        fixed_models = {
+            [1] = 'troop_viking_huscarls',
+            [2] = 'troop_viking_huscarl_general',
+            [3] = 'troop_viking_huscarls',
+            [4] = 'troop_viking_huscarls'
+        }
+    },
+    base2 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_warrior'
+    },
+    base3 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base4 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_warrior'
+    },
+    base5 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base6 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_warrior'
+    },
+    base7 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base8 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_warrior'
+    },
+    base9 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base10 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_warrior'
+    },
+    base11 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base12 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_huscarls'
+    },
+    base13 = {
+        name = '3Wb',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_berserker'
+    },
+    base14 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base15 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_campfire'
+    }
+}
+
 armies["Book III"]["III/40b Viking Army 850-1280AD (Plain)"] = {
     data = {
         aggresiveness = 4,
@@ -8977,6 +9083,118 @@ armies["Book III"]["III/40b Viking Army 850-1280AD (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book III"]["III/40b Viking Army 850-1280AD"] = {
+    data = {
+        aggresiveness = 4,
+        terrain = 'Littoral',
+        list = '1x4Bd (Gen), 10x4Bd, 1xPs or 4Bw or 3Wb or 3Ax.',
+        manufacturer = 'V&V, Gripping Beast, Footsore & Forged in Battle'
+    },
+
+    base1 = {
+        name = '4Bd_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        fixed_models = {
+            [1] = 'troop_viking_huscarls',
+            [2] = 'troop_viking_huscarl_general',
+            [3] = 'troop_viking_huscarls',
+            [4] = 'troop_viking_huscarls'
+        }
+    },
+    base2 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_warrior'
+    },
+    base3 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base4 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_warrior'
+    },
+    base5 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base6 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_warrior'
+    },
+    base7 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base8 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_warrior'
+    },
+    base9 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base10 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_warrior'
+    },
+    base11 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base13 = {
+        name = '4Bw',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_viking_archers'
+    },
+    base14 = {
+        name = '3Wb',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_berserker'
+    },
+    base15 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base16 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_campfire'
     }
 }
 
@@ -9128,6 +9346,163 @@ armies["Book III"]["III/40c Leidang Army 790-1070AD (Plain)"] = {
     }
 }
 
+armies["Book III"]["III/40c Leidang Army 790-1070AD"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Littoral',
+        list = '1x4Bd (Gen), 2x4Bd, 6x4Bd or 3Ax, 2x3Bw or Ps, 1x3Bd or Ps or 7Hd.',
+        manufacturer = 'V&V, Gripping Beast, Footsore & Forged in Battle'
+    },
+
+    base1 = {
+        name = '4Bd_Gen',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        fixed_models = {
+            [1] = 'troop_viking_huscarls',
+            [2] = 'troop_viking_huscarl_general',
+            [3] = 'troop_viking_huscarls',
+            [4] = 'troop_viking_huscarls'
+        }
+    },
+    base2 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_huscarls'
+    },
+    base3 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_huscarls'
+    },
+    base4 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base5 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base6 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base7 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base8 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base9 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base10 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base11 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base12 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base13 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base14 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base15 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base16 = {
+        name = '3Bw',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_archers'
+    },
+    base17 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base18 = {
+        name = '3Bw',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_archers'
+    },
+    base19 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base20 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_warrior'
+    },
+    base21 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base22 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base23 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_campfire'
+    }
+}
+
 armies["Book III"]["III/40d Leidang Army 1071-1280AD (Plain)"] = {
     data = {
         aggresiveness = 1,
@@ -9243,6 +9618,132 @@ armies["Book III"]["III/40d Leidang Army 1071-1280AD (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book III"]["III/40d Leidang Army 1071-1280AD"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Littoral',
+        list = '1x3Kn (Gen), 1x4Bd, 6x4Bd, 2x3Bw or Ps, 1x3Kn or 4Bd, 1x3Bd or Ps or 7Hd.',
+        manufacturer = 'V&V, Gripping Beast, Footsore & Forged in Battle'
+    },
+
+    base1 = {
+        name = '3Kn_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        fixed_models = {
+            [1] = 'troop_viking_rider_generic',
+            [2] = 'troop_viking_rider_catholic',
+            [3] = 'troop_viking_rider_generic',
+        }
+    },
+    base2 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_huscarls'
+    },
+    base3 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base4 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base5 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base6 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base7 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base8 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_hird_spear'
+    },
+    base9 = {
+        name = '3Bw',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_archers'
+    },
+    base10 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base11 = {
+        name = '3Bw',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_archers'
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base13 = {
+        name = '3Kn',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_viking_rider_generic'
+    },
+    base14 = {
+        name = '4Bd',
+        base = 'tile_grass_40x15',
+        n_models = 4,
+        model_data = 'troop_viking_huscarls'
+    },
+    base15 = {
+        name = '3Bd',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_viking_warrior'
+    },
+    base16 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        loose = true,
+        model_data = 'troop_viking_archers'
+    },
+    base17 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_viking_hird_javelin'
+    },
+    base18 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_campfire'
     }
 }
 
