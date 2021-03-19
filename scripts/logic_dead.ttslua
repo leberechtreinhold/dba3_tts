@@ -181,29 +181,34 @@ function reorganize_dead_zone(dead_zone)
   local row_contents = {}
   local col  = 1
   local row = 1
-  for _,base in pairs(dead) do
-    base.setRotation(rotation)
-    if (col == 1) and (row == 1) then
-        local base_pos = {x=side_margin, y = g_graveyard_y_pos, z=top}
-        base.setPosition(base_pos)
+  for _,obj in pairs(dead) do
+    if not is_base_obj(obj) then
+      print_important("Only bases should be in casualty area")
     else
-      local dir
-      local other
-      if (row == 1) then
-        other = row_contents[col-1]
-        dir = "left"
+      local base = obj
+      base.setRotation(rotation)
+      if (col == 1) and (row == 1) then
+          local base_pos = {x=side_margin, y = g_graveyard_y_pos, z=top}
+          base.setPosition(base_pos)
       else
-        other = row_contents[col]
-        dir = "behind"
+        local dir
+        local other
+        if (row == 1) then
+          other = row_contents[col-1]
+          dir = "left"
+        else
+          other = row_contents[col]
+          dir = "behind"
+        end
+        snap_to_base(base,calculate_transform(base),other,calculate_transform(other),dir)
       end
-      snap_to_base(base,calculate_transform(base),other,calculate_transform(other),dir)
-    end
-    row_contents[col] = base
-     if col == 5 then
-       col = 1
-       row = row + 1
-     else
-       col = col  + 1
+      row_contents[col] = base
+       if col == 5 then
+         col = 1
+         row = row + 1
+       else
+         col = col  + 1
+       end
      end
   end
 end
