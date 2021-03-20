@@ -72,13 +72,19 @@ function align_two_bases(base2, position, corners, rotation)
     }
 end
 
+-- Is the base an object
+function is_base_obj(obj)
+  local name = obj.getName()
+  return  g_bases[name] ~= nil or str_starts_with(obj.getName(), 'base')
+end
+
 -- Given a list of objects in a table, returns another table with ONLY
 -- those who start with 'base', ignoring the keys
 function filter_bases(list)
     local filtered = {}
     for _,obj in ipairs(list) do
         local name = obj.getName()
-        if g_bases[name] ~= nil or str_starts_with(obj.getName(), 'base') then
+        if is_base_obj(obj) then
             table.insert(filtered, obj)
         end
     end
