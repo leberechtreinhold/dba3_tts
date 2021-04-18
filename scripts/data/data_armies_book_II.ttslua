@@ -11177,8 +11177,8 @@ armies["Book II"]["II/24 Early Rhoxolani Sarmatian Army 310BC-100AD (Plain)"] = 
 
 armies["Book II"]["II/25 Bosporan Army 310-107BC (Plain)"] = {
     data = {
-        aggresiveness = 3,
-        terrain = 'Steppe',
+        aggresiveness = 0,
+        terrain = 'Littoral',
         list = '1xCv or 3Kn (Gen), 2xSp or 3Kn, 2xSp or 4Ax, 1x3Kn or LH, 2xPs or LH, 2x3Bw or Ps, 1xPs, 1xArt or LH.'
     },
 
@@ -11332,8 +11332,8 @@ armies["Book II"]["II/25 Bosporan Army 310-107BC (Plain)"] = {
 
 armies["Book II"]["II/25 Bosporan Army 10BC-375AD (Plain)"] = {
     data = {
-        aggresiveness = 3,
-        terrain = 'Steppe',
+        aggresiveness = 0,
+        terrain = 'Littoral',
         list = '1xCv or 3Kn (Gen), 2xSp or 3Kn, 2xSp or 4Ax, 1x3Kn or LH, 2xPs or LH, 2x3Bw or Ps, 1xPs, 1xArt or LH or 3Kn.'
     },
 
