@@ -3400,7 +3400,7 @@ armies["Book II"]["II/7 Later Achaemenid Persian Army 420-329BC (Plain)"] = {
     data = {
         aggresiveness = 1,
         terrain = 'Arable',
-        list = '1xLCh or Cvor 3Kn (Gen), 2xCv, 2xLH, 2x3Kn or Sp or 4Ax, 1xSCh or Sp, 1xPs, 3x4/3Ax or Sp or (in 329BC) LH, 1x7Hd or Ps.'
+        list = '1xLCh or Cv or 3Kn (Gen), 2xCv, 2xLH, 1x3Kn or Sp or 4Ax, 1xSCh or Sp, 1xPs, 3x4Ax or 3Ax or Sp or (in 329BC) LH, 1x7Hd or Ps.'
     },
 
     base1 = {
@@ -3461,24 +3461,6 @@ armies["Book II"]["II/7 Later Achaemenid Persian Army 420-329BC (Plain)"] = {
         ignore_terrain = true
     },
     base10 = {
-        name = '4Ax',
-        base = 'tile_plain_4Ax_40x20',
-        n_models = 0,
-        ignore_terrain = true
-    },
-    base11 = {
-        name = '3Kn',
-        base = 'tile_plain_3Kn_40x30',
-        n_models = 0,
-        ignore_terrain = true
-    },
-    base12 = {
-        name = 'Sp',
-        base = 'tile_plain_4Sp_40x15',
-        n_models = 0,
-        ignore_terrain = true
-    },
-    base13 = {
         name = '4Ax',
         base = 'tile_plain_4Ax_40x20',
         n_models = 0,
