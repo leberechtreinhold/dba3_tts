@@ -18030,7 +18030,7 @@ armies["Book IV"]["IV/82a French Ordonnance Army 1445-1480AD (Plain)"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Kn or Mtd-4Lb or 4Lb (Gen), 3x3Kn or 4Bd, 1x3Kn or Mtd-4Lb, 4x3Bw, 1x4Bd or 4Cb or Ps, 2xArt or 7Hd.'
+        list = '1x3Kn or Mtd-4Lb/4Lb (Gen), 3x3Kn/4Bd, 1x3Kn or Mtd-4Lb, 4x3Bw, 1x4Bd or 4Cb or Ps, 2xArt or 7Hd.'
     },
 
     base1 = {
@@ -18180,7 +18180,7 @@ armies["Book IV"]["IV/82a French Ordonnances 1445-1480AD"] = {
     data = {
         aggresiveness = 2,
         terrain = 'Arable',
-        list = '1x3Kn or Mtd-4Lb//4Bw (Gen), 3x3Kn//4Bd, 1x3Kn or Mtd-4Lb, 4x3Bw, 1x4Bd or 4Cb or Ps, 2xArt or 7Hd'
+        list = '1x3Kn or Mtd-4Lb/4Bw (Gen), 3x3Kn/4Bd, 1x3Kn or Mtd-4Lb, 4x3Bw, 1x4Bd or 4Cb or Ps, 2xArt or 7Hd'
     },
     base1 = {
         name = '3Kn_Gen',
@@ -18290,7 +18290,7 @@ armies["Book IV"]["IV/82a French Ordonnances 1445-1480AD"] = {
         n_models = 3,
         model_data = 'troop_bowman_late_medieval'
     },
-    base15 = {
+    base23 = {
         name = '4Bd',
         base = 'tile_grass_40x15',
         n_models = 4,
