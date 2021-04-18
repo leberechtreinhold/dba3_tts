@@ -390,6 +390,21 @@ function update_player_color_menu(is_player_red)
     set_options_dropdown_by_id('dropdown_playercolor', { 'Red', 'Blue' },  selected)
 end
 
+function update_player_command(color)
+    local selected = 1
+    if color == 'Orange' then
+        selected = 2
+    elseif color == 'Yellow' then
+        selected = 3
+    elseif color == 'Green' then
+        selected = 4
+    elseif color == 'Purple' then
+        selected = 5
+    end
+    set_options_dropdown_by_id('dropdown_command', { 'None', 'Orange', 'Yellow', 'Green', 'Purple'},  selected)
+end
+
+
 function update_armies_menu(book, army_selected)
     local options = {}
     for army_name,_ in pairs(book) do
