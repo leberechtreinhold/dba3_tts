@@ -3730,6 +3730,171 @@ armies["Book II"]["II/8a Bruttian or Lucanian Armies 420-203BC (Plain)"] = {
     }
 }
 
+armies["Book II"]["II/8a Bruttian or Lucanian Armies 420-203BC"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Hilly',
+        list = '1xCv (Gen), 9x3Ax or 4Ax, 2x7Hd or Ps.',
+        manufacturer = 'Essex Miniatures'
+    },
+
+    base1 = {
+        name = 'Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_campanian_roman_cv_gen_blue'
+    },
+    base2 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base3 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base4 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base5 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base6 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base7 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base8 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base9 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base10 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base11 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base12 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base13 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base14 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base15 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base16 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base17 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base18 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_blue',
+        loose = true
+    },
+    base19 = {
+        name = '4Ax',
+        base = 'tile_grass_40x20',
+        n_models = 4,
+        model_data = 'troop_successors_ax_blue',
+    },
+    base20 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_successors_psiloi_blue'
+    },
+    base21 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_blue'
+    },
+    base22 = {
+        name = '7Hd',
+        base = 'tile_grass_40x40',
+        n_models = 7,
+        loose = true,
+        model_data = 'troop_successors_psiloi_blue'
+    },
+    base23 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_blue'
+    },
+    base24 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_camp'
+    }
+}
+
 armies["Book II"]["II/8b Campanian Army 420-340BC (Plain)"] = {
     data = {
         aggresiveness = 1,
@@ -3997,6 +4162,103 @@ armies["Book II"]["II/8c Apulian Army 420-206BC (Plain)"] = {
         base = 'tile_plain_Camp_40x40',
         n_models = 0,
         ignore_terrain = true
+    }
+}
+
+armies["Book II"]["II/8c Apulian Army 420-206BC)"] = {
+    data = {
+        aggresiveness = 1,
+        terrain = 'Arable',
+        list = '1xCv (Gen), 2xCv, 7x3Ax, 2xPs.',
+        manufacturer = 'Essex Miniatures'
+    },
+
+    base1 = {
+        name = 'Cv_Gen',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_campanian_roman_cv_gen_red'
+    },
+    base2 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_campanian_roman_cv_red'
+    },
+    base3 = {
+        name = 'Cv',
+        base = 'tile_grass_40x30',
+        n_models = 3,
+        model_data = 'troop_campanian_roman_cv_red'
+    },
+    base4 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_red',
+        loose = true
+    },
+    base5 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_red',
+        loose = true
+    },
+    base6 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_red',
+        loose = true
+    },
+    base7 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_red',
+        loose = true
+    },
+    base8 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_red',
+        loose = true
+    },
+    base9 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_red',
+        loose = true
+    },
+    base10 = {
+        name = '3Ax',
+        base = 'tile_grass_40x20',
+        n_models = 3,
+        model_data = 'troop_successors_ax_red',
+        loose = true
+    },
+    base11 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_red',
+        loose = true
+    },
+    base12 = {
+        name = 'Ps',
+        base = 'tile_grass_40x20',
+        n_models = 2,
+        model_data = 'troop_successors_psiloi_red',
+        loose = true
+    },
+    base13 = {
+        name = 'Camp',
+        base = 'tile_grass_40x40',
+        n_models = 1,
+        model_data = 'troop_carthaginian_camp'
     }
 }
 
