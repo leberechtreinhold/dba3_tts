@@ -148,6 +148,25 @@ function onChat(message, player)
         return false
     end
 
+    if message == '!dba_count_army_models' then
+        print_info(player.get_steam_name() .. ': ' .. message)
+        local total_counter = 0
+        for book_name,book_armies in pairs(armies) do
+            local counter = 0
+            local counter_total_armies = 0
+            for army_name,_ in pairs(book_armies) do
+                if not str_has_substr(army_name, '(Plain)') then
+                    counter = counter + 1
+                end
+                counter_total_armies = counter_total_armies + 1
+            end
+            print_info(book_name .. ' has ' .. counter .. ' armies with models (of ' .. counter_total_armies .. ')')
+            total_counter = total_counter + counter
+        end
+        print_info('There is a total of ' .. total_counter .. ' armies with models')
+        return false
+    end
+
     if str_starts_with(message, '!dba') then
         print_info(player.get_steam_name() .. ': ' .. message)
         print_error('Command not recognized. Please, use !dba_help')
