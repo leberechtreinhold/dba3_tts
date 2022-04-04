@@ -5812,8 +5812,8 @@ armies["Book II"]["II/15 Alexandrian Imperial Army 328-321BC"] = {
 armies["Book II"]["II/16a Antigonos' Army 320-301BC (Plain)"] = {
     data = {
         aggresiveness = 3,
-        terrain = 'Arabley',
-        list = '1x4Pk (Gen), 1x3Kn, 1xCv or LH, 5x4Pk, 1xEl, 2xPs.'
+        terrain = 'Arable',
+        list = '1x4Pk (Gen), 1x3Kn, 1xCv, 1xLH, 5x4Pk, 1xEl, 2xPs.'
     },
 
     base1 = {
@@ -5900,8 +5900,8 @@ armies["Book II"]["II/16a Antigonos' Army 320-301BC (Plain)"] = {
 armies["Book II"]["II/16a Antigonos' Army 320-301BC"] = {
     data = {
         aggresiveness = 3,
-        terrain = 'Arabley',
-        list = '1x4Pk (Gen), 1x3Kn, 1xCv or LH, 5x4Pk, 1xEl, 2xPs.',
+        terrain = 'Arable',
+        list = '1x4Pk (Gen), 1x3Kn, 1xCv, 1xLH, 5x4Pk, 1xEl, 2xPs.',
         manufacturer = 'Essex miniatures'
     },
 
