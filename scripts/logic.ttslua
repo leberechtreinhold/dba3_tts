@@ -641,8 +641,12 @@ end
 
 
 function transform_to_shape(transform)
-  corners=transform['corners']
-  shape={
+  local corners=transform['corners']
+  return corners_to_shape(corners)
+end
+
+function corners_to_shape(corners)
+  local shape={
     corners['topright'], corners['topleft'], corners['botleft'],
     corners['botright']
   }
@@ -1055,6 +1059,13 @@ function get_size(base_name)
         z = get_depth_base(tile)
     }
 end
+
+-- Is the object a base?
+function is_base(obj)
+  local obj_name = obj.getName()
+  return str_has_substr(obj_name, 'base')
+end
+
 
 function is_base_red_player(base_name)
     return g_bases[base_name]['is_red_player']
