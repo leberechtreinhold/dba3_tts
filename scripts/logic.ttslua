@@ -1657,7 +1657,10 @@ function on_zoc_changed()
         -- While someone is wheeling we are not going to update the UI
         return
     end
-    draw_all_gizmos()
+
+    Wait.time(function()
+        draw_all_gizmos()
+    end, 0.1)
 end
 
 function has_changed_selection_for_player(player_color, selected_objs)

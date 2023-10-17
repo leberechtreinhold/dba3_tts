@@ -315,6 +315,7 @@ function on_toggle_zoc(player, value, id)
     end
 
     -- Make it consistent for all players
+    print_debug('Adding coroutine on_toggle_zoc')
     on_next_frame(function()
         UI.setAttribute('toggle_zoc', 'isOn', g_zoc_enabled)
     end)
@@ -344,6 +345,7 @@ function on_toggle_deployment_lines(player, value, id)
     end
 
     -- Make it consistent for all players
+    print_debug('Adding coroutine on_toggle_deployment_lines')
     on_next_frame(function()
         UI.setAttribute('toggle_deployment_lines', 'isOn', g_deployment_lines_enabled)
     end)
@@ -598,6 +600,7 @@ function on_toggle_snapping(player, value, id)
     end
 
     -- Make it consistent for all players
+    print_debug('Adding coroutine on_toggle_snapping')
     on_next_frame(function()
         UI.setAttribute('toggle_snapping', 'isOn', g_snap_mode_enabled)
     end)
