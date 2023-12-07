@@ -7,9 +7,9 @@ g_tool_tips_enabled = true
 
 function print_tool_tip_status()
   if g_tool_tips_enabled then
-    print_info("Tool tips enabled")
+    Logger.info("Tool tips enabled")
   else
-    print_info("Tool tips disabled")
+    Logger.info("Tool tips disabled")
   end
 end
 

@@ -1087,7 +1087,7 @@ end
 function draw_deployment_lines()
     local gametable = getObjectFromGUID(g_current_table)
     if gametable == nil then
-        print_error('There is no current table, stored GUID is: ' .. g_current_table)
+        Logger.error('There is no current table, stored GUID is: ' .. g_current_table)
         return
     end
 
@@ -1206,7 +1206,7 @@ function show_gizmo_bua_afterdetach()
 
             if str_starts_with(terrain.getName(), 'terrain BUA') then
 
-                print_debug('There\'s a BUA at position ' .. vec_to_str(terrain_pos))
+                Logger.debug('There\'s a BUA at position ' .. vec_to_str(terrain_pos))
 
                 terrain_pos['y'] = height_strokes
 
@@ -1226,21 +1226,21 @@ function show_gizmo_bua_afterdetach()
                 table.insert(strokes, strokes_art)
             end
             gametable.addAttachment(terrain)
-            print_debug('Reattaching ' .. terrain.getName())
+            Logger.debug('Reattaching ' .. terrain.getName())
         end
     end
-    print_debug('Recalculation for fire gizmos BUAs done')
+    Logger.debug('Recalculation for fire gizmos BUAs done')
     Global.setVectorLines(strokes)
 end
 
 function show_gizmo_bua()
     local gametable = getObjectFromGUID(g_current_table)
     if gametable == nil then
-        print_error('There is no current table, stored GUID is: ' .. g_current_table)
+        Logger.error('There is no current table, stored GUID is: ' .. g_current_table)
         return
     end
 
-    print_info('Showing BUA fire until deselection. All terrain will be reattached.')
+    Logger.info('Showing BUA fire until deselection. All terrain will be reattached.')
     gametable.removeAttachments()
     Wait.frames(show_gizmo_bua_afterdetach, 1)
 end

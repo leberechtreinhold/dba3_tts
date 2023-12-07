@@ -5,15 +5,15 @@ red   = { r =   1, g = 0.2, b = 0.1}
 gold  = { r =   1, g = 0.9, b =   0}
 
 -- Prints to all, only if the DEBUG mode is enabled, by the chat command
-g_debug_mode = false
-function print_debug(msg)
-    if g_debug_mode then
+Logger.debug_enabled = false
+function Logger.debug(msg)
+    if Logger.debug_enabled then
         printToAll('[DEBUG] ' .. msg)
     end
 end
 
 -- Messages that can be seen by everyone on the textbox
-function print_info(msg)
+function Logger.info(msg)
     printToAll('[INFO] ' .. msg, grey)
 end
 
@@ -23,12 +23,12 @@ end
 
 -- Messages that can be seen by everyone on the textbox and indicate
 -- that the user may be doing something wrong
-function print_error(msg)
+function Logger.error(msg)
     printToAll('[ERROR] ' .. msg, red)
     broadcastToAll('[ERROR] ' .. msg, red)
 end
 
 -- Message that will appear TO EVERYONE ON THE SCREEN.
-function print_important(msg)
+function Logger.important(msg)
     broadcastToAll('[IMPORTANT] ' .. msg, grey)
 end
