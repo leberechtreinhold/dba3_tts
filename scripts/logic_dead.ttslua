@@ -244,8 +244,8 @@ function base_killed(base)
     ok, error = pcall( function()
         local new_transform = calculate_transform(base)
         local move = {}
-        add_transform_to_move(move, base.getName(), initial_transform, new_transform)
-        push_to_history_stack(move)
+        History.add_transform_to_move(move, base.getName(), initial_transform, new_transform)
+        History.push_to_history_stack(move)
         if not ok then
           print_error("saving history failed with: ", error)
         end

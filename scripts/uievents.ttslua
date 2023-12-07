@@ -41,12 +41,12 @@ function move_bases(player, value, id)
         local initial_transform = calculate_transform(obj)
         local moved = move_base(obj, from_bw_to_in(g_bw_movement), true)
         local new_transform = calculate_transform(obj)
-        add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
+        History.add_transform_to_move(move, obj.getName(), initial_transform, new_transform)
 
         print_info(player.steam_name .. ' is moving ' .. obj.getName() .. ' '
             .. from_in_to_bw(moved) .. ' BW forward')
     end
-    push_to_history_stack(move)
+    History.push_to_history_stack(move)
 
     -- Moving the bases shpuld imply update the gizmos
     draw_all_gizmos()
