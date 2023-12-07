@@ -1,1 +1,0 @@
-../../scripts/logic_tool_tips.ttslua

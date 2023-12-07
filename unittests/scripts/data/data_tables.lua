@@ -1,1 +1,0 @@
-../../../scripts/data/data_tables.ttslua
