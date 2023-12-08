@@ -459,7 +459,7 @@ function push_back_column(objs)
 
     local column = calculate_column(objs, transforms)
     if column == nil then
-        print_warning('Trying to push back but it\'s not a proper column')
+        Logger.warning('Trying to push back but it\'s not a proper column')
         return
     end
 
@@ -525,7 +525,7 @@ function wheel_group(objs, angle, direction)
 
         g_current_wheel_group = calculate_group(objs, transforms)
         if g_current_wheel_group == nil then
-            print_warning('Trying to wheel but it\'s not a proper group')
+            Logger.warning('Trying to wheel but it\'s not a proper group')
             return -1
         end
 
@@ -1097,7 +1097,7 @@ function onObjectPickUp(player_color,  picked_up_object)
     end
 
     if g_picked_base_obj ~= nil then
-        print_warning("There's already a player picking up an object. Please, wait until he finishes moving.")
+        Logger.warning("There's already a player picking up an object. Please, wait until he finishes moving.")
         return
     end
 

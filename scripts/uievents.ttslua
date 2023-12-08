@@ -32,7 +32,7 @@ end
 function move_bases(player, value, id)
     local objs = filter_bases(player.getSelectedObjects())
     if tlen(objs) < 1 then
-        print_warning(player.steam_name ..' is trying to move, but (s)he has no object selected, ignoring')
+        Logger.warning(player.steam_name ..' is trying to move, but (s)he has no object selected, ignoring')
     return
     end
 
@@ -431,7 +431,7 @@ function on_load_table(player, value, id)
         end
         change_bases_to_terrain(type)
     else
-        print_warning('There\'s already a table spawned')
+        Logger.warning('There\'s already a table spawned')
     end
 
     UI.setAttribute('panel_dba_table_selection_bg', 'active', false)
@@ -455,7 +455,7 @@ function on_push_back(player, value, id)
     local objs = filter_bases(player.getSelectedObjects())
     local len = tlen(objs)
     if len < 1 then
-        print_warning(player.steam_name .. ' is pushing back troops but doesn\'t have any base selected')
+        Logger.warning(player.steam_name .. ' is pushing back troops but doesn\'t have any base selected')
         return
     end
 
@@ -475,7 +475,7 @@ function on_wheel(player, value, id)
     local objs = filter_bases(player.getSelectedObjects())
     local len = tlen(objs)
     if len < 1 then
-        print_warning(player.steam_name .. ' is wheeling troops but doesn\'t have any base selected')
+        Logger.warning(player.steam_name .. ' is wheeling troops but doesn\'t have any base selected')
         return
     end
 
@@ -483,7 +483,7 @@ function on_wheel(player, value, id)
     on_change_orientation_wheel_ui('left')
     local distance = preview_wheel(objs)
     if distance < 0 then
-        print_warning(player.steam_name .. ' is wheeling troops but doesn\'t have a valid group selected')
+        Logger.warning(player.steam_name .. ' is wheeling troops but doesn\'t have a valid group selected')
         return
     end
     g_player_wheeling = player.color

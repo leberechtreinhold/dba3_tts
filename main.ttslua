@@ -30,9 +30,10 @@
 #include scripts/logic
 #include scripts/uievents
 
--- Global requires
-History = require('../dbx_tts/History')
-Logger = require('../dbx_tts/Logger')
+-- DBX Library
+DBX = require('../dbx_tts/main')
+Logger = DBX.Logger:Create()
+History = DBX.History
 
 function onload()
     Logger.info('----------------------------------------------')
