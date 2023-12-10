@@ -34,12 +34,13 @@
 DBX = require('../dbx_tts/main')
 Logger = DBX.Logger:Create()
 History = DBX.History
+Settings = DBX.Settings
 
 function onload()
     Logger.info('----------------------------------------------')
     Logger.info('                       DBA 3.0 v1.27 ')
     Logger.info('----------------------------------------------\n\nCheck the Notebook for instructions.')
-    Wait.time(main_loop, g_seconds_main_loop, -1)
+    Wait.time(main_loop, Settings.seconds_main_loop, -1)
     make_scenery_non_interactable()
     reset_state()
     spawn_proxy_bases()
