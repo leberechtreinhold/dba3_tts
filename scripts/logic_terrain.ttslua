@@ -27,8 +27,8 @@ function snap_waterway(waterway)
     end
 
     if (equals_float(rotation, 0, 0.17) or equals_float(rotation, 2*math.pi, 0.17))
-        and equals_float(pos['x'], 0, g_max_camp_edge_snap)
-        and equals_float(pos['z'], zpos, g_max_camp_edge_snap)
+        and equals_float(pos['x'], 0, Settings.max_camp_edge_snap)
+        and equals_float(pos['z'], zpos, Settings.max_camp_edge_snap)
         then
 
         waterway.setPosition({x=0, y=g_terrain_pos, z=zpos})
@@ -36,8 +36,8 @@ function snap_waterway(waterway)
         Logger.info('Waterway Snapping top')
 
     elseif equals_float(rotation, math.pi/2, 0.17)
-        and equals_float(pos['x'], -xpos, g_max_camp_edge_snap)
-        and equals_float(pos['z'], 0, g_max_camp_edge_snap)
+        and equals_float(pos['x'], -xpos, Settings.max_camp_edge_snap)
+        and equals_float(pos['z'], 0, Settings.max_camp_edge_snap)
         then
 
         waterway.setPosition({x=-xpos, y=g_terrain_pos, z=0})
@@ -45,8 +45,8 @@ function snap_waterway(waterway)
         Logger.info('Waterway Snapping left')
 
     elseif equals_float(rotation, math.pi, 0.17)
-        and equals_float(pos['x'], 0, g_max_camp_edge_snap)
-        and equals_float(pos['z'], -zpos, g_max_camp_edge_snap)
+        and equals_float(pos['x'], 0, Settings.max_camp_edge_snap)
+        and equals_float(pos['z'], -zpos, Settings.max_camp_edge_snap)
         then
             
         waterway.setPosition({x=0, y=g_terrain_pos, z=-zpos})
@@ -54,8 +54,8 @@ function snap_waterway(waterway)
         Logger.info('Waterway Snapping bot')
 
     elseif equals_float(rotation, math.pi*3/2, 0.17)
-        and equals_float(pos['x'], xpos, g_max_camp_edge_snap)
-        and equals_float(pos['z'], 0, g_max_camp_edge_snap)
+        and equals_float(pos['x'], xpos, Settings.max_camp_edge_snap)
+        and equals_float(pos['z'], 0, Settings.max_camp_edge_snap)
         then
             
         waterway.setPosition({x=xpos, y=g_terrain_pos, z=0})
@@ -75,7 +75,7 @@ function snap_road(road)
     if (equals_float(rotation, 0, 0.17) 
         or equals_float(rotation, math.pi, 0.17)
         or equals_float(rotation, 2*math.pi, 0.17))
-        and equals_float(pos['z'], 0, g_max_camp_edge_snap)
+        and equals_float(pos['z'], 0, Settings.max_camp_edge_snap)
         then
 
         road.setPosition({x=pos['x'], y=g_terrain_pos, z=0})
@@ -84,7 +84,7 @@ function snap_road(road)
 
     elseif (equals_float(rotation, math.pi/2, 0.17) 
             or equals_float(rotation, 3*math.pi/2, 0.17))
-            and equals_float(pos['x'], 0, g_max_camp_edge_snap)
+            and equals_float(pos['x'], 0, Settings.max_camp_edge_snap)
         then
 
         road.setPosition({x=0, y=g_terrain_pos, z=pos['z']})
@@ -174,7 +174,7 @@ function set_forest(terrain_obj, terrain_pos, terrain_rotation, terrain_size, ta
     for i=1,ntrees do
         local point = random_point_ellipse(terrain_size['x'] / 2.5, terrain_size['z'] / 2.5)
         new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
-        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), minimal_collider, true)
+        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj)
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
@@ -186,7 +186,7 @@ function set_arid(terrain_obj, terrain_pos, terrain_rotation, terrain_size, tabl
     for i=1,nobjs do
         local point = random_point_ellipse(terrain_size['x'] / 2.5, terrain_size['z'] / 2.5)
         new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
-        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), minimal_collider, true)
+        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj)
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
@@ -200,7 +200,7 @@ function set_oasis(terrain_obj, terrain_pos, terrain_rotation, terrain_size, tab
             math.min(terrain_size['x'] / 4, terrain_size['z'] / 4) - 0.3)
 
         new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
-        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), minimal_collider, true)
+        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj)
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
@@ -214,7 +214,7 @@ function set_marsh(terrain_obj, terrain_pos, terrain_rotation, terrain_size, tab
             math.min(terrain_size['x'] / 4, terrain_size['z'] / 4) - 0.3)
 
         new_pos = rotate_point_relative(point, terrain_pos, terrain_rotation)
-        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), minimal_collider, true)
+        local obj = spawn_model(random_element(options['objects']), new_pos, math.random(1, 359), Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj)
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))
@@ -276,7 +276,7 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
         }
         local new_pos_up = rotate_point_relative(point_up, terrain_pos, terrain_rotation)
         
-        local obj_up = spawn_model(fence_asset, new_pos_up, terrain_obj.getRotation()['y'], minimal_collider, true)
+        local obj_up = spawn_model(fence_asset, new_pos_up, terrain_obj.getRotation()['y'], Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj_up)
 
         local point_down = { 
@@ -285,7 +285,7 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
             z = - terrain_size['z'] / 2 + 0.1
         }
         local new_pos_down = rotate_point_relative(point_down, terrain_pos, terrain_rotation)
-        local obj_down = spawn_model(fence_asset, new_pos_down, terrain_obj.getRotation()['y'] + 180, minimal_collider, true)
+        local obj_down = spawn_model(fence_asset, new_pos_down, terrain_obj.getRotation()['y'] + 180, Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj_down)
     end
     
@@ -296,7 +296,7 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_left = rotate_point_relative(point_left, terrain_pos, terrain_rotation)
-        local obj_left = spawn_model(fence_asset, new_pos_left, terrain_obj.getRotation()['y'] + 90, minimal_collider, true)
+        local obj_left = spawn_model(fence_asset, new_pos_left, terrain_obj.getRotation()['y'] + 90, Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj_left)
 
         local point_right = { 
@@ -305,7 +305,7 @@ function set_enclosure(terrain_obj, terrain_pos, terrain_rotation, terrain_size,
             z = margin_z + 0.5 + j - 1 - terrain_size['z'] / 2
         }
         local new_pos_right = rotate_point_relative(point_right, terrain_pos, terrain_rotation)
-        local obj_right = spawn_model(fence_asset, new_pos_right, terrain_obj.getRotation()['y'] + 270, minimal_collider, true)
+        local obj_right = spawn_model(fence_asset, new_pos_right, terrain_obj.getRotation()['y'] + 270, Settings.minimal_collider, true)
         terrain_obj.addAttachment(obj_right)
     end
     change_texture_terrain(terrain_obj, random_element(options['texture']))

@@ -175,8 +175,8 @@ function reorganize_dead_zone(dead_zone)
   local dead_bounds = dead_zone.getBounds()
   local dead_pos = dead_bounds.center
   -- BEWARE: dead_bounds size is zero, it is not the proper value.
-  local side_margin = dead_pos.x - (2 * g_base_width_inches * row_direction)
-  local top =  dead_pos.z - (row_direction * 2 * g_base_width_inches  )
+  local side_margin = dead_pos.x - (2 * Settings.base_width_inches * row_direction)
+  local top =  dead_pos.z - (row_direction * 2 * Settings.base_width_inches  )
   local bases_per_row = 5
   local row_contents = {}
   local col  = 1

@@ -49,12 +49,12 @@ function align_two_bases(base2, position, corners, rotation)
     local translation = nil
     -- Note that since we know that base1 is to the left of base2, the angle
     -- is 0-90 or 270-360
-    if relative_angle > g_alignment_angle_side
+    if relative_angle > Settings.alignment_angle_side
        and relative_angle < math.pi then
         -- Angle the back of base2 with the front of base1
         translation = vec_sub(corners['topright'], corners2['botright'])
-    elseif relative_angle <= g_alignment_angle_side
-           or relative_angle >= (2*math.pi - g_alignment_angle_side) then
+    elseif relative_angle <= Settings.alignment_angle_side
+           or relative_angle >= (2*math.pi - Settings.alignment_angle_side) then
         -- Angle the left side of base2 with the right of base1
         translation = vec_sub(corners['topright'], corners2['topleft'])
     else
@@ -468,8 +468,8 @@ function push_back_column(objs)
 
     local base_depth = get_size(front_element.getName())['z']
     local distance = base_depth
-    if distance > g_base_width_inches then
-        distance = g_base_width_inches
+    if distance > Settings.base_width_inches then
+        distance = Settings.base_width_inches
     end
 
     local angle = from_degrees_to_rad(front_element.getRotation())['y']
@@ -705,7 +705,7 @@ end
 -- Are two edges considered to be touching each other.
 -- Distance between the corners squared.
 function is_corners_adjacent(distance_sq)
-  return distance_sq < g_max_corner_distance_snap
+  return distance_sq < Settings.max_corner_distance_snap
 end
 
 -- Checks if the object A defined by its transform is inmediately behind
@@ -860,8 +860,8 @@ function distance_right_to_front(transformA, transformB)
     local diff_angle = math.abs(angleB - angleA)
 
     -- Around 90 or 270 degrees
-    if math.abs(math.pi/2 - diff_angle) > g_max_angle_pushback_rad and
-       math.abs(3*math.pi/2 - diff_angle) > g_max_angle_pushback_rad then
+    if math.abs(math.pi/2 - diff_angle) > Settings.max_angle_pushback_rad and
+       math.abs(3*math.pi/2 - diff_angle) > Settings.max_angle_pushback_rad then
        -- Angle is too different, skip
        return math.huge
     end
@@ -925,8 +925,8 @@ function distance_left_to_front(transformA, transformB)
     local diff_angle = math.abs(angleB - angleA)
 
     -- Around 90 or 270 degrees
-    if math.abs(math.pi/2 - diff_angle) > g_max_angle_pushback_rad and
-       math.abs(3*math.pi/2 - diff_angle) > g_max_angle_pushback_rad then
+    if math.abs(math.pi/2 - diff_angle) > Settings.max_angle_pushback_rad and
+       math.abs(3*math.pi/2 - diff_angle) > Settings.max_angle_pushback_rad then
        -- Angle is too different, skip
        return math.huge
     end
@@ -967,7 +967,7 @@ function distance_front_to_front(transformA, transformB)
     local diff_angle = math.abs(angleB - angleA)
     local angle_180 = math.abs(math.pi - diff_angle)
 
-    if angle_180 >= g_max_angle_pushback_rad then
+    if angle_180 >= Settings.max_angle_pushback_rad then
        -- Angle is too different, skip
        return math.huge
     end
@@ -999,7 +999,7 @@ function distance_front_to_left(transformA, transformB)
         diff_angle = diff_angle + 2*math.pi
     end
     local angle_90 = math.abs(math.pi/2 - diff_angle)
-    if angle_90 >= g_max_angle_pushback_rad then
+    if angle_90 >= Settings.max_angle_pushback_rad then
       return math.huge
     end
 
@@ -1029,7 +1029,7 @@ function distance_front_to_right(transformA, transformB)
         diff_angle = diff_angle + 2*math.pi
     end
     local angle_270 = math.abs(3*math.pi/2 - diff_angle)
-    if angle_270 >= g_max_angle_pushback_rad then
+    if angle_270 >= Settings.max_angle_pushback_rad then
        -- Angle is too different, skip
        return math.huge
     end
@@ -1050,8 +1050,8 @@ end
 function get_size(base_name)
   local tile = g_bases[base_name]['tile']
   return {
-        x = g_base_width_inches,
-        y = g_base_height_inches,
+        x = Settings.base_width_inches,
+        y = Settings.base_height_inches,
         z = get_depth_base(tile)
     }
 end
@@ -1235,11 +1235,11 @@ function is_snapable(obj, base)
 
   local max_distance
   if obj['is_large_base'] and base['is_large_base'] then
-    max_distance = g_max_distance_alignment * 16
+    max_distance = Settings.max_distance_alignment * 16
   elseif obj['is_large_base'] or base['is_large_base'] then
-    max_distance = g_max_distance_alignment * 4
+    max_distance = Settings.max_distance_alignment * 4
   else
-    max_distance = g_max_distance_alignment
+    max_distance = Settings.max_distance_alignment
   end
 
   local close_enough = distance < max_distance
@@ -1255,7 +1255,7 @@ end
 -- distance is too large
 function is_bases_close_enough_to_snap(moving_base, resting_base, distance_sq)
   -- small distances are always snapped
-  if distance_sq <  g_max_corner_distance_snap then
+  if distance_sq <  Settings.max_corner_distance_snap then
     return true
   end
 
@@ -1461,12 +1461,12 @@ function snap_picked_base(obj)
             size_table = g_depth_large_table_in
         end
 
-        local edge_camp_pos = (size_table / 2) - (g_base_width_inches / 2)
+        local edge_camp_pos = (size_table / 2) - (Settings.base_width_inches / 2)
         local distance = math.abs(math.abs(pos['z']) - edge_camp_pos)
 
         Logger.debug('Camp has pos ' .. pos['z'] .. ' which has distance ' .. distance ..' to the edge ' .. edge_camp_pos)
 
-        if  distance < g_max_camp_edge_snap then
+        if  distance < Settings.max_camp_edge_snap then
             if pos['z'] > 0 then
                 pos['z'] = edge_camp_pos
                 obj.setRotation({x=0, y=180, z=0})
@@ -1499,13 +1499,13 @@ function snap_picked_base(obj)
     local new_transform = calculate_transform(obj)
     local new_corners = new_transform['corners']
     local distance = max_distance_between_bases(new_corners, initial_corners)
-    if distance < g_max_inches_snap_reset then
+    if distance < Settings.max_inches_snap_reset then
         -- Snap back!
         obj.setPosition(g_picked_base_initial_transform['position'])
         obj.setRotation(transform_to_rotation_vector(g_picked_base_initial_transform))
     else
         -- No snapping, return the distance between positions
-        pos['y'] = g_base_height_tabletop + g_table_thickness + g_base_height_inches
+        pos['y'] = g_base_height_tabletop + g_table_thickness + Settings.base_height_inches
         obj.setPosition(pos)
     end
     return calculate_transform(obj)
@@ -1785,7 +1785,7 @@ function get_closest_tile(base_obj)
     end
 
     local size = bounds['size']
-    if math.abs(size['x'] - g_base_width_inches) > 0.01 then
+    if math.abs(size['x'] - Settings.base_width_inches) > 0.01 then
         -- Too wide or too small, ignore
         return true
     end

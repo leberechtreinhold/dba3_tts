@@ -142,13 +142,13 @@ function is_rad_angle_diff(angleA, angleB, delta)
   angleB = normalize_radians(angleB) 
   local diff_angle = math.abs(angleA - angleB)
   -- Check if the difference
-  if diff_angle < g_max_angle_pushback_rad then
+  if diff_angle < Settings.max_angle_pushback_rad then
     return true
   end
 
   -- Check if the value is close to 2 PI + threshold
   diff_angle =  (2 * math.pi)- diff_angle
-  if diff_angle < g_max_angle_pushback_rad then
+  if diff_angle < Settings.max_angle_pushback_rad then
     return true
   end
 
@@ -169,11 +169,11 @@ function from_mm_to_in(mm)
 end
 
 function from_bw_to_in(bw)
-    return bw * g_base_width_inches
+    return bw * Settings.base_width_inches
 end
 
 function from_in_to_bw(inches)
-    return inches / g_base_width_inches
+    return inches / Settings.base_width_inches
 end
 
 -- Given two tables with x,y,z representing world coords, calculates the distance between them in x,z, SQUARED
