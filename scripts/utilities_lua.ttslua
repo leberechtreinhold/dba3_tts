@@ -119,10 +119,6 @@ function str_join(sep, values)
   return result
 end
 
--- remove white space from beginning and end of string
-function str_trim(str)
-  return (str:gsub("^%s*(.-)%s*$", "%1"))
-end
 
 function str_remove_prefix(str, prefix)
   local head = str:sub(1, prefix:len())
