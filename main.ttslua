@@ -36,6 +36,7 @@ Logger = DBX.Logger:Create()
 History = DBX.History
 
 Settings = DBX.Settings
+Settings.module_name = 'dba3'
 Settings.units = 1/from_mm_to_in(40)
 Settings.unit_str = 'BW'
 Settings.format_precision = '%.3f'
