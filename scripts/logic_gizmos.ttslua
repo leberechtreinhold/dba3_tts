@@ -1,5 +1,5 @@
 function set_vec_to_above_terrain(vec)
-    vec['y'] = g_terrain_pos + Settings.base_height_inches
+    vec['y'] = TerrainManager:GetTerrainPos() + Settings.base_height_inches
     return vec
 end
 
@@ -953,53 +953,53 @@ function get_strokes_deployment(pos, color, angle, proportion, width, depth)
     local center = { x=0, y=0, z=0 }
     table.insert(stroke_points, rotate_point_relative({
         x = - half_width + from_bw_to_in(2) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = - half_width + from_bw_to_in(2) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = - half_width + from_bw_to_in(4) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = - half_width + from_bw_to_in(4) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = - half_width + from_bw_to_in(4) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
 
     table.insert(stroke_points, rotate_point_relative({
         x = half_width -from_bw_to_in(4) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = half_width - from_bw_to_in(4) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = half_width - from_bw_to_in(4) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = half_width - from_bw_to_in(2) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * from_bw_to_in(3) / proportion
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = half_width - from_bw_to_in(2) / proportion,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = zpos * half_depth
     }, center, -angle))
 
@@ -1018,12 +1018,12 @@ function get_strokes_quadrant_horizontal(angle, width, depth)
     local half_depth = depth / 2
     table.insert(stroke_points, rotate_point_relative({
         x = -half_width,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = 0
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = half_width,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = 0
     }, center, -angle))
 
@@ -1042,12 +1042,12 @@ function get_strokes_quadrant_vertical(angle, width, depth)
     local half_depth = depth / 2
     table.insert(stroke_points, rotate_point_relative({
         x = 0,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = half_depth
     }, center, -angle))
     table.insert(stroke_points, rotate_point_relative({
         x = 0,
-        y = g_table_thickness + Settings.base_height_inches / 2,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
         z = -half_depth
     }, center, -angle))
 
@@ -1073,7 +1073,7 @@ function spawn_text(text, pos)
 end
 
 function draw_numbers_quadrant(size)
-    local height_text = g_table_thickness * 2 + g_base_height_tabletop + Settings.base_height_inches / 2
+    local height_text = Settings.table_thickness * 2 + Settings.base_height_tabletop + Settings.base_height_inches / 2
     
     spawn_text('1', { -size['x'] / 4, height_text, -size['z'] / 4})
 
@@ -1195,7 +1195,7 @@ function show_gizmo_bua_afterdetach()
     local pos_table = gametable.getPosition()
 
     local table_height = gametable.getPosition()['y']
-    local height_strokes = table_height + g_table_thickness / 2 + Settings.base_height_inches / 2
+    local height_strokes = table_height + Settings.table_thickness / 2 + Settings.base_height_inches / 2
 
     local strokes = {}
     for _,terrain in ipairs(terrains) do

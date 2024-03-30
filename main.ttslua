@@ -5,6 +5,21 @@
 -- operation is required for scripts. The XML needs to be copied manually
 -- however.
 
+-- DBX Library
+DBX = require('../dbx_tts/main')
+Logger = DBX.Logger:Create()
+History = DBX.History
+
+Settings = DBX.Settings
+Settings.module_name = 'dba3'
+Settings.units = 1/from_mm_to_in(40)
+Settings.unit_str = 'BW'
+Settings.format_precision = '%.3f'
+
+Utils = DBX.Utils
+BasePicker = DBX.BasePicker:Create()
+TerrainManager = DBX.TerrainManager:Create()
+
 #include scripts/utilities_lua
 -- shallow_copy and deep_copy are needed by data_cheat_sheet
 #include scripts/data/data_cheat_sheet
@@ -27,22 +42,6 @@
 #include scripts/logic_tool_tips
 #include scripts/logic
 #include scripts/uievents
-
--- DBX Library
-DBX = require('../dbx_tts/main')
-Logger = DBX.Logger:Create()
-History = DBX.History
-
-Settings = DBX.Settings
-Settings.module_name = 'dba3'
-Settings.units = 1/from_mm_to_in(40)
-Settings.unit_str = 'BW'
-Settings.format_precision = '%.3f'
-
-Utils = DBX.Utils
-BasePicker = DBX.BasePicker:Create()
-TerrainManager = DBX.TerrainManager:Create()
-
 
 function onload()
     Logger.info('----------------------------------------------')
