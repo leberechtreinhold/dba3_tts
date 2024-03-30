@@ -21,11 +21,9 @@
 #include scripts/base_cache
 #include scripts/log
 #include scripts/utilities
-#include scripts/logic_terrain
 #include scripts/logic_gizmos
 #include scripts/logic_spawn_army
 #include scripts/logic_dead
-#include scripts/logic_dice
 #include scripts/logic_tool_tips
 #include scripts/logic
 #include scripts/uievents
@@ -43,6 +41,8 @@ Settings.format_precision = '%.3f'
 
 Utils = DBX.Utils
 BasePicker = DBX.BasePicker:Create()
+TerrainManager = DBX.TerrainManager:Create()
+
 
 function onload()
     Logger.info('----------------------------------------------')
