@@ -5,19 +5,21 @@
 -- operation is required for scripts. The XML needs to be copied manually
 -- however.
 
+
 -- DBX Library
 DBX = require('../dbx_tts/main')
 Logger = DBX.Logger:Create()
 History = DBX.History
+Utils = DBX.Utils
 
 Settings = DBX.Settings
 Settings.module_name = 'dba3'
-Settings.units = 1/from_mm_to_in(40)
+Settings.units = 1/Utils.from_mm_to_in(40)
 Settings.unit_str = 'BW'
 Settings.format_precision = '%.3f'
 
-Utils = DBX.Utils
 BasePicker = DBX.BasePicker:Create()
+DiceManager = DBX.DiceManager:Create()
 TerrainManager = DBX.TerrainManager:Create()
 
 #include scripts/utilities_lua
@@ -34,7 +36,6 @@ TerrainManager = DBX.TerrainManager:Create()
 #include scripts/data/data_armies_book_III
 #include scripts/data/data_armies_book_IV
 #include scripts/base_cache
-#include scripts/log
 #include scripts/utilities
 #include scripts/logic_gizmos
 #include scripts/logic_spawn_army
@@ -45,7 +46,7 @@ TerrainManager = DBX.TerrainManager:Create()
 
 function onload()
     Logger.info('----------------------------------------------')
-    Logger.info('                       DBA 3.0 v1.27 ')
+    Logger.info('                       DBA 3.0 v1.28 ')
     Logger.info('----------------------------------------------\n\nCheck the Notebook for instructions.')
     Wait.time(main_loop, Settings.seconds_main_loop, -1)
     make_scenery_non_interactable()
