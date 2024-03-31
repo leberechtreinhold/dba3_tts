@@ -1088,7 +1088,7 @@ function onObjectPickUp(player_color,  picked_up_object)
 end
 
 function onObjectRotate(object, spin, flip, player_color, old_spin, old_flip)
-    BasePicker:on_object_rotate(obj, spin, flip, player_color, old_spin, old_flip)
+    BasePicker:on_object_rotate(object, spin, flip, player_color, old_spin, old_flip)
 end
 
 function snap_to_base(obj, transformObj, base, transformBase, direction)
