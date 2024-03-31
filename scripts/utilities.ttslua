@@ -164,10 +164,6 @@ function from_in_to_mm(inches)
     return inches * 25.4
 end
 
-function from_mm_to_in(mm)
-    return mm / 25.4
-end
-
 function from_bw_to_in(bw)
     return bw * Settings.base_width_inches
 end
