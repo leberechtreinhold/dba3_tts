@@ -23,7 +23,7 @@
 
 <!-- TODO Prettify -->
 <Panel id="panel_current_movement" color="#dddddd" width="400" height="70" rectAlignment="LowerCenter" offsetXY="0 200" active="false" raycastTarget="true">
-    <Text id="text_current_movement_BWs" fontSize="24">Current movement: 0 BWs</Text>
+    <Text id="text_current_movement" fontSize="24">Current movement: 0 BWs</Text>
 </Panel>
 
 <Panel id="panel_dba_pip" width="260" height="100" color="#00000000" outline="#00000000" outlineSize="2" rectAlignment="LowerCenter" raycastTarget="true">
