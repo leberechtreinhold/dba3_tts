@@ -1059,6 +1059,56 @@ function get_strokes_quadrant_vertical(angle, width, depth)
     }
 end
 
+function get_strokes_lines_vertical(angle, width, depth, index, proportion)
+    local stroke_points = {}
+    local center = { x=0, y=0, z=0 }
+    local half_width = width / 2
+    local half_depth = depth / 2
+    Logger.debug('Vertical ' .. -half_width + index * (1/Settings.units) * proportion)
+    table.insert(stroke_points, rotate_point_relative({
+        x = -half_width + index * (1/Settings.units) * proportion,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
+        z = half_depth
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = -half_width + index * (1/Settings.units) * proportion,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
+        z = -half_depth
+    }, center, -angle))
+
+    return {
+        points    = stroke_points,
+        color     = g_gizmo_color_command,
+        thickness = Settings.line_thickness,
+        rotation  = {0,0,0}
+    }
+end
+
+function get_strokes_lines_horizontal(angle, width, depth, index, proportion)
+    local stroke_points = {}
+    local center = { x=0, y=0, z=0 }
+    local half_width = width / 2
+    local half_depth = depth / 2
+    Logger.debug('Horizontal ' .. -half_depth + index * (1/Settings.units) * proportion)
+    table.insert(stroke_points, rotate_point_relative({
+        x = -half_width,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
+        z = -half_depth + index * (1/Settings.units) * proportion
+    }, center, -angle))
+    table.insert(stroke_points, rotate_point_relative({
+        x = half_width,
+        y = Settings.table_thickness + Settings.base_height_inches / 2,
+        z = -half_depth + index * (1/Settings.units) * proportion
+    }, center, -angle))
+
+    return {
+        points    = stroke_points,
+        color     = g_gizmo_color_command,
+        thickness = Settings.line_thickness,
+        rotation  = {0,0,0}
+    }
+end
+
 function spawn_text(text, pos)
     local params = {
         type = '3DText',
@@ -1124,6 +1174,43 @@ function remove_deployment_lines()
             -- This executes on next frame
             obj.destroy()
         end
+    end
+end
+
+
+function draw_table_grid()
+    local gametable = getObjectFromGUID(g_current_table)
+    if gametable == nil then
+        Logger.error('There is no current table, stored GUID is: ' .. g_current_table)
+        return
+    end
+
+    local size = gametable.getBoundsNormalized()['size']
+    local scale = gametable.getScale()
+    local proportion = 1/scale['x']
+    local angle = normalize_angle(math.rad(gametable.getRotation()['y']))
+    local w = size['x']  / scale['x']
+    local h = size['z'] / scale['z']
+
+    local w_in_BW = math.floor(size['x'] * Settings.units)
+    local h_in_BW = math.floor(size['z'] * Settings.units)
+    Logger.info('W is ' .. w .. ' In bw is' .. w_in_BW)
+
+    local strokes = {}
+    for i=0, w_in_BW do
+        table.insert(strokes, get_strokes_lines_vertical(angle, w, h, i, proportion))
+    end
+    for i=0, h_in_BW do
+        table.insert(strokes, get_strokes_lines_horizontal(angle, w, h, i, proportion))
+    end
+
+    gametable.setVectorLines(strokes)
+end
+
+function remove_table_grid()
+    local gametable = getObjectFromGUID(g_current_table)
+    if gametable ~= nil then
+        gametable.setVectorLines({})
     end
 end
 

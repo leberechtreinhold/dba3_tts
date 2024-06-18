@@ -50,6 +50,9 @@ function add_context_menu_table(table_obj)
     table_obj.addContextMenuItem('Toggle BUA fire/ZOC', function()
         show_gizmo_bua()
     end)
+    table_obj.addContextMenuItem('Toggle Grid', function()
+        toggle_table_grid()
+    end)
 end
 
 function toggle_deployment_ruler()
@@ -58,6 +61,16 @@ function toggle_deployment_ruler()
         draw_deployment_lines()
     else
         remove_deployment_lines()
+    end
+end
+
+g_grid_enabled = false
+function toggle_table_grid()
+    g_grid_enabled = not g_grid_enabled
+    if g_grid_enabled then
+        draw_table_grid()
+    else
+        remove_table_grid()
     end
 end
 
