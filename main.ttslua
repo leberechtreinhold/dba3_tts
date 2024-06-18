@@ -46,7 +46,7 @@ TerrainManager = DBX.TerrainManager:Create()
 
 function onload()
     Logger.info('----------------------------------------------')
-    Logger.info('                       DBA 3.0 v1.28 ')
+    Logger.info('                       DBA 3.0 v1.29 ')
     Logger.info('----------------------------------------------\n\nCheck the Notebook for instructions.')
     Wait.time(main_loop, Settings.seconds_main_loop, -1)
     make_scenery_non_interactable()
