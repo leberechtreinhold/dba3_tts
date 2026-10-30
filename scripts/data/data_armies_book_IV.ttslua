@@ -8803,7 +8803,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
 
     base1 = {
         name = '6Bd_Gen',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 1,
         model_data = 'troop_general_plain',
         ignore_terrain = true
@@ -8836,7 +8836,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base6 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8848,7 +8848,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base8 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8860,7 +8860,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base10 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8872,7 +8872,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base12 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8884,7 +8884,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base14 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8896,7 +8896,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base16 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8908,7 +8908,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base18 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -8920,7 +8920,7 @@ armies["Book IV"]["IV/41 Early Swiss Army 1240-1400AD (Plain)"] = {
     },
     base20 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -17120,7 +17120,7 @@ armies["Book IV"]["IV/79a Swiss Army 1400-1424AD (Plain)"] = {
     },
     base7 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -17138,7 +17138,7 @@ armies["Book IV"]["IV/79a Swiss Army 1400-1424AD (Plain)"] = {
     },
     base10 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -17156,7 +17156,7 @@ armies["Book IV"]["IV/79a Swiss Army 1400-1424AD (Plain)"] = {
     },
     base13 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -17174,7 +17174,7 @@ armies["Book IV"]["IV/79a Swiss Army 1400-1424AD (Plain)"] = {
     },
     base16 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -17192,7 +17192,7 @@ armies["Book IV"]["IV/79a Swiss Army 1400-1424AD (Plain)"] = {
     },
     base19 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
@@ -17210,7 +17210,7 @@ armies["Book IV"]["IV/79a Swiss Army 1400-1424AD (Plain)"] = {
     },
     base22 = {
         name = '6Bd',
-        base = 'tile_plain_6Bd_40x30',
+        base = 'tile_plain_6Bd_40x40',
         n_models = 0,
         ignore_terrain = true
     },
